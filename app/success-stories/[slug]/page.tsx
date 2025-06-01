@@ -412,19 +412,19 @@ export default function SuccessStoryPage() {
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-3xl text-center">
             <GSAPReveal animation="slide-up">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Create Your Own Success Story</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Be Inspired by Our Scholars</h2>
               <p className="mt-4 text-xl text-primary-foreground/90">
-                Join our community of scholars and transform your educational journey with our support programs.
+                Discover how our programs have helped students achieve their educational dreams.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Link href="/apply">
+                <Link href="/programs">
                   <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
-                    Apply for Scholarship
+                    Explore Programs
                   </Button>
                 </Link>
-                <Link href="/programs">
+                <Link href="/contact">
                   <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                    Explore Programs
+                    Contact Us
                   </Button>
                 </Link>
               </div>

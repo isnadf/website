@@ -357,40 +357,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Apply for Grants CTA */}
-      <section className="py-16 md:py-24 bg-white dark:bg-black">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <GSAPReveal animation="slide-up">
-              <div className="space-y-2">
-                <div className="inline-flex items-center rounded-lg bg-secondary/10 px-3 py-1 text-sm text-secondary">
-                  <Calendar className="mr-1 h-4 w-4" />
-                  Applications Open
-                </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20">
-                  Apply for Grants
-                </GSAPTextReveal>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Take the first step toward your educational journey with our comprehensive grant programs.
-                </p>
-              </div>
-            </GSAPReveal>
-
-            <GSAPReveal animation="slide-up" delay={0.3}>
-              <div className="mx-auto max-w-3xl pt-8">
-                <Link href="/apply">
-                  <Button size="lg" className="group bg-secondary hover:bg-secondary/90 text-white">
-                    Start Your Application
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-                <p className="mt-4 text-sm text-muted-foreground">Next application deadline: September 30, 2025</p>
-              </div>
-            </GSAPReveal>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Us Preview */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-white to-primary/10 dark:from-black dark:to-primary/20">
         <div className="container px-4 md:px-6">

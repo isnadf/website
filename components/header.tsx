@@ -83,7 +83,6 @@ export default function Header() {
         }
       ]
     },
-    { name: t("nav.apply"), href: "/apply" },
     { name: t("nav.contact"), href: "/contact" },
   ];
 
