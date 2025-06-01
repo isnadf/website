@@ -4,7 +4,6 @@ import {
   Leaf,
   Zap,
   Sprout,
-  Wind,
   Sun,
   Droplets,
   Globe,
@@ -16,19 +15,18 @@ import {
   UserPlus,
   TreePine,
   Recycle,
-  Waves
+  DollarSign,
+  Users
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
-import Image from "next/image"
 import StatsCounter from "@/components/stats-counter"
 
 export default function SustainabilityScholarshipPage() {
-
   return (
-    <main className="flex min-h-screen flex-col bg-gradient-to-br from-green-50 via-emerald-50 to-white dark:from-green-950 dark:via-emerald-900 dark:to-black">
-      {/* Nature/Sustainability-themed Header Section */}
-      <section className="relative py-20 md:py-28 flex flex-col items-center text-center bg-gradient-to-r from-green-400/10 via-emerald-500/10 to-green-600/10 dark:from-green-900/20 dark:via-emerald-900/20 dark:to-green-800/20 shadow-lg border-b-4 border-green-500">
+    <main className="flex min-h-screen flex-col bg-gradient-to-br from-green-100 via-emerald-50 to-green-200 dark:from-green-950 dark:via-emerald-900 dark:to-green-800">
+      {/* Header Section */}
+      <section className="relative py-16 md:py-24 flex flex-col items-center text-center bg-gradient-to-r from-green-200 via-emerald-100 to-green-100 dark:from-green-900 dark:via-emerald-900 dark:to-green-800 shadow-lg border-b-4 border-green-500">
         <div className="mb-6">
           <div className="relative mb-4">
             <div className="w-24 h-24 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-xl">
@@ -41,179 +39,177 @@ export default function SustainabilityScholarshipPage() {
               <Recycle size={16} className="text-emerald-500 animate-spin" />
             </div>
           </div>
-          <GSAPTextReveal element="h1" className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent font-sora drop-shadow-lg">
-            Sustainability
+          <GSAPTextReveal element="h1" className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent font-sora drop-shadow-lg">
+            Sustainability Scholarship Program
           </GSAPTextReveal>
-          <GSAPTextReveal element="h2" className="text-2xl md:text-3xl font-bold text-emerald-700 dark:text-emerald-400 mt-2">
-            Green Future Scholarship Program
+          <GSAPTextReveal element="h2" className="text-xl md:text-2xl font-bold text-emerald-700 dark:text-emerald-400 mt-2">
+            Towards Global Sovereignty and a Society Driving Its Own Development
           </GSAPTextReveal>
-          <p className="mt-4 text-lg md:text-xl text-green-800 dark:text-green-300 font-medium max-w-2xl mx-auto">
-            🌱 Building Palestine's Green Future 🌍
-          </p>
         </div>
         <div className="flex justify-center gap-8 mt-8 mb-4">
           <StatsCounter number={200} label="Scholarships" />
-          <StatsCounter number={3} label="Key Fields" />
-          <StatsCounter number={5} label="Years" />
+          <StatsCounter number={3} label="Years" />
+          <StatsCounter number={5} label="Majors" />
         </div>
-        <div className="max-w-2xl mx-auto mt-4">
-          <h2 className="text-xl font-bold text-emerald-700 mb-2 flex items-center justify-center gap-2">
-            <Leaf className="text-green-500 animate-bounce" size={28} />
-            <span>About the Green Program</span>
-            <TreePine className="text-emerald-500 animate-pulse" size={28} />
-          </h2>
-          <p className="text-gray-800 dark:text-gray-100 text-base md:text-lg text-center">
-            <span className="font-semibold text-emerald-800">"Sustainability"</span> is a specialized graduate scholarship program designed to <span className="font-bold text-green-700">provide 200 full scholarships in energy and agricultural engineering</span> to Palestinian students. The program aims to ensure energy independence and food security in Palestine through advanced education and research.
+      </section>
+
+      {/* About the Program */}
+      <section className="py-10 px-4 md:px-0 bg-gradient-to-r from-green-100 via-emerald-50 to-green-200 dark:from-green-900 dark:via-emerald-900 dark:to-green-800 border-b border-green-100 dark:border-green-900">
+        <div className="max-w-3xl mx-auto text-center">
+          <GSAPTextReveal element="h2" className="text-2xl font-bold text-green-700 mb-4">About the Program</GSAPTextReveal>
+          <p className="text-gray-800 dark:text-gray-100 text-base md:text-lg mb-4 leading-relaxed">
+            The Sustainability Scholarship Program for Graduate Studies is a national initiative by the Isnad Foundation to support Palestinian students. It aims to qualify Palestinian talents in vital fields including sustainable energy, agriculture, and natural resources, to achieve national sovereignty in energy and food, and promote sustainable development in Palestine.
           </p>
-          <div className="flex justify-center mt-6">
-            <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full shadow-xl hover:from-emerald-600 hover:to-green-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl">
-              <TreePine size={22} className="-ml-1 animate-pulse" /> Apply for Green Scholarship
-            </a>
+        </div>
+      </section>
+
+      {/* Why the Program? */}
+      <section className="py-12 px-4 md:px-0 bg-gradient-to-r from-green-100 via-emerald-50 to-green-200 dark:from-green-900 dark:via-emerald-900 dark:to-green-800 border-b border-green-100 dark:border-green-900">
+        <div className="max-w-6xl mx-auto">
+          <GSAPTextReveal element="h2" className="text-2xl font-bold text-green-700 mb-8 text-center">Why the Sustainability Scholarship?</GSAPTextReveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <GSAPReveal animation="slide-up"><div className="flex flex-col items-center bg-white/90 dark:bg-gray-900 rounded-xl shadow p-6 min-h-[220px]">
+              <Zap className="text-green-700 mb-3" size={36} />
+              <h3 className="text-lg font-bold text-green-800 dark:text-green-300 mb-2">Heavy Reliance on Imported Energy</h3>
+              <p className="text-center text-gray-700 dark:text-gray-200 text-sm">Palestine relies on imported energy for 87.4% of its needs, making it vulnerable to crises and affecting economic and social development.</p>
+            </div></GSAPReveal>
+            <GSAPReveal animation="slide-up" delay={0.1}><div className="flex flex-col items-center bg-white/90 dark:bg-gray-900 rounded-xl shadow p-6 min-h-[220px]">
+              <Sun className="text-yellow-600 mb-3" size={36} />
+              <h3 className="text-lg font-bold text-green-800 dark:text-green-300 mb-2">Low Contribution of Renewable Energy</h3>
+              <p className="text-center text-gray-700 dark:text-gray-200 text-sm">Despite Palestine's significant natural potential for renewable energy, its contribution to local production does not exceed 4.7%.</p>
+            </div></GSAPReveal>
+            <GSAPReveal animation="slide-up" delay={0.2}><div className="flex flex-col items-center bg-white/90 dark:bg-gray-900 rounded-xl shadow p-6 min-h-[220px]">
+              <Sprout className="text-emerald-700 mb-3" size={36} />
+              <h3 className="text-lg font-bold text-green-800 dark:text-green-300 mb-2">Agricultural Sector Challenges</h3>
+              <p className="text-center text-gray-700 dark:text-gray-200 text-sm">The Palestinian agricultural sector faces major challenges related to water scarcity, declining cultivated areas, and weak use of modern technologies in plant, animal, and food production.</p>
+            </div></GSAPReveal>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <GSAPReveal animation="slide-up" delay={0.3}><div className="flex flex-col items-center bg-white/90 dark:bg-gray-900 rounded-xl shadow p-6 min-h-[220px]">
+              <Droplets className="text-blue-600 mb-3" size={36} />
+              <h3 className="text-lg font-bold text-green-800 dark:text-green-300 mb-2">Impact of Occupation on Natural Resources</h3>
+              <p className="text-center text-gray-700 dark:text-gray-200 text-sm">The occupation depletes Palestinian natural resources and limits the ability of Palestinians to invest in them.</p>
+            </div></GSAPReveal>
+            <GSAPReveal animation="slide-up" delay={0.4}><div className="flex flex-col items-center bg-white/90 dark:bg-gray-900 rounded-xl shadow p-6 min-h-[220px]">
+              <BookOpen className="text-green-700 mb-3" size={36} />
+              <h3 className="text-lg font-bold text-green-800 dark:text-green-300 mb-2">Lack of Specialized Academic Programs</h3>
+              <p className="text-center text-gray-700 dark:text-gray-200 text-sm">There are few specialized academic programs in the fields of energy, agriculture, and natural resources.</p>
+            </div></GSAPReveal>
+            <GSAPReveal animation="slide-up" delay={0.5}><div className="flex flex-col items-center bg-white/90 dark:bg-gray-900 rounded-xl shadow p-6 min-h-[220px]">
+              <Award className="text-green-700 mb-3" size={36} />
+              <h3 className="text-lg font-bold text-green-800 dark:text-green-300 mb-2">Lack of Applied Scientific Research</h3>
+              <p className="text-center text-gray-700 dark:text-gray-200 text-sm">There is a lack of applied research that contributes to developing practical solutions to local problems.</p>
+            </div></GSAPReveal>
           </div>
         </div>
       </section>
 
-
-
-      {/* Mission Section */}
-      <section className="py-16 px-4 md:px-0 bg-gradient-to-r from-green-100/40 via-white to-emerald-100/40 dark:from-green-900/30 dark:via-black dark:to-emerald-900/30">
-        <div className="max-w-7xl mx-auto">
-          <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-10">Our Mission</GSAPTextReveal>
-          <div className="max-w-4xl mx-auto text-center mb-8">
-            <p className="text-lg text-gray-800 dark:text-gray-100 font-medium mb-4">
-              Developing Palestinian expertise in <span className="font-bold text-green-700">energy, environmental, and agricultural fields</span> to ensure <span className="font-bold text-emerald-700">energy independence and food security</span> in Palestine through advanced education and research.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <GSAPReveal animation="scale"><div className="flex flex-col items-center bg-white dark:bg-gray-900 rounded-xl shadow p-6 hover:scale-105 transition-transform duration-300">
-              <Zap className="text-green-700 mb-3" size={40} />
-              <h3 className="text-xl font-bold text-green-800 dark:text-green-300 mb-2">Energy Independence</h3>
-              <p className="text-center text-gray-700 dark:text-gray-200 text-base">Develop renewable energy infrastructure and smart grid systems for sustainable electricity generation.</p>
-            </div></GSAPReveal>
-            <GSAPReveal animation="scale" delay={0.1}><div className="flex flex-col items-center bg-white dark:bg-gray-900 rounded-xl shadow p-6 hover:scale-105 transition-transform duration-300">
-              <Sprout className="text-emerald-700 mb-3" size={40} />
-              <h3 className="text-xl font-bold text-emerald-800 dark:text-emerald-300 mb-2">Food Security</h3>
-              <p className="text-center text-gray-700 dark:text-gray-200 text-base">Implement advanced agricultural technologies and sustainable farming practices for higher yields.</p>
-            </div></GSAPReveal>
-          </div>
+      {/* Objectives Section */}
+      <section className="py-10 px-4 md:px-0 bg-gradient-to-r from-green-100 via-emerald-50 to-green-200 dark:from-green-900 dark:via-emerald-900 dark:to-green-800 border-b border-green-100 dark:border-green-900">
+        <div className="max-w-4xl mx-auto">
+          <GSAPTextReveal element="h2" className="text-2xl font-bold text-green-700 mb-4 text-center">Our Objectives</GSAPTextReveal>
+          <p className="text-lg text-emerald-800 dark:text-emerald-200 font-semibold text-center mb-8">Empowering a new generation to lead Palestine's sustainable future. Here's what we're striving for:</p>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <li className="flex items-start gap-4 bg-white/80 dark:bg-gray-900 rounded-lg shadow p-5 hover:scale-105 transition-transform duration-300 border-l-4 border-green-500">
+              <Award className="text-green-600 mt-1 flex-shrink-0" size={28} />
+              <span className="text-green-900 dark:text-green-200 font-medium">Award 200 full scholarships to outstanding Palestinian students in energy, agriculture, and natural resources—fueling the next wave of changemakers.</span>
+            </li>
+            <li className="flex items-start gap-4 bg-white/80 dark:bg-gray-900 rounded-lg shadow p-5 hover:scale-105 transition-transform duration-300 border-l-4 border-emerald-500">
+              <BookOpen className="text-emerald-600 mt-1 flex-shrink-0" size={28} />
+              <span className="text-green-900 dark:text-green-200 font-medium">Ignite applied scientific research that delivers real solutions for a greener, more resilient Palestine.</span>
+            </li>
+            <li className="flex items-start gap-4 bg-white/80 dark:bg-gray-900 rounded-lg shadow p-5 hover:scale-105 transition-transform duration-300 border-l-4 border-blue-400">
+              <Globe className="text-blue-500 mt-1 flex-shrink-0" size={28} />
+              <span className="text-green-900 dark:text-green-200 font-medium">Boost Palestinian knowledge and innovation, connecting research to national priorities and real-world impact.</span>
+            </li>
+            <li className="flex items-start gap-4 bg-white/80 dark:bg-gray-900 rounded-lg shadow p-5 hover:scale-105 transition-transform duration-300 border-l-4 border-yellow-400">
+              <GraduationCap className="text-yellow-500 mt-1 flex-shrink-0" size={28} />
+              <span className="text-green-900 dark:text-green-200 font-medium">Inspire and graduate leaders ready to drive sustainable development and positive change across Palestine.</span>
+            </li>
+          </ul>
         </div>
       </section>
 
-
-
-      {/* Fields of Study Section */}
-      <section className="py-16 px-4 md:px-0 bg-white dark:bg-black">
-        <div className="max-w-5xl mx-auto">
-          <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-10">Fields of Study</GSAPTextReveal>
+      {/* Financial Support Section */}
+      <section className="py-10 px-4 md:px-0 bg-gradient-to-r from-green-100 via-emerald-50 to-green-200 dark:from-green-900 dark:via-emerald-900 dark:to-green-800 border-b border-green-100 dark:border-green-900">
+        <div className="max-w-4xl mx-auto">
+          <GSAPTextReveal element="h2" className="text-2xl font-bold text-green-700 mb-6 text-center">Financial Support</GSAPTextReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <GSAPReveal animation="slide-up"><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-6 flex flex-col items-center min-h-[300px] justify-center hover:scale-105 transition-transform duration-300">
-              <Zap className="text-yellow-600 mb-4" size={48} />
-              <h3 className="text-xl font-bold text-center text-yellow-700 dark:text-yellow-300 mb-4">Energy Engineering</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm text-center mb-4">
-                Advanced studies in power systems, grid management, and energy infrastructure development for sustainable electricity generation.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Power Systems</span>
+            <GSAPReveal animation="scale">
+              <div className="relative bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 overflow-hidden group hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-emerald-600"></div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-green-100 dark:bg-green-900/50 p-3 rounded-lg">
+                    <DollarSign className="text-green-700 dark:text-green-400" size={24} />
+                  </div>
+                  <h4 className="text-lg font-bold text-green-800 dark:text-green-300">Annual Tuition Fees</h4>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Smart Grids</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Energy Storage</span>
-                </div>
-              </div>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.1}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-6 flex flex-col items-center min-h-[300px] justify-center hover:scale-105 transition-transform duration-300">
-              <Sun className="text-green-600 mb-4" size={48} />
-              <h3 className="text-xl font-bold text-center text-green-700 dark:text-green-300 mb-4">Renewable Energy</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm text-center mb-4">
-                Specialization in solar, wind, and other renewable energy technologies to reduce dependence on fossil fuels.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Solar Energy</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Wind Power</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Biomass</span>
+                <div className="space-y-3">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">The scholarship covers annual tuition fees.</p>
+                  <div className="bg-gradient-to-r from-green-100 to-green-50 dark:from-green-900/30 dark:to-green-800/30 p-4 rounded-lg">
+                    <p className="text-center">
+                      <span className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">$3,000</span>
+                      <span className="block text-sm text-gray-600 dark:text-gray-400 mt-1">per academic year</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.2}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-6 flex flex-col items-center min-h-[300px] justify-center hover:scale-105 transition-transform duration-300">
-              <Sprout className="text-emerald-600 mb-4" size={48} />
-              <h3 className="text-xl font-bold text-center text-emerald-700 dark:text-emerald-300 mb-4">Agricultural Engineering</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm text-center mb-4">
-                Innovation in farming technology, irrigation systems, and sustainable agriculture practices to enhance food security.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Precision Farming</span>
+            </GSAPReveal>
+            <GSAPReveal animation="scale" delay={0.1}>
+              <div className="relative bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 overflow-hidden group hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-green-500"></div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-emerald-100 dark:bg-emerald-900/50 p-3 rounded-lg">
+                    <Users className="text-emerald-700 dark:text-emerald-400" size={24} />
+                  </div>
+                  <h4 className="text-lg font-bold text-emerald-800 dark:text-emerald-300">Annual Living Support</h4>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Irrigation</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Hydroponics</span>
+                <div className="space-y-3">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">Students receive a monthly living stipend.</p>
+                  <div className="bg-gradient-to-r from-emerald-100 to-green-50 dark:from-emerald-900/30 dark:to-green-800/30 p-4 rounded-lg">
+                    <p className="text-center">
+                      <span className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-700 bg-clip-text text-transparent">$200</span>
+                      <span className="block text-sm text-gray-600 dark:text-gray-400 mt-1">per month ($2,400/year)</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div></GSAPReveal>
+            </GSAPReveal>
+            <GSAPReveal animation="scale" delay={0.2}>
+              <div className="relative bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 overflow-hidden group hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-500"></div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-green-50 dark:bg-green-900/50 p-3 rounded-lg">
+                    <Globe className="text-green-600 dark:text-green-400" size={24} />
+                  </div>
+                  <h4 className="text-lg font-bold text-green-800 dark:text-green-300">Housing Support</h4>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">If needed, the scholarship provides annual housing support.</p>
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-lg">
+                    <p className="text-center">
+                      <span className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">$2,400</span>
+                      <span className="block text-sm text-gray-600 dark:text-gray-400 mt-1">per year</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </GSAPReveal>
           </div>
         </div>
       </section>
-
-      {/* Requirements Section */}
-      <section className="py-16 px-4 md:px-0 bg-gradient-to-r from-green-100/40 via-white to-emerald-100/40 dark:from-green-900/30 dark:via-black dark:to-emerald-900/30">
-        <div className="max-w-5xl mx-auto">
-          <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-10">Requirements</GSAPTextReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <GSAPReveal animation="slide-up"><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <Globe className="text-green-700 mb-2" size={32} />
-              <h3 className="text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1">Palestinian Nationality</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.1}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <GraduationCap className="text-green-700 mb-2" size={32} />
-              <h3 className="text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1">Bachelor's Degree</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 text-center">In engineering or related field</p>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.2}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <Award className="text-green-700 mb-2" size={32} />
-              <h3 className="text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1">GPA 3.0+</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.3}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <BookOpen className="text-green-700 mb-2" size={32} />
-              <h3 className="text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1">Language Proficiency</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 text-center">English or program language</p>
-            </div></GSAPReveal>
-          </div>
-        </div>
-      </section>
-
-
 
       {/* Contact Section */}
-      <section className="py-10 bg-gradient-to-r from-green-100/40 via-white to-emerald-100/40 dark:from-green-900/30 dark:via-black dark:to-emerald-900/30">
+      <section className="py-10 bg-gradient-to-r from-green-100 via-emerald-50 to-green-200 dark:from-green-900 dark:via-emerald-900 dark:to-green-800">
         <div className="max-w-2xl mx-auto text-center">
           <GSAPTextReveal element="h3" className="text-xl font-bold text-green-800 mb-2">Contact Us</GSAPTextReveal>
-          <p className="text-gray-700 dark:text-gray-200 mb-4">For more information, reach out to us:</p>
+          <p className="text-gray-700 dark:text-gray-200 mb-4">For more information, please contact us:</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-lg">
-            <a href="mailto:Palestinian.pssf@gmail.com" className="flex items-center gap-2 text-green-700 hover:underline"><Mail className="text-green-700" size={22} /> Palestinian.pssf@gmail.com</a>
+            <a href="mailto:info@isnadf.org" className="flex items-center gap-2 text-green-700 hover:underline"><Mail className="text-green-700" size={22} /> info@isnadf.org</a>
             <span className="hidden md:inline-block text-gray-400">|</span>
             <a href="tel:+90539430726" className="flex items-center gap-2 text-green-700 hover:underline"><Phone className="text-green-700" size={22} /> +90 539 430 07 26</a>
           </div>
         </div>
-
         <div className="flex justify-center my-8">
           <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-500 text-white font-bold rounded-full shadow-lg hover:from-emerald-600 hover:to-green-500 transition-colors duration-300 text-xl">
             <UserPlus size={26} className="-ml-1" /> Apply Now
