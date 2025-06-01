@@ -1,9 +1,7 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import Link from "next/link"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import {
   ArrowRight,
   Star,
@@ -19,34 +17,15 @@ export default function ProgramsPage() {
   const heroRef = useRef<HTMLElement>(null)
   const programsRef = useRef<HTMLElement>(null)
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-
-    // Hero parallax effect
-    gsap.to(heroRef.current, {
-      yPercent: -30,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-      }
-    })
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
-  }, [])
-
   return (
-    <main className="relative overflow-hidden bg-black text-white">
+    <main className="relative overflow-hidden text-white">
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-black to-blue-900"
+        className="relative h-[calc(100vh-96px)] mt-24 flex items-center justify-center overflow-hidden"
       >
         {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-black to-blue-900"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.15)_0%,transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1)_0%,transparent_50%)]"></div>
 
@@ -86,12 +65,17 @@ export default function ProgramsPage() {
         </div>
       </section>
 
+      {/* Decorative Divider */}
+      <div className="relative h-1 bg-gradient-to-r from-green-900 via-blue-900 to-green-900">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.2)_0%,transparent_70%)]"></div>
+      </div>
+
       {/* Programs Section */}
       <section
         ref={programsRef}
-        className="relative py-32 bg-gradient-to-br from-black via-gray-900 to-black"
+        className="relative pt-32 pb-16 bg-gradient-to-br from-black via-gray-900 to-black"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 pt-16">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
               Our Programs
