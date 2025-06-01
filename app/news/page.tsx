@@ -16,7 +16,7 @@ const newsData = [
     title: "Interviews for the first phase of the Nabd Al Hayat grant continue",
     date: "May 5, 2025",
     excerpt: "Ongoing interviews to select 100 Gaza students for the Nabd al-Hayat scholarship program. Partnership between Isnad Foundation and Alkhidmat Europe.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/nabd-al-hayat-grant-interviews",
     category: "Scholarships",
     featured: true,
@@ -26,7 +26,7 @@ const newsData = [
     title: "Interviews for the First Phase of the Nabd al-Hayat Scholarship",
     date: "May 5, 2023",
     excerpt: "First interviews for the Nabd al-Hayat Scholarship began in Istanbul. The program supports Palestinian medical students with grants and educational resources.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/nabd-al-hayat-scholarship-interviews",
     category: "Scholarships",
     featured: true,
@@ -36,7 +36,7 @@ const newsData = [
     title: "Partnership with Istanbul University",
     date: "May 28, 2023",
     excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/istanbul-university-partnership",
     category: "Partnerships",
     featured: true,
@@ -46,7 +46,7 @@ const newsData = [
     title: "Annual Conference Success",
     date: "April 10, 2023",
     excerpt: "Our annual conference brought together students, educators, and partners from around the world.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/annual-conference",
     category: "Events",
     featured: false,
@@ -56,7 +56,7 @@ const newsData = [
     title: "Student Success Story: Layla's Journey",
     date: "March 22, 2023",
     excerpt: "Read about Layla's inspiring journey from Gaza to completing her PhD in Environmental Science.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/student-success-layla",
     category: "Success Stories",
     featured: false,
@@ -66,7 +66,7 @@ const newsData = [
     title: "New Research Grant Opportunities",
     date: "February 15, 2023",
     excerpt: "Announcing new research grant opportunities for Palestinian scholars in STEM fields.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/research-grant-opportunities",
     category: "Grants",
     featured: false,
@@ -76,7 +76,7 @@ const newsData = [
     title: "Educational Workshop Series Announced",
     date: "January 30, 2023",
     excerpt: "Join our upcoming workshop series on academic writing, research methodologies, and career development.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/workshop-series",
     category: "Events",
     featured: false,
@@ -86,7 +86,7 @@ const newsData = [
     title: "Foundation Expands Support to Lebanon",
     date: "December 12, 2022",
     excerpt: "Our foundation is expanding its support programs to reach Palestinian students in Lebanon.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/lebanon-expansion",
     category: "Announcements",
     featured: true,
@@ -96,7 +96,7 @@ const newsData = [
     title: "Year-End Impact Report Released",
     date: "December 5, 2022",
     excerpt: "Our 2022 Impact Report shows significant growth in student support and program effectiveness.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/impact-report-2022",
     category: "Reports",
     featured: false,
@@ -106,7 +106,7 @@ const newsData = [
     title: "New Board Members Appointed",
     date: "November 18, 2022",
     excerpt: "We welcome three new distinguished members to our Board of Directors.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cover3.png",
     href: "/news/new-board-members",
     category: "Announcements",
     featured: false,
@@ -291,7 +291,7 @@ export default function NewsPage() {
                   <div key={news.id} className="group relative overflow-hidden rounded-lg border-2 border-[#1e7e34]/20 bg-card transition-all hover:shadow-md dark:bg-gray-900 dark:border-[#1e7e34]/30">
                     <div className="aspect-video overflow-hidden">
                       <img
-                        src={news.image || "/placeholder.svg"}
+                        src={news.image || "/cover3.png"}
                         alt={news.title}
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />

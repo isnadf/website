@@ -19,7 +19,7 @@ const newsArticles = {
     date: "May 5, 2023",
     author: "Isnad Foundation",
     category: "Scholarships",
-    image: "/placeholder.svg?height=600&width=1200",
+    image: "/cover3.png",
     content: [
       "Istanbul, Turkey - The first interviews for the Nabd al-Hayat Scholarship, launched by the Isnad Foundation, began today, Tuesday.",
       "The interviews, held online by the Fund, saw the participation of dozens of Palestinian students pursuing their medical studies. During the interviews, the Fund identified the students who passed the initial selection process after electronic registration for the scholarship.",
@@ -33,7 +33,7 @@ const newsArticles = {
         title: "Interviews for the first phase of the Nabd Al Hayat grant continue to select 100 students from Gaza to benefit from the program.",
         date: "May 5, 2025",
         excerpt: "Interviews for the first phase of the Nabd al-Hayat scholarship program, implemented by the Palestinian Student Support Fund in partnership with Alkhidmat Europe, continued today in Istanbul, Türkiye.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/nabd-al-hayat-grant-interviews",
         category: "Scholarships",
       },
@@ -42,7 +42,7 @@ const newsArticles = {
         title: "New Research Grant Opportunities",
         date: "February 15, 2023",
         excerpt: "Announcing new research grant opportunities for Palestinian scholars in STEM fields.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/research-grant-opportunities",
         category: "Grants",
       },
@@ -51,7 +51,7 @@ const newsArticles = {
         title: "Partnership with Istanbul University",
         date: "May 28, 2023",
         excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/istanbul-university-partnership",
         category: "Partnerships",
       },
@@ -62,7 +62,7 @@ const newsArticles = {
     date: "May 5, 2025",
     author: "Isnad Foundation",
     category: "Scholarships",
-    image: "/placeholder.svg?height=600&width=1200",
+    image: "/cover3.png",
     content: [
       "Istanbul, Türkiye - Monday, May 5, 2025 - Interviews for the first phase of the Nabd al-Hayat scholarship program, implemented by the Isnad Foundation in partnership with Alkhidmat Europe, continued today, Monday. The program targets Palestinian medical students, particularly in the Gaza Strip.",
       "These interviews, an extension of those held last Tuesday, were conducted online with the participation of a select group of Palestinian students who passed the initial selection stage and are continuing their studies in human medicine at Palestinian universities in the Gaza Strip.",
@@ -77,7 +77,7 @@ const newsArticles = {
         title: "New Scholarship Program Launched",
         date: "June 15, 2023",
         excerpt: "Announcing our new scholarship program for undergraduate students in engineering and medical fields.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/new-scholarship-program",
         category: "Scholarships",
       },
@@ -86,7 +86,7 @@ const newsArticles = {
         title: "New Research Grant Opportunities",
         date: "February 15, 2023",
         excerpt: "Announcing new research grant opportunities for Palestinian scholars in STEM fields.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/research-grant-opportunities",
         category: "Grants",
       },
@@ -95,7 +95,7 @@ const newsArticles = {
         title: "Partnership with Istanbul University",
         date: "May 28, 2023",
         excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/istanbul-university-partnership",
         category: "Partnerships",
       },
@@ -106,7 +106,7 @@ const newsArticles = {
     date: "June 15, 2023",
     author: "Dr. Mahmoud Abbas",
     category: "Scholarships",
-    image: "/placeholder.svg?height=600&width=1200",
+    image: "/cover3.png",
     content: [
       "The Isnad Foundation is proud to announce the launch of our new scholarship program specifically designed for undergraduate students in engineering and medical fields. This initiative aims to address the growing demand for skilled professionals in these critical sectors while providing opportunities for talented Palestinian students to pursue their educational dreams.",
       "The program will offer comprehensive financial support covering tuition fees, accommodation, living expenses, and educational materials for the entire duration of the undergraduate degree. Additionally, recipients will benefit from our mentorship program, connecting them with established professionals in their fields of study.",
@@ -122,7 +122,7 @@ const newsArticles = {
         title: "New Research Grant Opportunities",
         date: "February 15, 2023",
         excerpt: "Announcing new research grant opportunities for Palestinian scholars in STEM fields.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/research-grant-opportunities",
         category: "Grants",
       },
@@ -132,7 +132,7 @@ const newsArticles = {
         date: "May 28, 2023",
         excerpt:
           "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/istanbul-university-partnership",
         category: "Partnerships",
       },
@@ -141,7 +141,7 @@ const newsArticles = {
         title: "Student Success Story: Layla's Journey",
         date: "March 22, 2023",
         excerpt: "Read about Layla's inspiring journey from Gaza to completing her PhD in Environmental Science.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/student-success-layla",
         category: "Success Stories",
       },
@@ -152,7 +152,7 @@ const newsArticles = {
     date: "May 28, 2023",
     author: "Omar Farooq",
     category: "Partnerships",
-    image: "/placeholder.svg?height=600&width=1200",
+    image: "/cover3.png",
     content: [
       "We are thrilled to announce a new strategic partnership between the Isnad Foundation and Istanbul University, one of Turkey's most prestigious educational institutions. This collaboration marks a significant milestone in our mission to expand educational opportunities for Palestinian students.",
       "The partnership will create dedicated pathways for Palestinian students to access undergraduate and graduate programs at Istanbul University, with special consideration for those facing financial barriers or displacement due to conflict.",
@@ -173,7 +173,7 @@ const newsArticles = {
         title: "New Scholarship Program Launched",
         date: "June 15, 2023",
         excerpt: "Announcing our new scholarship program for undergraduate students in engineering and medical fields.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/new-scholarship-program",
         category: "Scholarships",
       },
@@ -182,7 +182,7 @@ const newsArticles = {
         title: "Foundation Expands Support to Lebanon",
         date: "December 12, 2022",
         excerpt: "Our foundation is expanding its support programs to reach Palestinian students in Lebanon.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/lebanon-expansion",
         category: "Announcements",
       },
@@ -191,7 +191,7 @@ const newsArticles = {
         title: "Annual Conference Success",
         date: "April 10, 2023",
         excerpt: "Our annual conference brought together students, educators, and partners from around the world.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/annual-conference",
         category: "Events",
       },
@@ -202,7 +202,7 @@ const newsArticles = {
     date: "May 15, 2024",
     author: "Isnad Foundation",
     category: "Scholarships",
-    image: "/scholer.png?height=600&width=1200",
+    image: "/cover3.png",
     content: [
       "The Isnad Foundation is proud to announce our comprehensive scholarship and academic support program for Palestinian students. This initiative aims to provide both full and partial scholarships to talented Palestinian youth in specializations that are crucial for the labor market and society, both within Palestine and abroad.",
       "Our scholarship program covers various academic levels, from undergraduate to postgraduate studies, with a particular focus on fields that contribute to the development of Palestinian society. We work closely with partner universities and institutions to ensure our students receive the highest quality education and support.",
@@ -220,7 +220,7 @@ const newsArticles = {
         title: "New Scholarship Program Launched",
         date: "June 15, 2023",
         excerpt: "Announcing our new scholarship program for undergraduate students in engineering and medical fields.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/new-scholarship-program",
         category: "Scholarships",
       },
@@ -229,7 +229,7 @@ const newsArticles = {
         title: "Partnership with Istanbul University",
         date: "May 28, 2023",
         excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/istanbul-university-partnership",
         category: "Partnerships",
       },
@@ -238,7 +238,7 @@ const newsArticles = {
         title: "Student Success Story: Layla's Journey",
         date: "March 22, 2023",
         excerpt: "Read about Layla's inspiring journey from Gaza to completing her PhD in Environmental Science.",
-        image: "/placeholder.svg?height=200&width=300",
+        image: "/cover3.png",
         href: "/news/student-success-layla",
         category: "Success Stories",
       },
@@ -496,7 +496,6 @@ export default function NewsArticlePage() {
       <section className="relative py-24 md:py-32 bg-gradient-to-b from-primary/90 to-primary/70 text-white">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/50" />
-          <img src={article.image || "/placeholder.svg"} alt={article.title} className="h-full w-full object-cover" />
         </div>
         <div className="container relative z-10 px-4 md:px-6">
           <div className="mx-auto max-w-3xl">
@@ -603,11 +602,6 @@ export default function NewsArticlePage() {
                           {article.relatedArticles.map((related) => (
                             <Link key={related.id} href={related.href} className="group block">
                               <div className="flex gap-3">
-                                <img
-                                  src={related.image || "/placeholder.svg"}
-                                  alt={related.title}
-                                  className="h-16 w-16 rounded-md object-cover"
-                                />
                                 <div>
                                   <h4 className="line-clamp-2 font-medium group-hover:text-primary">{related.title}</h4>
                                   <p className="text-xs text-muted-foreground">{related.date}</p>
@@ -659,13 +653,6 @@ export default function NewsArticlePage() {
                 <GSAPReveal key={related.id} animation="slide-up" delay={0.1 * index}>
                   <Link href={related.href} className="group block">
                     <div className="overflow-hidden rounded-lg border bg-card transition-all hover:shadow-md">
-                      <div className="aspect-video overflow-hidden">
-                        <img
-                          src={related.image || "/placeholder.svg"}
-                          alt={related.title}
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
                       <div className="p-4">
                         <Badge variant="outline" className="mb-2 bg-primary/10 text-primary">
                           {related.category}
