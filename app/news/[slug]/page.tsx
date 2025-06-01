@@ -625,11 +625,13 @@ export default function NewsArticlePage() {
                 <GSAPReveal animation="slide-left" delay={0.2}>
                   <Card className="bg-primary text-primary-foreground">
                     <CardContent className="p-6">
-                      <h3 className="mb-2 text-lg font-bold">Apply for Our Programs</h3>
+                      <h3 className="mb-2 text-lg font-bold">Explore Our Programs</h3>
                       <p className="mb-4 text-primary-foreground/90">
-                        Take the next step in your educational journey with our scholarship and grant programs.
+                        Discover our comprehensive scholarship programs and find the perfect opportunity for your educational journey.
                       </p>
-                      <Button className="w-full bg-white text-primary hover:bg-gray-100">Apply Now</Button>
+                      <Link href="/programs">
+                        <Button className="w-full bg-white text-primary hover:bg-gray-100">View Programs</Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 </GSAPReveal>

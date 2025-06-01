@@ -324,12 +324,12 @@ export default function SuccessStoryPage() {
                 <GSAPReveal animation="slide-left" delay={0.1}>
                   <Card className="bg-primary text-primary-foreground">
                     <CardContent className="p-6">
-                      <h3 className="mb-2 text-lg font-bold">Apply for a Scholarship</h3>
+                      <h3 className="mb-2 text-lg font-bold">Explore Our Programs</h3>
                       <p className="mb-4 text-primary-foreground/90">
-                        Take the first step toward your educational journey with our comprehensive scholarship programs.
+                        Discover our comprehensive scholarship programs and find the perfect opportunity for your educational journey.
                       </p>
-                      <Link href="/apply">
-                        <Button className="w-full bg-white text-primary hover:bg-gray-100">Apply Now</Button>
+                      <Link href="/programs">
+                        <Button className="w-full bg-white text-primary hover:bg-gray-100">View Programs</Button>
                       </Link>
                     </CardContent>
                   </Card>
@@ -423,7 +423,7 @@ export default function SuccessStoryPage() {
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
                     Contact Us
                   </Button>
                 </Link>

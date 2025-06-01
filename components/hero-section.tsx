@@ -72,15 +72,15 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-6"
           >
-            <Link href="/apply" className="w-full sm:w-auto">
+            <Link href="/programs" className="w-full sm:w-auto">
               <Button size="lg" className="w-full sm:w-auto bg-[hsl(120,61%,34%)] text-white hover:bg-[hsl(120,61%,34%)]/90 text-base sm:text-lg font-sora">
-                {t("hero.cta.apply")}
+                {t("hero.cta.explore")}
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </Link>
-            <Link href="/programs" className="w-full sm:w-auto">
+            <Link href="/donate" className="w-full sm:w-auto">
               <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/10 text-base sm:text-lg font-sora">
-                {t("hero.cta.explore")}
+                {t("hero.cta.donate")}
               </Button>
             </Link>
           </motion.div>
