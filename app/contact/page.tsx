@@ -63,21 +63,38 @@ export default function ContactPage() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 text-white overflow-hidden">
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
-            src="/Flag_of_Palestine.svg"
-            alt="Palestinian Flag"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1e7e34]/90 via-[#1e7e34]/80 to-black/90" />
+          <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_100%)]" />
         </div>
-        <div className="container relative z-10 px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl drop-shadow-lg font-sora">Contact Us</h1>
-            <p className="mt-6 text-xl text-white drop-shadow-md">
-              Have questions about our programs or application process? Our team is here to help.
+        <div className="container relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-6 text-center">
+          <div className="mx-auto max-w-3xl">
+            <div className="inline-flex items-center rounded-lg bg-white/10 backdrop-blur-md px-3 py-1 text-sm text-white mb-6 border border-white/20">
+              <Mail className="mr-1 h-4 w-4" />
+              Get in Touch
+            </div>
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-white drop-shadow-lg font-sora">
+              Contact Us
+            </h1>
+            <p className="mt-6 text-xl text-white/90 drop-shadow-md max-w-2xl mx-auto">
+              Have questions about our programs or application process? Our team is here to help you navigate your educational journey.
             </p>
+            <div className="mt-8 flex flex-wrap gap-4 justify-center">
+              <div className="bg-white/10 backdrop-blur-md rounded-lg px-4 py-2 border border-white/20">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-white" />
+                  <span className="text-white text-sm">+90 (539) 4300 726</span>
+                </div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-lg px-4 py-2 border border-white/20">
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-white" />
+                  <span className="text-white text-sm">info@isnadf.org</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
