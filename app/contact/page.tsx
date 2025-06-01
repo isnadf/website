@@ -308,6 +308,47 @@ export default function ContactPage() {
                 />
               </div>
             </GSAPReveal>
+
+            {/* Office Images Gallery */}
+            <GSAPReveal animation="slide-up">
+              <div className="mt-16">
+                <div className="mb-8 text-center">
+                  <div className="inline-flex items-center rounded-lg bg-[hsl(120,61%,34%)]/10 px-3 py-1 text-sm text-[hsl(120,61%,34%)]">
+                    <MapPin className="mr-1 h-4 w-4" />
+                    Our Office
+                  </div>
+                  <h2 className="mt-2 text-3xl font-bold">Take a Look Inside</h2>
+                  <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                    Get a glimpse of our office space where we work to support Palestinian students in their educational journey.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Replace these image sources with your actual office images */}
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-[hsl(120,61%,34%)]/20">
+                    <img
+                      src="/office/1.jpeg"
+                      alt="Office entrance"
+                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-[hsl(120,61%,34%)]/20">
+                    <img
+                      src="/office/2.jpeg"
+                      alt="Office workspace"
+                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-[hsl(120,61%,34%)]/20">
+                    <img
+                      src="/office/3.jpeg"
+                      alt="Office meeting room"
+                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </div>
+              </div>
+            </GSAPReveal>
           </div>
         </div>
       </section>
