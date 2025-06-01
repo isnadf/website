@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ArrowRight, GraduationCap, Users, BookOpen, Award, Calendar, MessageSquare, Stethoscope, Laptop } from "lucide-react"
+import { ArrowRight, GraduationCap, Users, BookOpen, Award, Calendar, MessageSquare, Stethoscope, Laptop, Heart, Globe, Star, Trophy, Building2, Handshake, Microscope, Rocket, Target, Lightbulb, Globe2, Briefcase, Scale, Brain, Leaf, TreePine, Recycle, Sprout, Droplets, Crown, Library, Scroll, Flag, Gavel } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import GSAPReveal from "@/components/gsap-reveal"
@@ -62,6 +62,53 @@ export default function Home() {
       date: "April 20, 2024",
       category: "Network"
     }
+  ]
+
+  // Replace impactData with programImpactData
+  const programImpactData = [
+    {
+      title: "Pulse of Life",
+      icon: <Stethoscope className="h-8 w-8" />,
+      description: "Full scholarships in medicine and health sciences, supporting 1,000 students over 5 years",
+      stats: "1,000 Scholarships",
+      image: "/s3.png",
+      color: "from-red-500/20 to-red-600/20",
+      iconColor: "text-red-400",
+      link: "/programs/pulse-of-life",
+      fields: ["Human Medicine", "Dentistry", "Pharmacy", "Allied Health"]
+    },
+    {
+      title: "Palestinian Talented",
+      icon: <Crown className="h-8 w-8" />,
+      description: "Supporting outstanding Palestinian students across various academic fields",
+      stats: "1,000 Scholarships",
+      image: "/cover2.png",
+      color: "from-yellow-500/20 to-blue-600/20",
+      iconColor: "text-yellow-400",
+      link: "/programs/palestinian-talented",
+      fields: ["Business", "Engineering", "Education", "Social Sciences", "Computer Science"]
+    },
+    {
+      title: "Sustainability",
+      icon: <TreePine className="h-8 w-8" />,
+      description: "200 scholarships in energy and agricultural engineering for Palestine's green future",
+      stats: "200 Scholarships",
+      image: "/s3.png",
+      color: "from-green-500/20 to-emerald-600/20",
+      iconColor: "text-green-400",
+      link: "/programs/sustainability",
+      fields: ["Energy Engineering", "Agricultural Engineering", "Natural Resources"]
+    }
+  ]
+
+  // Add partners data
+  const partners = [
+    { name: "Harvard University", logo: "/partners/harvard.png", type: "Academic Partner" },
+    { name: "MIT", logo: "/partners/mit.png", type: "Academic Partner" },
+    { name: "Stanford University", logo: "/partners/stanford.png", type: "Academic Partner" },
+    { name: "UNESCO", logo: "/partners/unesco.png", type: "International Organization" },
+    { name: "World Bank", logo: "/partners/worldbank.png", type: "Development Partner" },
+    { name: "Palestinian Ministry of Education", logo: "/partners/palestine-ed.png", type: "Government Partner" }
   ]
 
   useEffect(() => {
@@ -353,6 +400,211 @@ export default function Home() {
             <GSAPReveal animation="fade" delay={0.4}>
               <StatsCounter number={98} label="Graduation Rate %" />
             </GSAPReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Student Journey Section (replacing Program Impact) */}
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16">
+            <GSAPReveal animation="slide-up">
+              <div className="space-y-2">
+                <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+                  <Users className="mr-1 h-4 w-4" />
+                  Student Journey
+                </div>
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl">Your Path to Success</GSAPTextReveal>
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  From application to graduation, we provide comprehensive support at every step of your academic journey.
+                </p>
+              </div>
+            </GSAPReveal>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <GSAPReveal animation="slide-up" delay={0.1}>
+              <div className="group relative rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Scroll className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Application</h3>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Submit your application through our streamlined process. We review each application carefully to identify promising candidates.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Online Application Form
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Document Submission
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Initial Screening
+                  </li>
+                </ul>
+              </div>
+            </GSAPReveal>
+
+            <GSAPReveal animation="slide-up" delay={0.2}>
+              <div className="group relative rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Award className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Selection</h3>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Our expert committee evaluates candidates based on academic excellence, leadership potential, and commitment to community.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Academic Review
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Interview Process
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Final Selection
+                  </li>
+                </ul>
+              </div>
+            </GSAPReveal>
+
+            <GSAPReveal animation="slide-up" delay={0.3}>
+              <div className="group relative rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <BookOpen className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Support</h3>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Receive comprehensive support throughout your academic journey, including financial aid, mentorship, and career guidance.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Financial Support
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Academic Mentoring
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Career Development
+                  </li>
+                </ul>
+              </div>
+            </GSAPReveal>
+
+            <GSAPReveal animation="slide-up" delay={0.4}>
+              <div className="group relative rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Trophy className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Success</h3>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Join our network of successful graduates who are making a difference in their communities and beyond.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Graduation Support
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Alumni Network
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Career Opportunities
+                  </li>
+                </ul>
+              </div>
+            </GSAPReveal>
+          </div>
+
+          <GSAPReveal animation="fade" delay={0.6}>
+            <div className="mt-12 text-center">
+              <Link href="/apply">
+                <Button className="group bg-primary hover:bg-primary/90 text-white">
+                  Start Your Journey
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            </div>
+          </GSAPReveal>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="relative py-20 overflow-hidden bg-gradient-to-r from-primary/90 to-primary dark:from-primary/80 dark:to-primary/90">
+        <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-10"></div>
+        <div className="container relative px-4 md:px-6">
+          <div className="mx-auto max-w-3xl text-center text-white">
+            <GSAPReveal animation="slide-up">
+              <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
+                Join Us in Empowering Palestinian Students
+              </h2>
+              <p className="mb-8 text-lg text-white/90">
+                Your support can make a lasting impact on the lives of talented Palestinian students. Together, we can build a brighter future through education.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/apply">
+                  <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+                    Apply for Scholarship
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/donate">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                    Support Our Cause
+                    <Heart className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </GSAPReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-20 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <GSAPReveal animation="slide-up">
+              <div className="space-y-2">
+                <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+                  <Handshake className="mr-1 h-4 w-4" />
+                  Our Partners
+                </div>
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl">Working Together for Change</GSAPTextReveal>
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  We collaborate with leading institutions and organizations to provide comprehensive support to Palestinian students.
+                </p>
+              </div>
+            </GSAPReveal>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+            {partners.map((partner, index) => (
+              <GSAPReveal key={index} animation="fade" delay={index * 0.1}>
+                <div className="group relative flex items-center justify-center p-4 transition-all duration-300 hover:scale-105">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-12 w-auto grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  />
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:bg-gray-800 dark:text-gray-300">
+                    {partner.type}
+                  </div>
+                </div>
+              </GSAPReveal>
+            ))}
           </div>
         </div>
       </section>
