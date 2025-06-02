@@ -15,11 +15,12 @@ interface ScrollingCardsProps {
   }[]
   isAnyCardHovered: boolean
   onHoverChange: (isHovered: boolean) => void
+  direction?: "ltr" | "rtl"
 }
 
-export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange }: ScrollingCardsProps) {
+export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange, direction }: ScrollingCardsProps) {
   const { language } = useLanguage()
-  const isRTL = language === "ar"
+  const isRTL = direction ? direction === "rtl" : language === "ar"
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState(0)
   const [isTranslated, setIsTranslated] = useState(false)

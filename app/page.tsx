@@ -211,6 +211,67 @@ export default function Home() {
           isAnyCardHovered={isAnyCardHovered}
           onHoverChange={setIsAnyCardHovered}
         />
+      </section>
+
+      {/* News Section */}
+      <section className="py-12 md:py-16 dark:bg-gray-900">
+        <div className="container px-4 md:px-6 mb-8">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <GSAPReveal animation="slide-up">
+              <div className="space-y-2">
+                <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+                  <Calendar className="mr-1 h-4 w-4" />
+                  Latest Updates
+                </div>
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20">News & Announcements</GSAPTextReveal>
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Stay informed with our latest news, updates, and important announcements from the foundation.
+                </p>
+              </div>
+            </GSAPReveal>
+          </div>
+        </div>
+
+        {/* News Cards */}
+        <ScrollingCards
+          cards={[
+            {
+              title: "Interviews for the first phase of the Nabd Al Hayat grant continue",
+              excerpt: "Ongoing interviews to select 100 Gaza students for the Nabd al-Hayat scholarship program. Partnership between Isnad Foundation and Alkhidmat Europe.",
+              image: "/cover3.png",
+              href: "/news/nabd-al-hayat-grant-interviews",
+              date: "May 5, 2025",
+              category: "Scholarships"
+            },
+            {
+              title: "Partnership with Istanbul University",
+              excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities for Palestinian students.",
+              image: "/cover3.png",
+              href: "/news/istanbul-university-partnership",
+              date: "May 28, 2023",
+              category: "Partnerships"
+            },
+            {
+              title: "Annual Conference Success",
+              excerpt: "Our annual conference brought together students, educators, and partners from around the world to discuss educational opportunities.",
+              image: "/cover3.png",
+              href: "/news/annual-conference",
+              date: "April 10, 2023",
+              category: "Events"
+            },
+            {
+              title: "Foundation Expands Support to Lebanon",
+              excerpt: "Our foundation is expanding its support programs to reach Palestinian students in Lebanon, providing new opportunities for education.",
+              image: "/cover3.png",
+              href: "/news/lebanon-expansion",
+              date: "December 12, 2022",
+              category: "Announcements"
+            }
+          ]}
+          isAnyCardHovered={isAnyCardHovered}
+          onHoverChange={setIsAnyCardHovered}
+          direction="rtl"
+        />
 
         <div className="container px-4 md:px-6 mt-8">
           <GSAPReveal animation="fade" delay={0.4}>
@@ -227,7 +288,7 @@ export default function Home() {
       </section>
 
       {/* Our Programs Section */}
-      <ParallaxSection 
+      <ParallaxSection
         backgroundImage="/s3.png?height=1080&width=1920" 
         className="py-24 md:py-32 text-white relative overflow-hidden"
       >
