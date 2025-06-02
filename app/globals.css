@@ -267,5 +267,61 @@ h1.hero-title:lang(ar) {
   -moz-osx-font-smoothing: grayscale;
 }*/
 
+/* Translation Support */
+.translated {
+  /* Ensure smooth transitions for translated content */
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Prevent Google Translate from breaking animations */
+[data-gsap-text-reveal="true"],
+[data-scrolling-cards="true"] {
+  /* Maintain transform during translation */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  /* Prevent Google Translate from modifying these elements directly */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Ensure proper RTL support for translated content */
+[dir="rtl"] [data-gsap-text-reveal="true"],
+[dir="rtl"] [data-scrolling-cards="true"] {
+  /* Maintain RTL animations during translation */
+  transform-origin: right center;
+}
+
+/* Improve animation performance */
+.animate-on-translate {
+  will-change: transform, opacity;
+  /* Prevent layout shifts during translation */
+  contain: layout style paint;
+}
+
+/* Handle Google Translate wrapper elements */
+.goog-te-spinner-pos {
+  /* Prevent spinner from breaking layout */
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+
+.goog-te-banner-frame {
+  /* Ensure translate banner doesn't break layout */
+  display: none !important;
+}
+
+/* Ensure proper stacking context for translated elements */
+.translated-element {
+  isolation: isolate;
+  z-index: 1;
+}
+
+/* Improve text rendering during translation */
+.translated-text {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useLanguage } from "@/components/language-provider"
 import NewsCards2 from "@/components/news-cards2"
 
@@ -21,6 +21,46 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange 
   const { language } = useLanguage()
   const isRTL = language === "ar"
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [containerWidth, setContainerWidth] = useState(0)
+  const [isTranslated, setIsTranslated] = useState(false)
+
+  // Use ResizeObserver to handle container size changes
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setContainerWidth(entry.contentRect.width)
+      }
+    })
+
+    resizeObserver.observe(container)
+
+    // Create a MutationObserver to detect Google Translate changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList' || mutation.type === 'characterData') {
+          setIsTranslated(true)
+          // Reset animation position when translation occurs
+          if (container) {
+            container.style.transform = 'translateX(0)'
+          }
+        }
+      })
+    })
+
+    observer.observe(container, {
+      childList: true,
+      characterData: true,
+      subtree: true
+    })
+
+    return () => {
+      resizeObserver.disconnect()
+      observer.disconnect()
+    }
+  }, [])
 
   // Use a custom animation with JavaScript instead of CSS animation
   useEffect(() => {
@@ -29,10 +69,16 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange 
 
     let animationId: number
     let position = 0
-    const totalWidth = container.scrollWidth / 2
+    const totalWidth = containerWidth || container.scrollWidth / 2
     const speed = 1.5 // Adjust speed as needed
 
     const animate = () => {
+      if (isTranslated) {
+        // Reset animation when translation occurs
+        position = 0
+        setIsTranslated(false)
+      }
+
       // For RTL, we move in the opposite direction
       if (isRTL) {
         position += speed
@@ -69,7 +115,7 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange 
       container.removeEventListener('mouseenter', handleMouseEnter)
       container.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [isRTL])
+  }, [isRTL, containerWidth, isTranslated])
 
   return (
     <div className="w-screen overflow-hidden py-8">
@@ -81,11 +127,12 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange 
           direction: isRTL ? 'rtl' : 'ltr',
           textAlign: isRTL ? 'right' : 'left'
         }}
+        data-scrolling-cards="true"
       >
         {/* First set of cards */}
         <div className="flex gap-8 pr-8">
           {cards.map((card, index) => (
-            <div key={`first-${index}`}>
+            <div key={`first-${index}`} data-card-index={index}>
               <NewsCards2
                 title={card.title}
                 excerpt={card.excerpt}
@@ -102,7 +149,7 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange 
         {/* Duplicate set of cards to ensure seamless looping */}
         <div className="flex gap-8 pl-8">
           {cards.map((card, index) => (
-            <div key={`second-${index}`}>
+            <div key={`second-${index}`} data-card-index={index}>
               <NewsCards2
                 title={card.title}
                 excerpt={card.excerpt}

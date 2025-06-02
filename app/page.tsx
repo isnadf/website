@@ -543,7 +543,6 @@ export default function Home() {
 
       {/* Call to Action Section */}
       <section className="relative py-20 overflow-hidden bg-gradient-to-r from-primary/90 to-primary dark:from-primary/80 dark:to-primary/90">
-        <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-10"></div>
         <div className="container relative px-4 md:px-6">
           <div className="mx-auto max-w-3xl text-center text-white">
             <GSAPReveal animation="slide-up">
