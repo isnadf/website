@@ -670,17 +670,28 @@ export default function Home() {
       </section>
 
       {/* Contact Us Preview */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-primary/10 dark:from-black dark:to-primary/20">
-        <div className="container px-4 md:px-6">
+      <section className="relative py-32 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/contactUS/cover.jpeg"
+            alt="Contact Us Background"
+            className="h-full w-full object-cover"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
+        <div className="container relative z-10 px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <GSAPReveal animation="slide-up">
               <div className="space-y-2">
-                <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+                <div className="inline-flex items-center rounded-lg bg-white/10 px-3 py-1 text-sm text-white backdrop-blur-sm">
                   <MessageSquare className="mr-1 h-4 w-4" />
                   Get in Touch
                 </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl">Contact Us</GSAPTextReveal>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl text-white">Contact Us</GSAPTextReveal>
+                <p className="max-w-[900px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Have questions? Our team is here to help you with any inquiries about our programs and application
                   process.
                 </p>
@@ -690,7 +701,7 @@ export default function Home() {
             <GSAPReveal animation="fade" delay={0.3}>
               <div className="flex justify-center pt-8 gap-4">
                 <Link href="/contact">
-                  <Button size="lg" className="group bg-primary hover:bg-primary/90 text-white">
+                  <Button size="lg" className="group bg-white text-primary hover:bg-white/90">
                     Contact Our Team
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>

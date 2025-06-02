@@ -65,7 +65,13 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1e7e34]/90 via-[#1e7e34]/80 to-black/90" />
+          <img
+            src="/contactUS/cover.jpeg"
+            alt="Contact Us Background"
+            className="h-full w-full object-cover"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/50" />
           <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_100%)]" />
         </div>
