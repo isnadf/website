@@ -103,12 +103,12 @@ export default function Home() {
 
   // Add partners data
   const partners = [
-    { name: "Harvard University", logo: "/partners/harvard.png", type: "Academic Partner" },
-    { name: "MIT", logo: "/partners/mit.png", type: "Academic Partner" },
-    { name: "Stanford University", logo: "/partners/stanford.png", type: "Academic Partner" },
-    { name: "UNESCO", logo: "/partners/unesco.png", type: "International Organization" },
-    { name: "World Bank", logo: "/partners/worldbank.png", type: "Development Partner" },
-    { name: "Palestinian Ministry of Education", logo: "/partners/palestine-ed.png", type: "Government Partner" }
+    { name: "Partner1", logo: "/partners/p1.jpg", type: "Academic Partner" },
+    { name: "Partner2", logo: "/partners/p2.png", type: "Academic Partner" },
+    { name: "Partner3", logo: "/partners/p3.jpeg", type: "Academic Partner" },
+    { name: "Partner4", logo: "/partners/p4.png", type: "International Organization" },
+    { name: "Partner5", logo: "/partners/p5.png", type: "Development Partner" },
+    { name: "Partner6", logo: "/partners/p6.png", type: "Government Partner" }
   ]
 
   useEffect(() => {
@@ -597,9 +597,9 @@ export default function Home() {
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-h-12 w-auto grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                    className="h-full w-auto transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
                   />
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:bg-gray-800 dark:text-gray-300">
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-1 text-xs text-gray-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:bg-gray-800 dark:text-gray-300">
                     {partner.type}
                   </div>
                 </div>
