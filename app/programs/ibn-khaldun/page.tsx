@@ -63,10 +63,15 @@ export default function IbnKhaldunScholarshipPage() {
           <p className="text-gray-800 dark:text-gray-100 text-base md:text-lg text-center">
             <span className="font-semibold text-purple-800">"Ibn Khaldun"</span> is a specialized graduate scholarship program designed to <span className="font-bold text-purple-700">provide 200 full scholarships in sociology and psychology</span> to Palestinian students. The program aims to develop competencies that can understand and analyze the social and psychological realities of Palestinians to formulate solutions and public policies.
           </p>
-          <div className="flex justify-center mt-6">
-            <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-full shadow-xl hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl">
-              <Library size={22} className="-ml-1 animate-pulse" /> Apply for Academic Scholarship
+          <div className="flex justify-center mt-6 gap-4 flex-wrap">
+            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold rounded-full shadow-xl hover:from-indigo-600 hover:to-purple-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl">
+              <GraduationCap size={22} className="-ml-1 animate-pulse" /> Apply for Ibn Khaldun Scholarship
             </a>
+            <div className="flex gap-3">
+              <a href="/ProgramsFiles/Ibn Khaldun Scholarship.docx" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+                <BookOpen size={20} className="-ml-1" /> Download Program
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -191,10 +196,15 @@ export default function IbnKhaldunScholarshipPage() {
           </div>
         </div>
 
-        <div className="flex justify-center my-8">
-          <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-bold rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-500 transition-colors duration-300 text-xl">
+        <div className="flex justify-center my-8 gap-4 flex-wrap">
+          <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-bold rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-500 transition-colors duration-300 text-xl">
             <UserPlus size={26} className="-ml-1" /> Apply Now
           </a>
+          <div className="flex gap-3">
+            <a href="/ProgramsFiles/Ibn Khaldun Scholarship.docx" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+              <BookOpen size={20} className="-ml-1" /> Download Program
+            </a>
+          </div>
         </div>
       </section>
     </main>

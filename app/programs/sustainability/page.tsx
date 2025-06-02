@@ -214,6 +214,11 @@ export default function SustainabilityScholarshipPage() {
           <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-500 text-white font-bold rounded-full shadow-lg hover:from-emerald-600 hover:to-green-500 transition-colors duration-300 text-xl">
             <UserPlus size={26} className="-ml-1" /> Apply Now
           </a>
+          <div className="flex gap-3">
+            <a href="/ProgramsFiles/Sustainability Scholarship-AR.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+              <BookOpen size={20} className="-ml-1" /> تحميل البرنامج (AR)
+            </a>
+          </div>
         </div>
       </section>
     </main>

@@ -621,7 +621,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/donate">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Button size="lg" className="bg-white text-primary hover:bg-white/90">
                     Support Our Cause
                     <Heart className="ml-2 h-4 w-4" />
                   </Button>
