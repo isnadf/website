@@ -357,7 +357,7 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-[#1e7e34]/5 dark:hover:bg-[#1e7e34]/10 hover:shadow-md">
                 <div className="flex items-center justify-center h-32 mb-4">
-                  <img src="/partners/p4.png" alt="Khidhumaiy" className="max-h-32 w-auto object-contain" />
+                  <img src="/partners/p4.jpg" alt="Khidhumaiy" className="max-h-32 w-auto object-contain" />
                 </div>
                 <p className="font-medium text-black dark:text-white text-sm md:text-base">Khidhumaiy</p>
               </div>
