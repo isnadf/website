@@ -66,7 +66,7 @@ export const publicFigureTestimonials: Testimonial[] = [
     role: "Professor",
     organization: "Istanbul University",
     quote: "The work that the Isnad Foundation is doing is vital for the future of our youth. Education is the most powerful tool we can give to the next generation.",
-    videoFileName: "ahmed_yousef.mp4",
+    videoFileName: "1.mp4",
     type: 'public_figure'
   },
   {
@@ -75,7 +75,7 @@ export const publicFigureTestimonials: Testimonial[] = [
     role: "Director",
     organization: "Education Without Borders",
     quote: "I've seen firsthand how the Fund's programs transform lives. These students are not just receiving an education; they're becoming ambassadors for Palestine.",
-    videoFileName: "mona_rashid.mp4",
+    videoFileName: "2.mp4",
     type: 'public_figure'
   },
   {
@@ -84,7 +84,7 @@ export const publicFigureTestimonials: Testimonial[] = [
     role: "Minister of Education",
     organization: "Palestinian Authority",
     quote: "The partnership between our ministry and the Fund has been instrumental in developing our educational infrastructure and supporting our brightest minds.",
-    videoFileName: "ibrahim_alkhatib.mp4",
+    videoFileName: "3.mp4",
     type: 'public_figure'
   }
 ];
