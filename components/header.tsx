@@ -41,7 +41,6 @@ export default function Header() {
   const navItems: NavItem[] = [
     { name: t("nav.home"), href: "/" },
     { name: t("nav.about"), href: "/about" },
-    { name: t("nav.news"), href: "/news" },
     {
       name: t("nav.programs"),
       href: "/programs",
@@ -71,6 +70,7 @@ export default function Header() {
       href: "/media",
       dropdown: true,
       items: [
+        { name: t("nav.news"), href: "/news" },
         { name: t("nav.media.success"), href: "/success-stories" },
         { name: t("nav.media.activities"), href: "/activities" },
         { 
