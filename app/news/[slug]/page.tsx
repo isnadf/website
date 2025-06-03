@@ -12,14 +12,35 @@ import { Badge } from "@/components/ui/badge"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 
+// Define the type for article data
+type ArticleData = {
+  title: string
+  date: string
+  author: string
+  category: string
+  image: string
+  heroImage?: string
+  content: string[]
+  relatedArticles: {
+    id: number
+    title: string
+    date: string
+    excerpt: string
+    image: string
+    href: string
+    category: string
+  }[]
+}
+
 // Mock news article data
-const newsArticles = {
+const newsArticles: Record<string, ArticleData> = {
   "nabd-al-hayat-scholarship-interviews": {
     title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
     date: "May 25, 2025",
     author: "Isnad Foundation",
     category: "Scholarships",
-    image: "/cover3.png",
+    image: "/LastNews/pulseOFLife-end.png",
+    heroImage: "/LastNews/pulseOFLife-end.png",
     content: [
       "إسطنبول / تركيا",
       "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري، من خريجي ومقيدي جامعات قطاع غزة.",
@@ -64,7 +85,8 @@ const newsArticles = {
     date: "May 5, 2025",
     author: "Isnad Foundation",
     category: "Scholarships",
-    image: "/LastNews/1.png",
+    image: "/LastNews/pulseOFLife-start.png",
+    heroImage: "/LastNews/pulseOFLife-start.png",
     content: [
       "إسطنبول/ تركيا – الإثنين 5 أيار 2025",
       "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
@@ -509,6 +531,7 @@ export default function NewsArticlePage() {
     author: "",
     category: "",
     image: "/placeholder.svg?height=600&width=1200",
+    heroImage: "/placeholder.svg?height=600&width=1200",
     content: ["The requested article could not be found."],
     relatedArticles: [],
   }
@@ -539,38 +562,20 @@ export default function NewsArticlePage() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-gradient-to-b from-primary/90 to-primary/70 text-white">
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/50" />
+          <img
+            src={article.heroImage || article.image}
+            alt={article.title}
+            className="h-full w-full object-contain object-center"
+          />
         </div>
-        <div className="container relative z-10 px-4 md:px-6">
-          <div className="mx-auto max-w-3xl">
-            <Link href="/news" className="mb-6 inline-flex items-center text-white/80 hover:text-white">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to News
-            </Link>
-            <GSAPTextReveal element="h1" className="text-3xl font-bold sm:text-4xl md:text-5xl">
-              {article.title}
-            </GSAPTextReveal>
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-white/80">
-              {article.date && (
-                <div className="flex items-center">
-                  <Calendar className="mr-2 h-4 w-4" />
-                  <span>{article.date}</span>
-                </div>
-              )}
-              {article.author && (
-                <div className="flex items-center">
-                  <User className="mr-2 h-4 w-4" />
-                  <span>{article.author}</span>
-                </div>
-              )}
-              {article.category && (
-                <div className="flex items-center">
-                  <Tag className="mr-2 h-4 w-4" />
-                  <span>{article.category}</span>
-                </div>
-              )}
+        {/* Page Indicator */}
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-10">
+          <div className="bg-white/10 backdrop-blur-md rounded-lg px-3 py-2 sm:px-4 sm:py-2 border border-white/20">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-[#1e7e34]"></div>
+              <span className="text-white text-xs sm:text-sm font-medium">Latest News</span>
             </div>
           </div>
         </div>
@@ -582,6 +587,33 @@ export default function NewsArticlePage() {
           <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-3">
             {/* Main Content */}
             <div className="lg:col-span-2">
+              <div className="mb-8">
+                <Link href="/news" className="mb-6 inline-flex items-center text-muted-foreground hover:text-foreground">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to News
+                </Link>
+                <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl mb-4">{article.title}</h1>
+                <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
+                  {article.date && (
+                    <div className="flex items-center">
+                      <Calendar className="mr-2 h-4 w-4" />
+                      <span>{article.date}</span>
+                    </div>
+                  )}
+                  {article.author && (
+                    <div className="flex items-center">
+                      <User className="mr-2 h-4 w-4" />
+                      <span>{article.author}</span>
+                    </div>
+                  )}
+                  {article.category && (
+                    <div className="flex items-center">
+                      <Tag className="mr-2 h-4 w-4" />
+                      <span>{article.category}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
               <GSAPReveal animation="fade">
                 <div className="prose prose-lg max-w-none dark:prose-invert">
                   {article.content.map((paragraph, index) => (
