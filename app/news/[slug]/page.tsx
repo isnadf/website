@@ -15,26 +15,28 @@ import GSAPTextReveal from "@/components/gsap-text-reveal"
 // Mock news article data
 const newsArticles = {
   "nabd-al-hayat-scholarship-interviews": {
-    title: "Interviews for the First Phase of the Nabd al-Hayat Scholarship",
-    date: "May 5, 2023",
+    title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
+    date: "May 25, 2025",
     author: "Isnad Foundation",
     category: "Scholarships",
     image: "/cover3.png",
     content: [
-      "Istanbul, Turkey - The first interviews for the Nabd al-Hayat Scholarship, launched by the Isnad Foundation, began today, Tuesday.",
-      "The interviews, held online by the Fund, saw the participation of dozens of Palestinian students pursuing their medical studies. During the interviews, the Fund identified the students who passed the initial selection process after electronic registration for the scholarship.",
-      "Those who pass the interviews will receive assistance ranging from financial grants, the provision of study seats, and the purchase of educational equipment, tablets, and computers.",
-      "It is worth noting that \"Nabd al-Hayat\" is one of the most prominent scholarship programs launched by the Isnad Foundation, which aims to provide scholarships to Palestinian students who wish to study or are pursuing a medical specialty.",
-      "The program seeks to provide scholarships and assistance to 1,000 Palestinian students, as part of a five-year plan. The Isnad Foundation is an independent, non-profit Palestinian development organization that aims to support higher education in Palestine by investing in the academic potential of young people and providing scholarships within a comprehensive development vision."
+      "إسطنبول / تركيا",
+      "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري، من خريجي ومقيدي جامعات قطاع غزة.",
+      "وقد جرت المقابلات عن بُعد عبر الإنترنت، وهدفت إلى التعرف عن كثب على الظروف الأكاديمية والمعيشية للطلبة، وتقييم مدى استحقاقهم للدعم، وذلك بعد اجتيازهم مرحلة التصفية الأولية من خلال التسجيل الإلكتروني.",
+      "وتمنح مؤسسة إسناد، في هذه المرحلة التي أُطلقت بشراكة استراتيجية مع مؤسسة الخدمت يوروب (Alkhidmat Europe)، دعماً مالياً شهرياً لمدة 12 شهراً للطلبة المقبولين، في خطوة تهدف إلى التخفيف من أعبائهم الدراسية وتمكينهم من مواصلة تعليمهم العالي في ظل التحديات القائمة.",
+      "وتُعد منحة \"نبض الحياة\" من أبرز البرامج التي أطلقتها مؤسسة إسناد والتي تركز بشكل خاص على دعم الطلبة الفلسطينيين في التخصصات الطبية، ولا سيما من قطاع غزة، الذين تأثرت مسيرتهم التعليمية جراء الأوضاع الإنسانية القاسية والحصار والحروب المتكررة.",
+      "ويستهدف البرنامج في مراحله المتتالية تمكين نحو 1000 طالب فلسطيني من استكمال دراستهم الطبية، ضمن خطة طموحة تمتد على خمس سنوات، تُعنى بالاستثمار في الكفاءات العلمية الشابة، وإعداد جيل طبي مؤهل يساهم في خدمة المجتمع الفلسطيني وتعزيز صموده.",
+      "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
     ],
     relatedArticles: [
       {
         id: 1,
-        title: "Interviews for the first phase of the Nabd Al Hayat grant continue to select 100 students from Gaza to benefit from the program.",
-        date: "May 5, 2025",
-        excerpt: "Interviews for the first phase of the Nabd al-Hayat scholarship program, implemented by the Palestinian Student Support Fund in partnership with Alkhidmat Europe, continued today in Istanbul, Türkiye.",
-        image: "/cover3.png",
-        href: "/news/nabd-al-hayat-grant-interviews",
+        title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
+        date: "May 25, 2025",
+        excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو.",
+        image: "/LastNews/1.png",
+        href: "/news/nabd-al-hayat-scholarship-interviews",
         category: "Scholarships",
       },
       {
@@ -58,27 +60,28 @@ const newsArticles = {
     ],
   },
   "nabd-al-hayat-grant-interviews": {
-    title: "Interviews for the first phase of the Nabd Al Hayat grant continue to select 100 students from Gaza to benefit from the program.",
+    title: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
     date: "May 5, 2025",
     author: "Isnad Foundation",
     category: "Scholarships",
-    image: "/cover3.png",
+    image: "/LastNews/1.png",
     content: [
-      "Istanbul, Türkiye - Monday, May 5, 2025 - Interviews for the first phase of the Nabd al-Hayat scholarship program, implemented by the Isnad Foundation in partnership with Alkhidmat Europe, continued today, Monday. The program targets Palestinian medical students, particularly in the Gaza Strip.",
-      "These interviews, an extension of those held last Tuesday, were conducted online with the participation of a select group of Palestinian students who passed the initial selection stage and are continuing their studies in human medicine at Palestinian universities in the Gaza Strip.",
-      "In the first phase, 100 students will be selected to benefit from the Nabd al-Hayat scholarship, which provides monthly financial support for 12 months, in addition to other support opportunities, including educational equipment and partial tuition fees.",
-      "This initiative comes within the framework of a development vision aimed at enabling Palestinian students to continue their academic journeys despite the harsh conditions caused by the war, especially in light of displacement, the destruction of homes, and the psychological and economic pressures experienced by students and their families.",
-      "It's worth noting that the Nabd al-Hayat program is one of the most prominent programs of the Isnad Foundation, which seeks to support more than 1,000 students over five years through effective local and international partnerships.",
-      "The Isnad Foundation is an independent, non-profit Palestinian development organization dedicated to enhancing higher education opportunities for Palestinians by providing scholarships and academic support to students in vital disciplines, particularly medical specialties."
+      "إسطنبول/ تركيا – الإثنين 5 أيار 2025",
+      "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
+      "وجاءت هذه المقابلات امتداداً لتلك التي انعقدت الثلاثاء الماضي، حيث أجريت عبر الإنترنت بمشاركة نخبة من الطلبة الفلسطينيين الذين اجتازوا مرحلة الانتقاء الأولي، ويواصلون دراستهم في تخصصات الطب البشري في الجامعات الفلسطينية، في قطاع غزة.",
+      "وسيتم ضمن المرحلة الأولى اختيار 100 طالب للاستفادة من منحة نبض الحياة، التي تقدم دعماً مالياً شهرياً على مدى 12 شهراً، إلى جانب فرص دعم أخرى تشمل أجهزة تعليمية وتغطية جزئية للرسوم الدراسية.",
+      "وتأتي هذه المبادرة في إطار رؤية تنموية تهدف إلى تمكين الطلبة الفلسطينيين من مواصلة مسيرتهم الأكاديمية رغم الظروف القاسية التي خلفتها الحرب، لا سيما في ظل النزوح، وتدمير البيوت، والضغوط النفسية والاقتصادية التي يعاني منها الطلبة وأسرهم.",
+      "يُشار إلى أن برنامج نبض الحياة هو أحد أبرز برامج صندوق إسناد الطالب الفلسطيني، والذي يسعى من خلاله إلى دعم أكثر من 1000 طالب خلال خمس سنوات، عبر شراكات محلية ودولية فاعلة.",
+      "وصندوق إسناد هو مؤسسة فلسطينية تنموية مستقلة وغير ربحية، تُعنى بتعزيز فرص التعليم العالي للفلسطينيين من خلال تقديم منح دراسية ودعم أكاديمي للطلبة في التخصصات الحيوية، وخاصة التخصصات الطبية."
     ],
     relatedArticles: [
       {
-        id: 2,
-        title: "New Scholarship Program Launched",
-        date: "June 15, 2023",
-        excerpt: "Announcing our new scholarship program for undergraduate students in engineering and medical fields.",
-        image: "/cover3.png",
-        href: "/news/new-scholarship-program",
+        id: 1,
+        title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
+        date: "May 25, 2025",
+        excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو.",
+        image: "/LastNews/1.png",
+        href: "/news/nabd-al-hayat-scholarship-interviews",
         category: "Scholarships",
       },
       {
@@ -466,11 +469,11 @@ const newsArticles = {
     relatedArticles: [
       {
         id: 1,
-        title: "Interviews for the first phase of the Nabd Al Hayat grant continue",
-        date: "May 5, 2025",
-        excerpt: "Ongoing interviews to select 100 Gaza students for the Nabd al-Hayat scholarship program. Partnership between Isnad Foundation and Alkhidmat Europe.",
+        title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
+        date: "May 25, 2025",
+        excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو.",
         image: "/LastNews/1.png",
-        href: "/news/nabd-al-hayat-grant-interviews",
+        href: "/news/nabd-al-hayat-scholarship-interviews",
         category: "Scholarships",
       },
       {
