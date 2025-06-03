@@ -43,6 +43,8 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
         return "five"
       case 6:
         return "six"
+      case 7:
+        return "seven"
       default:
         return ""
     }
@@ -138,6 +140,11 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
             "/six/PHOTO-2025-04-26-22-24-14.jpg",
             "/six/PHOTO-2025-04-26-22-24-15.jpg",
             "/six/VIDEO-2025-04-26-22-24-15.mp4"
+          ]
+        } else if (folderName === "seven") {
+          imageList = [
+            "/seven/1.jpeg",
+            "/seven/2.jpeg"
           ]
         }
 

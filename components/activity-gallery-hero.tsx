@@ -96,7 +96,7 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
       case 6:
         return ["/six/PHOTO-2025-04-26-22-24-14 2.jpg"]
       case 7:
-        return ["/placeholder.svg"]
+        return [activities.find(a => a.id === 7)?.image || "/placeholder.svg"]
       default:
         return ["/placeholder.svg"]
     }

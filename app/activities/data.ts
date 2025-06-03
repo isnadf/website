@@ -91,7 +91,7 @@ export const activitiesData: Activity[] = [
     location: "Nouakchott, mauritania",
     description: "As part of its efforts to reach the largest number of Palestinian students, the Palestinian Student Support Fund organized a networking meeting in Mauritania bringing together Palestinian students with Mauritanian and Palestinian figures. Financial grants were distributed during the meeting, along with an agreement to provide recurring monthly grants to support Palestinian students there.",
     full_description: "As part of expanding its efforts to support Palestinian students around the world, the Palestinian Student Support Fund organized a networking meeting in Mauritania, attended by a number of Palestinian students, along with prominent Mauritanian and Palestinian figures. The meeting provided an important platform for acquaintance, strengthening ties, and exchanging views on ways to support Palestinian students residing in Mauritania. During the meeting, direct financial grants were distributed to a number of students, demonstrating the Fund's commitment to providing practical and sustainable support to students abroad. An agreement was also announced to provide recurring monthly grants to Palestinian students in Mauritania, a qualitative development in the Fund's efforts to enhance the stability of support and expand its scope. The meeting was widely welcomed by attendees, who praised the initiative and considered it a strong boost to students' educational progress and an example of the true partnership between the Palestinian and Mauritanian peoples in supporting education and human dignity.",
-    image: "/placeholder.svg",
+    image: "/seven/1.jpeg?height=400&width=600",
     category: "Networking",
     featured: false,
     year: 2021,
