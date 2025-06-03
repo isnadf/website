@@ -450,6 +450,49 @@ const newsArticles = {
       },
     ],
   },
+  "isnad-support-tours": {
+    title: "إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
+    date: "March 15, 2024",
+    author: "Isnad Foundation",
+    category: "Announcements",
+    image: "/LastNews/1.png",
+    content: [
+      "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
+      "وهدفت هذه الجولات إلى التواصل المباشر مع الطلبة، والاطلاع على أوضاعهم المعيشية والتعليمية، وتقديم الدعم النفسي والمعنوي لهم، في ظل ما يعانونه من صعوبات معيشية وضغوط نفسية نتيجة فقدان ذويهم أو انقطاع سبل الدعم.",
+      "وخلال اللقاءات، أعلنت المؤسسة عن تقديم منح تعليمية مباشرة لعدد من الطلبة، كمساهمة عاجلة لتخفيف العبء عنهم وضمان استمرارية تحصيلهم الأكاديمي. كما عملت \"إسناد\" على إبرام شراكات مع مؤسسات محلية في الدول التي تمت زيارتها، بهدف تأمين منح إضافية مستدامة للطلبة الفلسطينيين، وتعزيز فرص التعليم في بيئة آمنة وداعمة.",
+      "وأكدت المؤسسة أن هذه الجهود تأتي ضمن خطة استجابة سريعة أطلقتها منذ بداية الحرب، وتهدف إلى تقديم دعم متكامل للطلبة من مختلف الجوانب النفسية والتعليمية والاجتماعية، مع التركيز على طلبة غزة في ظل الظروف الكارثية التي يمر بها القطاع.",
+      "ومؤسسة إسناد لدعم الطالب الفلسطيني هي هيئة مجتمع مدني فلسطينية أُسست في تركيا، تهدف إلى تمكين الطلبة الفلسطينيين أكاديميًا ومجتمعيًا من خلال تقديم المنح التعليمية، وتوفير الدعم النفسي والاجتماعي، والمساهمة في بناء بيئة تعليمية حاضنة للطلبة الفلسطينيين داخل فلسطين وفي مناطق اللجوء والشتات، عبر شراكات محلية ودولية مستدامة."
+    ],
+    relatedArticles: [
+      {
+        id: 1,
+        title: "Interviews for the first phase of the Nabd Al Hayat grant continue",
+        date: "May 5, 2025",
+        excerpt: "Ongoing interviews to select 100 Gaza students for the Nabd al-Hayat scholarship program. Partnership between Isnad Foundation and Alkhidmat Europe.",
+        image: "/LastNews/1.png",
+        href: "/news/nabd-al-hayat-grant-interviews",
+        category: "Scholarships",
+      },
+      {
+        id: 2,
+        title: "Partnership with Istanbul University",
+        date: "May 28, 2023",
+        excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
+        image: "/LastNews/1.png",
+        href: "/news/istanbul-university-partnership",
+        category: "Partnerships",
+      },
+      {
+        id: 3,
+        title: "Foundation Expands Support to Lebanon",
+        date: "December 12, 2022",
+        excerpt: "Our foundation is expanding its support programs to reach Palestinian students in Lebanon.",
+        image: "/LastNews/1.png",
+        href: "/news/lebanon-expansion",
+        category: "Announcements",
+      },
+    ],
+  },
 }
 
 export default function NewsArticlePage() {
