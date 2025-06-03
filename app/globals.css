@@ -284,6 +284,34 @@ h1.hero-title:lang(ar) {
   transform: translateZ(0);
 }
 
+/* Enhanced Google Translate compatibility */
+.translation-safe-content {
+  /* Ensure proper isolation for translated content */
+  isolation: isolate;
+  /* Prevent layout shifts during translation */
+  contain: layout style;
+}
+
+/* Prevent Google Translate from breaking React hydration */
+.translation-safe-content * {
+  /* Ensure consistent text rendering */
+  text-rendering: optimizeLegibility;
+  /* Prevent font substitution issues */
+  font-synthesis: none;
+}
+
+/* Handle Google Translate font wrappers gracefully */
+font[style*="vertical-align: inherit"] {
+  /* Maintain original styling */
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  /* Prevent layout shifts */
+  vertical-align: baseline !important;
+}
+
 /* Ensure proper RTL support for translated content */
 [dir="rtl"] [data-gsap-text-reveal="true"],
 [dir="rtl"] [data-scrolling-cards="true"] {
@@ -321,6 +349,98 @@ h1.hero-title:lang(ar) {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Additional Google Translate safety measures */
+.goog-te-combo {
+  /* Ensure translate widget doesn't break layout */
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+/* Hide Google Translate elements that can cause issues */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+.goog-te-gadget-icon {
+  /* Prevent icon from causing layout shifts */
+  display: none !important;
+}
+
+/* Ensure translated content maintains proper spacing */
+body.translated-ltr,
+body.translated-rtl {
+  /* Prevent body modifications from breaking layout */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Handle Google Translate's text highlighting */
+.goog-text-highlight {
+  /* Maintain original background and text colors */
+  background-color: transparent !important;
+  color: inherit !important;
+  /* Prevent box-shadow from affecting layout */
+  box-shadow: none !important;
+}
+
+/* Ensure proper handling of translated links */
+a font[style*="vertical-align"] {
+  /* Maintain link styling */
+  color: inherit !important;
+  text-decoration: inherit !important;
+}
+
+/* Prevent Google Translate from affecting form elements */
+input font[style*="vertical-align"],
+textarea font[style*="vertical-align"],
+select font[style*="vertical-align"] {
+  /* Maintain form element styling */
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
+/* Additional DOM safety measures for Google Translate - Only when translation is active */
+body.translated-ltr .translation-safe-content,
+body.translated-rtl .translation-safe-content {
+  /* Prevent React from losing track of nodes only when translated */
+  contain: layout style;
+  /* Ensure proper isolation only when needed */
+  isolation: isolate;
+}
+
+/* Handle Google Translate's font wrapper elements more aggressively */
+font[style*="vertical-align: inherit"] * {
+  /* Prevent nested font elements from breaking DOM structure */
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+  line-height: inherit !important;
+  vertical-align: inherit !important;
+}
+
+/* Only apply aggressive fixes when Google Translate is actually active */
+body.translated-ltr [data-reactroot] font[style*="vertical-align"],
+body.translated-rtl [data-reactroot] font[style*="vertical-align"],
+body.translated-ltr [data-react-helmet] font[style*="vertical-align"],
+body.translated-rtl [data-react-helmet] font[style*="vertical-align"] {
+  /* Maintain React component integrity only when translated */
+  display: contents !important;
+}
+
+/* Prevent Google Translate from affecting critical layout elements only when active */
+body.translated-ltr header font[style*="vertical-align"],
+body.translated-rtl header font[style*="vertical-align"],
+body.translated-ltr nav font[style*="vertical-align"],
+body.translated-rtl nav font[style*="vertical-align"],
+body.translated-ltr main font[style*="vertical-align"],
+body.translated-rtl main font[style*="vertical-align"],
+body.translated-ltr footer font[style*="vertical-align"],
+body.translated-rtl footer font[style*="vertical-align"] {
+  /* Maintain semantic structure only when translated */
+  display: contents !important;
 }
 
 

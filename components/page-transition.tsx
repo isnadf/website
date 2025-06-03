@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { ReactNode, useEffect, useState } from "react"
+import { isGoogleTranslateActive } from "@/lib/google-translate-utils"
 
 interface PageTransitionProps {
   children: ReactNode
@@ -31,6 +32,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   const pathname = usePathname()
   const [previousPath, setPreviousPath] = useState<string>("")
   const [direction, setDirection] = useState<"forward" | "backward" | "none">("none")
+  const [isTranslated, setIsTranslated] = useState(false)
 
   useEffect(() => {
     if (previousPath) {
@@ -47,6 +49,21 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     }
     setPreviousPath(pathname)
   }, [pathname, previousPath])
+
+  // Check for Google Translate on each route change
+  useEffect(() => {
+    const checkTranslation = () => {
+      setIsTranslated(isGoogleTranslateActive())
+    }
+
+    // Check immediately
+    checkTranslation()
+
+    // Check again after a short delay to catch late translation initialization
+    const timer = setTimeout(checkTranslation, 100)
+
+    return () => clearTimeout(timer)
+  }, [pathname])
 
   const pageVariants = {
     initial: (direction: string) => ({
@@ -69,7 +86,16 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   const pageTransition = {
     type: "tween",
     ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth feel
-    duration: 0.4,
+    duration: isTranslated ? 0.1 : 0.4, // Faster transitions when translated to reduce mismatch window
+  }
+
+  // When Google Translate is active, use a simpler transition to avoid conflicts
+  if (isTranslated) {
+    return (
+      <div key={`translated-${pathname}`} className="w-full min-h-screen">
+        {children}
+      </div>
+    )
   }
 
   return (

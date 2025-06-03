@@ -8,6 +8,8 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import PageTransition from "@/components/page-transition"
 import LoadingBar from "@/components/loading-bar"
+import TranslationSafeWrapper from "@/components/translation-safe-wrapper"
+import TranslationDebug from "@/components/translation-debug"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -62,19 +64,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${poppins.variable} ${amiri.variable} ${playfair.variable} ${sora.variable} font-sora`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <LanguageProvider>
-            <LoadingBar />
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">
-                <PageTransition>{children}</PageTransition>
-              </main>
-              <Footer />
-            </div>
-            <Toaster />
-          </LanguageProvider>
-        </ThemeProvider>
+        <TranslationSafeWrapper>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            <LanguageProvider>
+              <LoadingBar />
+              <div className="flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1">
+                  <PageTransition>{children}</PageTransition>
+                </main>
+                <Footer />
+              </div>
+              <Toaster />
+            </LanguageProvider>
+          </ThemeProvider>
+          <TranslationDebug />
+        </TranslationSafeWrapper>
       </body>
     </html>
   )
