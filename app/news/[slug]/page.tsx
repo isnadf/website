@@ -21,15 +21,6 @@ type ArticleData = {
   image: string
   heroImage?: string
   content: string[]
-  relatedArticles: {
-    id: number
-    title: string
-    date: string
-    excerpt: string
-    image: string
-    href: string
-    category: string
-  }[]
 }
 
 // Mock news article data
@@ -50,35 +41,6 @@ const newsArticles: Record<string, ArticleData> = {
       "ويستهدف البرنامج في مراحله المتتالية تمكين نحو 1000 طالب فلسطيني من استكمال دراستهم الطبية، ضمن خطة طموحة تمتد على خمس سنوات، تُعنى بالاستثمار في الكفاءات العلمية الشابة، وإعداد جيل طبي مؤهل يساهم في خدمة المجتمع الفلسطيني وتعزيز صموده.",
       "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
     ],
-    relatedArticles: [
-      {
-        id: 1,
-        title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
-        date: "May 25, 2025",
-        excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو.",
-        image: "/LastNews/pulseOFLife-end.png",
-        href: "/news/nabd-al-hayat-scholarship-interviews",
-        category: "Scholarships",
-      },
-      {
-        id: 6,
-        title: "New Research Grant Opportunities",
-        date: "February 15, 2023",
-        excerpt: "Announcing new research grant opportunities for Palestinian scholars in STEM fields.",
-        image: "/cover3.png",
-        href: "/news/research-grant-opportunities",
-        category: "Grants",
-      },
-      {
-        id: 3,
-        title: "Partnership with Istanbul University",
-        date: "May 28, 2023",
-        excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
-        image: "/cover3.png",
-        href: "/news/istanbul-university-partnership",
-        category: "Partnerships",
-      },
-    ],
   },
   "nabd-al-hayat-grant-interviews": {
     title: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
@@ -95,35 +57,6 @@ const newsArticles: Record<string, ArticleData> = {
       "وتأتي هذه المبادرة في إطار رؤية تنموية تهدف إلى تمكين الطلبة الفلسطينيين من مواصلة مسيرتهم الأكاديمية رغم الظروف القاسية التي خلفتها الحرب، لا سيما في ظل النزوح، وتدمير البيوت، والضغوط النفسية والاقتصادية التي يعاني منها الطلبة وأسرهم.",
       "يُشار إلى أن برنامج نبض الحياة هو أحد أبرز برامج صندوق إسناد الطالب الفلسطيني، والذي يسعى من خلاله إلى دعم أكثر من 1000 طالب خلال خمس سنوات، عبر شراكات محلية ودولية فاعلة.",
       "وصندوق إسناد هو مؤسسة فلسطينية تنموية مستقلة وغير ربحية، تُعنى بتعزيز فرص التعليم العالي للفلسطينيين من خلال تقديم منح دراسية ودعم أكاديمي للطلبة في التخصصات الحيوية، وخاصة التخصصات الطبية."
-    ],
-    relatedArticles: [
-      {
-        id: 1,
-        title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
-        date: "May 25, 2025",
-        excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو.",
-        image: "/LastNews/pulseOFLife-start.png",
-        href: "/news/nabd-al-hayat-scholarship-interviews",
-        category: "Scholarships",
-      },
-      {
-        id: 6,
-        title: "New Research Grant Opportunities",
-        date: "February 15, 2023",
-        excerpt: "Announcing new research grant opportunities for Palestinian scholars in STEM fields.",
-        image: "/cover3.png",
-        href: "/news/research-grant-opportunities",
-        category: "Grants",
-      },
-      {
-        id: 3,
-        title: "Partnership with Istanbul University",
-        date: "May 28, 2023",
-        excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
-        image: "/cover3.png",
-        href: "/news/istanbul-university-partnership",
-        category: "Partnerships",
-      },
     ],
   },
   "isnad-support-tour": {
@@ -146,35 +79,6 @@ const newsArticles: Record<string, ArticleData> = {
       "The first cohort of students under this partnership will begin their studies in the Fall 2023 semester. Information sessions about available programs and application procedures will be held virtually in the coming weeks.",
       "For more information about this partnership and how to apply for the joint scholarship programs, please visit our Partnerships page or contact our academic advisors at info@isnadf.org.",
     ],
-    relatedArticles: [
-      {
-        id: 1,
-        title: "New Scholarship Program Launched",
-        date: "June 15, 2023",
-        excerpt: "Announcing our new scholarship program for undergraduate students in engineering and medical fields.",
-        image: "/cover3.png",
-        href: "/news/new-scholarship-program",
-        category: "Scholarships",
-      },
-      {
-        id: 7,
-        title: "Foundation Expands Support to Lebanon",
-        date: "December 12, 2022",
-        excerpt: "Our foundation is expanding its support programs to reach Palestinian students in Lebanon.",
-        image: "/cover3.png",
-        href: "/news/lebanon-expansion",
-        category: "Announcements",
-      },
-      {
-        id: 3,
-        title: "Annual Conference Success",
-        date: "April 10, 2023",
-        excerpt: "Our annual conference brought together students, educators, and partners from around the world.",
-        image: "/cover3.png",
-        href: "/news/annual-conference",
-        category: "Events",
-      },
-    ],
   }
 }
 
@@ -191,8 +95,67 @@ export default function NewsArticlePage() {
     image: "/placeholder.svg?height=600&width=1200",
     heroImage: "/placeholder.svg?height=600&width=1200",
     content: ["The requested article could not be found."],
-    relatedArticles: [],
   }
+
+  // Import news data from the main news page
+  const allNewsData = [
+    {
+      id: 1,
+      title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
+      date: "May 25, 2025",
+      excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري.",
+      image: "/LastNews/pulseOFLife-end.png",
+      href: "/news/nabd-al-hayat-scholarship-interviews",
+      category: "Scholarships",
+      featured: true,
+    },
+    {
+      id: 2,
+      title: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
+      date: "May 5, 2025",
+      excerpt: "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
+      image: "/LastNews/pulseOFLife-start.png",
+      href: "/news/nabd-al-hayat-grant-interviews",
+      category: "Scholarships",
+      featured: true,
+    },
+    {
+      id: 3,
+      title: " إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
+      date: "May 28, 2023",
+      excerpt: "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
+      image: "/LastNews/new3.jpeg",
+      href: "/news/isnad-support-tour",
+      category: "Education & Humanitarian Support",
+      featured: true,
+    },
+  ]
+
+  // Function to get related articles dynamically
+  const getRelatedArticles = (currentSlug: string, currentCategory: string) => {
+    // Filter out the current article and get articles from the same category first
+    const otherArticles = allNewsData.filter(news => news.href !== `/news/${currentSlug}`)
+
+    // Prioritize articles from the same category
+    const sameCategory = otherArticles.filter(news => news.category === currentCategory)
+    const differentCategory = otherArticles.filter(news => news.category !== currentCategory)
+
+    // Combine and limit to 3 articles
+    const related = [...sameCategory, ...differentCategory].slice(0, 3)
+
+    return related.map(news => ({
+      id: news.id,
+      title: news.title,
+      date: news.date,
+      excerpt: news.excerpt,
+      image: news.image,
+      href: news.href,
+      category: news.category,
+    }))
+  }
+
+  // Get dynamic related articles
+  const dynamicRelatedArticles = getRelatedArticles(slug, article.category)
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -329,13 +292,13 @@ export default function NewsArticlePage() {
                 </GSAPReveal>
 
                 {/* Related Articles */}
-                {article.relatedArticles && article.relatedArticles.length > 0 && (
+                {dynamicRelatedArticles && dynamicRelatedArticles.length > 0 && (
                   <GSAPReveal animation="slide-left" delay={0.1}>
                     <Card>
                       <CardContent className="p-6">
                         <h3 className="mb-4 text-lg font-bold">Related Articles</h3>
                         <div className="space-y-4">
-                          {article.relatedArticles.map((related) => (
+                          {dynamicRelatedArticles.map((related) => (
                             <Link key={related.id} href={related.href} className="group block">
                               <div className="flex gap-3">
                                 <div>
@@ -384,8 +347,8 @@ export default function NewsArticlePage() {
           </GSAPReveal>
 
           <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {article.relatedArticles &&
-              article.relatedArticles.slice(0, 3).map((related, index) => (
+            {dynamicRelatedArticles &&
+              dynamicRelatedArticles.slice(0, 3).map((related, index) => (
                 <GSAPReveal key={related.id} animation="slide-up" delay={0.1 * index}>
                   <Link href={related.href} className="group block">
                     <div className="overflow-hidden rounded-lg border bg-card transition-all hover:shadow-md">

@@ -223,8 +223,8 @@ export default function NewsPage() {
                     </div>
                     <div className="p-4">
                       <div className="mb-3 space-y-2">
-                        <div className="flex items-center justify-between">
-                          <Badge variant="outline" className="bg-[hsl(0,76%,40%)]/10 text-[hsl(0,76%,40%)] dark:bg-[hsl(0,76%,40%)]/20 dark:text-[hsl(0,76%,50%)] max-w-[70%] truncate">
+                        <div className="flex flex-wrap items-start gap-2">
+                          <Badge variant="outline" className="bg-[hsl(0,76%,40%)]/10 text-[hsl(0,76%,40%)] dark:bg-[hsl(0,76%,40%)]/20 dark:text-[hsl(0,76%,50%)] text-xs leading-tight">
                             {news.category}
                           </Badge>
                         </div>
