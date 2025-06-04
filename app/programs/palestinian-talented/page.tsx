@@ -380,8 +380,8 @@ export default function PalestinianTalentedScholarshipPage() {
           <GSAPTextReveal element="h3" className="text-xl font-bold text-green-800 mb-2">Contact Us</GSAPTextReveal>
           <p className="text-gray-700 dark:text-gray-200 mb-4">For more information, reach out to us:</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-lg">
-            <a href="mailto:Palestinian.pssf@gmail.com" className="flex items-center gap-2 text-green-700 hover:underline">
-              <Mail className="text-green-700" size={22} /> Palestinian.pssf@gmail.com
+            <a href="mailto:info@isnadf.org" className="flex items-center gap-2 text-green-700 hover:underline">
+              <Mail className="text-green-700" size={22} /> info@isnadf.org
             </a>
             <span className="hidden md:inline-block text-gray-400">|</span>
             <a href="tel:+90539430726" className="flex items-center gap-2 text-green-700 hover:underline">

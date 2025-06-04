@@ -33,21 +33,16 @@ export default function Footer() {
                 className="rounded-full bg-muted p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
                 aria-label="Twitter"
               >
-                <Twitter className="h-5 w-5" />
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M20.59 3H17.4l-4.4 5.77L8.07 3H3.41l6.96 9.27L3 21h3.2l5.04-6.62L15.95 21H20.6l-7.13-9.49L20.59 3z"/>
+                      </svg>
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/support.fund.ps/?igsh=MXhvdDFjbjBiMTB2YQ%3D%3D"
                 className="rounded-full bg-muted p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="rounded-full bg-muted p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -108,21 +103,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-12 border-t pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm text-muted-foreground font-sora">
-              &copy; {new Date().getFullYear()} Isnad Foundation. {t("footer.rights")}
-            </p>
-            <div className="flex space-x-4">
-              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary font-sora">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary font-sora">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </footer>
   )

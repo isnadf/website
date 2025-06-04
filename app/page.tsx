@@ -103,12 +103,12 @@ export default function Home() {
 
   // Add partners data
   const partners = [
-    { name: "Partner1", logo: "/partners/p1.jpg", type: "Academic Partner" },
-    { name: "Partner2", logo: "/partners/p2.png", type: "Academic Partner" },
-    { name: "Partner3", logo: "/partners/p3.jpeg", type: "Academic Partner" },
-    { name: "Partner4", logo: "/partners/p4.png", type: "International Organization" },
-    { name: "Partner5", logo: "/partners/p5.png", type: "Development Partner" },
-    { name: "Partner6", logo: "/partners/p6.png", type: "Government Partner" }
+    { name: "Milli Gençlik Kulübü", logo: "/partners/p1.jpg", type: "Academic Partner" },
+    { name: "YediHilal", logo: "/partners/p2.png", type: "Academic Partner" },
+    { name: "Hüdayi Vakfı", logo: "/partners/p3.jpeg", type: "Academic Partner" },
+    { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: "International Organization" },
+    { name: "FEDERATION OF INTERNATIONAL STUDENT ASSOCIATIONS", logo: "/partners/p5.png", type: "Development Partner" },
+    { name: "Alkhidmat Europe", logo: "/partners/p6.png", type: "Government Partner" }
   ]
 
   useEffect(() => {
@@ -238,7 +238,7 @@ export default function Home() {
             {
               title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
               excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري.",
-              image: "/LastNews/1.png",
+              image: "/LastNews/pulseOfLife-end.png",
               href: "/news/nabd-al-hayat-scholarship-interviews",
               date: "May 25, 2025",
               category: "Scholarships"
@@ -246,18 +246,18 @@ export default function Home() {
             {
               title: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
               excerpt: "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
-              image: "/LastNews/1.png",
+              image: "/LastNews/pulseOfLife-start.png",
               href: "/news/nabd-al-hayat-grant-interviews",
               date: "May 5, 2025",
               category: "Scholarships"
             },
             {
-              title: "Partnership with Istanbul University",
-              excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
-              image: "/LastNews/1.png",
-              href: "/news/istanbul-university-partnership",
-              date: "May 28, 2023",
-              category: "Partnerships"
+              title: " إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
+              excerpt: "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
+              image: "/LastNews/new3.jpeg",
+              href: "/news/isnad-support-tour",
+              date: "June 06, 2024",
+              category: "Education & Humanitarian Support",
             }
           ]}
           isAnyCardHovered={isAnyCardHovered}
@@ -606,12 +606,6 @@ export default function Home() {
                 Your support can make a lasting impact on the lives of talented Palestinian students. Together, we can build a brighter future through education.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/apply">
-                  <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-                    Apply for Scholarship
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
                 <Link href="/donate">
                   <Button size="lg" className="bg-white text-primary hover:bg-white/90">
                     Support Our Cause
@@ -642,18 +636,20 @@ export default function Home() {
             </GSAPReveal>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {partners.map((partner, index) => (
               <GSAPReveal key={index} animation="fade" delay={index * 0.1}>
-                <div className="group relative flex items-center justify-center p-4 transition-all duration-300 hover:scale-105">
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="h-full w-auto transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                  />
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-1 text-xs text-gray-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:bg-gray-800 dark:text-gray-300">
-                    {partner.type}
+                <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-primary/5 dark:hover:bg-primary/10 hover:shadow-md">
+                  <div className="flex items-center justify-center h-32 mb-4">
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-h-32 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    />
                   </div>
+                  <p className="font-medium text-black dark:text-white text-sm md:text-base">
+                    {partner.name}
+                  </p>
                 </div>
               </GSAPReveal>
             ))}

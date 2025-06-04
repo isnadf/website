@@ -245,7 +245,7 @@ export default function AboutPage() {
       </section>
 
       {/* Administrative Structure */}
-      <section className="py-16 md:py-24 bg-[#f8faf8] dark:bg-gray-950">
+      {/* <section className="py-16 md:py-24 bg-[#f8faf8] dark:bg-gray-950">
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-5xl">
             <div className="mb-12 text-center">
@@ -316,7 +316,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Partners */}
       <section className="py-16 md:py-24 bg-white dark:bg-gray-950 text-black dark:text-white">
