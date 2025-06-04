@@ -236,36 +236,28 @@ export default function Home() {
         <ScrollingCards
           cards={[
             {
-              title: "Interviews for the first phase of the Nabd Al Hayat grant continue",
-              excerpt: "Ongoing interviews to select 100 Gaza students for the Nabd al-Hayat scholarship program. Partnership between Isnad Foundation and Alkhidmat Europe.",
-              image: "/cover3.png",
+              title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
+              excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري.",
+              image: "/LastNews/1.png",
+              href: "/news/nabd-al-hayat-scholarship-interviews",
+              date: "May 25, 2025",
+              category: "Scholarships"
+            },
+            {
+              title: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
+              excerpt: "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
+              image: "/LastNews/1.png",
               href: "/news/nabd-al-hayat-grant-interviews",
               date: "May 5, 2025",
               category: "Scholarships"
             },
             {
               title: "Partnership with Istanbul University",
-              excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities for Palestinian students.",
-              image: "/cover3.png",
+              excerpt: "We're excited to announce our new partnership with Istanbul University to provide more opportunities.",
+              image: "/LastNews/1.png",
               href: "/news/istanbul-university-partnership",
               date: "May 28, 2023",
               category: "Partnerships"
-            },
-            {
-              title: "Annual Conference Success",
-              excerpt: "Our annual conference brought together students, educators, and partners from around the world to discuss educational opportunities.",
-              image: "/cover3.png",
-              href: "/news/annual-conference",
-              date: "April 10, 2023",
-              category: "Events"
-            },
-            {
-              title: "Foundation Expands Support to Lebanon",
-              excerpt: "Our foundation is expanding its support programs to reach Palestinian students in Lebanon, providing new opportunities for education.",
-              image: "/cover3.png",
-              href: "/news/lebanon-expansion",
-              date: "December 12, 2022",
-              category: "Announcements"
             }
           ]}
           isAnyCardHovered={isAnyCardHovered}
