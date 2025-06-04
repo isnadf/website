@@ -31,7 +31,7 @@ const newsArticles: Record<string, ArticleData> = {
     author: "Isnad Foundation",
     category: "Scholarships",
     image: "/LastNews/pulseOFLife-end.png",
-    heroImage: "/LastNews/pulseOFLife-end.png",
+    heroImage: "/LastNews/pulseOfLife-end.png",
     content: [
       "إسطنبول / تركيا",
       "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري، من خريجي ومقيدي جامعات قطاع غزة.",
@@ -47,7 +47,7 @@ const newsArticles: Record<string, ArticleData> = {
     date: "May 5, 2025",
     author: "Isnad Foundation",
     category: "Scholarships",
-    image: "/LastNews/pulseOFLife-start.png",
+    image: "/LastNews/pulseOfLife-start.png",
     heroImage: "/LastNews/pulseOFLife-start.png",
     content: [
       "إسطنبول/ تركيا – الإثنين 5 أيار 2025",
