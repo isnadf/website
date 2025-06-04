@@ -30,7 +30,7 @@ const newsArticles: Record<string, ArticleData> = {
     date: "May 25, 2025",
     author: "Isnad Foundation",
     category: "Scholarships",
-    image: "/LastNews/pulseOFLife-end.png",
+    image: "/LastNews/pulseOfLife-end.png",
     heroImage: "/LastNews/pulseOfLife-end.png",
     content: [
       "إسطنبول / تركيا",
@@ -48,7 +48,7 @@ const newsArticles: Record<string, ArticleData> = {
     author: "Isnad Foundation",
     category: "Scholarships",
     image: "/LastNews/pulseOfLife-start.png",
-    heroImage: "/LastNews/pulseOFLife-start.png",
+    heroImage: "/LastNews/pulseOfLife-start.png",
     content: [
       "إسطنبول/ تركيا – الإثنين 5 أيار 2025",
       "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
