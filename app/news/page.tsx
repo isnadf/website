@@ -292,33 +292,6 @@ export default function NewsPage() {
           </div>
         </div>
       </section>
-
-      {/* Newsletter Signup */}
-      <section className="py-16 md:py-24 bg-white relative">
-        <div className="absolute inset-0 bg-[#f8faf8]/70"></div>
-        <div className="container px-4 md:px-6 relative z-10">
-          <div className="mx-auto max-w-3xl rounded-xl bg-white p-10 text-center shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/30 via-[#1e7e34]/80 to-[#1e7e34]/30"></div>
-            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-[#1e7e34]/5 rounded-full"></div>
-            <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[#1e7e34]/5 rounded-full"></div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 dark:text-white relative z-10">Stay Updated</h2>
-            <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 relative z-10">
-              Subscribe to our newsletter to receive the latest news and updates directly in your inbox.
-            </p>
-            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center relative z-10">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="max-w-xs bg-gray-50 text-gray-900 placeholder:text-gray-500 border-gray-200 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-400 dark:border-gray-600"
-              />
-              <Button className="bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90">Subscribe</Button>
-            </div>
-            <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 relative z-10">
-              We respect your privacy. Unsubscribe at any time.
-            </p>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }
