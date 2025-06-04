@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import GSAPReveal from "@/components/gsap-reveal"
+import Image from 'next/image'
 
 interface Activity {
   id: number
@@ -113,15 +114,21 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
       >
         {/* Hero background image - contained within hero only */}
         <div className="absolute inset-0 z-0">
-          <img
-            src={previewImages[0] || currentActivity.image || "/placeholder.svg"}
-            alt={`${currentActivity.title} background`}
-            className="h-full w-full object-cover rounded-2xl"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "/placeholder.svg";
-            }}
-          />
+          <div className="relative h-full w-full">
+            <Image
+              src={previewImages[0] || currentActivity.image || "/placeholder.svg"}
+              alt={`${currentActivity.title} background`}
+              fill
+              sizes="100vw"
+              className="object-cover rounded-2xl"
+              priority
+              quality={90}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "/placeholder.svg";
+              }}
+            />
+          </div>
           {/* Dark overlay for better text readability */}
           <div className="absolute inset-0 bg-black/40 z-10 rounded-2xl"></div>
         </div>

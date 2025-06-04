@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
+import Image from 'next/image'
 
 // Mock success story data
 const successStories = {
@@ -187,7 +188,7 @@ export default function SuccessStoryPage() {
       <section className="relative py-24 md:py-32 bg-gradient-to-b from-primary/90 to-primary/70 text-white">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/50" />
-          <img src={story.coverImage || "/placeholder.svg"} alt={story.name} className="h-full w-full object-cover" />
+          <Image src={story.coverImage || "/placeholder.svg"} alt={story.name} className="h-full w-full object-cover" width={800} height={600} />
         </div>
         <div className="container relative z-10 px-4 md:px-6">
           <div className="mx-auto max-w-3xl">

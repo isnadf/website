@@ -5,6 +5,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, MapPin } from "lucide-react"
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import Image from 'next/image'
 
 interface Activity {
   id: number
@@ -227,14 +230,21 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
                 autoPlay
                 loop
                 muted
+                preload="metadata"
               />
             ) : (
-              <img
-                src={images[selectedImageIndex]}
-                alt={`Activity image ${selectedImageIndex + 1}`}
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
+              <div className="relative h-full w-full">
+                <Image
+                  src={images[selectedImageIndex]}
+                  alt={`Activity image ${selectedImageIndex + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                  className="object-cover"
+                  priority={selectedImageIndex === 0}
+                  quality={85}
+                  loading={selectedImageIndex === 0 ? "eager" : "lazy"}
+                />
+              </div>
             )}
             <div className="absolute inset-0 bg-black/20 pointer-events-none" />
             <Button
@@ -292,12 +302,17 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
                 </svg>
               </div>
             ) : (
-              <img
-                src={image}
-                alt={`Thumbnail ${index + 1}`}
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
+              <div className="relative h-full w-full">
+                <Image
+                  src={image}
+                  alt={`Thumbnail ${index + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 25vw, (max-width: 1200px) 20vw, 10vw"
+                  className="object-cover"
+                  quality={60}
+                  loading="lazy"
+                />
+              </div>
             )}
           </button>
         ))}
