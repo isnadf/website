@@ -236,7 +236,7 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
                 loading="lazy"
               />
             )}
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-black/20 pointer-events-none" />
             <Button
               variant="ghost"
               size="icon"
