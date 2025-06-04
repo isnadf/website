@@ -47,12 +47,7 @@ const newsData = [
 const categories = [
   "All",
   "Scholarships",
-  "Education & Humanitarian Support",
-  "Event",
-  "Success Stories",
-  "Grants",
-  "Announcements",
-  "Reports",
+  "Education & Humanitarian Support"
 ]
 
 export default function NewsPage() {
@@ -227,10 +222,12 @@ export default function NewsPage() {
                       />
                     </div>
                     <div className="p-4">
-                      <div className="mb-2 flex items-center justify-between">
-                        <Badge variant="outline" className="bg-[hsl(0,76%,40%)]/10 text-[hsl(0,76%,40%)] dark:bg-[hsl(0,76%,40%)]/20 dark:text-[hsl(0,76%,50%)]">
-                          {news.category}
-                        </Badge>
+                      <div className="mb-3 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <Badge variant="outline" className="bg-[hsl(0,76%,40%)]/10 text-[hsl(0,76%,40%)] dark:bg-[hsl(0,76%,40%)]/20 dark:text-[hsl(0,76%,50%)] max-w-[70%] truncate">
+                            {news.category}
+                          </Badge>
+                        </div>
                         <div className="flex items-center text-sm text-[hsl(0,76%,40%)] dark:text-[hsl(0,76%,50%)]">
                           <Calendar className="mr-1 h-3 w-3" />
                           {news.date}
