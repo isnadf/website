@@ -386,7 +386,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (savedLanguage && ["en", "ar"].includes(savedLanguage)) {
       setLanguageState(savedLanguage)
       document.documentElement.lang = savedLanguage
-      document.documentElement.dir = savedLanguage === "ar" ? "rtl" : "ltr"
+      document.documentElement.dir = "ltr"
     }
   }, [])
 
@@ -394,7 +394,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguageState(lang)
     localStorage.setItem("language", lang)
     document.documentElement.lang = lang
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"
+    document.documentElement.dir = "ltr"
   }
 
   const t = (key: string) => {
