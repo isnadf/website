@@ -62,27 +62,24 @@ export const studentTestimonials: Testimonial[] = [
 export const publicFigureTestimonials: Testimonial[] = [
   {
     id: 6,
-    name: "Dr. Ahmed Yousef",
-    role: "Professor",
-    organization: "Istanbul University",
+    name: "محيي الدين علي القرة داغي",
+    role: "امين عام الاتحاد العالمي لعلماء المسلمين",
     quote: "The work that the Isnad Foundation is doing is vital for the future of our youth. Education is the most powerful tool we can give to the next generation.",
     videoFileName: "1.mp4",
     type: 'public_figure'
   },
   {
     id: 7,
-    name: "Mona Rashid",
-    role: "Director",
-    organization: "Education Without Borders",
+    name: "محيي الدين علي القرة داغي",
+    role: "امين عام الاتحاد العالمي لعلماء المسلمين",
     quote: "I've seen firsthand how the Fund's programs transform lives. These students are not just receiving an education; they're becoming ambassadors for Palestine.",
     videoFileName: "2.mp4",
     type: 'public_figure'
   },
   {
     id: 8,
-    name: "Ibrahim Al-Khatib",
-    role: "Minister of Education",
-    organization: "Palestinian Authority",
+    name: "محمد الصغير",
+    role: "الأمين العام للهيئة العالمية لأنصار النبي",
     quote: "The partnership between our ministry and the Fund has been instrumental in developing our educational infrastructure and supporting our brightest minds.",
     videoFileName: "3.mp4",
     type: 'public_figure'
