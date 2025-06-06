@@ -1,5 +1,5 @@
 import type React from "react"
-import { Inter, Poppins, Amiri, Playfair_Display, Sora } from "next/font/google"
+import { Inter, Poppins, Noto_Kufi_Arabic, Playfair_Display, Sora } from "next/font/google"
 import type { Metadata } from "next"
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -18,10 +18,12 @@ const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
 })
-const amiri = Amiri({
-  weight: ["400", "700"],
+const notoKufiArabic = Noto_Kufi_Arabic({
+  weight: ["400", "500", "600", "700"],
   subsets: ["arabic"],
-  variable: "--font-amiri",
+  variable: "--font-noto-kufi-arabic",
+  display: "swap",
+  preload: true,
 })
 
 const playfair = Playfair_Display({
@@ -62,8 +64,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${poppins.variable} ${amiri.variable} ${playfair.variable} ${sora.variable} font-sora`}>
+    <html lang="en" dir="ltr" suppressHydrationWarning>
+      <body className={`${inter.variable} ${poppins.variable} ${notoKufiArabic.variable} ${playfair.variable} ${sora.variable} font-sora`}>
         <TranslationSafeWrapper>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
             <LanguageProvider>

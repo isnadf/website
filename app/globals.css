@@ -89,18 +89,18 @@ body {
   }
   /* Arabic text styling */
   :lang(ar) {
-    @apply font-amiri;
-    letter-spacing: -0.5px; /* Reduce letter spacing for Arabic */
+    font-family: var(--font-noto-kufi-arabic), sans-serif;
+    letter-spacing: -0.5px;
     line-height: 1.6;
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1; /* Enable ligatures */
-    word-spacing: -0.15em; /* Reduce space between words */
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    word-spacing: -0.15em;
   }
 
   :lang(ar) h1 {
     @apply leading-[1.6];
-    text-align: right; /* Ensure proper RTL alignment */
-    word-spacing: -0.25em; /* Further reduce space between words for headlines */
-    letter-spacing: -1px; /* Tighter letter spacing for headlines */
+    text-align: right;
+    word-spacing: -0.25em;
+    letter-spacing: -1px;
   }
 }
 
@@ -227,7 +227,7 @@ html[lang="en"] {
 }
 
 html[lang="ar"] {
-  font-family: var(--font-amiri), serif;
+  font-family: var(--font-noto-kufi-arabic), sans-serif;
 }
 
 html[lang="tr"] {

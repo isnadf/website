@@ -379,13 +379,17 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en")
+  const [language, setLanguageState] = useState<Language>("ar")
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language") as Language
     if (savedLanguage && ["en", "ar"].includes(savedLanguage)) {
       setLanguageState(savedLanguage)
       document.documentElement.lang = savedLanguage
+      document.documentElement.dir = "ltr"
+    } else {
+      // Set default to Arabic if no saved language
+      document.documentElement.lang = "ar"
       document.documentElement.dir = "ltr"
     }
   }, [])

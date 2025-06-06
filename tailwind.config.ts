@@ -20,9 +20,9 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sora)"],
+        inter: ["var(--font-inter)"],
         poppins: ["var(--font-poppins)"],
-        amiri: ["var(--font-amiri)"],
+        'noto-kufi-arabic': ["var(--font-noto-kufi-arabic)"],
         playfair: ["var(--font-playfair)"],
         sora: ["var(--font-sora)"],
       },
