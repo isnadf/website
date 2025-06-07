@@ -11,7 +11,7 @@ import LoadingBar from "@/components/loading-bar"
 import TranslationSafeWrapper from "@/components/translation-safe-wrapper"
 import TranslationDebug from "@/components/translation-debug"
 import "./globals.css"
-
+import { Analytics } from "@vercel/analytics/next"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -82,6 +82,7 @@ export default function RootLayout({
           </ThemeProvider>
           <TranslationDebug />
         </TranslationSafeWrapper>
+        <Analytics />
       </body>
     </html>
   )
