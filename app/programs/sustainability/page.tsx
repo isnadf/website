@@ -28,7 +28,6 @@ import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import Image from "next/image"
 
 export default function SustainabilityScholarshipPage() {
   const { t, language } = useLanguage()
@@ -68,7 +67,7 @@ export default function SustainabilityScholarshipPage() {
 
           {/* Title */}
           <GSAPTextReveal className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-teal-400 font-sora">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-teal-400 font-sora tracking-wider">
               {t("sustainability.title")}
             </span>
           </GSAPTextReveal>
@@ -327,7 +326,7 @@ export default function SustainabilityScholarshipPage() {
                       <Award size={24} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">200 Full Scholarships</h3>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{t("sustainability.objectives.scholarships.title")}</h3>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {t("sustainability.objectives.scholarships")}
                       </p>
@@ -346,7 +345,7 @@ export default function SustainabilityScholarshipPage() {
                       <BookOpen size={24} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Applied Research</h3>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{t("sustainability.objectives.research.title")}</h3>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {t("sustainability.objectives.research")}
                       </p>
@@ -365,7 +364,7 @@ export default function SustainabilityScholarshipPage() {
                       <Globe size={24} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Knowledge & Innovation</h3>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{t("sustainability.objectives.knowledge.title")}</h3>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {t("sustainability.objectives.knowledge")}
                       </p>
@@ -384,7 +383,7 @@ export default function SustainabilityScholarshipPage() {
                       <GraduationCap size={24} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Future Leaders</h3>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{t("sustainability.objectives.leaders.title")}</h3>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {t("sustainability.objectives.leaders")}
                       </p>
