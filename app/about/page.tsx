@@ -1,13 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { Users, ArrowRight, GraduationCap, Globe, Award, Lightbulb, Handshake as HandshakeIcon, Target, Compass, BookOpen, Rocket } from "lucide-react"
+import { Users, ArrowRight, GraduationCap, Globe, Award, Lightbulb, Handshake as HandshakeIcon, Target, Compass, Rocket } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
 
 export default function AboutPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   return (
     <main className="flex min-h-screen flex-col">
@@ -25,7 +25,7 @@ export default function AboutPage() {
           <div className="bg-white/10 backdrop-blur-md rounded-lg px-3 py-2 sm:px-4 sm:py-2 border border-white/20">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#1e7e34]"></div>
-              <span className="text-white text-xs sm:text-sm font-medium">Who Are We</span>
+              <span className={`text-white text-xs sm:text-sm font-medium ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.page.indicator")}</span>
             </div>
           </div>
         </div>
@@ -37,13 +37,13 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
               <Compass className="mr-1 h-4 w-4" />
-              Our Purpose
+              {t("about.purpose.badge")}
             </div>
-            <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">
-              Mission & Vision
+            <h2 className={`mt-2 text-3xl font-bold tracking-tighter sm:text-4xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
+              {t("about.purpose.title")}
             </h2>
-            <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
-              Guided by our commitment to educational equity and empowerment for Palestinian students worldwide.
+            <p className={`mx-auto mt-4 max-w-[700px] text-muted-foreground ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
+              {t("about.purpose.subtitle")}
             </p>
           </div>
 
@@ -67,19 +67,19 @@ export default function AboutPage() {
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span>Provide scholarships to talented Palestinian students</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point1")}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span>Create educational opportunities through global partnerships</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point2")}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span>Support academic and professional development</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point3")}</span>
                     </li>
                   </ul>
                 </div>
@@ -105,19 +105,19 @@ export default function AboutPage() {
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span>A world where every Palestinian student has access to quality education</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point1")}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span>A global network of Palestinian scholars and professionals</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point2")}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span>Educational empowerment as a path to community development</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point3")}</span>
                     </li>
                   </ul>
                 </div>
@@ -232,14 +232,14 @@ export default function AboutPage() {
                    </div>
                  </div>
                  <div className="flex justify-center w-full mt-8">
-              <Link href="/about">
+              {/* <Link href="/about">
                 <Button
                   className="group bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90"
                 >
                   {t("about.cta")}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -326,14 +326,13 @@ export default function AboutPage() {
             <div className="mb-12 text-center">
               <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
                 <HandshakeIcon className="mr-1 h-4 w-4" />
-                Collaborations
+                {t("about.partners.badge")}
               </div>
-              <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-black dark:text-white">
-                Our Partners
+              <h2 className={`mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-black dark:text-white ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
+                {t("about.partners.title")}
               </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
-                We collaborate with universities, educational institutions, and organizations worldwide to expand
-                opportunities for Palestinian students.
+              <p className={`mx-auto mt-4 max-w-[700px] text-muted-foreground ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
+                {t("about.partners.subtitle")}
               </p>
             </div>
 
@@ -388,11 +387,10 @@ export default function AboutPage() {
             <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-[#1e7e34]/5 rounded-full"></div>
             <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[#1e7e34]/5 rounded-full"></div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 dark:text-white relative z-10">
-              Join Our Mission
+              {t("about.cta.title")}
             </h2>
             <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 relative z-10">
-              Whether you're a student looking for support, a potential partner, or someone who wants to contribute to
-              our cause, we'd love to hear from you.
+              {t("about.cta.subtitle")}
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center relative z-10">
               <Link href="/contact">
@@ -400,7 +398,7 @@ export default function AboutPage() {
                   size="lg"
                   className="bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90"
                 >
-                  Contact Us
+                  {t("about.cta.contact")}
                 </Button>
               </Link>
               <Link href="/donate">
@@ -408,7 +406,7 @@ export default function AboutPage() {
                   size="lg"
                   className="bg-white text-[#1e7e34] border-2 border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white dark:bg-gray-900 dark:text-[#1e7e34] dark:border-[#1e7e34] dark:hover:bg-[#1e7e34] dark:hover:text-white"
                 >
-                  Support Our Work
+                  {t("about.cta.support")}
                 </Button>
               </Link>
             </div>
