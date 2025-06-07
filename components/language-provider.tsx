@@ -591,7 +591,7 @@ const translations = {
     "donate.programs.focus": "مجال التخصص",
 
     // Sustainability Scholarship Arabic translations
-    "sustainability.title": "برنامج منحة الاستدامة",
+    "sustainability.title": " منحة الأستدامة",
     "sustainability.subtitle": "نحو السيادة العالمية ومجتمع يقود تنميته الذاتية",
     "sustainability.scholarships": "منح دراسية",
     "sustainability.years": "سنوات",
