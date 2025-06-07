@@ -13,21 +13,20 @@ interface LanguageContextType {
 const translations = {
   en: {
     "nav.home": "Home",
-    "nav.about": "Who Are We?",
-    "nav.news": "Latest News",
+    "nav.about": "About",
     "nav.programs": "Our Programs",
-    "nav.success": "Success Stories",
-    "nav.apply": "Apply for Grants",
+    "nav.programs.undergraduate": "Undergraduate Scholarships",
+    "nav.programs.graduate": "Graduate Scholarships",
+    "nav.donate": "Donate",
+    "nav.contact": "Contact",
+
+    "nav.news": "Latest News",
     "nav.activities": "Previous Activities",
     "nav.testimonials": "Testimonials",
-    "nav.contact": "Contact Us",
     "nav.media": "Media",
     "nav.media.success": "Success Stories",
     "nav.media.activities": "Previous Activities",
     "nav.media.testimonials": "Testimonials",
-    "nav.donate": "Donate Now",
-    "nav.donate.title": "Support Our Cause",
-    "nav.donate.desc": "Help Palestinian students achieve their dreams",
 
     "hero.title": "Empowering Palestinian Students Worldwide",
     "hero.subtitle":
@@ -486,23 +485,23 @@ const translations = {
     "justice.contact.desc": "For more information, reach out to us:",
   },
   ar: {
+    // Navigation translations
     "nav.home": "الرئيسية",
-    "nav.about": "من نحن؟",
-    "nav.news": "آخر الأخبار",
+    "nav.about": "من نحن",
     "nav.programs": "برامجنا",
-    "nav.success": "قصص النجاح",
-    "nav.apply": "التقدم للمنح",
+    "nav.programs.undergraduate": "منح البكالوريوس",
+    "nav.programs.graduate": "منح الدراسات العليا",
+    "nav.donate": "تبرع",
+    "nav.contact": "اتصل بنا",
+    "nav.news": "آخر الأخبار",
     "nav.activities": "الأنشطة السابقة",
     "nav.testimonials": "الشهادات",
-    "nav.contact": "اتصل بنا",
     "nav.media": "الإعلام",
     "nav.media.success": "قصص النجاح",
     "nav.media.activities": "الأنشطة السابقة",
     "nav.media.testimonials": "الشهادات",
-    "nav.donate": "تبرع الآن",
-    "nav.donate.title": "ادعم قضيتنا",
-    "nav.donate.desc": "ساعد الطلاب الفلسطينيين في تحقيق أحلامهم",
 
+    // Remove duplicate hero translations
     "about.widgt": "القيم",
     "about.title":"قيمنا",
     "about.subtitle":"IFPPS",
@@ -521,8 +520,6 @@ const translations = {
     "about.identity7":"المبادرة",
     "about.identity7.desc":"نسعى باستمرار لتحديد احتياجات الطلاب، وتقديم مشاريع تلبي هذه الاحتياجات، وتشجيعهم على إطلاق مبادرات مجتمعية",
     "about.cta":"من نحن",
-
-
 
     "hero.title": "تمكين الطلاب الفلسطينيين حول العالم",
     "hero.subtitle":
@@ -615,7 +612,7 @@ const translations = {
     "donate.programs.sustainability.desc": "200 منحة في هندسة الطاقة والزراعة لمستقبل فلسطين الأخضر.",
     "donate.programs.justice": "العدالة لفلسطين",
     "donate.programs.justice.desc": "200 منحة في العلوم السياسية والعلاقات الدولية للدعوة العالمية.",
-    "donate.programs.ibn-khaldun": "ابن خلدون",
+    "donate.programs.ibn-khaldun": "Ibn Khaldun",
     "donate.programs.ibn-khaldun.desc": "200 scholarships in sociology and psychology for understanding Palestinian society.",
     "donate.programs.duration": "مدة البرنامج",
     "donate.programs.focus": "مجال التخصص",
@@ -647,7 +644,7 @@ const translations = {
     "ibn-khaldun.requirements.gpa": "معدل تراكمي 3.0+",
     "ibn-khaldun.requirements.research": "اهتمام بالبحث في المجتمع الفلسطيني",
     "ibn-khaldun.contact.title": "اتصل بنا",
-    "ibn-khaldun.contact.desc": ": لمزيد من المعلومات، تواصل معنا",
+    "ibn-khaldun.contact.desc": "For more information, reach out to us:",
     "ibn-khaldun.apply.now": "تقدم الآن",
 
     // Sustainability Scholarship Arabic translations

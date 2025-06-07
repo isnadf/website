@@ -47,20 +47,20 @@ export default function Header() {
       dropdown: true,
       items: [
         {
-          name: "Undergraduate Scholarships",
+          name: t("nav.programs.undergraduate") as string,
           href: "/programs#undergraduate-scholarships",
           items: [
-            { name: "Pulse of Life Scholarship", href: "/programs/pulse-of-life" },
-            { name: "Palestinian Talented Scholarship", href: "/programs/palestinian-talented" }
+            { name: t("programs.pulse.title") as string, href: "/programs/pulse-of-life" },
+            { name: t("programs.talented.title") as string, href: "/programs/palestinian-talented" }
           ]
         },
         {
-          name: "Graduate Scholarships",
+          name: t("nav.programs.graduate") as string,
           href: "/programs#graduate-scholarships",
           items: [
-            { name: "Sustainability Scholarship", href: "/programs/sustainability" },
-            { name: "Justice for Palestine Program", href: "/programs/justice-for-palestine" },
-            { name: "Ibn Khaldun Scholarship Program", href: "/programs/ibn-khaldun" }
+            { name: t("sustainability.title") as string, href: "/programs/sustainability" },
+            { name: t("justice.title") as string, href: "/programs/justice-for-palestine" },
+            { name: t("ibn-khaldun.title") as string, href: "/programs/ibn-khaldun" }
           ]
         }
       ]
