@@ -11,183 +11,197 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
+import { useLanguage } from "@/components/language-provider"
 
 // Define the type for article data
 type ArticleData = {
-  title: string
+  title: {
+    en: string
+    ar: string
+  }
   date: string
   author: string
-  category: string
+  category: {
+    en: string
+    ar: string
+  }
   image: string
   heroImage?: string
-  content: string[]
-}
-
-// Mock news article data
-const newsArticles: Record<string, ArticleData> = {
-  "nabd-al-hayat-scholarship-interviews": {
-    title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
-    date: "May 25, 2025",
-    author: "Isnad Foundation",
-    category: "Scholarships",
-    image: "/LastNews/pulseOfLife-end.png",
-    heroImage: "/LastNews/pulseOfLife-end.png",
-    content: [
-      "إسطنبول / تركيا",
-      "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري، من خريجي ومقيدي جامعات قطاع غزة.",
-      "وقد جرت المقابلات عن بُعد عبر الإنترنت، وهدفت إلى التعرف عن كثب على الظروف الأكاديمية والمعيشية للطلبة، وتقييم مدى استحقاقهم للدعم، وذلك بعد اجتيازهم مرحلة التصفية الأولية من خلال التسجيل الإلكتروني.",
-      "وتمنح مؤسسة إسناد، في هذه المرحلة التي أُطلقت بشراكة استراتيجية مع مؤسسة الخدمت يوروب (Alkhidmat Europe)، دعماً مالياً شهرياً لمدة 12 شهراً للطلبة المقبولين، في خطوة تهدف إلى التخفيف من أعبائهم الدراسية وتمكينهم من مواصلة تعليمهم العالي في ظل التحديات القائمة.",
-      "وتُعد منحة \"نبض الحياة\" من أبرز البرامج التي أطلقتها مؤسسة إسناد والتي تركز بشكل خاص على دعم الطلبة الفلسطينيين في التخصصات الطبية، ولا سيما من قطاع غزة، الذين تأثرت مسيرتهم التعليمية جراء الأوضاع الإنسانية القاسية والحصار والحروب المتكررة.",
-      "ويستهدف البرنامج في مراحله المتتالية تمكين نحو 1000 طالب فلسطيني من استكمال دراستهم الطبية، ضمن خطة طموحة تمتد على خمس سنوات، تُعنى بالاستثمار في الكفاءات العلمية الشابة، وإعداد جيل طبي مؤهل يساهم في خدمة المجتمع الفلسطيني وتعزيز صموده.",
-      "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
-    ],
-  },
-  "nabd-al-hayat-grant-interviews": {
-    title: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
-    date: "May 5, 2025",
-    author: "Isnad Foundation",
-    category: "Scholarships",
-    image: "/LastNews/pulseOfLife-start.png",
-    heroImage: "/LastNews/pulseOfLife-start.png",
-    content: [
-      "إسطنبول/ تركيا – الإثنين 5 أيار 2025",
-      "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
-      "وجاءت هذه المقابلات امتداداً لتلك التي انعقدت الثلاثاء الماضي، حيث أجريت عبر الإنترنت بمشاركة نخبة من الطلبة الفلسطينيين الذين اجتازوا مرحلة الانتقاء الأولي، ويواصلون دراستهم في تخصصات الطب البشري في الجامعات الفلسطينية، في قطاع غزة.",
-      "وسيتم ضمن المرحلة الأولى اختيار 100 طالب للاستفادة من منحة نبض الحياة، التي تقدم دعماً مالياً شهرياً على مدى 12 شهراً، إلى جانب فرص دعم أخرى تشمل أجهزة تعليمية وتغطية جزئية للرسوم الدراسية.",
-      "وتأتي هذه المبادرة في إطار رؤية تنموية تهدف إلى تمكين الطلبة الفلسطينيين من مواصلة مسيرتهم الأكاديمية رغم الظروف القاسية التي خلفتها الحرب، لا سيما في ظل النزوح، وتدمير البيوت، والضغوط النفسية والاقتصادية التي يعاني منها الطلبة وأسرهم.",
-      "يُشار إلى أن برنامج نبض الحياة هو أحد أبرز برامج صندوق إسناد الطالب الفلسطيني، والذي يسعى من خلاله إلى دعم أكثر من 1000 طالب خلال خمس سنوات، عبر شراكات محلية ودولية فاعلة.",
-      "وصندوق إسناد هو مؤسسة فلسطينية تنموية مستقلة وغير ربحية، تُعنى بتعزيز فرص التعليم العالي للفلسطينيين من خلال تقديم منح دراسية ودعم أكاديمي للطلبة في التخصصات الحيوية، وخاصة التخصصات الطبية."
-    ],
-  },
-  "isnad-support-tour": {
-    title: " إسناد تُنفذ جولات دعم إقليمي وتُطلق منحًا تعليمية عاجلة لطلبة غزة المتضررين من الحرب ",
-    date: "June 30, 2024",
-    author: "Isnad Foundation",
-    category: "Education & Humanitarian Support",
-    image: "/LastNews/new3.jpeg",
-    content: [
-      "We are thrilled to announce a new strategic partnership between the Isnad Foundation and Istanbul University, one of Turkey's most prestigious educational institutions. This collaboration marks a significant milestone in our mission to expand educational opportunities for Palestinian students.",
-      "The partnership will create dedicated pathways for Palestinian students to access undergraduate and graduate programs at Istanbul University, with special consideration for those facing financial barriers or displacement due to conflict.",
-      '"This partnership represents a meaningful step forward in our commitment to providing quality education for Palestinian students," said Dr. Mahmoud Abbas, Executive Director of the Isnad Foundation. "Istanbul University\'s academic excellence and inclusive approach make them an ideal partner in this mission."',
-      "Key components of the partnership include:",
-      "• Reserved spots for qualified Palestinian students across various academic departments",
-      "• Joint scholarship programs covering tuition and living expenses",
-      "• Collaborative research opportunities for faculty and graduate students",
-      "• Cultural exchange initiatives to foster understanding and connection",
-      "• Language support programs to help students transition to Turkish-language instruction",
-      'Professor Mehmet Yılmaz, Rector of Istanbul University, expressed enthusiasm about the collaboration: "We are honored to partner with the Isnad Foundation to provide educational opportunities for talented students who have faced significant challenges. This partnership aligns with our university\'s values of academic excellence, diversity, and social responsibility."',
-      "The first cohort of students under this partnership will begin their studies in the Fall 2023 semester. Information sessions about available programs and application procedures will be held virtually in the coming weeks.",
-      "For more information about this partnership and how to apply for the joint scholarship programs, please visit our Partnerships page or contact our academic advisors at info@isnadf.org.",
-    ],
+  content: {
+    en: string[]
+    ar: string[]
   }
 }
+
+// Mock news articles data with bilingual support
+const newsArticles: Record<string, ArticleData> = {
+  "isnad-support-tour": {
+    title: {
+      en: "Isnad Conducts Support Tours in Six Countries and Provides Educational Grants to Gaza Students",
+      ar: "إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة"
+    },
+    date: "June 06, 2024",
+    author: "Isnad Foundation",
+    category: {
+      en: "Education & Humanitarian Support",
+      ar: "التعليم والدعم الإنساني"
+    },
+    image: "/LastNews/new3.jpeg",
+    heroImage: "/LastNews/new3.jpeg",
+    content: {
+      en: [
+        "Since the beginning of the genocide war in the Gaza Strip, the Isnad Foundation for Palestinian Student Support has implemented a series of meetings and events in several countries including Turkey, Egypt, Mauritania, Kyrgyzstan, Malaysia, and the Gaza Strip, as part of its urgent response to the needs of Palestinian students affected by the ongoing war on the Gaza Strip since October 2023.",
+        "These tours aimed to directly communicate with students, understand their living and educational conditions, and provide psychological and moral support to them, amid the living difficulties and psychological pressures they face due to the loss of their families or the disruption of support channels.",
+        "During the meetings, the foundation announced the provision of direct educational grants to a number of students, as an urgent contribution to alleviate their burden and ensure the continuity of their academic achievement. Isnad also worked to establish partnerships with local institutions in the visited countries, with the aim of securing additional sustainable grants for Palestinian students and enhancing educational opportunities in a safe and supportive environment.",
+        "The foundation confirmed that these efforts come within a rapid response plan launched since the beginning of the war, aiming to provide comprehensive support to students from various psychological, educational, and social aspects, with a focus on Gaza students amid the catastrophic conditions the Strip is going through.",
+        "The Isnad Foundation for Palestinian Student Support is a Palestinian civil society organization established in Turkey, aiming to academically and socially empower Palestinian students through providing educational grants, psychological and social support, and contributing to building an educational environment that embraces Palestinian students inside Palestine and in areas of refuge and diaspora, through sustainable local and international partnerships."
+      ],
+      ar: [
+        "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
+        "وهدفت هذه الجولات إلى التواصل المباشر مع الطلبة، والاطلاع على أوضاعهم المعيشية والتعليمية، وتقديم الدعم النفسي والمعنوي لهم، في ظل ما يعانونه من صعوبات معيشية وضغوط نفسية نتيجة فقدان ذويهم أو انقطاع سبل الدعم.",
+        "وخلال اللقاءات، أعلنت المؤسسة عن تقديم منح تعليمية مباشرة لعدد من الطلبة، كمساهمة عاجلة لتخفيف العبء عنهم وضمان استمرارية تحصيلهم الأكاديمي. كما عملت \"إسناد\" على إبرام شراكات مع مؤسسات محلية في الدول التي تمت زيارتها، بهدف تأمين منح إضافية مستدامة للطلبة الفلسطينيين، وتعزيز فرص التعليم في بيئة آمنة وداعمة.",
+        "وأكدت المؤسسة أن هذه الجهود تأتي ضمن خطة استجابة سريعة أطلقتها منذ بداية الحرب، وتهدف إلى تقديم دعم متكامل للطلبة من مختلف الجوانب النفسية والتعليمية والاجتماعية، مع التركيز على طلبة غزة في ظل الظروف الكارثية التي يمر بها القطاع.",
+        "ومؤسسة إسناد لدعم الطالب الفلسطيني هي هيئة مجتمع مدني فلسطينية أُسست في تركيا، تهدف إلى تمكين الطلبة الفلسطينيين أكاديميًا ومجتمعيًا من خلال تقديم المنح التعليمية، وتوفير الدعم النفسي والاجتماعي، والمساهمة في بناء بيئة تعليمية حاضنة للطلبة الفلسطينيين داخل فلسطين وفي مناطق اللجوء والشتات، عبر شراكات محلية ودولية مستدامة."
+      ]
+    }
+  },
+  "nabd-al-hayat-grant-interviews": {
+    title: {
+      en: "Launch of First Phase Interviews for Pulse of Life Scholarship",
+      ar: "انطلاق مقابلات المرحلة الأولى من منحة نبض الحياة"
+    },
+    date: "May 5, 2025",
+    author: "Isnad Foundation",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    image: "/LastNews/pulseOfLife-start.png",
+    heroImage: "/LastNews/pulseOfLife-start.png",
+    content: {
+      en: [
+        "Istanbul / Turkey",
+        "Today, Tuesday, the first interviews for the Pulse of Life scholarship, launched by the Isnad Palestinian Student Fund, began.",
+        "The interviews, conducted by the fund online, witnessed the participation of dozens of Palestinian students who are pursuing their studies in medical specialties.",
+        "During the interviews, the foundation got to know the students who passed the initial selection after electronic registration for the scholarship.",
+        "Successful candidates in the Pulse of Life scholarship interviews will receive various forms of assistance, including financial grants, educational seats, and educational equipment such as tablets and computers.",
+        "It is worth noting that 'Pulse of Life' is one of the most prominent scholarship programs launched by the Isnad Palestinian Student Fund, which aims to provide scholarships to Palestinian students who wish to or are pursuing their studies in medical specialties.",
+        "The program seeks to provide grants and assistance to 1,000 Palestinian students, within a five-year work plan.",
+        "The Isnad Palestinian Student Fund is an independent Palestinian developmental non-profit organization, aiming to support higher education in Palestine through investing in young academic energies, by providing scholarships within a comprehensive developmental vision."
+      ],
+      ar: [
+        "اسطنبول/ تركيا",
+        "انطلقت اليوم الثلاثاء، أولى مقابلات الخاصة بمنحة نبض الحياة، التي دشنتها مؤسسى إسناد الطالب الفلسطيني.",
+        "وشهدت المقابلات التي عقدها الصندوق عبر الانترنت، مشاركة عشرات الطلبة الفلسطينيين الذين يتابعون دراستهم في تخصصات طبية.",
+        "وخلال المقابلات، تعرفت المؤسسة على الطلبة الذين اجتازوا الانتقاء الأولى بعد التسجيل الالكتروني في المنحة.",
+        "وسيحصل الناجحون في المقابلات ضمن منحة نبض الحياة، على مساعدات تتنوع بين منح مالية وتوفير مقاعد دراسية واقتناء معدات تعليمية وأجهزة لوحية وحواسيب.",
+        "يذكر أن \"نبض الحياة\" يعتبر من أبرز برامج المنح التي أطلقها صندوق إسناد الطالب الفلسطيني، والذي يستهدف تقديم منح للطلاب الفلسطينيين الذي يرغبون أو يتابعون دراستهم في أحد التخصصات الطبية.",
+        "ويسعى البرنامج إلى تقديم منح ومساعدات إلى 1000 طالب فلسطيني، ضمن خطة عمل تمتد إلى خمس سنوات.",
+        "ومؤسسة إسناد الطالب الفلسطيني هي منظمة فلسطينية تنموية مستقلة وغير ربحية، تهدف إلى دعم مسيرة التعليم العالي في فلسطين، من خلال الاستثمار في الطاقات الشبابية الأكاديمية، عبر توفير منح دراسية ضمن رؤية تنموية شاملة."
+      ]
+    }
+  },
+  "nabd-al-hayat-scholarship-interviews": {
+    title: {
+      en: "Completion of First Phase of Pulse of Life Scholarship Interviews",
+      ar: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة"
+    },
+    date: "May 25, 2025",
+    author: "Isnad Foundation",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    image: "/LastNews/pulseOfLife-end.png",
+    heroImage: "/LastNews/pulseOfLife-end.png",
+    content: {
+      en: [
+        "Istanbul / Turkey",
+        "The Isnad Foundation for Palestinian Student Support concluded, on Saturday, May 25, 2025, the first phase of the 'Pulse of Life' scholarship interviews, which extended over three weeks starting from May 5, with the participation of dozens of outstanding Palestinian students in the field of human medicine, graduates and applicants from Gaza Strip universities.",
+        "The interviews were conducted remotely via the internet, aiming to closely examine the academic and living conditions of the students and evaluate their eligibility for support, after they passed the initial screening stage through electronic registration.",
+        "In this phase, launched in strategic partnership with Alkhidmat Europe, the Isnad Foundation provides monthly financial support for 12 months to accepted students, a step aimed at alleviating their study burdens and enabling them to continue their higher education amid existing challenges.",
+        "The 'Pulse of Life' scholarship is one of the most prominent programs launched by the Isnad Foundation, focusing particularly on supporting Palestinian students in medical specialties, especially from the Gaza Strip, whose educational journey has been affected by harsh humanitarian conditions, siege, and repeated wars.",
+        "The program aims to enable about 1,000 Palestinian students to complete their medical studies in its successive phases, within an ambitious five-year plan, focusing on investing in young scientific competencies and preparing a qualified medical generation that contributes to serving the Palestinian society and enhancing its resilience.",
+        "The Isnad Foundation is an independent Palestinian non-profit organization that dedicates its efforts to supporting higher education in Palestine, through providing sustainable educational and developmental scholarships, based on a comprehensive vision for building the Palestinian human being and empowering them through science and knowledge."
+      ],
+      ar: [
+        "إسطنبول / تركيا",
+        "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري، من خريجي ومقيدي جامعات قطاع غزة.",
+        "وقد جرت المقابلات عن بُعد عبر الإنترنت، وهدفت إلى التعرف عن كثب على الظروف الأكاديمية والمعيشية للطلبة، وتقييم مدى استحقاقهم للدعم، وذلك بعد اجتيازهم مرحلة التصفية الأولية من خلال التسجيل الإلكتروني.",
+        "وتمنح مؤسسة إسناد، في هذه المرحلة التي أُطلقت بشراكة استراتيجية مع مؤسسة الخدمت يوروب (Alkhidmat Europe)، دعماً مالياً شهرياً لمدة 12 شهراً للطلبة المقبولين، في خطوة تهدف إلى التخفيف من أعبائهم الدراسية وتمكينهم من مواصلة تعليمهم العالي في ظل التحديات القائمة.",
+        "وتُعد منحة \"نبض الحياة\" من أبرز البرامج التي أطلقتها مؤسسة إسناد والتي تركز بشكل خاص على دعم الطلبة الفلسطينيين في التخصصات الطبية، ولا سيما من قطاع غزة، الذين تأثرت مسيرتهم التعليمية جراء الأوضاع الإنسانية القاسية والحصار والحروب المتكررة.",
+        "ويستهدف البرنامج في مراحله المتتالية تمكين نحو 1000 طالب فلسطيني من استكمال دراستهم الطبية، ضمن خطة طموحة تمتد على خمس سنوات، تُعنى بالاستثمار في الكفاءات العلمية الشابة، وإعداد جيل طبي مؤهل يساهم في خدمة المجتمع الفلسطيني وتعزيز صموده.",
+        "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
+      ]
+    }
+  }
+}
+
+// Categories for the sidebar
+const categories = [
+  { value: "Scholarships", label: { en: "Scholarships", ar: "المنح الدراسية" } },
+  { value: "Partnerships", label: { en: "Partnerships", ar: "الشراكات" } },
+  { value: "Events", label: { en: "Events", ar: "الفعاليات" } },
+  { value: "Success Stories", label: { en: "Success Stories", ar: "قصص النجاح" } },
+  { value: "Grants", label: { en: "Grants", ar: "المنح" } },
+  { value: "Announcements", label: { en: "Announcements", ar: "الإعلانات" } },
+  { value: "Reports", label: { en: "Reports", ar: "التقارير" } }
+]
 
 export default function NewsArticlePage() {
   const params = useParams()
   const slug = params.slug as string
+  const { language, t } = useLanguage()
+  const isRTL = language === "ar"
 
   // Get article data or use default if not found
   const article = newsArticles[slug as keyof typeof newsArticles] || {
-    title: "Article Not Found",
+    title: {
+      en: "Article Not Found",
+      ar: "المقال غير موجود"
+    },
     date: "",
     author: "",
-    category: "",
+    category: {
+      en: "",
+      ar: ""
+    },
     image: "/placeholder.svg?height=600&width=1200",
     heroImage: "/placeholder.svg?height=600&width=1200",
-    content: ["The requested article could not be found."],
+    content: {
+      en: ["The requested article could not be found."],
+      ar: ["لم يتم العثور على المقال المطلوب."]
+    }
   }
 
-  // Import news data from the main news page
-  const allNewsData = [
-    {
-      id: 1,
-      title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
-      date: "May 25, 2025",
-      excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري.",
-      image: "/LastNews/pulseOFLife-end.png",
-      href: "/news/nabd-al-hayat-scholarship-interviews",
-      category: "Scholarships",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
-      date: "May 5, 2025",
-      excerpt: "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
-      image: "/LastNews/pulseOFLife-start.png",
-      href: "/news/nabd-al-hayat-grant-interviews",
-      category: "Scholarships",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: " إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
-      date: "May 28, 2023",
-      excerpt: "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
-      image: "/LastNews/new3.jpeg",
-      href: "/news/isnad-support-tour",
-      category: "Education & Humanitarian Support",
-      featured: true,
-    },
-  ]
-
-  // Function to get related articles dynamically
-  const getRelatedArticles = (currentSlug: string, currentCategory: string) => {
-    // Filter out the current article and get articles from the same category first
-    const otherArticles = allNewsData.filter(news => news.href !== `/news/${currentSlug}`)
-
-    // Prioritize articles from the same category
-    const sameCategory = otherArticles.filter(news => news.category === currentCategory)
-    const differentCategory = otherArticles.filter(news => news.category !== currentCategory)
-
-    // Combine and limit to 3 articles
-    const related = [...sameCategory, ...differentCategory].slice(0, 3)
-
-    return related.map(news => ({
-      id: news.id,
-      title: news.title,
-      date: news.date,
-      excerpt: news.excerpt,
-      image: news.image,
-      href: news.href,
-      category: news.category,
+  // Get related articles (excluding current article)
+  const dynamicRelatedArticles = Object.entries(newsArticles)
+    .filter(([key]) => key !== slug)
+    .map(([key, article]) => ({
+      id: key,
+      title: article.title[language],
+      excerpt: article.content[language][0],
+      date: article.date,
+      category: article.category[language],
+      href: `/news/${key}`
     }))
-  }
-
-  // Get dynamic related articles
-  const dynamicRelatedArticles = getRelatedArticles(slug, article.category)
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
-
-    // Initialize progress bar
-    const progressBar = document.querySelector(".progress-bar")
-    if (progressBar) {
-      gsap.to(progressBar, {
-        scaleX: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: document.body,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.3,
-        },
-      })
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
+    const ctx = gsap.context(() => {
+      // Add any GSAP animations here if needed
+    })
+    return () => ctx.revert()
   }, [])
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
       <section className="relative h-[calc(50vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
         <div className="absolute inset-0 z-0">
           <img
             src={article.heroImage || article.image}
-            alt={article.title}
+            alt={article.title[language]}
             className="h-full w-full object-contain object-center"
           />
         </div>
@@ -196,7 +210,7 @@ export default function NewsArticlePage() {
           <div className="bg-white/10 backdrop-blur-md rounded-lg px-3 py-2 sm:px-4 sm:py-2 border border-white/20">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#1e7e34]"></div>
-              <span className="text-white text-xs sm:text-sm font-medium">Latest News</span>
+              <span className="text-white text-xs sm:text-sm font-medium">{t("news.latest")}</span>
             </div>
           </div>
         </div>
@@ -210,11 +224,19 @@ export default function NewsArticlePage() {
             <div className="lg:col-span-2">
               <div className="mb-8">
                 <Link href="/news" className="mb-6 inline-flex items-center text-muted-foreground hover:text-foreground">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to News
+                  <ArrowLeft className={`mr-2 h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
+                  {t("news.backToNews")}
                 </Link>
-                <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl mb-4">{article.title}</h1>
-                <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
+                <h1 
+                  className="text-3xl font-bold sm:text-4xl md:text-5xl mb-4"
+                  style={{ textAlign: isRTL ? 'right' : 'left' }}
+                >
+                  {article.title[language]}
+                </h1>
+                <div 
+                  className="flex flex-wrap items-center gap-4 text-muted-foreground"
+                  style={{ justifyContent: isRTL ? 'flex-end' : 'flex-start' }}
+                >
                   {article.date && (
                     <div className="flex items-center">
                       <Calendar className="mr-2 h-4 w-4" />
@@ -230,42 +252,40 @@ export default function NewsArticlePage() {
                   {article.category && (
                     <div className="flex items-center">
                       <Tag className="mr-2 h-4 w-4" />
-                      <span>{article.category}</span>
+                      <span>{article.category[language]}</span>
                     </div>
                   )}
                 </div>
               </div>
               <GSAPReveal animation="fade">
-                <div className="prose prose-lg max-w-none dark:prose-invert">
-                  {article.content.map((paragraph, index) => (
+                <div 
+                  className="prose prose-lg max-w-none dark:prose-invert"
+                  style={{ textAlign: isRTL ? 'right' : 'left' }}
+                >
+                  {article.content[language].map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
                 </div>
               </GSAPReveal>
 
               {/* Share Section */}
-              <GSAPReveal animation="fade" delay={0.2}>
-                <div className="mt-12 rounded-lg border bg-muted/20 p-6">
-                  <h3 className="mb-4 flex items-center text-lg font-bold">
-                    <Share2 className="mr-2 h-5 w-5" />
-                    Share This Article
-                  </h3>
-                  <div className="flex space-x-4">
-                    <Button variant="outline" size="icon" className="rounded-full">
-                      <Facebook className="h-5 w-5" />
-                      <span className="sr-only">Share on Facebook</span>
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-full">
-                      <Twitter className="h-5 w-5" />
-                      <span className="sr-only">Share on Twitter</span>
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-full">
-                      <Linkedin className="h-5 w-5" />
-                      <span className="sr-only">Share on LinkedIn</span>
-                    </Button>
-                  </div>
+              <div className="mt-8 flex items-center gap-4">
+                <span className="text-sm font-medium">{t("news.share")}</span>
+                <div className="flex gap-2">
+                  <Button variant="outline" size="icon" className="h-8 w-8">
+                    <Facebook className="h-4 w-4" />
+                  </Button>
+                  <Button variant="outline" size="icon" className="h-8 w-8">
+                    <Twitter className="h-4 w-4" />
+                  </Button>
+                  <Button variant="outline" size="icon" className="h-8 w-8">
+                    <Linkedin className="h-4 w-4" />
+                  </Button>
+                  <Button variant="outline" size="icon" className="h-8 w-8">
+                    <Share2 className="h-4 w-4" />
+                  </Button>
                 </div>
-              </GSAPReveal>
+              </div>
             </div>
 
             {/* Sidebar */}
@@ -275,17 +295,22 @@ export default function NewsArticlePage() {
                 <GSAPReveal animation="slide-left">
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="mb-4 text-lg font-bold">Categories</h3>
+                      <h3 
+                        className="mb-4 text-lg font-bold"
+                        style={{ textAlign: isRTL ? 'right' : 'left' }}
+                      >
+                        {t("news.categories")}
+                      </h3>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline" className="bg-primary/10 text-primary">
-                          Scholarships
-                        </Badge>
-                        <Badge variant="outline">Partnerships</Badge>
-                        <Badge variant="outline">Events</Badge>
-                        <Badge variant="outline">Success Stories</Badge>
-                        <Badge variant="outline">Grants</Badge>
-                        <Badge variant="outline">Announcements</Badge>
-                        <Badge variant="outline">Reports</Badge>
+                        {categories.map((category) => (
+                          <Badge 
+                            key={category.value} 
+                            variant="outline" 
+                            className="bg-primary/10 text-primary"
+                          >
+                            {category.label[language]}
+                          </Badge>
+                        ))}
                       </div>
                     </CardContent>
                   </Card>
@@ -296,14 +321,29 @@ export default function NewsArticlePage() {
                   <GSAPReveal animation="slide-left" delay={0.1}>
                     <Card>
                       <CardContent className="p-6">
-                        <h3 className="mb-4 text-lg font-bold">Related Articles</h3>
+                        <h3 
+                          className="mb-4 text-lg font-bold"
+                          style={{ textAlign: isRTL ? 'right' : 'left' }}
+                        >
+                          {t("news.relatedArticles")}
+                        </h3>
                         <div className="space-y-4">
                           {dynamicRelatedArticles.map((related) => (
                             <Link key={related.id} href={related.href} className="group block">
                               <div className="flex gap-3">
                                 <div>
-                                  <h4 className="line-clamp-2 font-medium group-hover:text-primary">{related.title}</h4>
-                                  <p className="text-xs text-muted-foreground">{related.date}</p>
+                                  <h4 
+                                    className="line-clamp-2 font-medium group-hover:text-primary"
+                                    style={{ textAlign: isRTL ? 'right' : 'left' }}
+                                  >
+                                    {related.title}
+                                  </h4>
+                                  <p 
+                                    className="text-xs text-muted-foreground"
+                                    style={{ textAlign: isRTL ? 'right' : 'left' }}
+                                  >
+                                    {related.date}
+                                  </p>
                                 </div>
                               </div>
                             </Link>
@@ -318,12 +358,22 @@ export default function NewsArticlePage() {
                 <GSAPReveal animation="slide-left" delay={0.2}>
                   <Card className="bg-primary text-primary-foreground">
                     <CardContent className="p-6">
-                      <h3 className="mb-2 text-lg font-bold">Explore Our Programs</h3>
-                      <p className="mb-4 text-primary-foreground/90">
-                        Discover our comprehensive scholarship programs and find the perfect opportunity for your educational journey.
+                      <h3 
+                        className="mb-2 text-lg font-bold"
+                        style={{ textAlign: isRTL ? 'right' : 'left' }}
+                      >
+                        {t("news.explorePrograms")}
+                      </h3>
+                      <p 
+                        className="mb-4 text-primary-foreground/90"
+                        style={{ textAlign: isRTL ? 'right' : 'left' }}
+                      >
+                        {t("news.exploreProgramsDesc")}
                       </p>
                       <Link href="/programs">
-                        <Button className="w-full bg-white text-primary hover:bg-gray-100">View Programs</Button>
+                        <Button className="w-full bg-white text-primary hover:bg-gray-100">
+                          {t("news.viewPrograms")}
+                        </Button>
                       </Link>
                     </CardContent>
                   </Card>
@@ -339,9 +389,17 @@ export default function NewsArticlePage() {
         <div className="container px-4 md:px-6">
           <GSAPReveal animation="slide-up">
             <div className="mb-12 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">More News</h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
-                Discover more updates and stories from the Isnad Foundation.
+              <h2 
+                className="text-3xl font-bold tracking-tighter sm:text-4xl"
+                style={{ textAlign: isRTL ? 'right' : 'left' }}
+              >
+                {t("news.moreNews")}
+              </h2>
+              <p 
+                className="mx-auto mt-4 max-w-[700px] text-muted-foreground"
+                style={{ textAlign: isRTL ? 'right' : 'left' }}
+              >
+                {t("news.moreNewsDesc")}
               </p>
             </div>
           </GSAPReveal>
@@ -353,15 +411,29 @@ export default function NewsArticlePage() {
                   <Link href={related.href} className="group block">
                     <div className="overflow-hidden rounded-lg border bg-card transition-all hover:shadow-md">
                       <div className="p-4">
-                        <Badge variant="outline" className="mb-2 bg-primary/10 text-primary">
+                        <Badge 
+                          variant="outline" 
+                          className="mb-2 bg-primary/10 text-primary"
+                        >
                           {related.category}
                         </Badge>
-                        <h3 className="mb-2 line-clamp-2 text-xl font-bold group-hover:text-primary">
+                        <h3 
+                          className="mb-2 line-clamp-2 text-xl font-bold group-hover:text-primary"
+                          style={{ textAlign: isRTL ? 'right' : 'left' }}
+                        >
                           {related.title}
                         </h3>
-                        <p className="mb-4 line-clamp-2 text-muted-foreground">{related.excerpt}</p>
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <Calendar className="mr-1 h-3 w-3" />
+                        <p 
+                          className="mb-4 line-clamp-2 text-muted-foreground"
+                          style={{ textAlign: isRTL ? 'right' : 'left' }}
+                        >
+                          {related.excerpt}
+                        </p>
+                        <div 
+                          className="flex items-center text-sm text-muted-foreground"
+                          style={{ justifyContent: isRTL ? 'flex-end' : 'flex-start' }}
+                        >
+                          <Calendar className={`${isRTL ? 'ml-1' : 'mr-1'} h-3 w-3`} />
                           {related.date}
                         </div>
                       </div>
@@ -370,17 +442,6 @@ export default function NewsArticlePage() {
                 </GSAPReveal>
               ))}
           </div>
-
-          <GSAPReveal animation="fade" delay={0.3}>
-            <div className="mt-12 text-center">
-              <Link href="/news">
-                <Button variant="outline" className="group">
-                  View All News
-                  <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-            </div>
-          </GSAPReveal>
         </div>
       </section>
     </main>
