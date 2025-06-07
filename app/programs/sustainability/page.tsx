@@ -67,7 +67,7 @@ export default function SustainabilityScholarshipPage() {
           </GSAPReveal>
 
           {/* Title */}
-          <GSAPTextReveal element="h1" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
+          <GSAPTextReveal className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6">
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-teal-400 font-sora">
               {t("sustainability.title")}
             </span>

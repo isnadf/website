@@ -39,7 +39,7 @@ export default function IbnKhaldunScholarshipPage() {
               <Scroll size={16} className="text-indigo-500 animate-pulse" />
             </div>
           </div>
-          <GSAPTextReveal element="h1" className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent font-sora drop-shadow-lg">
+          <GSAPTextReveal className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent font-sora drop-shadow-lg">
             Ibn Khaldun
           </GSAPTextReveal>
           <GSAPTextReveal element="h2" className="text-2xl md:text-3xl font-bold text-indigo-700 dark:text-indigo-400 mt-2">

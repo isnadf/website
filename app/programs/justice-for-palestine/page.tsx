@@ -37,7 +37,7 @@ export default function JusticeForPalestinePage() {
               <Gavel size={16} className="text-black animate-pulse" />
             </div>
           </div>
-          <GSAPTextReveal element="h1" className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-red-600 to-black bg-clip-text text-transparent font-sora drop-shadow-lg">
+          <GSAPTextReveal className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-red-600 to-black bg-clip-text text-transparent font-sora drop-shadow-lg">
             Justice for Palestine
           </GSAPTextReveal>
           <GSAPTextReveal element="h2" className="text-2xl md:text-3xl font-bold text-red-700 dark:text-red-400 mt-2">

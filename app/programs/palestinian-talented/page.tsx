@@ -49,7 +49,7 @@ export default function PalestinianTalentedScholarshipPage() {
               <Trophy size={16} className="text-blue-500 animate-pulse" />
             </div>
           </div>
-          <GSAPTextReveal element="h1" className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-yellow-600 to-blue-600 bg-clip-text text-transparent font-sora drop-shadow-lg">
+          <GSAPTextReveal className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-yellow-600 to-blue-600 bg-clip-text text-transparent font-sora drop-shadow-lg">
             Palestinian Talented
           </GSAPTextReveal>
           <GSAPTextReveal element="h2" className="text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 mt-2">

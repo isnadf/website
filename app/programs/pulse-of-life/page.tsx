@@ -36,10 +36,10 @@ export default function PulseOfLifePage() {
               <Heart size={16} className="text-red-500 animate-bounce" />
             </div>
           </div>
-          <GSAPTextReveal element="h1" className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent font-sora drop-shadow-lg">
+          <GSAPTextReveal className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent font-sora drop-shadow-lg">
             Pulse of Life
           </GSAPTextReveal>
-          <GSAPTextReveal element="h2" className="text-2xl md:text-3xl font-bold text-red-700 dark:text-red-400 mt-2">
+          <GSAPTextReveal className="text-2xl md:text-3xl font-bold text-red-700 dark:text-red-400 mt-2">
             Medical Scholarship Program
           </GSAPTextReveal>
           <p className="mt-4 text-lg md:text-xl text-red-800 dark:text-red-300 font-medium max-w-2xl mx-auto">
