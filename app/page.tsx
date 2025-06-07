@@ -221,11 +221,11 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
                   <Calendar className="mr-1 h-4 w-4" />
-                  Latest Updates
+                  {t("news.badge")}
                 </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20">News & Announcements</GSAPTextReveal>
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">{t("news.title")}</GSAPTextReveal>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Stay informed with our latest news, updates, and important announcements from the foundation.
+                  {t("news.subtitle")}
                 </p>
               </div>
             </GSAPReveal>
@@ -270,7 +270,7 @@ export default function Home() {
             <div className="flex justify-center">
               <Link href="/news">
                 <Button variant="outline" className="group">
-                  View All News
+                  {t("news.viewAll")}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
@@ -292,13 +292,13 @@ export default function Home() {
               <div className="space-y-3">
                 <div className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm">
                   <GraduationCap className="mr-2 h-5 w-5" />
-                  <span className="font-medium">Scholarship Programs</span>
+                  <span className="font-medium">{t("programs.badge")}</span>
                 </div>
-                <GSAPTextReveal className="text-4xl font-bold sm:text-6xl text-white tracking-tight">
-                  Our Programs
+                <GSAPTextReveal className="text-4xl font-bold sm:text-6xl text-white h-20">
+                  {t("programs.title")}
                 </GSAPTextReveal>
                 <p className="max-w-[900px] text-white/90 md:text-xl/relaxed lg:text-xl/relaxed xl:text-2xl/relaxed font-light">
-                  Empowering Palestinian students through specialized scholarship programs
+                  {t("programs.subtitle")}
                 </p>
               </div>
             </GSAPReveal>
@@ -315,45 +315,45 @@ export default function Home() {
                         <div className="p-3 rounded-full bg-red-500/20">
                           <Stethoscope className="h-6 w-6 text-red-200" />
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">Pulse of Life</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">{t("programs.pulse.title")}</h3>
                       </div>
                       <div className="flex items-center gap-2 text-red-200">
-                        <span className="font-medium">Medical & Health Sciences</span>
+                        <span className="font-medium">{t("programs.pulse.category")}</span>
                       </div>
                       <div className="flex items-center gap-2 text-white/80">
                         <Users className="h-5 w-5" />
-                        <span>1,000 Scholarships Over 5 Years</span>
+                        <span>{t("programs.pulse.scholarships")}</span>
                       </div>
                     </div>
-                    
+
                     <blockquote className="relative pl-4 border-l-2 border-red-300/50 italic text-white/90 text-lg">
-                      "A bold national initiative providing full scholarships in medicine and health sciences, focusing on rare and critical specializations to strengthen healthcare in Palestine."
+                      "{t("programs.pulse.description")}"
                     </blockquote>
 
                     <div className="grid grid-cols-2 gap-4 pt-4">
                       <div className="space-y-2">
-                        <h4 className="text-white/90 font-medium">Program Focus</h4>
+                        <h4 className="text-white/90 font-medium">{t("programs.pulse.focus")}</h4>
                         <ul className="space-y-2 text-white/80">
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-300/50" />
-                            Medical Education
+                            {t("programs.pulse.medical")}
                           </li>
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-300/50" />
-                            Healthcare Innovation
+                            {t("programs.pulse.innovation")}
                           </li>
                         </ul>
                       </div>
                       <div className="space-y-2">
-                        <h4 className="text-white/90 font-medium">Key Features</h4>
+                        <h4 className="text-white/90 font-medium">{t("programs.pulse.features")}</h4>
                         <ul className="space-y-2 text-white/80">
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-300/50" />
-                            Full Scholarships
+                            {t("programs.pulse.full")}
                           </li>
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-300/50" />
-                            5-Year Program
+                            {t("programs.pulse.years")}
                           </li>
                         </ul>
                       </div>
@@ -373,45 +373,45 @@ export default function Home() {
                         <div className="p-3 rounded-full bg-yellow-500/20">
                           <Award className="h-6 w-6 text-yellow-200" />
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">Palestinian Talented</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">{t("programs.talented.title")}</h3>
                       </div>
                       <div className="flex items-center gap-2 text-yellow-200">
-                        <span className="font-medium">Excellence Scholarship</span>
+                        <span className="font-medium">{t("programs.talented.category")}</span>
                       </div>
                       <div className="flex items-center gap-2 text-white/80">
                         <Users className="h-5 w-5" />
-                        <span>1,000 Scholarships Available</span>
+                        <span>{t("programs.talented.scholarships")}</span>
                       </div>
                     </div>
 
                     <blockquote className="relative pl-4 border-l-2 border-yellow-300/50 italic text-white/90 text-lg">
-                      "Supporting outstanding Palestinian students across various academic fields, developing exceptional leaders who will drive innovation and progress in their communities."
+                      "{t("programs.talented.description")}"
                     </blockquote>
 
                     <div className="grid grid-cols-2 gap-4 pt-4">
                       <div className="space-y-2">
-                        <h4 className="text-white/90 font-medium">Program Focus</h4>
+                        <h4 className="text-white/90 font-medium">{t("programs.talented.focus")}</h4>
                         <ul className="space-y-2 text-white/80">
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-yellow-300/50" />
-                            Academic Excellence
+                            {t("programs.talented.excellence")}
                           </li>
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-yellow-300/50" />
-                            Leadership Development
+                            {t("programs.talented.leadership")}
                           </li>
                         </ul>
                       </div>
                       <div className="space-y-2">
-                        <h4 className="text-white/90 font-medium">Key Features</h4>
+                        <h4 className="text-white/90 font-medium">{t("programs.talented.features")}</h4>
                         <ul className="space-y-2 text-white/80">
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-yellow-300/50" />
-                            Multiple Fields
+                            {t("programs.talented.fields")}
                           </li>
                           <li className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-yellow-300/50" />
-                            Comprehensive Support
+                            {t("programs.talented.support")}
                           </li>
                         </ul>
                       </div>
@@ -425,10 +425,10 @@ export default function Home() {
           <GSAPReveal animation="fade" delay={0.4}>
             <div className="flex justify-center pt-12">
               <Link href="/programs">
-                <Button 
+                <Button
                   className="bg-white/20 hover:bg-white/30 text-white border-white/30 group px-8 py-6 text-lg rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-105"
                 >
-                  Explore All Programs
+                  {t("programs.explore")}
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
@@ -442,16 +442,16 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={5} label="Scholarships Awarded" />
+              <StatsCounter number={5} label={t("stats.scholarships")} />
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={2000} label="beneficiaries" />
+              <StatsCounter number={2000} label={t("stats.beneficiaries")} />
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.3}>
-              <StatsCounter number={6} label="Countries Reached" />
+              <StatsCounter number={6} label={t("stats.countries")} />
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.4}>
-              <StatsCounter number={98} label="Graduation Rate %" />
+              <StatsCounter number={98} label={t("stats.graduation")} />
             </GSAPReveal>
           </div>
         </div>
@@ -465,11 +465,11 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
                   <Users className="mr-1 h-4 w-4" />
-                  Student Journey
+                  {t("journey.badge")}
                 </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl">Your Path to Success</GSAPTextReveal>
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20">{t("journey.title")}</GSAPTextReveal>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  From application to graduation, we provide comprehensive support at every step of your academic journey.
+                  {t("journey.subtitle")}
                 </p>
               </div>
             </GSAPReveal>
@@ -481,22 +481,22 @@ export default function Home() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Scroll className="h-6 w-6" />
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">Application</h3>
+                <h3 className="mb-2 text-xl font-semibold">{t("journey.application.title")}</h3>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  Submit your application through our streamlined process. We review each application carefully to identify promising candidates.
+                  {t("journey.application.description")}
                 </p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Online Application Form
+                    {t("journey.application.form")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Document Submission
+                    {t("journey.application.documents")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Initial Screening
+                    {t("journey.application.screening")}
                   </li>
                 </ul>
               </div>
@@ -507,22 +507,22 @@ export default function Home() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Award className="h-6 w-6" />
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">Selection</h3>
+                <h3 className="mb-2 text-xl font-semibold">{t("journey.selection.title")}</h3>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  Our expert committee evaluates candidates based on academic excellence, leadership potential, and commitment to community.
+                  {t("journey.selection.description")}
                 </p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Academic Review
+                    {t("journey.selection.review")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Interview Process
+                    {t("journey.selection.interview")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Final Selection
+                    {t("journey.selection.final")}
                   </li>
                 </ul>
               </div>
@@ -533,22 +533,22 @@ export default function Home() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <BookOpen className="h-6 w-6" />
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">Support</h3>
+                <h3 className="mb-2 text-xl font-semibold">{t("journey.support.title")}</h3>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  Receive comprehensive support throughout your academic journey, including financial aid, mentorship, and career guidance.
+                  {t("journey.support.description")}
                 </p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Financial Support
+                    {t("journey.support.financial")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Academic Mentoring
+                    {t("journey.support.mentoring")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Career Development
+                    {t("journey.support.career")}
                   </li>
                 </ul>
               </div>
@@ -559,22 +559,22 @@ export default function Home() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Trophy className="h-6 w-6" />
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">Success</h3>
+                <h3 className="mb-2 text-xl font-semibold">{t("journey.success.title")}</h3>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  Join our network of successful graduates who are making a difference in their communities and beyond.
+                  {t("journey.success.description")}
                 </p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Graduation Support
+                    {t("journey.success.graduation")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Alumni Network
+                    {t("journey.success.alumni")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Career Opportunities
+                    {t("journey.success.opportunities")}
                   </li>
                 </ul>
               </div>
@@ -585,7 +585,7 @@ export default function Home() {
             <div className="mt-12 text-center">
               <Link href="/apply">
                 <Button className="group bg-primary hover:bg-primary/90 text-white">
-                  Start Your Journey
+                  {t("journey.start")}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
@@ -599,16 +599,16 @@ export default function Home() {
         <div className="container relative px-4 md:px-6">
           <div className="mx-auto max-w-3xl text-center text-white">
             <GSAPReveal animation="slide-up">
-              <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
-                Join Us in Empowering Palestinian Students
+              <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl leading-loose [&:lang(ar)]:leading-[1.5] [&:lang(ar)]:tracking-wide">
+                {t("cta.title")}
               </h2>
               <p className="mb-8 text-lg text-white/90">
-                Your support can make a lasting impact on the lives of talented Palestinian students. Together, we can build a brighter future through education.
+                {t("cta.description")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/donate">
                   <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-                    Support Our Cause
+                    {t("cta.button")}
                     <Heart className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -626,11 +626,11 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
                   <Handshake className="mr-1 h-4 w-4" />
-                  Our Partners
+                  {t("partners.badge")}
                 </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl">Working Together for Change</GSAPTextReveal>
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">{t("partners.title")}</GSAPTextReveal>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  We collaborate with leading institutions and organizations to provide comprehensive support to Palestinian students.
+                  {t("partners.subtitle")}
                 </p>
               </div>
             </GSAPReveal>
@@ -676,12 +676,11 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="inline-flex items-center rounded-lg bg-white/10 px-3 py-1 text-sm text-white backdrop-blur-sm">
                   <MessageSquare className="mr-1 h-4 w-4" />
-                  Get in Touch
+                  {t("contact.badge")}
                 </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl text-white">Contact Us</GSAPTextReveal>
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl text-white h-20">{t("contact.title")}</GSAPTextReveal>
                 <p className="max-w-[900px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Have questions? Our team is here to help you with any inquiries about our programs and application
-                  process.
+                  {t("contact.subtitle")}
                 </p>
               </div>
             </GSAPReveal>
@@ -690,7 +689,7 @@ export default function Home() {
               <div className="flex justify-center pt-8 gap-4">
                 <Link href="/contact">
                   <Button size="lg" className="group bg-white text-primary hover:bg-white/90">
-                    Contact Our Team
+                    {t("contact.button")}
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
