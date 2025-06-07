@@ -41,7 +41,7 @@ export default function PulseOfLifePage() {
               <Heart size={16} className="text-red-500 animate-bounce" />
             </div>
           </div>
-          <GSAPTextReveal className={`text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent font-sora drop-shadow-lg pt-5 [&:lang(ar)]:tracking-wide [&:lang(ar)]:leading-relaxed ${language === 'ar' ? 'tracking-wider space-x-4' : ''}`}>
+          <GSAPTextReveal className={`text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent font-sora drop-shadow-lg pt-5 tracking-wider [&:lang(ar)]:tracking-wide [&:lang(ar)]:leading-relaxed ${language === 'ar' ? 'tracking-wider space-x-4' : ''}`}>
             {t("pulse.title")}
           </GSAPTextReveal>
           <GSAPTextReveal className={`text-2xl md:text-3xl font-bold text-red-700 dark:text-red-400 mt-2 h-20 ${language === 'ar' ? 'tracking-wider space-x-2' : ''}`}>
