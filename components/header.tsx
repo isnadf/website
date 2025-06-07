@@ -39,10 +39,10 @@ export default function Header() {
   }, [])
 
   const navItems: NavItem[] = [
-    { name: t("nav.home"), href: "/" },
-    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.home") as string, href: "/" },
+    { name: t("nav.about") as string, href: "/about" },
     {
-      name: t("nav.programs"),
+      name: t("nav.programs") as string,
       href: "/programs",
       dropdown: true,
       items: [
@@ -66,15 +66,15 @@ export default function Header() {
       ]
     },
     {
-      name: t("nav.media"),
+      name: t("nav.media") as string,
       href: "/media",
       dropdown: true,
       items: [
-        { name: t("nav.news"), href: "/news" },
-        { name: t("nav.media.success"), href: "/success-stories" },
-        { name: t("nav.media.activities"), href: "/activities" },
-        { 
-          name: t("nav.media.testimonials"),
+        { name: t("nav.news") as string, href: "/news" },
+        { name: t("nav.media.success") as string, href: "/success-stories" },
+        { name: t("nav.media.activities") as string, href: "/activities" },
+        {
+          name: t("nav.media.testimonials") as string,
           href: "/testimonials",
           items: [
             { name: "Students", href: "/testimonials?type=students" },
@@ -83,7 +83,7 @@ export default function Header() {
         }
       ]
     },
-    { name: t("nav.contact"), href: "/contact" },
+    { name: t("nav.contact") as string, href: "/contact" },
   ];
 
   // Check if we're on the activities page

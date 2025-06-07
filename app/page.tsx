@@ -207,7 +207,11 @@ export default function Home() {
 
         {/* Full-width scrolling section */}
         <ScrollingCards
-          cards={cardsData}
+          cards={cardsData.map(card => ({
+            ...card,
+            title: card.title as string,
+            excerpt: card.excerpt as string
+          }))}
           isAnyCardHovered={isAnyCardHovered}
           onHoverChange={setIsAnyCardHovered}
         />
@@ -442,16 +446,16 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={5} label={t("stats.scholarships")} />
+              <StatsCounter number={5} label={t("stats.scholarships") as string} />
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={2000} label={t("stats.beneficiaries")} />
+              <StatsCounter number={2000} label={t("stats.beneficiaries") as string} />
             </GSAPReveal>
-            <GSAPReveal animation="fade" delay={0.3}>
-              <StatsCounter number={6} label={t("stats.countries")} />
+            <GSAPReveal animation="fade" delay={0.1}>
+              <StatsCounter number={3} label={t("stats.pillars") as string} />
             </GSAPReveal>
-            <GSAPReveal animation="fade" delay={0.4}>
-              <StatsCounter number={98} label={t("stats.graduation")} />
+            <GSAPReveal animation="fade" delay={0.1}>
+              <StatsCounter number={100} label={t("stats.partners") as string} />
             </GSAPReveal>
           </div>
         </div>

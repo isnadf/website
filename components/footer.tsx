@@ -17,7 +17,7 @@ export default function Footer() {
               <span className="text-lg font-bold font-sora">IFPPS</span>
             </div>
             <p className={`mt-4 text-sm text-muted-foreground font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-              {t("footer.description")}
+              {t("footer.description") as string}
             </p>
             <div className="mt-6 flex space-x-4">
               <a
@@ -46,56 +46,56 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h3 className={`mb-4 text-sm font-semibold uppercase tracking-wider font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.programs")}</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.programs") as string}</h3>
+            <ul className="space-y-2">
               <li>
-                <Link href="/programs" className={`text-muted-foreground hover:text-primary font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                  {t("footer.programs.undergraduate")}
-                </Link>
+                <a href="/programs/pulse-of-life" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  {t("footer.programs.undergraduate") as string}
+                </a>
               </li>
               <li>
-                <Link href="/programs" className={`text-muted-foreground hover:text-primary font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                  {t("footer.programs.graduate")}
-                </Link>
+                <a href="/programs/palestinian-talented" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  {t("footer.programs.graduate") as string}
+                </a>
               </li>
               <li>
-                <Link href="/programs" className={`text-muted-foreground hover:text-primary font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                  {t("footer.programs.research")}
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className={`mb-4 text-sm font-semibold uppercase tracking-wider font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.about")}</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/about" className={`text-muted-foreground hover:text-primary font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                  {t("footer.about.mission")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className={`text-muted-foreground hover:text-primary font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                  {t("footer.about.team")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className={`text-muted-foreground hover:text-primary font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                  {t("footer.about.partners")}
-                </Link>
+                <a href="/programs/sustainability" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  {t("footer.programs.research") as string}
+                </a>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className={`mb-4 text-sm font-semibold uppercase tracking-wider font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.contact")}</h3>
-            <ul className="space-y-2 text-sm">
-              <li className="text-muted-foreground font-sora">Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul</li>
+            <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.about") as string}</h3>
+            <ul className="space-y-2">
               <li>
-                <a href="mailto:info@isnadf.org" className="text-muted-foreground hover:text-primary font-sora">
+                <a href="/about#mission" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  {t("footer.about.mission") as string}
+                </a>
+              </li>
+              <li>
+                <a href="/about#team" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  {t("footer.about.team") as string}
+                </a>
+              </li>
+              <li>
+                <a href="/about#partners" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                  {t("footer.about.partners") as string}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.contact") as string}</h3>
+            <ul className="space-y-2">
+              <li className="text-gray-600 dark:text-gray-400">Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul</li>
+              <li>
+                <a href="mailto:info@isnadf.org" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
                   info@isnadf.org
                 </a>
               </li>
               <li>
-                <a href="tel:+905394300726" className="text-muted-foreground hover:text-primary font-sora">
+                <a href="tel:+905394300726" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
                   +90 5394300726
                 </a>
               </li>
@@ -105,8 +105,8 @@ export default function Footer() {
 
         {/* Copyright Section */}
         <div className="border-t border-muted mt-8 pt-8">
-          <div className={`text-center text-sm text-muted-foreground font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-            © {new Date().getFullYear()} IFPPS. {t("footer.rights")}
+          <div className="text-center text-sm text-gray-600 dark:text-gray-400 font-sora">
+            © {new Date().getFullYear()} IFPPS. {t("footer.rights") as string}
           </div>
         </div>
       </div>

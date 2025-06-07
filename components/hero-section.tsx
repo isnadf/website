@@ -3,14 +3,14 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, BookOpen, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import { useLanguage } from "@/components/language-provider"
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,21 +50,13 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl space-y-4 sm:space-y-6 md:space-y-8"
         >
-          <GSAPTextReveal
-            element="h1"
-            className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold drop-shadow-lg min-h-[1.2em] leading-[1.2] overflow-visible px-4 sm:px-6 font-sora"
-          >
-            {t("hero.title")}
+          <GSAPTextReveal className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent font-sora drop-shadow-lg pt-5 tracking-wider [&:lang(ar)]:tracking-wide [&:lang(ar)]:leading-relaxed">
+            {t("hero.title") as string}
           </GSAPTextReveal>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mx-auto max-w-[700px] text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 px-4 sm:px-6 font-sora"
-          >
-            {t("hero.subtitle")}
-          </motion.p>
+          <GSAPTextReveal className="text-2xl md:text-3xl font-bold text-green-700 dark:text-green-400 mt-2 h-20">
+            {t("hero.subtitle") as string}
+          </GSAPTextReveal>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -74,13 +66,13 @@ export default function HeroSection() {
           >
             <Link href="/programs" className="w-full sm:w-auto">
               <Button size="lg" className="w-full sm:w-auto bg-[hsl(120,61%,34%)] text-white hover:bg-[hsl(120,61%,34%)]/90 text-base sm:text-lg font-sora">
-                {t("hero.cta.explore")}
+                {t("hero.cta.explore") as string}
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </Link>
             <Link href="/donate" className="w-full sm:w-auto">
               <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/10 text-base sm:text-lg font-sora">
-                {t("hero.cta.donate")}
+                {t("hero.cta.donate") as string}
               </Button>
             </Link>
           </motion.div>

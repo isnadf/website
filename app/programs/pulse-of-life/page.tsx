@@ -52,9 +52,9 @@ export default function PulseOfLifePage() {
           </p>
         </div>
         <div className="flex justify-center gap-8 mt-8 mb-4">
-          <StatsCounter number={1000} label={t("pulse.stats.scholarships")} />
-          <StatsCounter number={5} label={t("pulse.stats.years")} />
-          <StatsCounter number={3} label={t("pulse.stats.pillars")} />
+          <StatsCounter number={1000} label={t("pulse.stats.scholarships") as string} />
+          <StatsCounter number={5} label={t("pulse.stats.years") as string} />
+          <StatsCounter number={3} label={t("pulse.stats.pillars") as string} />
         </div>
         <div className="max-w-2xl mx-auto mt-4">
           <h2 className={`text-xl font-bold text-red-700 mb-2 flex items-center justify-center gap-2 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>

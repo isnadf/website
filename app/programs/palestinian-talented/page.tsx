@@ -61,9 +61,9 @@ export default function PalestinianTalentedScholarshipPage() {
           </p>
         </div>
         <div className="flex justify-center gap-8 mt-8 mb-4">
-          <StatsCounter number={1000} label={t("talented.scholarships")} />
-          <StatsCounter number={8} label={t("talented.areas")} />
-          <StatsCounter number={3} label={t("talented.pillars")} />
+          <StatsCounter number={1000} label={t("talented.scholarships") as string} />
+          <StatsCounter number={8} label={t("talented.areas") as string} />
+          <StatsCounter number={3} label={t("talented.pillars") as string} />
         </div>
         <div className="max-w-3xl mx-auto bg-gradient-to-r from-yellow-50/90 to-blue-50/90 dark:bg-gradient-to-r dark:from-yellow-900/80 dark:to-blue-900/80 rounded-xl shadow-xl p-6 mt-4 border border-yellow-300">
           <h2 className="text-xl font-bold text-blue-700 mb-2 flex items-center justify-center gap-2">

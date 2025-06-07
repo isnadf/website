@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Users, ArrowRight, GraduationCap, Globe, Award, Lightbulb, Handshake as HandshakeIcon, Target, Compass, Rocket } from "lucide-react"
+import { Users, ArrowRight, GraduationCap, Globe, Award, Lightbulb, Handshake as HandshakeIcon, Target, Compass, Rocket, CheckCircle2 } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
@@ -25,7 +25,7 @@ export default function AboutPage() {
           <div className="bg-white/10 backdrop-blur-md rounded-lg px-3 py-2 sm:px-4 sm:py-2 border border-white/20">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#1e7e34]"></div>
-              <span className={`text-white text-xs sm:text-sm font-medium ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.page.indicator")}</span>
+              <span className={`text-white text-xs sm:text-sm font-medium ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.page.indicator") as string}</span>
             </div>
           </div>
         </div>
@@ -37,13 +37,13 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
               <Compass className="mr-1 h-4 w-4" />
-              {t("about.purpose.badge")}
+              {t("about.purpose.badge") as string}
             </div>
             <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">
-              {t("about.purpose.title")}
+              {t("about.purpose.title") as string}
             </h2>
             <p className={`mx-auto mt-4 max-w-[700px] text-muted-foreground ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-              {t("about.purpose.subtitle")}
+              {t("about.purpose.subtitle") as string}
             </p>
           </div>
 
@@ -57,29 +57,29 @@ export default function AboutPage() {
                   <Target className="h-8 w-8 text-[#1e7e34]" />
                 </div>
 
-                <h3 className="text-2xl font-bold">{t("about.mission.title")}</h3>
+                <h3 className="text-2xl font-bold">{t("about.mission.title") as string}</h3>
 
                 <div className="mt-4 space-y-4">
-                  <p className="text-muted-foreground">{t("about.mission.text")}</p>
+                  <p className="text-muted-foreground">{t("about.mission.text") as string}</p>
 
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point1")}</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point1") as string}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point2")}</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point2") as string}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point3")}</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point3") as string}</span>
                     </li>
                   </ul>
                 </div>
@@ -95,29 +95,29 @@ export default function AboutPage() {
                   <Rocket className="h-8 w-8 text-[#1e7e34]" />
                 </div>
 
-                <h3 className="text-2xl font-bold">{t("about.vision.title")}</h3>
+                <h3 className="text-2xl font-bold">{t("about.vision.title") as string}</h3>
 
                 <div className="mt-4 space-y-4">
-                  <p className="text-muted-foreground">{t("about.vision.text")}</p>
+                  <p className="text-muted-foreground">{t("about.vision.text") as string}</p>
 
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point1")}</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point1") as string}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point2")}</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point2") as string}</span>
                     </li>
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
                       </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point3")}</span>
+                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point3") as string}</span>
                     </li>
                   </ul>
                 </div>
@@ -133,13 +133,13 @@ export default function AboutPage() {
                  <div className="space-y-2">
                    <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
                      <Users className="mr-1 h-4 w-4" />
-                     {t("about.widgt")}
+                     {t("about.widgt") as string}
                    </div>
                    <h2 className="text-3xl font-bold sm:text-5xl">
-                     {t("about.title")}
+                     {t("about.title") as string}
                    </h2>
                    <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                     {t("about.subtitle")}
+                     {t("about.subtitle") as string}
                    </p>
                  </div>
 
@@ -152,8 +152,8 @@ export default function AboutPage() {
                              <GraduationCap className="h-6 w-6 text-[#1e7e34]" />
                            </div>
                            <div>
-                             <h3 className="text-xl font-bold">{t("about.identity")}</h3>
-                             <p className="text-muted-foreground">{t("about.identity.desc")}</p>
+                             <h3 className="text-xl font-bold">{t("about.identity") as string}</h3>
+                             <p className="text-muted-foreground">{t("about.identity.desc") as string}</p>
                            </div>
                          </div>
                        </li>
@@ -163,8 +163,8 @@ export default function AboutPage() {
                              <Target className="h-6 w-6 text-[#1e7e34]" />
                            </div>
                            <div>
-                             <h3 className="text-xl font-bold">{t("about.identity2")}</h3>
-                             <p className="text-muted-foreground">{t("about.identity2.desc")}</p>
+                             <h3 className="text-xl font-bold">{t("about.identity2") as string}</h3>
+                             <p className="text-muted-foreground">{t("about.identity2.desc") as string}</p>
                            </div>
                          </div>
                        </li>
@@ -174,8 +174,8 @@ export default function AboutPage() {
                              <Globe className="h-6 w-6 text-[#1e7e34]" />
                            </div>
                            <div>
-                             <h3 className="text-xl font-bold">{t("about.identity3")}</h3>
-                             <p className="text-muted-foreground">{t("about.identity3.desc")}</p>
+                             <h3 className="text-xl font-bold">{t("about.identity3") as string}</h3>
+                             <p className="text-muted-foreground">{t("about.identity3.desc") as string}</p>
                            </div>
                          </div>
                        </li>
@@ -185,8 +185,8 @@ export default function AboutPage() {
                              <Award className="h-6 w-6 text-[#1e7e34]" />
                            </div>
                            <div>
-                             <h3 className="text-xl font-bold">{t("about.identity4")}</h3>
-                             <p className="text-muted-foreground">{t("about.identity4.desc")}</p>
+                             <h3 className="text-xl font-bold">{t("about.identity4") as string}</h3>
+                             <p className="text-muted-foreground">{t("about.identity4.desc") as string}</p>
                            </div>
                          </div>
                        </li>
@@ -201,8 +201,8 @@ export default function AboutPage() {
                              <Lightbulb className="h-6 w-6 text-[#1e7e34]" />
                            </div>
                            <div>
-                             <h3 className="text-xl font-bold">{t("about.identity5")}</h3>
-                             <p className="text-muted-foreground">{t("about.identity5.desc")}</p>
+                             <h3 className="text-xl font-bold">{t("about.identity5") as string}</h3>
+                             <p className="text-muted-foreground">{t("about.identity5.desc") as string}</p>
                            </div>
                          </div>
                        </li>
@@ -212,8 +212,8 @@ export default function AboutPage() {
                              <HandshakeIcon className="h-6 w-6 text-[#1e7e34]" />
                            </div>
                            <div>
-                             <h3 className="text-xl font-bold">{t("about.identity6")}</h3>
-                             <p className="text-muted-foreground">{t("about.identity6.desc")}</p>
+                             <h3 className="text-xl font-bold">{t("about.identity6") as string}</h3>
+                             <p className="text-muted-foreground">{t("about.identity6.desc") as string}</p>
                            </div>
                          </div>
                        </li>
@@ -223,8 +223,8 @@ export default function AboutPage() {
                              <Users className="h-6 w-6 text-[#1e7e34]" />
                            </div>
                            <div>
-                             <h3 className="text-xl font-bold">{t("about.identity7")}</h3>
-                             <p className="text-muted-foreground">{t("about.identity7.desc")}</p>
+                             <h3 className="text-xl font-bold">{t("about.identity7") as string}</h3>
+                             <p className="text-muted-foreground">{t("about.identity7.desc") as string}</p>
                            </div>
                          </div>
                        </li>
@@ -326,13 +326,13 @@ export default function AboutPage() {
             <div className="mb-12 text-center">
               <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
                 <HandshakeIcon className="mr-1 h-4 w-4" />
-                {t("about.partners.badge")}
+                {t("about.partners.badge") as string}
               </div>
               <h2 className={`mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-black dark:text-white ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                {t("about.partners.title")}
+                {t("about.partners.title") as string}
               </h2>
               <p className={`mx-auto mt-4 max-w-[700px] text-muted-foreground ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                {t("about.partners.subtitle")}
+                {t("about.partners.subtitle") as string}
               </p>
             </div>
 
@@ -387,10 +387,10 @@ export default function AboutPage() {
             <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-[#1e7e34]/5 rounded-full"></div>
             <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[#1e7e34]/5 rounded-full"></div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 dark:text-white relative z-10">
-              {t("about.cta.title")}
+              {t("about.cta.title") as string}
             </h2>
             <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 relative z-10">
-              {t("about.cta.subtitle")}
+              {t("about.cta.subtitle") as string}
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center relative z-10">
               <Link href="/contact">
@@ -398,7 +398,7 @@ export default function AboutPage() {
                   size="lg"
                   className="bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90"
                 >
-                  {t("about.cta.contact")}
+                  {t("about.cta.contact") as string}
                 </Button>
               </Link>
               <Link href="/donate">
@@ -406,7 +406,7 @@ export default function AboutPage() {
                   size="lg"
                   className="bg-white text-[#1e7e34] border-2 border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white dark:bg-gray-900 dark:text-[#1e7e34] dark:border-[#1e7e34] dark:hover:bg-[#1e7e34] dark:hover:text-white"
                 >
-                  {t("about.cta.support")}
+                  {t("about.cta.support") as string}
                 </Button>
               </Link>
             </div>

@@ -81,13 +81,13 @@ export default function SustainabilityScholarshipPage() {
           <GSAPReveal animation="slide-up" delay={0.3}>
             <div className="flex flex-wrap justify-center gap-8 mb-12">
               <div className="text-center">
-                <StatsCounter number={200} label={t("sustainability.scholarships")} />
+                <StatsCounter number={200} label={t("sustainability.scholarships") as string} />
               </div>
               <div className="text-center">
-                <StatsCounter number={3} label={t("sustainability.years")} />
+                <StatsCounter number={3} label={t("sustainability.years") as string} />
               </div>
               <div className="text-center">
-                <StatsCounter number={5} label={t("sustainability.majors")} />
+                <StatsCounter number={5} label={t("sustainability.pillars") as string} />
               </div>
             </div>
           </GSAPReveal>

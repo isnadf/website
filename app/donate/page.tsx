@@ -259,7 +259,7 @@ export default function DonatePage() {
                   <Label className="text-sm text-gray-600 mb-2 block">{t("donate.form.custom")}</Label>
                   <Input
                     type="number"
-                    placeholder={t("donate.form.custom")}
+                    placeholder={t("donate.form.custom") as string}
                     value={customAmount}
                     onChange={(e) => {
                       setCustomAmount(e.target.value)
