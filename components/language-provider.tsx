@@ -7,7 +7,7 @@ type Language = "en" | "ar"
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  t: (key: string) => string | string[]
 }
 
 const translations = {
@@ -425,6 +425,35 @@ const translations = {
     "pulse.apply.now": "Apply Now",
     "pulse.contact.title": "Contact Us",
     "pulse.contact.description": "For more information, reach out to us:",
+
+    // Justice for Palestine translations
+    "justice.title": "Justice for Palestine",
+    "justice.subtitle": "Advocacy Scholarship Program",
+    "justice.tagline": "⚖️ Preparing Palestinian Leaders for Global Advocacy 🇵🇸",
+    "justice.scholarships": "Scholarships",
+    "justice.fields": "Key Fields",
+    "justice.years": "Years",
+    "justice.about.title": "About the Justice Program",
+    "justice.about.desc": "Justice for Palestine is a specialized graduate scholarship program designed to provide 200 full scholarships in political science and international relations to Palestinian students. The program aims to prepare qualified Palestinian professionals for political, diplomatic, and international advocacy roles.",
+    "justice.apply": "Apply for Justice Scholarship",
+    "justice.download.en": "Download Program (EN)",
+    "justice.download.ar": "تحميل البرنامج (AR)",
+    "justice.mission.title": "Our Mission",
+    "justice.mission.desc": "Preparing qualified Palestinian professionals for political, diplomatic, international, and crisis management roles to enable them to advocate for Palestine globally and advance the Palestinian cause on the international stage.",
+    "justice.fields.title": "Fields of Study",
+    "justice.fields.political.title": "Political Science",
+    "justice.fields.political.desc": "Advanced studies in political theory, governance, public policy, and political analysis to develop expertise in understanding political systems.",
+    "justice.fields.political.points": ["Political Theory", "Public Policy Analysis", "Comparative Politics"],
+    "justice.fields.international.title": "International Relations",
+    "justice.fields.international.desc": "Comprehensive training in diplomacy, international law, conflict resolution, and global governance for international advocacy roles.",
+    "justice.fields.international.points": ["Diplomatic Studies", "International Law", "Conflict Resolution"],
+    "justice.requirements.title": "Requirements",
+    "justice.requirements.nationality": "Palestinian Nationality",
+    "justice.requirements.degree": "Bachelor's Degree in political science, law, or related field",
+    "justice.requirements.gpa": "GPA 3.0+",
+    "justice.requirements.interest": "Interest in political and international advocacy",
+    "justice.contact.title": "Contact Us",
+    "justice.contact.desc": "For more information, reach out to us:",
   },
   ar: {
     "nav.home": "الرئيسية",
@@ -839,13 +868,42 @@ const translations = {
     "pulse.apply.now": "تقدم الآن",
     "pulse.contact.title": "اتصل بنا",
     "pulse.contact.description": ":لمزيد من المعلومات، تواصل معنا",
+
+    // Justice for Palestine Arabic translations
+    "justice.title": "العدالة لفلسطين",
+    "justice.subtitle": "برنامج منحة الدعوة",
+    "justice.tagline": "⚖️ إعداد قادة فلسطينيين للدعوة العالمية 🇵🇸",
+    "justice.scholarships": "منح دراسية",
+    "justice.fields": "مجالات رئيسية",
+    "justice.years": "سنوات",
+    "justice.about.title": "عن برنامج العدالة",
+    "justice.about.desc": "العدالة لفلسطين هو برنامج منح دراسية متخصص للدراسات العليا مصمم لتقديم 200 منحة دراسية كاملة في العلوم السياسية والعلاقات الدولية للطلاب الفلسطينيين. يهدف البرنامج إلى إعداد كفاءات فلسطينية مؤهلة للدور السياسي والدبلوماسي والدولي وإدارة الأزمات لتمكينهم من الدعوة لفلسطين عالمياً وتعزيز القضية الفلسطينية على الساحة الدولية",
+    "justice.apply": "تقدم لمنحة العدالة",
+    "justice.download.en": "تحميل البرنامج (EN)",
+    "justice.download.ar": "تحميل البرنامج (AR)",
+    "justice.mission.title": "مهمتنا",
+    "justice.mission.desc": "إعداد كفاءات فلسطينية مؤهلة للدور السياسي والدبلوماسي والدولي وإدارة الأزمات لتمكينهم من الدعوة لفلسطين عالمياً وتعزيز القضية الفلسطينية على الساحة الدولية",
+    "justice.fields.title": "مجالات الدراسة",
+    "justice.fields.political.title": "العلوم السياسية",
+    "justice.fields.political.desc": "دراسات متقدمة في النظرية السياسية والحوكمة وتحليل السياسات العامة والفهم السياسي لتطوير الخبرة في فهم النظم السياسية",
+    "justice.fields.political.points": ["النظرية السياسية", "تحليل السياسات العامة", "السياسة المقارنة"],
+    "justice.fields.international.title": "العلاقات الدولية",
+    "justice.fields.international.desc": "تدريب شامل في الدبلوماسية والقانون الدولي وحل النزاعات والحوكمة العالمية لأدوار الدعوة الدولية",
+    "justice.fields.international.points": ["الدراسات الدبلوماسية", "القانون الدولي", "حل النزاعات"],
+    "justice.requirements.title": "المتطلبات",
+    "justice.requirements.nationality": "الجنسية الفلسطينية",
+    "justice.requirements.degree": "بكالوريوس في العلوم السياسية أو القانون أو مجال ذي صلة",
+    "justice.requirements.gpa": "معدل تراكمي 3.0+",
+    "justice.requirements.interest": "الاهتمام بالدعوة السياسية والدولية",
+    "justice.contact.title": "اتصل بنا",
+    "justice.contact.desc": " : لمزيد من المعلومات، تواصل معنا",
   },
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("ar")
+  const [language, setLanguageState] = useState<Language>("en")
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language") as Language
@@ -867,7 +925,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.dir = "ltr"
   }
 
-  const t = (key: string) => {
+  const t = (key: string): string | string[] => {
     return translations[language][key as keyof (typeof translations)[typeof language]] || key
   }
 
