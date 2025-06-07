@@ -39,7 +39,7 @@ export default function AboutPage() {
               <Compass className="mr-1 h-4 w-4" />
               {t("about.purpose.badge")}
             </div>
-            <h2 className={`mt-2 text-3xl font-bold tracking-tighter sm:text-4xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
+            <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">
               {t("about.purpose.title")}
             </h2>
             <p className={`mx-auto mt-4 max-w-[700px] text-muted-foreground ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
