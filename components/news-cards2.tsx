@@ -76,7 +76,7 @@ export default function NewsCards2({
           )}
         </div>
         <CardHeader className="p-6">
-          <h3 className="text-2xl font-bold leading-tight line-clamp-2 break-words whitespace-normal hyphens-auto text-black dark:text-white hover:text-[#1e7e34] transition-colors" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', textAlign: isRTL ? 'right' : 'left' }}>{title}</h3>
+          <h3 className="text-2xl font-bold leading-tight line-clamp-2 break-words whitespace-normal hyphens-auto text-black dark:text-white" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', textAlign: isRTL ? 'right' : 'left' }}>{title}</h3>
           {date && (
             <p className="text-sm text-[#1e7e34] dark:text-[#1e7e34] mt-1" style={{ textAlign: isRTL ? 'right' : 'left' }}>{date}</p>
           )}
@@ -87,14 +87,6 @@ export default function NewsCards2({
       </Card>
     </motion.div>
   )
-
-  if (href) {
-    return (
-      <Link href={href} className="block">
-        {cardContent}
-      </Link>
-    )
-  }
 
   return cardContent
 }
