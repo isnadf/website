@@ -12,6 +12,7 @@ interface ScrollingCardsProps {
     href?: string
     date?: string
     category?: string
+    isClickable?: boolean
   }[]
   isAnyCardHovered: boolean
   onHoverChange: (isHovered: boolean) => void
@@ -70,25 +71,26 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange,
 
     let animationId: number
     let position = 0
-    const totalWidth = containerWidth || container.scrollWidth / 2
-    const speed = 1.5 // Adjust speed as needed
+    const cardWidth = container.querySelector('[data-card-index="0"]')?.getBoundingClientRect().width || 0
+    const gap = 32 // 8rem = 32px (gap-8)
+    const padding = 32 // 8rem = 32px (px-8)
+    const cardSetWidth = (cardWidth + gap) * cards.length + (padding * 2) // Include padding in calculation
+    const speed = 1 // Adjust speed as needed
 
     const animate = () => {
       if (isTranslated) {
-        // Reset animation when translation occurs
         position = 0
         setIsTranslated(false)
       }
 
-      // For RTL, we move in the opposite direction
       if (isRTL) {
         position += speed
-        if (position >= totalWidth) {
+        if (position >= cardSetWidth) {
           position = 0
         }
       } else {
         position -= speed
-        if (position <= -totalWidth) {
+        if (position <= -cardSetWidth) {
           position = 0
         }
       }
@@ -116,13 +118,13 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange,
       container.removeEventListener('mouseenter', handleMouseEnter)
       container.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [isRTL, containerWidth, isTranslated])
+  }, [isRTL, cards.length, isTranslated])
 
   return (
     <div className="w-screen overflow-hidden py-8">
       <div
         ref={scrollContainerRef}
-        className="flex whitespace-nowrap"
+        className="flex"
         style={{
           willChange: 'transform',
           direction: isRTL ? 'rtl' : 'ltr',
@@ -130,8 +132,8 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange,
         }}
         data-scrolling-cards="true"
       >
-        {/* First set of cards */}
-        <div className="flex gap-8 pr-8">
+        {/* First set of cards with padding */}
+        <div className="flex gap-8 px-2">
           {cards.map((card, index) => (
             <div key={`first-${index}`} data-card-index={index}>
               <NewsCards2
@@ -142,13 +144,14 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange,
                 date={card.date}
                 isAnyCardHovered={isAnyCardHovered}
                 onHoverChange={onHoverChange}
+                isClickable={card.isClickable}
               />
             </div>
           ))}
         </div>
 
-        {/* Duplicate set of cards to ensure seamless looping */}
-        <div className="flex gap-8 pl-8">
+        {/* Second set of cards with padding */}
+        <div className="flex gap-8 px-8">
           {cards.map((card, index) => (
             <div key={`second-${index}`} data-card-index={index}>
               <NewsCards2
@@ -159,6 +162,25 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange,
                 date={card.date}
                 isAnyCardHovered={isAnyCardHovered}
                 onHoverChange={onHoverChange}
+                isClickable={card.isClickable}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Third set of cards with padding */}
+        <div className="flex gap-8 px-8">
+          {cards.map((card, index) => (
+            <div key={`third-${index}`} data-card-index={index}>
+              <NewsCards2
+                title={card.title}
+                excerpt={card.excerpt}
+                image={card.image}
+                href={card.href}
+                date={card.date}
+                isAnyCardHovered={isAnyCardHovered}
+                onHoverChange={onHoverChange}
+                isClickable={card.isClickable}
               />
             </div>
           ))}

@@ -111,6 +111,36 @@ export default function Home() {
     { name: "Alkhidmat Europe", logo: "/partners/p6.png", type: "Government Partner" }
   ]
 
+  const newsCards = [
+    {
+      title: t("news.latest.supportTour.title") as string,
+      excerpt: t("news.latest.supportTour.excerpt") as string,
+      image: "/LastNews/new3.jpeg",
+      href: "/news/isnad-support-tour",
+      date: "June 06, 2024",
+      category: t("news.latest.supportTour.category") as string,
+      isClickable: true
+    },
+    {
+      title: t("news.latest.pulseOfLifeStart.title") as string,
+      excerpt: t("news.latest.pulseOfLifeStart.excerpt") as string,
+      image: "/LastNews/pulseOfLife-start.png",
+      href: "/news/nabd-al-hayat-grant-interviews",
+      date: "May 5, 2025",
+      category: t("news.latest.pulseOfLifeStart.category") as string,
+      isClickable: true
+    },
+    {
+      title: t("news.latest.pulseOfLifeEnd.title") as string,
+      excerpt: t("news.latest.pulseOfLifeEnd.excerpt") as string,
+      image: "/LastNews/pulseOfLife-end.png",
+      href: "/news/nabd-al-hayat-scholarship-interviews",
+      date: "May 25, 2025",
+      category: t("news.latest.pulseOfLifeEnd.category") as string,
+      isClickable: true
+    }
+  ]
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
@@ -205,12 +235,16 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Full-width scrolling section */}
+        {/* Full-width scrolling section for foundation work */}
         <ScrollingCards
           cards={cardsData.map(card => ({
-            ...card,
             title: card.title as string,
-            excerpt: card.excerpt as string
+            excerpt: card.excerpt as string,
+            image: card.image,
+            href: card.href,
+            date: card.date,
+            category: card.category,
+            isClickable: false  // Explicitly set isClickable to false for foundation work cards
           }))}
           isAnyCardHovered={isAnyCardHovered}
           onHoverChange={setIsAnyCardHovered}
@@ -238,32 +272,7 @@ export default function Home() {
 
         {/* News Cards */}
         <ScrollingCards
-          cards={[
-            {
-              title: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
-              excerpt: "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري.",
-              image: "/LastNews/pulseOfLife-end.png",
-              href: "/news/nabd-al-hayat-scholarship-interviews",
-              date: "May 25, 2025",
-              category: "Scholarships"
-            },
-            {
-              title: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
-              excerpt: "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
-              image: "/LastNews/pulseOfLife-start.png",
-              href: "/news/nabd-al-hayat-grant-interviews",
-              date: "May 5, 2025",
-              category: "Scholarships"
-            },
-            {
-              title: " إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
-              excerpt: "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
-              image: "/LastNews/new3.jpeg",
-              href: "/news/isnad-support-tour",
-              date: "June 06, 2024",
-              category: "Education & Humanitarian Support",
-            }
-          ]}
+          cards={newsCards}
           isAnyCardHovered={isAnyCardHovered}
           onHoverChange={setIsAnyCardHovered}
           direction="rtl"
@@ -455,7 +464,7 @@ export default function Home() {
               <StatsCounter number={3} label={t("stats.pillars") as string} />
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={100} label={t("stats.partners") as string} />
+              <StatsCounter number={6} label={t("stats.partners") as string} />
             </GSAPReveal>
           </div>
         </div>
@@ -587,7 +596,7 @@ export default function Home() {
 
           <GSAPReveal animation="fade" delay={0.6}>
             <div className="mt-12 text-center">
-              <Link href="/apply">
+              <Link href="/programs">
                 <Button className="group bg-primary hover:bg-primary/90 text-white">
                   {t("journey.start")}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

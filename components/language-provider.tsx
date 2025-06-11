@@ -353,7 +353,7 @@ const translations = {
     // Home page Call to Action section
     "cta.title": "Join Us in Empowering Palestinian Students",
     "cta.description": "Your support can make a lasting impact on the lives of talented Palestinian students. Together, we can build a brighter future through education.",
-    "cta.button": "Support Our Cause",
+    "cta.button": "Donate Now",
 
     // Home page Partners section
     "partners.badge": "Our Partners",
@@ -509,7 +509,26 @@ const translations = {
     "news.explorePrograms": "Explore Our Programs",
     "news.exploreProgramsDesc": "Discover our scholarship programs and educational initiatives",
     "news.viewPrograms": "View All Programs",
-  },
+
+
+  "news.latest.supportTour.title": "Isnad Conducts Support Tours in Six Countries and Provides Educational Grants to Gaza Students",
+  "news.latest.supportTour.excerpt": "Since the beginning of the genocide war in the Gaza Strip, the Isnad Foundation for Palestinian Student Support has implemented a series of meetings and events in several countries including Turkey, Egypt, Mauritania, Kyrgyzstan, Malaysia, and the Gaza Strip, as part of its urgent response to the needs of Palestinian students affected by the ongoing war on the Gaza Strip since October 2023.",
+  "news.latest.supportTour.category": "Education & Humanitarian Support",
+  "news.latest.supportTour.date": "June 06, 2024",
+
+  "news.latest.pulseOfLifeStart.title":  "Continuation of First Phase Interviews for Pulse of Life Scholarship to Select 100 Students from Gaza",
+  "news.latest.pulseOfLifeStart.excerpt": "The first phase interviews of the Pulse of Life program, implemented by the Isnad Palestinian Student Fund in partnership with Alkhidmat Europe, continued today, Monday, targeting Palestinian medical students, especially in the Gaza Strip.",
+  "news.latest.pulseOfLifeStart.category": "Scholarships",
+  "news.latest.pulseOfLifeStart.date": "May 5, 2025",
+
+  "news.latest.pulseOfLifeEnd.title": "Completion of First Phase of Pulse of Life Scholarship Interviews",
+  "news.latest.pulseOfLifeEnd.excerpt": "The Isnad Foundation for Palestinian Student Support concluded, on Saturday, May 25, 2025, the first phase of the 'Pulse of Life' scholarship interviews, which extended over three weeks starting from May 5, with the participation of dozens of outstanding Palestinian students in the field of human medicine.",
+  "news.latest.pulseOfLifeEnd.category": "Scholarships",
+  "news.latest.pulseOfLifeEnd.date": "May 25, 2025",
+  
+    "stats.partners": "Partners",
+    "stats.pillars": "Pillars of Support",
+},
   ar: {
     // Navigation translations
     "nav.home": "الرئيسية",
@@ -850,7 +869,7 @@ const translations = {
     // Home page Call to Action section Arabic
     "cta.title": "انضم إلينا في تمكين الطلاب الفلسطينيين",
     "cta.description": "يمكن لدعمك أن يحدث تأثيراً دائماً في حياة الطلاب الفلسطينيين الموهوبين. معاً، يمكننا بناء مستقبل أكثر إشراقاً من خلال التعليم",
-    "cta.button": "ادعم قضيتنا",
+    "cta.button": "تبرع الآن",
 
     // Home page Partners section Arabic
     "partners.badge": "شركاؤنا",
@@ -1006,6 +1025,24 @@ const translations = {
     "news.explorePrograms": "استكشف برامجنا",
     "news.exploreProgramsDesc": "اكتشف برامج المنح الدراسية ومبادراتنا التعليمية",
     "news.viewPrograms": "عرض جميع البرامج",
+
+    "news.latest.supportTour.title": "إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
+    "news.latest.supportTour.excerpt": "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
+    "news.latest.supportTour.category": "Education & Humanitarian Support",
+    "news.latest.supportTour.date": "June 06, 2024",
+
+    "news.latest.pulseOfLifeStart.title": "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
+    "news.latest.pulseOfLifeStart.excerpt": "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
+    "news.latest.pulseOfLifeStart.category": "Scholarships",
+    "news.latest.pulseOfLifeStart.date": "May 5, 2025",
+
+    "news.latest.pulseOfLifeEnd.title": "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة",
+    "news.latest.pulseOfLifeEnd.excerpt": "اختتمت مؤسسة إسناد لدعم الطالب الفلسطيني، يوم السبت الموافق 25 مايو 2025، المرحلة الأولى من مقابلات منحة \"نبض الحياة\"، والتي امتدت على مدار ثلاثة أسابيع بدءًا من الخامس من مايو، بمشاركة عشرات الطلبة الفلسطينيين المتفوقين في تخصص الطب البشري.",
+    "news.latest.pulseOfLifeEnd.category": "Scholarships",
+    "news.latest.pulseOfLifeEnd.date": "May 25, 2025",
+
+    "stats.partners": "الشركاء",
+    "stats.pillars": "ركائز الدعم",
   },
 }
 

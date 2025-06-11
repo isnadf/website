@@ -15,6 +15,7 @@ interface NewsCardProps {
   href?: string
   isAnyCardHovered?: boolean
   onHoverChange?: (isHovered: boolean) => void
+  isClickable?: boolean
 }
 
 export default function NewsCards2({
@@ -24,7 +25,8 @@ export default function NewsCards2({
   date,
   href,
   isAnyCardHovered = false,
-  onHoverChange
+  onHoverChange,
+  isClickable = false
 }: NewsCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
@@ -56,7 +58,7 @@ export default function NewsCards2({
       <Card
         className={`w-[500px] h-[500px] overflow-hidden transition-all hover:shadow-lg border-2 border-[#1e7e34]/20 shadow-md dark:bg-gray-900 dark:border-[#1e7e34]/30 ${
           isAnyCardHovered && !isHovered ? 'blur-[2px] opacity-50' : ''
-        }`}
+        } ${isClickable ? 'cursor-pointer' : ''}`}
       >
         <div className="relative h-[240px] overflow-hidden">
           {!imageError ? (
@@ -88,6 +90,10 @@ export default function NewsCards2({
     </motion.div>
   )
 
-  return cardContent
+  return isClickable ? (
+    <Link href={href || '#'} className="block">
+      {cardContent}
+    </Link>
+  ) : cardContent
 }
 
