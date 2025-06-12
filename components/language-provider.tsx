@@ -480,6 +480,7 @@ const translations = {
     "justice.requirements.gpa": "GPA 3.0+",
     "justice.requirements.interest": "Interest in political and international advocacy",
     "justice.contact.title": "Contact Us",
+    "justice.contact.description": "For more information about the Justice for Palestine scholarship program, reach out to us:",
     "justice.contact.desc": "For more information, reach out to us:",
 
     // News page translations
@@ -1005,14 +1006,14 @@ const translations = {
 
     // Justice for Palestine Arabic translations
     "justice.title": "العدالة لفلسطين",
-    "justice.subtitle": "برنامج منحة الدعوة",
+    "justice.subtitle": "برنامج منحة العدالة لفلسطين",
     "justice.tagline": "⚖️ إعداد قادة فلسطينيين للدعوة العالمية 🇵🇸",
     "justice.scholarships": "منح دراسية",
     "justice.fields": "مجالات رئيسية",
     "justice.years": "سنوات",
     "justice.about.title": "عن برنامج العدالة",
     "justice.about.desc": "العدالة لفلسطين هو برنامج منح دراسية متخصص للدراسات العليا مصمم لتقديم 200 منحة دراسية كاملة في العلوم السياسية والعلاقات الدولية للطلاب الفلسطينيين. يهدف البرنامج إلى إعداد كفاءات فلسطينية مؤهلة للدور السياسي والدبلوماسي والدولي وإدارة الأزمات لتمكينهم من الدعوة لفلسطين عالمياً وتعزيز القضية الفلسطينية على الساحة الدولية",
-    "justice.apply": "تقدم لمنحة العدالة",
+    "justice.apply": "قدم لمنحة العدالة",
     "justice.download.en": "تحميل البرنامج (EN)",
     "justice.download.ar": "تحميل البرنامج (AR)",
     "justice.mission.title": "مهمتنا",
@@ -1030,7 +1031,8 @@ const translations = {
     "justice.requirements.gpa": "معدل تراكمي 3.0+",
     "justice.requirements.interest": "الاهتمام بالدعوة السياسية والدولية",
     "justice.contact.title": "اتصل بنا",
-    "justice.contact.desc": " : لمزيد من المعلومات، تواصل معنا",
+    "justice.contact.description": "لمزيد من المعلومات حول برنامج منحة العدالة لفلسطين، تواصل معنا:",
+    "justice.contact.desc": "For more information, reach out to us:",
 
     // News page translations
     "news.hero.alt": "صورة الأخبار الرئيسية",
