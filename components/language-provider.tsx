@@ -362,8 +362,6 @@ const translations = {
 
     // Home page Contact section
     "contact.badge": "Get in Touch",
-    "contact.title": "Contact Us",
-    "contact.subtitle": "Have questions? Our team is here to help you with any inquiries about our programs and application process.",
     "contact.button": "Contact Our Team",
 
     // Stats section
@@ -528,8 +526,44 @@ const translations = {
   
     "stats.partners": "Partners",
     "stats.pillars": "Pillars of Support",
-},
+
+    // Contact page translations
+    "contact.getInTouch": "Get in Touch",
+    "contact.title": "Contact Us",
+    "contact.subtitle": "Have questions about our programs or application process? Our team is here to help you navigate your educational journey.",
+    "contact.phone": "+90 (539) 4300 726",
+    "contact.email": "info@isnadf.org",
+    "contact.info.title": "Contact Information",
+    "contact.info.subtitle": "If you have questions about our programs, the application process, or would like to learn more about our organization, we are here to help.",
+    "contact.location.title": "Our Location",
+    "contact.location.address": "Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul",
+    "contact.email.title": "Email Us",
+    "contact.email.secondary": "Palestinian.pssf@gmail.com",
+    "contact.phone.title": "Call Us",
+    "contact.phone.hours": "Monday-Friday, 9:00 AM - 5:00 PM (GMT+3)",
+    "contact.follow.title": "Follow Us",
+    "contact.form.title": "Send Us a Message",
+    "contact.form.subtitle": "Fill out the form below and we'll get back to you as soon as possible.",
+    "contact.form.name": "Your Name",
+    "contact.form.name.placeholder": "Enter your name",
+    "contact.form.email": "Email Address",
+    "contact.form.email.placeholder": "Enter your email",
+    "contact.form.subject": "Subject",
+    "contact.form.subject.placeholder": "Enter subject",
+    "contact.form.message": "Message",
+    "contact.form.message.placeholder": "Enter your message",
+    "contact.form.submit": "Send Message",
+    "contact.map.title": "our location",
+    "contact.office.title": "Take a Look Inside",
+    "contact.office.subtitle": "Get a glimpse of our office space where we work to support Palestinian students in their educational journey.",
+    "contact.office.entrance": "Office entrance",
+    "contact.office.workspace": "Office workspace",
+    "contact.office.meeting": "Office meeting room",
+
+    "contact.info.subtitle2": "Reach out to us using any of the methods below.",
+  },
   ar: {
+    "contact.info.subtitle2": "تواصل معنا باستخدام أي من الطرق أدناه :",
     // Navigation translations
     "nav.home": "الرئيسية",
     "nav.about": "من نحن",
@@ -805,7 +839,7 @@ const translations = {
     "talented.fields.psychology": "علم النفس",
     "talented.fields.media": "الإعلام والاتصالات",
     "talented.contact.title": "اتصل بنا",
-    "talented.contact.desc": "لمزيد من المعلومات، تواصل معنا:",
+    "talented.contact.desc": "For more information, reach out to us:",
     "talented.apply.now": "تقدم الآن",
 
     // Home page News & Announcements section Arabic
@@ -878,8 +912,6 @@ const translations = {
 
     // Home page Contact section Arabic
     "contact.badge": "تواصل معنا",
-    "contact.title": "اتصل بنا",
-    "contact.subtitle": "هل لديك أسئلة؟ فريقنا هنا لمساعدتك في أي استفسارات حول برامجنا وعملية التقديم",
     "contact.button": "تواصل مع فريقنا",
 
     // Stats section Arabic
@@ -1043,6 +1075,39 @@ const translations = {
 
     "stats.partners": "الشركاء",
     "stats.pillars": "ركائز الدعم",
+
+    // Contact page translations
+    "contact.getInTouch": "تواصل معنا",
+    "contact.title": "تواصل معنا",
+    "contact.subtitle": "هل لديك أسئلة حول برامجنا أو عملية التقديم؟ فريقنا هنا لمساعدتك في رحلتك التعليمية.",
+    "contact.phone": "+90 (539) 4300 726",
+    "contact.email": "info@isnadf.org",
+    "contact.info.title": "معلومات الاتصال",
+    "contact.info.subtitle": "في حال كان لديك أسئلة حول برامجنا، أو عملية التقديم، أو ترغب في معرفة المزيد عن مؤسستنا، فنحن هنا لمساعدتك.",
+    "contact.location.title": "موقعنا",
+    "contact.location.address": "Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul",
+    "contact.email.title": "راسلنا عبر البريد الإلكتروني",
+    "contact.email.secondary": "Palestinian.pssf@gmail.com",
+    "contact.phone.title": "اتصل بنا",
+    "contact.phone.hours": "الاثنين-الجمعة، 9:00 صباحاً - 5:00 مساءً (توقيت GMT+3)",
+    "contact.follow.title": "تابعنا",
+    "contact.form.title": "أرسل لنا رسالة",
+    "contact.form.subtitle": "املأ النموذج أدناه وسنرد عليك في أقرب وقت ممكن.",
+    "contact.form.name": "اسمك",
+    "contact.form.name.placeholder": "أدخل اسمك",
+    "contact.form.email": "البريد الإلكتروني",
+    "contact.form.email.placeholder": "أدخل بريدك الإلكتروني",
+    "contact.form.subject": "الموضوع",
+    "contact.form.subject.placeholder": "أدخل الموضوع",
+    "contact.form.message": "الرسالة",
+    "contact.form.message.placeholder": "أدخل رسالتك",
+    "contact.form.submit": "إرسال الرسالة",
+    "contact.map.title": "موقعنا",
+    "contact.office.title": "نظرة داخل مكتبنا",
+    "contact.office.subtitle": "تعرف على مساحة مكتبنا حيث نعمل لدعم الطلاب الفلسطينيين في رحلتهم التعليمية.",
+    "contact.office.entrance": "مدخل المكتب",
+    "contact.office.workspace": "مساحة العمل",
+    "contact.office.meeting": "غرفة الاجتماعات",
   },
 }
 
