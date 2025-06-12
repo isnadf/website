@@ -743,7 +743,7 @@ const translations = {
     "sustainability.download.ar": "تحميل البرنامج (AR)",
 
     // Palestinian Talented Scholarship translations
-    "talented.title": "منحة  الموهوب  الفلسطيني",
+    "talented.title": "برنامج الموهوب  الفلسطيني",
     "talented.subtitle": "برنامج منحة التميز",
     "talented.tagline": "🌟 دعم المواهب الفلسطينية: مسؤوليتنا الجماعية ⭐",
     "talented.scholarships": "منح دراسية",
@@ -925,7 +925,7 @@ const translations = {
     "pulse.stats.pillars": "ركائز الدعم",
     "pulse.about.title": "عن البرنامج",
     "pulse.about.description": "هي مبادرة وطنية جريئة أطلقتها مؤسسة الإسناد، تهدف إلى تقديم 1,000 منحة دراسية كاملة في الطب والعلوم الصحية للطلاب الفلسطينيين داخل وخارج فلسطين—خاصة في التخصصات النادرة والحرجة. البرنامج مصمم ليعمل على مدى فترة 5 سنوات",
-    "pulse.apply": "تقدم للمنحة نبض الحياة",
+    "pulse.apply": "تقدم لمنحة نبض الحياة",
     "pulse.download.en": "تحميل البرنامج (EN)",
     "pulse.download.ar": "تحميل البرنامج (AR)",
     "pulse.why.title": "لماذا نبض الحياة؟",
@@ -952,7 +952,7 @@ const translations = {
     "pulse.financial.stipend.description": "دعم مصاريف المعيشة الشهرية",
     "pulse.financial.stipend.amount": "$200",
     "pulse.financial.stipend.period": "شهرياً ($2,400/سنة)",
-    "pulse.financial.technology.title": "منحة التكنولوجيا",
+    "pulse.financial.technology.title": "منحة اقتناء أجهزة إلكترونية",
     "pulse.financial.technology.description": "دعم لمرة واحدة لشراء الأجهزة",
     "pulse.financial.technology.amount": "$300",
     "pulse.financial.technology.period": "منحة لمرة واحدة",
@@ -967,7 +967,7 @@ const translations = {
     "pulse.fields.pharmacy": "الصيدلة",
     "pulse.fields.allied": "المهن الصحية المساعدة",
     "pulse.fields.nursing": "التمريض",
-    "pulse.apply.now": "تقدم الآن",
+    "pulse.apply.now": "قدم الآن",
     "pulse.contact.title": "اتصل بنا",
     "pulse.contact.description": ":لمزيد من المعلومات، تواصل معنا",
 
