@@ -679,7 +679,7 @@ const translations = {
     "donate.form.select_program": "اختر البرنامج",
     "donate.form.choose_program": "اختر برنامجاً",
     "donate.form.distribution": "التوزيع المالي",
-    "donate.form.distribution_desc": "سيتم توزيع تبرعك كالتالي:",
+    "donate.form.distribution_desc": "Your donation will be distributed as follows:",
     "donate.programs.scholarships": "برنامج المنح الدراسية",
     "donate.programs.research": "البحث والتطوير",
     "donate.programs.capacity": "بناء القدرات",
@@ -723,7 +723,7 @@ const translations = {
     "ibn-khaldun.requirements.gpa": "معدل تراكمي 3.0+",
     "ibn-khaldun.requirements.research": "اهتمام بالبحث في المجتمع الفلسطيني",
     "ibn-khaldun.contact.title": "اتصل بنا",
-    "ibn-khaldun.contact.desc": "For more information, reach out to us:",
+    "ibn-khaldun.contact.desc": "لمزيد من المعلومات، تواصل معنا:",
     "ibn-khaldun.apply.now": "قدم الآن",
 
     // Sustainability Scholarship Arabic translations
