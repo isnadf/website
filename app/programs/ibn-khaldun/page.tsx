@@ -70,10 +70,10 @@ export default function IbnKhaldunScholarshipPage() {
               <GraduationCap size={22} className="-ml-1 animate-pulse" /> {t("ibn-khaldun.apply")}
             </a>
             <div className="flex gap-3">
-              <a href="/ProgramsFiles/Ibn Khaldun Scholarship.docx" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+              <a href="/ProgramsFiles/ibn-khaldun-EN.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
                 <BookOpen size={20} className="-ml-1" /> {t("ibn-khaldun.download.en")}
               </a>
-              <a href="/ProgramsFiles/Ibn Khaldun Scholarship-AR.docx" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+              <a href="/ProgramsFiles/ibn-khaldun-AR" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
                 <BookOpen size={20} className="-ml-1" /> {t("ibn-khaldun.download.ar")}
               </a>
             </div>
