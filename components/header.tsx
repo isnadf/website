@@ -24,6 +24,7 @@ export default function Header() {
   const { theme, setTheme } = useTheme()
   const { language, setLanguage, t } = useLanguage()
   const pathname = usePathname()
+  const isRTL = language === 'ar'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,9 +109,10 @@ export default function Header() {
             ? "bg-white dark:bg-background backdrop-blur-md shadow-md py-2"
             : "bg-transparent py-4"
         }`}
+        dir={isRTL ? 'rtl' : 'ltr'}
       >
         <div className="w-full flex items-center justify-between">
-          <Link href="/" className="flex items-center z-50 pl-4 sm:pl-6 lg:pl-8">
+          <Link href="/" className={`flex items-center z-50 ${isRTL ? 'pr-4 sm:pr-6 lg:pr-8' : 'pl-4 sm:pl-6 lg:pl-8'}`}>
             <Image
               src="/logo.png"
               alt="ifpps logo"
@@ -119,35 +121,35 @@ export default function Header() {
               height={80}
               priority
             />
-            <span className="text-lg sm:text-xl md:text-2xl font-bold ml-2 text-black">
+            <span className={`text-lg sm:text-xl md:text-2xl font-bold ${isRTL ? 'mr-2' : 'ml-2'} text-black`}>
               IFPPS
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 px-4 sm:px-6 lg:px-8">
+          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 ${isRTL ? 'pr-4 sm:pr-6 lg:pr-8' : 'pl-4 sm:pl-6 lg:pl-8'}`}>
             {navItems.map((item) => (
               (item as any).dropdown ? (
                 <NavigationMenu key={item.href}>
                   <NavigationMenuList>
                     <NavigationMenuItem>
                       <NavigationMenuTrigger
-                        className="text-[15px] font-medium transition-colors bg-transparent hover:bg-transparent text-black hover:text-[#34a853] px-3 py-2"
+                        className={`text-[15px] font-medium transition-colors bg-transparent hover:bg-transparent text-black hover:text-[#34a853] px-3 py-2 ${isRTL ? 'text-right' : 'text-left'}`}
                       >
                         {item.name}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                        <ul className={`grid w-[400px] gap-3 p-4 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${isRTL ? 'text-right' : 'text-left'}`}>
                           {(item as NavItem & { items?: NavDropdownItem[] }).items?.map((dropdownItem) => (
                             <li key={dropdownItem.href} className="row-span-3">
                               {dropdownItem.items ? (
                                 <div className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none">
-                                  <div className="text-[15px] font-medium leading-none mb-2 text-black">{dropdownItem.name}</div>
+                                  <div className={`text-[15px] font-medium leading-none mb-2 text-black ${isRTL ? 'text-right' : 'text-left'}`}>{dropdownItem.name}</div>
                                   <div className="mt-2 space-y-1">
                                     {dropdownItem.items.map((subItem: NavSubItem) => (
                                       <Link
                                         key={subItem.href}
                                         href={subItem.href}
-                                        className="block text-[14px] text-black hover:text-[#34a853] pl-2 py-1.5 rounded-md"
+                                        className={`block text-[14px] text-black hover:text-[#34a853] ${isRTL ? 'pr-2' : 'pl-2'} py-1.5 rounded-md`}
                                       >
                                         {subItem.name}
                                       </Link>
@@ -159,7 +161,7 @@ export default function Header() {
                                   href={dropdownItem.href}
                                   className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
                                 >
-                                  <div className="text-[15px] font-medium leading-none text-black hover:text-[#34a853]">{dropdownItem.name}</div>
+                                  <div className={`text-[15px] font-medium leading-none text-black hover:text-[#34a853] ${isRTL ? 'text-right' : 'text-left'}`}>{dropdownItem.name}</div>
                                 </Link>
                               )}
                             </li>
@@ -173,7 +175,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-[15px] font-medium transition-colors text-black hover:text-[#34a853] px-3 py-2"
+                  className={`text-[15px] font-medium transition-colors text-black hover:text-[#34a853] px-3 py-2 ${isRTL ? 'text-right' : 'text-left'}`}
                 >
                   {item.name}
                 </Link>
@@ -182,7 +184,7 @@ export default function Header() {
             <DonateButton />
           </nav>
 
-          <div className="flex items-center gap-3 pr-4 sm:pr-6 lg:pr-8">
+          <div className={`flex items-center gap-3 ${isRTL ? 'pl-4 sm:pl-6 lg:pl-8' : 'pr-4 sm:pr-6 lg:pr-8'}`}>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -194,7 +196,7 @@ export default function Header() {
                   <span className="sr-only">Change language</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align={isRTL ? "start" : "end"}>
                 <DropdownMenuItem onClick={() => setLanguage("en")}>
                   <span className={language === "en" ? "font-bold" : ""}>English</span>
                 </DropdownMenuItem>
@@ -234,27 +236,28 @@ export default function Header() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 top-[72px] bg-white dark:bg-background z-40 lg:hidden"
+            dir={isRTL ? 'rtl' : 'ltr'}
           >
             <div className="container mx-auto px-4 py-6">
               <nav className="flex flex-col space-y-6">
                 {navItems.map((item) => (
                   (item as any).dropdown ? (
                     <div key={item.href} className="space-y-3">
-                      <div className="text-[15px] font-medium text-black">{item.name}</div>
-                      <div className="pl-4 space-y-4">
+                      <div className={`text-[15px] font-medium text-black ${isRTL ? 'text-right' : 'text-left'}`}>{item.name}</div>
+                      <div className={`${isRTL ? 'pr-4' : 'pl-4'} space-y-4`}>
                         {(item as NavItem & { items?: NavDropdownItem[] }).items?.map((dropdownItem) => (
                           <div key={dropdownItem.href} className="space-y-3">
                             {dropdownItem.items ? (
                               <>
-                                <div className="text-[15px] font-medium text-black">
+                                <div className={`text-[15px] font-medium text-black ${isRTL ? 'text-right' : 'text-left'}`}>
                                   {dropdownItem.name}
                                 </div>
-                                <div className="pl-4 space-y-2">
+                                <div className={`${isRTL ? 'pr-4' : 'pl-4'} space-y-2`}>
                                   {dropdownItem.items.map((subItem: NavSubItem) => (
                                     <Link
                                       key={subItem.href}
                                       href={subItem.href}
-                                      className="block text-[14px] text-black hover:text-[#34a853] py-1.5"
+                                      className={`block text-[14px] text-black hover:text-[#34a853] py-1.5 ${isRTL ? 'text-right' : 'text-left'}`}
                                       onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                       {subItem.name}
@@ -265,7 +268,7 @@ export default function Header() {
                             ) : (
                               <Link
                                 href={dropdownItem.href}
-                                className="block text-[15px] font-medium text-black hover:text-[#34a853] py-1.5"
+                                className={`block text-[15px] font-medium text-black hover:text-[#34a853] py-1.5 ${isRTL ? 'text-right' : 'text-left'}`}
                                 onClick={() => setIsMobileMenuOpen(false)}
                               >
                                 {dropdownItem.name}
@@ -279,7 +282,7 @@ export default function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="text-[15px] font-medium transition-colors text-black hover:text-[#34a853] py-1.5"
+                      className={`text-[15px] font-medium transition-colors text-black hover:text-[#34a853] py-1.5 ${isRTL ? 'text-right' : 'text-left'}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}

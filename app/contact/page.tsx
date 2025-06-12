@@ -81,8 +81,8 @@ export default function ContactPage() {
               <Mail className="mr-1 h-4 w-4" />
               Get in Touch
             </div>
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-white drop-shadow-lg font-sora">
-              Contact Us
+            <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl text-white drop-shadow-lg font-sora text-center flex justify-center">
+              <span>Contact Us</span>
             </h1>
             <p className="mt-6 text-xl text-white/90 drop-shadow-md max-w-2xl mx-auto">
               Have questions about our programs or application process? Our team is here to help you navigate your educational journey.

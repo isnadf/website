@@ -294,7 +294,7 @@ const translations = {
 
     // Home page News & Announcements section
     "news.badge": "Latest Updates",
-    "news.title": "News & Announcements",
+    "news.title": "Latest News",
     "news.subtitle": "Stay informed with our latest news, updates, and important announcements from the foundation.",
     "news.viewAll": "View All News",
 
@@ -810,8 +810,8 @@ const translations = {
 
     // Home page News & Announcements section Arabic
     "news.badge": "آخر التحديثات",
-    "news.title": "الأخبار والإعلانات",
-    "news.subtitle": "ابق على اطلاع بآخر أخبارنا وتحديثاتنا والإعلانات المهمة من المؤسسة",
+    "news.title": "آخر الأخبار",
+    "news.subtitle": "ابق على اطلاع علي آخر أخبارنا وتحديثاتنا والإعلانات المهمة من المؤسسة",
     "news.viewAll": "عرض جميع الأخبار",
 
     // Home page Our Programs section Arabic
@@ -820,22 +820,22 @@ const translations = {
     "programs.subtitle": "تمكين الطلاب الفلسطينيين من خلال برامج المنح الدراسية المتخصصة",
     "programs.pulse.title": "منحة نبض الحياة",
     "programs.pulse.category": "الطب والعلوم الصحية",
-    "programs.pulse.scholarships": " ١,٠٠٠ منحة دراسية على مدى ٥ سنوات",
+    "programs.pulse.scholarships": "١,٠٠٠ منحة دراسية كاملة في الطب والعلوم الصحية",
     "programs.pulse.description": "مبادرة وطنية جريئة تقدم منحاً دراسية كاملة في الطب والعلوم الصحية، مع التركيز على التخصصات النادرة والحرجة لتعزيز الرعاية الصحية في فلسطين",
     "programs.pulse.focus": "تركيز البرنامج",
     "programs.pulse.features": "الميزات الرئيسية",
     "programs.pulse.medical": "التعليم الطبي",
     "programs.pulse.innovation": "الابتكار في الرعاية الصحية",
     "programs.pulse.full": "منح دراسية كاملة",
-    "programs.pulse.years": "برنامج 5 سنوات",
+    "programs.pulse.years": "برنامج يمتد على مدى ٥ سنوات",
     "programs.talented.title": "منحة الموهوب الفلسطيني",
     "programs.talented.category": "منحة التميز",
-    "programs.talented.scholarships": "١,٠٠٠ منحة دراسية متاحة",
+    "programs.talented.scholarships": "برنامج يشمل ١,٠٠٠ منحة دراسية مخصصة للتميز",
     "programs.talented.description": "دعم الطلاب الفلسطينيين المتميزين في مختلف المجالات الأكاديمية، وتطوير قادة استثنائيين سيقودون الابتكار والتقدم في مجتمعاتهم",
     "programs.talented.focus": "تركيز البرنامج",
     "programs.talented.features": "الميزات الرئيسية",
     "programs.talented.excellence": "التميز الأكاديمي",
-    "programs.talented.leadership": "تطوير القيادة",
+    "programs.talented.leadership": "القيادة الاستثنائية",
     "programs.talented.fields": "مجالات متعددة",
     "programs.talented.support": "دعم شامل",
     "programs.explore": "استكشف جميع البرامج",
@@ -867,7 +867,7 @@ const translations = {
     "journey.start": "ابدأ رحلتك",
 
     // Home page Call to Action section Arabic
-    "cta.title": "انضم إلينا في تمكين الطلاب الفلسطينيين",
+    "cta.title": "انضم إلينا لتمكين الطلاب الفلسطينيين",
     "cta.description": "يمكن لدعمك أن يحدث تأثيراً دائماً في حياة الطلاب الفلسطينيين الموهوبين. معاً، يمكننا بناء مستقبل أكثر إشراقاً من خلال التعليم",
     "cta.button": "تبرع الآن",
 

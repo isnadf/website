@@ -16,9 +16,10 @@ import StatsCounter from "@/components/stats-counter"
 import ScrollingCards from "@/components/scrolling-cards"
 
 export default function Home() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const heroRef = useRef<HTMLDivElement>(null)
   const [isAnyCardHovered, setIsAnyCardHovered] = useState(false)
+  const isRTL = language === 'ar'
 
   // Create cards data array for the ScrollingCards component
   const cardsData = [
@@ -194,7 +195,7 @@ export default function Home() {
   }, [])
 
   return (
-    <>
+    <div dir={isRTL ? 'rtl' : 'ltr'} className={isRTL ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
       <section
         ref={heroRef}
@@ -222,8 +223,8 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <GSAPReveal animation="slide-up">
               <div className="space-y-2">
-                <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-                  <BookOpen className="mr-1 h-4 w-4" />
+                <div className={`inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <BookOpen className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                   {t("work.badget")}
                 </div>
                 <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20">{t("work.title")}</GSAPTextReveal>
@@ -244,10 +245,11 @@ export default function Home() {
             href: card.href,
             date: card.date,
             category: card.category,
-            isClickable: false  // Explicitly set isClickable to false for foundation work cards
+            isClickable: false
           }))}
           isAnyCardHovered={isAnyCardHovered}
           onHoverChange={setIsAnyCardHovered}
+          direction={isRTL ? 'rtl' : 'ltr'}
         />
       </section>
 
@@ -257,8 +259,8 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <GSAPReveal animation="slide-up">
               <div className="space-y-2">
-                <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-                  <Calendar className="mr-1 h-4 w-4" />
+                <div className={`inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <Calendar className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                   {t("news.badge")}
                 </div>
                 <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">{t("news.title")}</GSAPTextReveal>
@@ -275,16 +277,16 @@ export default function Home() {
           cards={newsCards}
           isAnyCardHovered={isAnyCardHovered}
           onHoverChange={setIsAnyCardHovered}
-          direction="rtl"
+          direction={isRTL ? 'rtl' : 'ltr'}
         />
 
         <div className="container px-4 md:px-6 mt-8">
           <GSAPReveal animation="fade" delay={0.4}>
             <div className="flex justify-center">
               <Link href="/news">
-                <Button variant="outline" className="group">
+                <Button variant="outline" className={`group ${isRTL ? 'flex-row-reverse' : ''}`}>
                   {t("news.viewAll")}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className={`h-4 w-4 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
                 </Button>
               </Link>
             </div>
@@ -303,8 +305,8 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-6 text-center mb-16">
             <GSAPReveal animation="slide-up">
               <div className="space-y-3">
-                <div className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm">
-                  <GraduationCap className="mr-2 h-5 w-5" />
+                <div className={`inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <GraduationCap className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   <span className="font-medium">{t("programs.badge")}</span>
                 </div>
                 <GSAPTextReveal className="text-4xl font-bold sm:text-6xl text-white h-20">
@@ -439,10 +441,10 @@ export default function Home() {
             <div className="flex justify-center pt-12">
               <Link href="/programs">
                 <Button
-                  className="bg-white/20 hover:bg-white/30 text-white border-white/30 group px-8 py-6 text-lg rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                  className={`bg-white/20 hover:bg-white/30 text-white border-white/30 group px-8 py-6 text-lg rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-105 ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
                   {t("programs.explore")}
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className={`h-5 w-5 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
                 </Button>
               </Link>
             </div>
@@ -476,8 +478,8 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16">
             <GSAPReveal animation="slide-up">
               <div className="space-y-2">
-                <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-                  <Users className="mr-1 h-4 w-4" />
+                <div className={`inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <Users className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                   {t("journey.badge")}
                 </div>
                 <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20">{t("journey.title")}</GSAPTextReveal>
@@ -597,9 +599,9 @@ export default function Home() {
           <GSAPReveal animation="fade" delay={0.6}>
             <div className="mt-12 text-center">
               <Link href="/programs">
-                <Button className="group bg-primary hover:bg-primary/90 text-white">
+                <Button className={`group bg-primary hover:bg-primary/90 text-white ${isRTL ? 'flex-row-reverse' : ''}`}>
                   {t("journey.start")}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className={`h-4 w-4 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
                 </Button>
               </Link>
             </div>
@@ -620,9 +622,9 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/donate">
-                  <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+                  <Button size="lg" className={`bg-white text-primary hover:bg-white/90 ${isRTL ? 'flex-row-reverse' : ''}`}>
                     {t("cta.button")}
-                    <Heart className="ml-2 h-4 w-4" />
+                    <Heart className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   </Button>
                 </Link>
               </div>
@@ -637,8 +639,8 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <GSAPReveal animation="slide-up">
               <div className="space-y-2">
-                <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-                  <Handshake className="mr-1 h-4 w-4" />
+                <div className={`inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <Handshake className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                   {t("partners.badge")}
                 </div>
                 <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">{t("partners.title")}</GSAPTextReveal>
@@ -687,12 +689,12 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <GSAPReveal animation="slide-up">
               <div className="space-y-2">
-                <div className="inline-flex items-center rounded-lg bg-white/10 px-3 py-1 text-sm text-white backdrop-blur-sm">
-                  <MessageSquare className="mr-1 h-4 w-4" />
+                <div className={`inline-flex items-center rounded-lg bg-white/10 px-3 py-1 text-sm text-white backdrop-blur-sm ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <MessageSquare className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                   {t("contact.badge")}
                 </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl text-white h-20">{t("contact.title")}</GSAPTextReveal>
-                <p className="max-w-[900px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl text-white h-20 text-center mx-auto max-w-3xl">{t("contact.title")}</GSAPTextReveal>
+                <p className="max-w-[900px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto text-center">
                   {t("contact.subtitle")}
                 </p>
               </div>
@@ -701,9 +703,9 @@ export default function Home() {
             <GSAPReveal animation="fade" delay={0.3}>
               <div className="flex justify-center pt-8 gap-4">
                 <Link href="/contact">
-                  <Button size="lg" className="group bg-white text-primary hover:bg-white/90">
+                  <Button size="lg" className={`group bg-white text-primary hover:bg-white/90 ${isRTL ? 'flex-row-reverse' : ''}`}>
                     {t("contact.button")}
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className={`h-4 w-4 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
                   </Button>
                 </Link>
               </div>
@@ -711,7 +713,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 
