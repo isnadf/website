@@ -19,7 +19,9 @@ import {
   Users,
   Download,
   ExternalLink,
-  ChevronDown
+  ChevronDown,
+  Wallet,
+  Home
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
@@ -171,8 +173,8 @@ export default function SustainabilityScholarshipPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="lg:w-2/3">
-                    <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-center lg:text-left">
+                  <div className={`lg:w-2/3 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                    <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
                       {t("sustainability.about.desc")}
                     </p>
                   </div>
@@ -321,11 +323,11 @@ export default function SustainabilityScholarshipPage() {
             <GSAPReveal animation="slide-up" delay={0.1}>
               <Card className="group h-full bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800 hover:shadow-xl transition-all duration-300">
                 <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
+                  <div className={`flex items-start gap-4 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                     <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       <Award size={24} className="text-white" />
                     </div>
-                    <div>
+                    <div className={language === 'ar' ? 'text-right' : 'text-left'}>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{t("sustainability.objectives.scholarships.title")}</h3>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {t("sustainability.objectives.scholarships")}
@@ -340,11 +342,11 @@ export default function SustainabilityScholarshipPage() {
             <GSAPReveal animation="slide-up" delay={0.2}>
               <Card className="group h-full bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-200 dark:border-blue-800 hover:shadow-xl transition-all duration-300">
                 <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
+                  <div className={`flex items-start gap-4 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                     <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       <BookOpen size={24} className="text-white" />
                     </div>
-                    <div>
+                    <div className={language === 'ar' ? 'text-right' : 'text-left'}>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{t("sustainability.objectives.research.title")}</h3>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {t("sustainability.objectives.research")}
@@ -359,11 +361,11 @@ export default function SustainabilityScholarshipPage() {
             <GSAPReveal animation="slide-up" delay={0.3}>
               <Card className="group h-full bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 border-purple-200 dark:border-purple-800 hover:shadow-xl transition-all duration-300">
                 <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
+                  <div className={`flex items-start gap-4 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                     <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <Globe size={24} className="text-white" />
+                      <Users size={24} className="text-white" />
                     </div>
-                    <div>
+                    <div className={language === 'ar' ? 'text-right' : 'text-left'}>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{t("sustainability.objectives.knowledge.title")}</h3>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {t("sustainability.objectives.knowledge")}
@@ -374,15 +376,15 @@ export default function SustainabilityScholarshipPage() {
               </Card>
             </GSAPReveal>
 
-            {/* Leadership Objective */}
+            {/* Leaders Objective */}
             <GSAPReveal animation="slide-up" delay={0.4}>
               <Card className="group h-full bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-orange-200 dark:border-orange-800 hover:shadow-xl transition-all duration-300">
                 <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
+                  <div className={`flex items-start gap-4 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                     <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       <GraduationCap size={24} className="text-white" />
                     </div>
-                    <div>
+                    <div className={language === 'ar' ? 'text-right' : 'text-left'}>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{t("sustainability.objectives.leaders.title")}</h3>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {t("sustainability.objectives.leaders")}
@@ -408,7 +410,7 @@ export default function SustainabilityScholarshipPage() {
             </div>
           </GSAPReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Tuition Support */}
             <GSAPReveal animation="scale" delay={0.1}>
               <Card className="group h-full bg-white dark:bg-gray-800 border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
@@ -462,7 +464,7 @@ export default function SustainabilityScholarshipPage() {
             </GSAPReveal>
 
             {/* Housing Support */}
-            <GSAPReveal animation="scale" delay={0.3}>
+            {/* <GSAPReveal animation="scale" delay={0.3}>
               <Card className="group h-full bg-white dark:bg-gray-800 border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 to-indigo-600"></div>
                 <CardContent className="p-8 text-center">
@@ -485,7 +487,7 @@ export default function SustainabilityScholarshipPage() {
                   </div>
                 </CardContent>
               </Card>
-            </GSAPReveal>
+            </GSAPReveal> */}
           </div>
         </div>
       </section>
