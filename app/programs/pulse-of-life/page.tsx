@@ -26,10 +26,16 @@ import { useLanguage } from "@/components/language-provider"
 export default function PulseOfLifePage() {
   const { t, language } = useLanguage()
 
-  // Enhanced Arabic text spacing
+  // Enhanced Arabic text spacing and RTL support
   const getArabicSpacing = () => language === 'ar' ? { wordSpacing: '0.1em', letterSpacing: '0.02em' } : {}
+  const getRTLClass = () => language === 'ar' ? 'rtl' : ''
+  const getRTLFlex = () => language === 'ar' ? 'flex-row-reverse' : 'flex-row'
+  const getRTLIcon = () => language === 'ar' ? '-mr-1' : '-ml-1'
+  const getRTLTextAlign = () => language === 'ar' ? 'text-right' : 'text-left'
+  const getRTLItemsAlign = () => language === 'ar' ? 'items-end' : 'items-start'
+
   return (
-    <main className="flex min-h-screen flex-col bg-gradient-to-br from-red-50 via-pink-50 to-white dark:from-red-950 dark:via-gray-900 dark:to-black">
+    <main className={`flex min-h-screen flex-col bg-gradient-to-br from-red-50 via-pink-50 to-white dark:from-red-950 dark:via-gray-900 dark:to-black ${getRTLClass()}`}>
       {/* Medical-themed Header Section */}
       <section className="relative py-20 md:py-28 flex flex-col items-center text-center bg-gradient-to-r from-red-600/10 via-pink-500/10 to-red-700/10 dark:from-red-900/20 dark:via-pink-900/20 dark:to-red-800/20 shadow-lg border-b-4 border-red-500">
         <div className="mb-6">
@@ -57,81 +63,68 @@ export default function PulseOfLifePage() {
           <StatsCounter number={3} label={t("pulse.stats.pillars") as string} />
         </div>
         <div className="max-w-2xl mx-auto mt-4">
-          <h2 className={`text-xl font-bold text-red-700 mb-2 flex items-center justify-center gap-2 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
-            <Heart className="text-red-500 animate-bounce" size={20} />
+          <h2 className={`text-xl font-bold text-red-700 mb-2 flex items-center justify-center gap-2 ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
+            <Heart className={`text-red-500 animate-bounce ${language === 'ar' ? 'order-last' : ''}`} size={20} />
             <span>{t("pulse.about.title")}</span>
-            <Heart className="text-red-500 animate-bounce" size={20} />
+            <Heart className={`text-red-500 animate-bounce ${language === 'ar' ? 'order-first' : ''}`} size={20} />
           </h2>
           <p className={`text-gray-800 dark:text-gray-100 text-base md:text-lg text-center ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.1em', letterSpacing: '0.05em' } : {}}>
             <span className="font-semibold text-red-800"></span>{t("pulse.about.description")}
           </p>
-          <div className="flex justify-center mt-6 gap-4 flex-wrap">
-            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold rounded-full shadow-xl hover:from-pink-600 hover:to-red-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.1em', letterSpacing: '0.05em' } : {}}>
-              <Stethoscope size={22} className="-ml-1 animate-pulse" /> {t("pulse.apply")}
+          <div className={`flex justify-center mt-6 gap-4 flex-wrap ${getRTLFlex()}`}>
+            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold rounded-full shadow-xl hover:from-pink-600 hover:to-red-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.1em', letterSpacing: '0.05em' } : {}}>
+              <Stethoscope size={22} className={`${getRTLIcon()} animate-pulse`} /> {t("pulse.apply")}
             </a>
-            <div className="flex gap-3">
-              <a href="/ProgramsFiles/Pulse of Life Scholarship-EN.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
-                <BookOpen size={20} className="-ml-1" /> {t("pulse.download.en")}
+            <div className={`flex gap-3 ${getRTLFlex()}`}>
+              <a href="/ProgramsFiles/Pulse of Life Scholarship-EN.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
+                <BookOpen size={20} className={getRTLIcon()} /> {t("pulse.download.en")}
               </a>
-              <a href="/ProgramsFiles/Pulse of Life Scholarship-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
-                <BookOpen size={20} className="-ml-1" /> {t("pulse.download.ar")}
+              <a href="/ProgramsFiles/Pulse of Life Scholarship-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
+                <BookOpen size={20} className={getRTLIcon()} /> {t("pulse.download.ar")}
               </a>
             </div>
           </div>
         </div>
       </section>
 
-
-
       {/* Why Pulse of Life Section */}
       <section className="py-16 px-4 md:px-0 bg-gradient-to-r from-green-100/40 via-white to-red-100/40 dark:from-green-900/30 dark:via-black dark:to-red-900/30">
         <div className="max-w-7xl mx-auto">
           <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-10">{t("pulse.why.title")}</GSAPTextReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            <GSAPReveal animation="slide-up"><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center h-full min-h-[340px] min-w-[250px] w-full justify-start hover:scale-105 transition-transform duration-300">
-              <Stethoscope className="text-green-700 mb-2" size={32} />
-              <span className="text-3xl font-bold text-red-700 mb-2">01</span>
-              <h3 className="text-xl font-bold tracking-wide text-center text-green-800 dark:text-green-300 mb-2 border-b-2 border-green-600 pb-1 uppercase">{t("pulse.why.shortage.title")}</h3>
-              <p className={`text-gray-600 dark:text-gray-300 text-sm text-center ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.why.shortage.description")}</p>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.1}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center h-full min-h-[340px] min-w-[250px] w-full justify-start hover:scale-105 transition-transform duration-300">
-              <Microscope className="text-green-700 mb-2" size={32} />
-              <span className="text-3xl font-bold text-red-700 mb-2">02</span>
-              <h3 className={`text-xl font-bold tracking-wide text-center text-green-800 dark:text-green-300 mb-2 border-b-2 border-green-600 pb-1 uppercase ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.why.specialized.title")}</h3>
-              <p className={`text-gray-600 dark:text-gray-300 text-sm text-center ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.why.specialized.description")}</p>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.2}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center h-full min-h-[340px] min-w-[250px] w-full justify-start hover:scale-105 transition-transform duration-300">
-              <Hospital className="text-green-700 mb-2" size={32} />
-              <span className="text-3xl font-bold text-red-700 mb-2">03</span>
-              <h3 className="text-xl font-bold tracking-wide text-center text-green-800 dark:text-green-300 mb-2 border-b-2 border-green-600 pb-1 uppercase">{t("pulse.why.capacity.title")}</h3>
-              <p className={`text-gray-600 dark:text-gray-300 text-sm text-center ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.why.capacity.description")}</p>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.3}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center h-full min-h-[340px] min-w-[250px] w-full justify-start hover:scale-105 transition-transform duration-300">
-              <Home className="text-green-700 mb-2" size={32} />
-              <span className="text-3xl font-bold text-red-700 mb-2">04</span>
-              <h3 className="text-xl font-bold tracking-wide text-center text-green-800 dark:text-green-300 mb-2 border-b-2 border-green-600 pb-1 uppercase">{t("pulse.why.infrastructure.title")}</h3>
-              <p className={`text-gray-600 dark:text-gray-300 text-sm text-center ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.why.infrastructure.description")}</p>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.4}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center h-full min-h-[340px] min-w-[250px] w-full justify-start hover:scale-105 transition-transform duration-300">
-              <Target className="text-green-700 mb-2" size={32} />
-              <span className="text-3xl font-bold text-red-700 mb-2">05</span>
-              <h3 className="text-xl font-bold tracking-wide text-center text-green-800 dark:text-green-300 mb-2 border-b-2 border-green-600 pb-1 uppercase">{t("pulse.why.occupation.title")}</h3>
-              <p className={`text-gray-600 dark:text-gray-300 text-sm text-center ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.why.occupation.description")}</p>
-            </div></GSAPReveal>
+            {[1, 2, 3, 4, 5].map((num, index) => (
+              <GSAPReveal key={num} animation="slide-up" delay={index * 0.1}>
+                <div className={`bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center h-full min-h-[340px] min-w-[250px] w-full justify-start hover:scale-105 transition-transform duration-300 ${getRTLTextAlign()}`}>
+                  <Stethoscope className="text-green-700 mb-2" size={32} />
+                  <span className="text-3xl font-bold text-red-700 mb-2">0{num}</span>
+                  <h3 className={`text-xl font-bold tracking-wide text-center text-green-800 dark:text-green-300 mb-2 border-b-2 border-green-600 pb-1 uppercase ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t(`pulse.why.${['shortage', 'specialized', 'capacity', 'infrastructure', 'occupation'][index]}.title`)}</h3>
+                  <p className={`text-gray-600 dark:text-gray-300 text-sm ${getRTLTextAlign()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
+                    {t(`pulse.why.${['shortage', 'specialized', 'capacity', 'infrastructure', 'occupation'][index]}.description`)}
+                  </p>
+                </div>
+              </GSAPReveal>
+            ))}
           </div>
         </div>
       </section>
-
-
 
       {/* Goals Section */}
       <section className="py-16 px-4 md:px-0 bg-white dark:bg-black">
         <div className="max-w-4xl mx-auto">
           <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8 pt-4">{t("pulse.goals.title")}</GSAPTextReveal>
-          <ul className="space-y-4 text-lg text-gray-800 dark:text-gray-100 font-medium mb-8">
-            <li className="flex items-center gap-3"><UserPlus className="text-green-700" size={24} /><span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.train")}</span></li>
-            <li className="flex items-center gap-3"><Stethoscope className="text-green-700" size={24} /><span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.support")}</span></li>
-            <li className="flex items-center gap-3"><Home className="text-green-700" size={24} /><span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.reach")}</span></li>
+          <ul className={`space-y-4 text-lg text-gray-800 dark:text-gray-100 font-medium mb-8 ${getRTLTextAlign()}`}>
+            <li className={`flex items-center gap-3 ${getRTLFlex()}`}>
+              <UserPlus className="text-green-700" size={24} />
+              <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.train")}</span>
+            </li>
+            <li className={`flex items-center gap-3 ${getRTLFlex()}`}>
+              <Stethoscope className="text-green-700" size={24} />
+              <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.support")}</span>
+            </li>
+            <li className={`flex items-center gap-3 ${getRTLFlex()}`}>
+              <Home className="text-green-700" size={24} />
+              <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.reach")}</span>
+            </li>
           </ul>
           <div className="bg-gradient-to-br from-green-50/80 to-red-50/80 dark:from-green-900/40 dark:to-red-900/40 rounded-2xl shadow-xl p-8">
             <h3 className={`text-2xl font-bold text-green-800 dark:text-green-300 mb-8 text-center flex items-center justify-center gap-3 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
@@ -206,29 +199,21 @@ export default function PulseOfLifePage() {
         </div>
       </section>
 
-
-
       {/* Requirements Section */}
       <section className="py-16 px-4 md:px-0 bg-gradient-to-r from-green-100/40 via-white to-red-100/40 dark:from-green-900/30 dark:via-black dark:to-red-900/30">
         <div className="max-w-5xl mx-auto">
           <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-10">{t("pulse.requirements.title")}</GSAPTextReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <GSAPReveal animation="slide-up"><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <Globe className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.requirements.nationality")}</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.1}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <GraduationCap className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.requirements.average")}</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.2}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <Award className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.requirements.gpa")}</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.3}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <BookOpen className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.requirements.english")}</h3>
-            </div></GSAPReveal>
+            {[1, 2, 3, 4].map((num, index) => (
+              <GSAPReveal key={num} animation="slide-up" delay={index * 0.1}>
+                <div className={`bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300 ${getRTLTextAlign()}`}>
+                  <Globe className="text-green-700 mb-2" size={32} />
+                  <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
+                    {t(`pulse.requirements.${['nationality', 'average', 'gpa', 'english'][index]}`)}
+                  </h3>
+                </div>
+              </GSAPReveal>
+            ))}
           </div>
         </div>
       </section>
@@ -238,68 +223,52 @@ export default function PulseOfLifePage() {
         <div className="max-w-5xl mx-auto">
           <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-10">{t("pulse.fields.title")}</GSAPTextReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            <GSAPReveal animation="slide-up"><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <Stethoscope className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.fields.medicine")}</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.1}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <BookOpen className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.fields.dentistry")}</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.2}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <Microscope className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.fields.pharmacy")}</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.3}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <UserPlus className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.fields.allied")}</h3>
-            </div></GSAPReveal>
-            <GSAPReveal animation="slide-up" delay={0.4}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300">
-              <Home className="text-green-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.fields.nursing")}</h3>
-            </div></GSAPReveal>
+            {[1, 2, 3, 4, 5].map((num, index) => (
+              <GSAPReveal key={num} animation="slide-up" delay={index * 0.1}>
+                <div className={`bg-white dark:bg-gray-900 rounded-xl shadow p-5 flex flex-col items-center min-h-[180px] justify-center hover:scale-105 transition-transform duration-300 ${getRTLTextAlign()}`}>
+                  <Stethoscope className="text-green-700 mb-2" size={32} />
+                  <h3 className={`text-lg font-bold text-center text-green-800 dark:text-green-300 mb-1 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
+                    {t(`pulse.fields.${['medicine', 'dentistry', 'pharmacy', 'allied', 'nursing'][index]}`)}
+                  </h3>
+                </div>
+              </GSAPReveal>
+            ))}
           </div>
         </div>
-
-        {/* <div className="flex justify-center my-8 gap-4 flex-wrap">
-          <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-red-500 text-white font-bold rounded-full shadow-lg hover:from-red-600 hover:to-green-500 transition-colors duration-300 text-xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-            <UserPlus size={26} className="-ml-1" /> {t("pulse.apply.now")}
-          </a>
-          <div className="flex gap-3">
-            <a href="/ProgramsFiles/Pulse of Life Scholarship-EN.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-              <BookOpen size={20} className="-ml-1" /> {t("pulse.download.en")}
-            </a>
-            <a href="/ProgramsFiles/Pulse of Life Scholarship-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-              <BookOpen size={20} className="-ml-1" /> {t("pulse.download.ar")}
-            </a>
-          </div>
-        </div> */}
       </section>
-
-
 
       {/* Contact Section */}
       <section className="py-10 bg-gradient-to-r from-green-100/40 via-white to-red-100/40 dark:from-green-900/30 dark:via-black dark:to-red-900/30">
         <div className="max-w-2xl mx-auto text-center">
-          <GSAPTextReveal element="h3" className="text-xl font-bold text-green-800 mb-2">{t("pulse.contact.title")}</GSAPTextReveal>
-          <p className={`text-gray-700 dark:text-gray-200 mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.contact.description")}</p>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-lg">
-            <a href="mailto:info@isnadf.org" className="flex items-center gap-2 text-green-700 hover:underline"><Mail className="text-green-700" size={22} /> info@isnadf.org</a>
+          <div style={getArabicSpacing()}>
+            <GSAPTextReveal element="h3" className={`text-xl font-bold text-green-800 mb-2 ${language === 'ar' ? 'tracking-wide' : ''}`}>
+              {t("pulse.contact.title")}
+            </GSAPTextReveal>
+          </div>
+          <p className={`text-gray-700 dark:text-gray-200 mb-4 text-center ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
+            {t("pulse.contact.description")}
+          </p>
+          <div className={`flex flex-col md:flex-row justify-center items-center gap-4 text-lg ${getRTLFlex()}`}>
+            <a href="mailto:info@isnadf.org" className={`flex items-center gap-2 text-green-700 hover:underline ${getRTLFlex()} justify-center`}>
+              <Mail className="text-green-700" size={22} /> info@isnadf.org
+            </a>
             <span className="hidden md:inline-block text-gray-400">|</span>
-            <a href="tel:+90539430726" className="flex items-center gap-2 text-green-700 hover:underline"><Phone className="text-green-700" size={22} /> +90 539 430 07 26</a>
+            <a href="tel:+90539430726" className={`flex items-center gap-2 text-green-700 hover:underline ${getRTLFlex()} justify-center`}>
+              <Phone className="text-green-700" size={22} /> +90 539 430 07 26
+            </a>
           </div>
         </div>
 
-        <div className="flex justify-center my-8 gap-4 flex-wrap">
-          <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-red-500 text-white font-bold rounded-full shadow-lg hover:from-red-600 hover:to-green-500 transition-colors duration-300 text-xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
-            <UserPlus size={26} className="-ml-1" /> {t("pulse.apply.now")}
+        <div className={`flex justify-center my-8 gap-4 flex-wrap ${getRTLFlex()}`}>
+          <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-red-500 text-white font-bold rounded-full shadow-lg hover:from-red-600 hover:to-green-500 transition-colors duration-300 text-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
+            <UserPlus size={26} className={getRTLIcon()} /> {t("pulse.apply.now")}
           </a>
-          <div className="flex gap-3">
-            <a href="/ProgramsFiles/Pulse of Life Scholarship-EN.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
-              <BookOpen size={20} className="-ml-1" /> {t("pulse.download.en")}
+          <div className={`flex gap-3 ${getRTLFlex()}`}>
+            <a href="/ProgramsFiles/Pulse of Life Scholarship-EN.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
+              <BookOpen size={20} className={getRTLIcon()} /> {t("pulse.download.en")}
             </a>
-            <a href="/ProgramsFiles/Pulse of Life Scholarship-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
-              <BookOpen size={20} className="-ml-1" /> {t("pulse.download.ar")}
+            <a href="/ProgramsFiles/Pulse of Life Scholarship-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
+              <BookOpen size={20} className={getRTLIcon()} /> {t("pulse.download.ar")}
             </a>
           </div>
         </div>
