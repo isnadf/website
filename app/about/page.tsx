@@ -10,7 +10,7 @@ export default function AboutPage() {
   const { t, language } = useLanguage()
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -36,7 +36,7 @@ export default function AboutPage() {
         <div className="container px-4 md:px-6">
           <div className="text-center mb-12">
             <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-              <Compass className="mr-1 h-4 w-4" />
+              <Compass className={`${language === 'ar' ? 'ml-1' : 'mr-1'} h-4 w-4`} />
               {t("about.purpose.badge") as string}
             </div>
             <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">
@@ -62,7 +62,7 @@ export default function AboutPage() {
                 <div className="mt-4 space-y-4">
                   <p className="text-muted-foreground">{t("about.mission.text") as string}</p>
 
-                  <ul className="space-y-2">
+                  {/* <ul className="space-y-2">
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
@@ -81,7 +81,7 @@ export default function AboutPage() {
                       </div>
                       <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point3") as string}</span>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
               </div>
             </div>
@@ -100,7 +100,7 @@ export default function AboutPage() {
                 <div className="mt-4 space-y-4">
                   <p className="text-muted-foreground">{t("about.vision.text") as string}</p>
 
-                  <ul className="space-y-2">
+                  {/* <ul className="space-y-2">
                     <li className="flex items-start">
                       <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
                         <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
@@ -119,7 +119,7 @@ export default function AboutPage() {
                       </div>
                       <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point3") as string}</span>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function AboutPage() {
                <div className="flex flex-col items-center justify-center space-y-4 text-center">
                  <div className="space-y-2">
                    <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-                     <Users className="mr-1 h-4 w-4" />
+                     <Users className={`${language === 'ar' ? 'ml-1' : 'mr-1'} h-4 w-4`} />
                      {t("about.widgt") as string}
                    </div>
                    <h2 className="text-3xl font-bold sm:text-5xl">
@@ -148,10 +148,10 @@ export default function AboutPage() {
                      <ul className="grid gap-6 flex-1">
                        <li>
                          <div className="flex gap-4 items-start">
-                           <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
+                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                              <GraduationCap className="h-6 w-6 text-[#1e7e34]" />
                            </div>
-                           <div>
+                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
                              <h3 className="text-xl font-bold">{t("about.identity") as string}</h3>
                              <p className="text-muted-foreground">{t("about.identity.desc") as string}</p>
                            </div>
@@ -159,10 +159,10 @@ export default function AboutPage() {
                        </li>
                        <li>
                          <div className="flex gap-4 items-start">
-                           <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
+                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                              <Target className="h-6 w-6 text-[#1e7e34]" />
                            </div>
-                           <div>
+                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
                              <h3 className="text-xl font-bold">{t("about.identity2") as string}</h3>
                              <p className="text-muted-foreground">{t("about.identity2.desc") as string}</p>
                            </div>
@@ -170,10 +170,10 @@ export default function AboutPage() {
                        </li>
                        <li>
                          <div className="flex gap-4 items-start">
-                           <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
+                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                              <Globe className="h-6 w-6 text-[#1e7e34]" />
                            </div>
-                           <div>
+                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
                              <h3 className="text-xl font-bold">{t("about.identity3") as string}</h3>
                              <p className="text-muted-foreground">{t("about.identity3.desc") as string}</p>
                            </div>
@@ -181,10 +181,10 @@ export default function AboutPage() {
                        </li>
                        <li>
                          <div className="flex gap-4 items-start">
-                           <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
+                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                              <Award className="h-6 w-6 text-[#1e7e34]" />
                            </div>
-                           <div>
+                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
                              <h3 className="text-xl font-bold">{t("about.identity4") as string}</h3>
                              <p className="text-muted-foreground">{t("about.identity4.desc") as string}</p>
                            </div>
@@ -197,10 +197,10 @@ export default function AboutPage() {
                      <ul className="grid gap-6 flex-1">
                        <li>
                          <div className="flex gap-4 items-start">
-                           <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
+                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                              <Lightbulb className="h-6 w-6 text-[#1e7e34]" />
                            </div>
-                           <div>
+                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
                              <h3 className="text-xl font-bold">{t("about.identity5") as string}</h3>
                              <p className="text-muted-foreground">{t("about.identity5.desc") as string}</p>
                            </div>
@@ -208,10 +208,10 @@ export default function AboutPage() {
                        </li>
                        <li>
                          <div className="flex gap-4 items-start">
-                           <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
+                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                              <HandshakeIcon className="h-6 w-6 text-[#1e7e34]" />
                            </div>
-                           <div>
+                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
                              <h3 className="text-xl font-bold">{t("about.identity6") as string}</h3>
                              <p className="text-muted-foreground">{t("about.identity6.desc") as string}</p>
                            </div>
@@ -219,10 +219,10 @@ export default function AboutPage() {
                        </li>
                        <li>
                          <div className="flex gap-4 items-start">
-                           <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
+                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                              <Users className="h-6 w-6 text-[#1e7e34]" />
                            </div>
-                           <div>
+                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
                              <h3 className="text-xl font-bold">{t("about.identity7") as string}</h3>
                              <p className="text-muted-foreground">{t("about.identity7.desc") as string}</p>
                            </div>
@@ -325,13 +325,13 @@ export default function AboutPage() {
           <div className="mx-auto max-w-5xl">
             <div className="mb-12 text-center">
               <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-                <HandshakeIcon className="mr-1 h-4 w-4" />
+                <HandshakeIcon className={`${language === 'ar' ? 'ml-1' : 'mr-1'} h-4 w-4`} />
                 {t("about.partners.badge") as string}
               </div>
               <h2 className={`mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-black dark:text-white ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
                 {t("about.partners.title") as string}
               </h2>
-              <p className={`mx-auto mt-4 max-w-[700px] text-muted-foreground ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
+              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
                 {t("about.partners.subtitle") as string}
               </p>
             </div>
@@ -399,6 +399,7 @@ export default function AboutPage() {
                   className="bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90"
                 >
                   {t("about.cta.contact") as string}
+                  <ArrowRight className={`${language === 'ar' ? 'mr-2 rotate-180' : 'ml-2'} h-4 w-4 transition-transform group-hover:translate-x-1`} />
                 </Button>
               </Link>
               <Link href="/donate">
