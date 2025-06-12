@@ -6,20 +6,21 @@ import { useLanguage } from "@/components/language-provider"
 
 export default function Footer() {
   const { t, language } = useLanguage()
+  const isRTL = language === 'ar'
 
   return (
     <footer className="border-t bg-gradient-to-r from-[hsl(0,76%,40%)]/5 via-transparent to-[hsl(120,61%,34%)]/5 dark:from-[hsl(0,76%,40%)]/10 dark:via-black/80 dark:to-[hsl(120,61%,34%)]/10 font-sora">
       <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className={`grid gap-8 md:grid-cols-2 lg:grid-cols-4 ${isRTL ? 'text-right' : 'text-left'}`}>
           <div>
-            <div className="flex items-center gap-2">
+            <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <GraduationCap className="h-6 w-6 text-primary" />
               <span className="text-lg font-bold font-sora">IFPPS</span>
             </div>
             <p className={`mt-4 text-sm text-muted-foreground font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
               {t("footer.description") as string}
             </p>
-            <div className="mt-6 flex space-x-4">
+            <div className={`mt-6 flex ${isRTL ? 'flex-row-reverse space-x-reverse' : ''} space-x-4`}>
               <a
                 href="https://www.facebook.com/Palestian.studentsFund"
                 className="rounded-full bg-muted p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
@@ -33,8 +34,8 @@ export default function Footer() {
                 aria-label="Twitter"
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M20.59 3H17.4l-4.4 5.77L8.07 3H3.41l6.96 9.27L3 21h3.2l5.04-6.62L15.95 21H20.6l-7.13-9.49L20.59 3z"/>
-                      </svg>
+                  <path d="M20.59 3H17.4l-4.4 5.77L8.07 3H3.41l6.96 9.27L3 21h3.2l5.04-6.62L15.95 21H20.6l-7.13-9.49L20.59 3z"/>
+                </svg>
               </a>
               <a
                 href="https://www.instagram.com/support.fund.ps/?igsh=MXhvdDFjbjBiMTB2YQ%3D%3D"
@@ -47,7 +48,7 @@ export default function Footer() {
           </div>
           <div>
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.programs") as string}</h3>
-            <ul className="space-y-2">
+            <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
               <li>
                 <a href="/programs/pulse-of-life" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   {t("footer.programs.undergraduate") as string}
@@ -67,7 +68,7 @@ export default function Footer() {
           </div>
           <div>
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.about") as string}</h3>
-            <ul className="space-y-2">
+            <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
               <li>
                 <a href="/about#mission" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   {t("footer.about.mission") as string}
@@ -87,7 +88,7 @@ export default function Footer() {
           </div>
           <div>
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.contact") as string}</h3>
-            <ul className="space-y-2">
+            <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
               <li className="text-gray-600 dark:text-gray-400">Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul</li>
               <li>
                 <a href="mailto:info@isnadf.org" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
@@ -105,7 +106,7 @@ export default function Footer() {
 
         {/* Copyright Section */}
         <div className="border-t border-muted mt-8 pt-8">
-          <div className="text-center text-sm text-gray-600 dark:text-gray-400 font-sora">
+          <div className={`text-center text-sm text-gray-600 dark:text-gray-400 font-sora ${isRTL ? 'text-right' : 'text-left'}`}>
             © {new Date().getFullYear()} IFPPS. {t("footer.rights") as string}
           </div>
         </div>
