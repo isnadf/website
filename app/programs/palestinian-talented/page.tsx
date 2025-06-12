@@ -33,9 +33,11 @@ import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
 
 export default function PalestinianTalentedScholarshipPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const isRTL = language === 'ar'
+
   return (
-    <main className="flex min-h-screen flex-col bg-gradient-to-br from-yellow-50 via-blue-50 to-white dark:from-yellow-950 dark:via-blue-900 dark:to-black">
+    <main dir={isRTL ? 'rtl' : 'ltr'} className={`flex min-h-screen flex-col bg-gradient-to-br from-yellow-50 via-blue-50 to-white dark:from-yellow-950 dark:via-blue-900 dark:to-black ${isRTL ? 'font-arabic' : ''}`}>
       {/* Excellence-themed Header Section */}
       <section className="relative py-20 md:py-28 flex flex-col items-center text-center bg-gradient-to-r from-yellow-400/10 via-blue-500/10 to-yellow-600/10 dark:from-yellow-900/20 dark:via-blue-900/20 dark:to-yellow-800/20 shadow-lg border-b-4 border-yellow-500">
         <div className="mb-6">
@@ -165,19 +167,19 @@ export default function PalestinianTalentedScholarshipPage() {
       {/* Goals Section */}
       <section className="py-16 px-4 md:px-0 bg-white dark:bg-black">
         <div className="max-w-4xl mx-auto">
-          <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8">{t("talented.goals.title")}</GSAPTextReveal>
-          <ul className="space-y-4 text-lg text-gray-800 dark:text-gray-100 font-medium mb-8">
-            <li className="flex items-center gap-3">
-              <Award className="text-green-700" size={24} />
-              <span>{t("talented.goals.scholarships")}</span>
+          <GSAPTextReveal element="h2" className={`text-3xl md:text-4xl font-bold text-center text-green-700 mb-8 ${isRTL ? 'font-arabic' : ''}`}>{t("talented.goals.title")}</GSAPTextReveal>
+          <ul className={`space-y-4 text-lg text-gray-800 dark:text-gray-100 font-medium mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
+            <li className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}>
+              <Award className={`text-green-700 ${isRTL ? 'order-2' : ''}`} size={24} />
+              <span className={`${isRTL ? 'font-arabic order-1' : ''}`}>{t("talented.goals.scholarships")}</span>
             </li>
-            <li className="flex items-center gap-3">
-              <Users className="text-green-700" size={24} />
-              <span>{t("talented.goals.leaders")}</span>
+            <li className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}>
+              <Users className={`text-green-700 ${isRTL ? 'order-2' : ''}`} size={24} />
+              <span className={`${isRTL ? 'font-arabic order-1' : ''}`}>{t("talented.goals.leaders")}</span>
             </li>
-            <li className="flex items-center gap-3">
-              <Target className="text-green-700" size={24} />
-              <span>{t("talented.goals.potential")}</span>
+            <li className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}>
+              <Target className={`text-green-700 ${isRTL ? 'order-2' : ''}`} size={24} />
+              <span className={`${isRTL ? 'font-arabic order-1' : ''}`}>{t("talented.goals.potential")}</span>
             </li>
           </ul>
 
@@ -375,15 +377,16 @@ export default function PalestinianTalentedScholarshipPage() {
       {/* Contact Section */}
       <section className="py-10 bg-gradient-to-r from-green-100/40 via-white to-blue-100/40 dark:from-green-900/30 dark:via-black dark:to-blue-900/30">
         <div className="max-w-2xl mx-auto text-center">
-          <GSAPTextReveal element="h3" className="text-xl font-bold text-green-800 mb-2">{t("talented.contact.title")}</GSAPTextReveal>
-          <p className="text-gray-700 dark:text-gray-200 mb-4">{t("talented.contact.desc")}</p>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-lg">
-            <a href="mailto:info@isnadf.org" className="flex items-center gap-2 text-green-700 hover:underline">
+          <GSAPTextReveal element="h3" className={`text-xl font-bold text-green-800 mb-2 ${isRTL ? 'font-arabic' : ''}`}>
+            {isRTL ? "للمزيد من المعلومات، تواصل معنا:" : "For more information, reach out to us:"}
+          </GSAPTextReveal>
+          <div className={`flex flex-col md:flex-row justify-center items-center gap-4 text-lg ${isRTL ? 'md:flex-row-reverse' : ''}`}>
+            <a href="mailto:info@isnadf.org" className={`flex items-center gap-2 text-green-700 hover:underline ${isRTL ? 'flex-row-reverse font-arabic' : ''}`}>
               <Mail className="text-green-700" size={22} /> info@isnadf.org
             </a>
             <span className="hidden md:inline-block text-gray-400">|</span>
-            <a href="tel:+90539430726" className="flex items-center gap-2 text-green-700 hover:underline">
-              <Phone className="text-green-700" size={22} /> +90 539 430 07 26
+            <a href="tel:+90539430726" className={`flex items-center gap-2 text-green-700 hover:underline ${isRTL ? 'flex-row-reverse font-arabic' : ''}`}>
+              <Phone className="text-green-700" size={22} /> <span dir="ltr">+90 539 430 07 26</span>
             </a>
           </div>
         </div>
