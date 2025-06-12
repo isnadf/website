@@ -104,7 +104,7 @@ export default function Home() {
 
   // Add partners data
   const partners = [
-    { name: "Milli Gençlik Kulübü", logo: "/partners/p1.jpg", type: "Academic Partner" },
+    { name: "Milli Gençlik Vakfı", logo: "/partners/p1.png", type: "Academic Partner" },
     { name: "YediHilal", logo: "/partners/p2.png", type: "Academic Partner" },
     { name: "Hüdayi Vakfı", logo: "/partners/p3.jpeg", type: "Academic Partner" },
     { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: "International Organization" },

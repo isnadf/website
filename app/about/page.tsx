@@ -339,9 +339,9 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-6">
               <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-[#1e7e34]/5 dark:hover:bg-[#1e7e34]/10 hover:shadow-md">
                 <div className="flex items-center justify-center h-32 mb-4">
-                  <Image src="/partners/p1.jpg" alt="Milli Gençlik Kulübü" className="max-h-32 w-auto object-contain" width={200} height={128} />
+                  <Image src="/partners/p1.png" alt="Milli Gençlik Vakfı" className="max-h-32 w-auto object-contain" width={200} height={128} />
                 </div>
-                <p className="font-medium text-black dark:text-white text-sm md:text-base">Milli Gençlik Kulübü</p>
+                <p className="font-medium text-black dark:text-white text-sm md:text-base">Milli Gençlik Vakfı</p>
               </div>
               <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-[#1e7e34]/5 dark:hover:bg-[#1e7e34]/10 hover:shadow-md">
                 <div className="flex items-center justify-center h-32 mb-4">
