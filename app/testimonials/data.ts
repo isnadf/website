@@ -135,11 +135,11 @@ export const publicFigureTestimonials: Testimonial[] = [
   {
     id: 6,
     name: {
-      en: "محيي الدين علي القرة داغي",
+      en: "Sheikh Ali al-Qaradaghi",
       ar: "محيي الدين علي القرة داغي"
     },
     role: {
-      en: "امين عام الاتحاد العالمي لعلماء المسلمين",
+      en: "Secretary General of the International Union of Muslim Scholars",
       ar: "امين عام الاتحاد العالمي لعلماء المسلمين"
     },
     organization: {
@@ -156,11 +156,11 @@ export const publicFigureTestimonials: Testimonial[] = [
   {
     id: 7,
     name: {
-      en: "محيي الدين علي القرة داغي",
+      en: "Sheikh Ali al-Qaradaghi",
       ar: "محيي الدين علي القرة داغي"
     },
     role: {
-      en: "امين عام الاتحاد العالمي لعلماء المسلمين",
+      en: "Secretary General of the International Union of Muslim Scholars",
       ar: "امين عام الاتحاد العالمي لعلماء المسلمين"
     },
     organization: {
@@ -177,11 +177,11 @@ export const publicFigureTestimonials: Testimonial[] = [
   {
     id: 8,
     name: {
-      en: "محمد الصغير",
+      en: "Mohamed al-Saghir",
       ar: "محمد الصغير"
     },
     role: {
-      en: "الأمين العام للهيئة العالمية لأنصار النبي",
+      en: "Secretary General of the International Commission in Support of the Prophet",
       ar: "الأمين العام للهيئة العالمية لأنصار النبي"
     },
     organization: {

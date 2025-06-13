@@ -43,7 +43,7 @@ function TestimonialsContent() {
                 {t("testimonials.hero.title")}
               </h1>
               <p className="text-xl md:text-2xl text-white/90 mb-8 text-center">
-                {t("testimonials.hero.subtitle")}
+                {typeParam === 'influencers' ? t("testimonials.hero.subtitle_influencers") : t("testimonials.hero.subtitle")}
               </p>
             </div>
           </div>

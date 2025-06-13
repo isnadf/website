@@ -1185,6 +1185,7 @@ const translations = {
 
     "testimonials.hero.title": "أصوات مجتمعنا",
     "testimonials.hero.subtitle": "استمع مباشرة من الطلاب عن تجاربهم وتأثير برامجنا",
+    "testimonials.hero.subtitle_influencers": "استمع مباشرة من العلماء والشخصيات العامة عن تجاربهم وتأثير برامجنا",
     "testimonials.student_voices": "أصوات الطلاب",
     "testimonials.student_testimonials": "شهادات الطلاب",
     "testimonials.student_description": "استمع من الطلاب عن تجاربهم وتأثير برامجنا",

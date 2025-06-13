@@ -78,8 +78,8 @@ export default function Header() {
           name: t("nav.media.testimonials") as string,
           href: "/testimonials",
           items: [
-            { name: "Students", href: "/testimonials?type=students" },
-            { name: "Influencers", href: "/testimonials?type=influencers" }
+            { name: t("testimonials.student_voices") as string, href: "/testimonials?type=students" },
+            { name: t("testimonials.public_figures") as string, href: "/testimonials?type=influencers" }
           ]
         }
       ]
