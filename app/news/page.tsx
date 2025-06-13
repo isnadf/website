@@ -99,6 +99,7 @@ const categories = [
 
 export default function NewsPage() {
   const { t, language } = useLanguage()
+  const isRTL = language === "ar"
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [currentPage, setCurrentPage] = useState(1)
@@ -133,7 +134,7 @@ export default function NewsPage() {
   }, [searchQuery, selectedCategory, activeTab])
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -190,12 +191,12 @@ export default function NewsPage() {
       <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
         <div className="container px-4 md:px-6">
           <div className="mb-12 text-center">
-            <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-              <Calendar className="mr-1 h-4 w-4" />
+            <div className="inline-flex items-center justify-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]" style={{ flexDirection: isRTL ? 'row-reverse' : 'row' }}>
+              <Calendar className={`${isRTL ? 'ml-1' : 'mr-1'} h-4 w-4`} />
               {t("news.archive.badge")}
             </div>
-            <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-black dark:text-white">{t("news.archive.title")}</h2>
-            <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
+            <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-black dark:text-white text-center">{t("news.archive.title")}</h2>
+            <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground text-center">
               {t("news.archive.subtitle")}
             </p>
           </div>
@@ -204,58 +205,30 @@ export default function NewsPage() {
             {/* Search and Filter */}
             <div className="mb-8 grid gap-4 md:grid-cols-3">
               <div className="relative md:col-span-2">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[hsl(0,76%,40%)] dark:text-[hsl(0,76%,50%)]" />
+                <Search className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 h-4 w-4 -translate-y-1/2 text-[hsl(0,76%,40%)] dark:text-[hsl(0,76%,50%)]`} />
                 <Input
                   placeholder={t("news.search.placeholder") as string}
-                  className="pl-10 border-[hsl(120,61%,34%)]/20 focus-visible:ring-[hsl(120,61%,34%)] dark:border-[hsl(120,61%,34%)]/30"
+                  className={`${isRTL ? 'pr-10' : 'pl-10'} border-[hsl(120,61%,34%)]/20 focus-visible:ring-[hsl(120,61%,34%)] dark:border-[hsl(120,61%,34%)]/30`}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-[hsl(120,61%,34%)] dark:text-[hsl(120,61%,44%)]" />
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="border-[hsl(120,61%,34%)]/20 focus:ring-[hsl(120,61%,34%)] dark:border-[hsl(120,61%,34%)]/30">
-                    <SelectValue placeholder={t("news.filter.placeholder")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map((category) => (
-                      <SelectItem
-                        key={category.value}
-                        value={category.value}
-                        className="focus:bg-[hsl(120,61%,34%)]/10 focus:text-[hsl(120,61%,34%)] dark:focus:bg-[hsl(120,61%,34%)]/20 dark:focus:text-[hsl(120,61%,44%)]"
-                      >
-                        {category.label[language]}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className="flex justify-center">
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                  <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="all" className="text-center">
+                      {t("news.tabs.all")}
+                    </TabsTrigger>
+                    <TabsTrigger value="featured" className="text-center">
+                      {t("news.tabs.featured")}
+                    </TabsTrigger>
+                    <TabsTrigger value="recent" className="text-center">
+                      {t("news.tabs.recent")}
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
             </div>
-
-            {/* Tabs */}
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
-              <TabsList className="grid w-full max-w-md grid-cols-3 bg-[hsl(0,76%,40%)]/5 dark:bg-[hsl(0,76%,40%)]/10">
-                <TabsTrigger
-                  value="all"
-                  className="data-[state=active]:bg-[hsl(120,61%,34%)] data-[state=active]:text-white"
-                >
-                  {t("news.tabs.all")}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="featured"
-                  className="data-[state=active]:bg-[hsl(120,61%,34%)] data-[state=active]:text-white"
-                >
-                  {t("news.tabs.featured")}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="recent"
-                  className="data-[state=active]:bg-[hsl(120,61%,34%)] data-[state=active]:text-white"
-                >
-                  {t("news.tabs.recent")}
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
 
             {/* News Grid */}
             {paginatedNews.length > 0 ? (
@@ -270,25 +243,41 @@ export default function NewsPage() {
                       />
                     </div>
                     <div className="p-4">
-                      <div className="mb-3 space-y-2">
-                        <div className="flex flex-wrap items-start gap-2">
-                          <Badge variant="outline" className="bg-[hsl(0,76%,40%)]/10 text-[hsl(0,76%,40%)] dark:bg-[hsl(0,76%,40%)]/20 dark:text-[hsl(0,76%,50%)] text-xs leading-tight">
+                      <div className="mb-3 space-y-2" style={{ textAlign: isRTL ? 'right' : 'left' }}>
+                        <div className="flex flex-wrap items-start gap-2" style={{ 
+                          justifyContent: isRTL ? 'flex-end' : 'flex-start',
+                          flexDirection: isRTL ? 'row-reverse' : 'row'
+                        }}>
+                          <Badge 
+                            variant="outline" 
+                            className="bg-[hsl(0,76%,40%)]/10 text-[hsl(0,76%,40%)] dark:bg-[hsl(0,76%,40%)]/20 dark:text-[hsl(0,76%,50%)] text-xs leading-tight"
+                          >
                             {news.category[language]}
                           </Badge>
                         </div>
-                        <div className="flex items-center text-sm text-[hsl(0,76%,40%)] dark:text-[hsl(0,76%,50%)]">
-                          <Calendar className="mr-1 h-3 w-3" />
-                          {news.date}
+                        <div 
+                          className="flex items-center text-sm text-[hsl(0,76%,40%)] dark:text-[hsl(0,76%,50%)]" 
+                          style={{ 
+                            justifyContent: isRTL ? 'flex-end' : 'flex-start',
+                            flexDirection: isRTL ? 'row-reverse' : 'row'
+                          }}
+                        >
+                          <Calendar className={`${isRTL ? 'ml-1' : 'mr-1'} h-3 w-3`} />
+                          <span>{news.date}</span>
                         </div>
                       </div>
-                      <h3 className="mb-2 line-clamp-2 text-xl font-bold text-black dark:text-white">{news.title[language]}</h3>
-                      <p className="mb-4 line-clamp-3 text-muted-foreground">{news.excerpt[language]}</p>
+                      <h3 className="mb-2 line-clamp-2 text-xl font-bold text-black dark:text-white" style={{ textAlign: isRTL ? 'right' : 'left' }}>{news.title[language]}</h3>
+                      <p className="mb-4 line-clamp-3 text-muted-foreground" style={{ textAlign: isRTL ? 'right' : 'left' }}>{news.excerpt[language]}</p>
                       <a
                         href={news.href}
                         className="inline-flex items-center text-sm font-medium text-[hsl(120,61%,34%)] hover:underline dark:text-[hsl(120,61%,44%)]"
+                        style={{ 
+                          flexDirection: isRTL ? 'row-reverse' : 'row',
+                          justifyContent: isRTL ? 'flex-end' : 'flex-start'
+                        }}
                       >
                         {t("news.readMore")}
-                        <ArrowRight className="ml-1 h-4 w-4" />
+                        <ArrowRight className={`${isRTL ? 'mr-1 rotate-180' : 'ml-1'} h-4 w-4`} />
                       </a>
                     </div>
                   </div>
@@ -296,7 +285,7 @@ export default function NewsPage() {
               </div>
             ) : (
               <div className="rounded-lg border-2 border-dashed border-[hsl(0,76%,40%)]/20 dark:border-[hsl(0,76%,40%)]/30 p-8 text-center">
-                <p className="text-[hsl(0,76%,40%)] dark:text-[hsl(0,76%,50%)]">{t("news.noResults")}</p>
+                <p className="text-[hsl(0,76%,40%)] dark:text-[hsl(0,76%,50%)]" style={{ textAlign: isRTL ? 'right' : 'left' }}>{t("news.noResults")}</p>
               </div>
             )}
 
@@ -310,7 +299,7 @@ export default function NewsPage() {
                   disabled={currentPage === 1}
                   className="border-[hsl(120,61%,34%)]/30 hover:bg-[hsl(120,61%,34%)]/10 hover:text-[hsl(120,61%,34%)] dark:border-[hsl(120,61%,34%)]/30 dark:hover:bg-[hsl(120,61%,34%)]/20 dark:hover:text-[hsl(120,61%,44%)]"
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <ChevronLeft className={`h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
                 </Button>
                 <Button
                   variant="outline"
@@ -319,7 +308,7 @@ export default function NewsPage() {
                   disabled={currentPage === totalPages}
                   className="border-[hsl(120,61%,34%)]/30 hover:bg-[hsl(120,61%,34%)]/10 hover:text-[hsl(120,61%,34%)] dark:border-[hsl(120,61%,34%)]/30 dark:hover:bg-[hsl(120,61%,34%)]/20 dark:hover:text-[hsl(120,61%,44%)]"
                 >
-                  <ChevronRight className="h-4 w-4" />
+                  <ChevronRight className={`h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
                 </Button>
               </div>
             )}

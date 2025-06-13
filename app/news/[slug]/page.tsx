@@ -487,58 +487,60 @@ export default function NewsArticlePage() {
         <div className="container px-4 md:px-6">
           <GSAPReveal animation="slide-up">
             <div className="mb-12 text-center">
-              <h2 
-                className="text-3xl font-bold tracking-tighter sm:text-4xl"
-                style={{ textAlign: isRTL ? 'right' : 'left' }}
-              >
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center">
                 {t("news.moreNews")}
               </h2>
-              <p 
-                className="mx-auto mt-4 max-w-[700px] text-muted-foreground"
-                style={{ textAlign: isRTL ? 'right' : 'left' }}
-              >
+              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground text-center">
                 {t("news.moreNewsDesc")}
               </p>
             </div>
           </GSAPReveal>
 
           <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {dynamicRelatedArticles &&
-              dynamicRelatedArticles.slice(0, 3).map((related, index) => (
-                <GSAPReveal key={related.id} animation="slide-up" delay={0.1 * index}>
-                  <Link href={related.href} className="group block">
-                    <div className="overflow-hidden rounded-lg border bg-card transition-all hover:shadow-md">
-                      <div className="p-4">
-                        <Badge 
-                          variant="outline" 
-                          className="mb-2 bg-primary/10 text-primary"
-                        >
-                          {related.category}
-                        </Badge>
-                        <h3 
-                          className="mb-2 line-clamp-2 text-xl font-bold group-hover:text-primary"
-                          style={{ textAlign: isRTL ? 'right' : 'left' }}
-                        >
-                          {related.title}
-                        </h3>
-                        <p 
-                          className="mb-4 line-clamp-2 text-muted-foreground"
-                          style={{ textAlign: isRTL ? 'right' : 'left' }}
-                        >
-                          {related.excerpt}
-                        </p>
-                        <div 
-                          className="flex items-center text-sm text-muted-foreground"
-                          style={{ justifyContent: isRTL ? 'flex-end' : 'flex-start' }}
-                        >
-                          <Calendar className={`${isRTL ? 'ml-1' : 'mr-1'} h-3 w-3`} />
-                          {related.date}
-                        </div>
+            {dynamicRelatedArticles.slice(0, 3).map((related, index) => (
+              <GSAPReveal key={related.id} animation="slide-up" delay={0.1 * index}>
+                <Link href={related.href} className="group block">
+                  <div className="overflow-hidden rounded-lg border bg-card transition-all hover:shadow-md">
+                    <div className="p-4">
+                      <Badge 
+                        variant="outline" 
+                        className="mb-2 bg-primary/10 text-primary"
+                        style={{ 
+                          display: 'inline-block',
+                          marginLeft: isRTL ? 'auto' : '0',
+                          marginRight: isRTL ? '0' : 'auto'
+                        }}
+                      >
+                        {related.category}
+                      </Badge>
+                      <h3 
+                        className="mb-2 line-clamp-2 text-xl font-bold group-hover:text-primary"
+                        style={{ textAlign: isRTL ? 'right' : 'left' }}
+                      >
+                        {related.title}
+                      </h3>
+                      <p 
+                        className="mb-4 line-clamp-2 text-muted-foreground"
+                        style={{ textAlign: isRTL ? 'right' : 'left' }}
+                      >
+                        {related.excerpt}
+                      </p>
+                      <div 
+                        className="flex items-center text-sm text-muted-foreground"
+                        style={{ 
+                          justifyContent: isRTL ? 'flex-end' : 'flex-start',
+                          flexDirection: isRTL ? 'row-reverse' : 'row',
+                          width: '100%'
+                        }}
+                      >
+                        <Calendar className={`${isRTL ? 'ml-1' : 'mr-1'} h-3 w-3`} />
+                        <span style={{ textAlign: isRTL ? 'right' : 'left' }}>{related.date}</span>
                       </div>
                     </div>
-                  </Link>
-                </GSAPReveal>
-              ))}
+                  </div>
+                </Link>
+              </GSAPReveal>
+            ))}
           </div>
         </div>
       </section>
