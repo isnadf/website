@@ -60,7 +60,7 @@ export default function NewsCards2({
           isAnyCardHovered && !isHovered ? 'blur-[2px] opacity-50' : ''
         } ${isClickable ? 'cursor-pointer' : ''}`}
       >
-        <div className="relative h-[240px] overflow-hidden">
+        <div className="relative aspect-[16/9] w-full">
           {!imageError ? (
             <Image
               src={image}
