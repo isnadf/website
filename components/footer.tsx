@@ -50,17 +50,17 @@ export default function Footer() {
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.programs") as string}</h3>
             <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
               <li>
-                <a href="/programs/pulse-of-life" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <a href="/programs" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   {t("footer.programs.undergraduate") as string}
                 </a>
               </li>
               <li>
-                <a href="/programs/palestinian-talented" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <a href="/programs" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   {t("footer.programs.graduate") as string}
                 </a>
               </li>
               <li>
-                <a href="/programs/sustainability" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <a href="/programs" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   {t("footer.programs.research") as string}
                 </a>
               </li>
@@ -70,17 +70,17 @@ export default function Footer() {
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.about") as string}</h3>
             <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
               <li>
-                <a href="/about#mission" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <a href="/about" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   {t("footer.about.mission") as string}
                 </a>
               </li>
               <li>
-                <a href="/about#team" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <a href="/about" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   {t("footer.about.team") as string}
                 </a>
               </li>
               <li>
-                <a href="/about#partners" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <a href="/about" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   {t("footer.about.partners") as string}
                 </a>
               </li>
