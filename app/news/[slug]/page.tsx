@@ -134,6 +134,38 @@ const newsArticles: Record<string, ArticleData> = {
         "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
       ]
     }
+  },
+  "pulse-of-life-disbursement": {
+    title: {
+      en: "Disbursements of the first phase of the Pulse of Life program have begun in Türkiye.",
+      ar: "بدء صرف منح المرحلة الأولى من برنامج نبض الحياة في تركيا"
+    },
+    date: "June 06, 2024",
+    author: "Isnad Foundation",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    image: "/LastNews/latestnews4.jpeg",
+    heroImage: "/LastNews/latestnews4.jpeg",
+    content: {
+      en: [
+        "Istanbul / Turkey",
+        "The Isnad Foundation for Palestinian Student Support announced the commencement of disbursing scholarships to students benefiting from the first phase of the Pulse of Life program, starting May 1, 2025, in partnership with and with the generous support of the Turkish National Youth Association (MGV - Milli Gençlik Vakfı).",
+        "The first phase included ten Palestinian students studying in Turkish universities in human medicine specialties, where the first two monthly grant payments were disbursed, in a practical step aimed at supporting their academic and living stability and helping them overcome the challenges they face.",
+        "In this context, the foundation met with a number of beneficiary students and documented special video clips in which they expressed their gratitude to the supporting parties, while also encouraging their fellow students to register for the program and benefit from this unique opportunity.",
+        "The Pulse of Life is one of the pioneering initiatives launched by the Isnad Foundation in partnership with several institutions, targeting the provision of sustainable financial grants to one thousand Palestinian students in medical specialties, with the aim of enabling them to continue their studies and contribute to serving their community and homeland, within a five-year support plan.",
+        "The Isnad Foundation confirmed that it continues to receive registration applications for the next phase of the program, as part of its vision to enhance the resilience of Palestinian students and provide a safe educational environment that supports academic excellence and creativity."
+      ],
+      ar: [
+        "إسطنبول / تركيا",
+        "أعلنت مؤسسة إسناد لدعم الطالب الفلسطيني عن بدء صرف المنح الدراسية للطلبة المستفيدين ضمن المرحلة الأولى من برنامج \"نبض الحياة\"، وذلك اعتبارًا من 1 مايو 2025، بالشراكة والدعم الكريم من جمعية الشباب الوطني التركي (MGV - Milli Gençlik Vakfı).",
+        "وشملت المرحلة الأولية عشرة طلاب فلسطينيين يدرسون في الجامعات التركية في تخصصات الطب البشري، حيث تم صرف أول دفعتين من المنحة الشهرية، في خطوة عملية تهدف إلى دعم استقرارهم الأكاديمي والمعيشي، ومساندتهم في تجاوز التحديات التي يواجهونها.",
+        "وفي هذا السياق، التقت المؤسسة بعدد من الطلبة المستفيدين، وقامت بتوثيق مقاطع فيديو خاصة عبّروا فيها عن امتنانهم للجهات الداعمة، كما دعوا زملاءهم الطلبة إلى التسجيل في البرنامج والاستفادة من هذه الفرصة النوعية.",
+        "ويُعد \"نبض الحياة\" من المبادرات الرائدة التي أطلقتها مؤسسة إسناد بالشراكة مع  عدد من المؤسسات، ويستهدف تقديم منح مالية مستدامة لألف طالب فلسطيني في التخصصات الطبية، بهدف تمكينهم من مواصلة دراستهم والمساهمة في خدمة مجتمعهم ووطنهم، ضمن خطة دعم تصل إلى خمس سنوات.",
+        "وأكدت مؤسسة إسناد أنها مستمرة في استقبال طلبات التسجيل للمرحلة المقبلة من البرنامج، في إطار رؤيتها لتعزيز صمود الطلبة الفلسطينيين وتوفير بيئة تعليمية آمنة تدعم التميز الأكاديمي والإبداع."
+      ]
+    }
   }
 }
 
@@ -185,6 +217,49 @@ export default function NewsArticlePage() {
       category: article.category[language],
       href: `/news/${key}`
     }))
+
+  // Share handlers
+  const handleShare = async (platform: string) => {
+    const url = window.location.href
+    const title = article.title[language]
+    const text = article.content[language][0]
+
+    switch (platform) {
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank')
+        break
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank')
+        break
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank')
+        break
+      case 'general':
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title,
+              text,
+              url
+            })
+          } catch (err) {
+            // Only log actual errors, not user cancellations
+            if (err instanceof Error && err.name !== 'AbortError') {
+              console.error('Error sharing:', err)
+            }
+          }
+        } else {
+          // Fallback for browsers that don't support the Web Share API
+          try {
+            await navigator.clipboard.writeText(url)
+            alert(t("news.linkCopied"))
+          } catch (err) {
+            console.error('Error copying to clipboard:', err)
+          }
+        }
+        break
+    }
+  }
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -272,16 +347,36 @@ export default function NewsArticlePage() {
               <div className="mt-8 flex items-center gap-4">
                 <span className="text-sm font-medium">{t("news.share")}</span>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="icon" className="h-8 w-8">
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="h-8 w-8 hover:bg-blue-50 hover:text-blue-600"
+                    onClick={() => handleShare('facebook')}
+                  >
                     <Facebook className="h-4 w-4" />
                   </Button>
-                  <Button variant="outline" size="icon" className="h-8 w-8">
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="h-8 w-8 hover:bg-sky-50 hover:text-sky-600"
+                    onClick={() => handleShare('twitter')}
+                  >
                     <Twitter className="h-4 w-4" />
                   </Button>
-                  <Button variant="outline" size="icon" className="h-8 w-8">
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="h-8 w-8 hover:bg-blue-50 hover:text-blue-700"
+                    onClick={() => handleShare('linkedin')}
+                  >
                     <Linkedin className="h-4 w-4" />
                   </Button>
-                  <Button variant="outline" size="icon" className="h-8 w-8">
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="h-8 w-8 hover:bg-gray-50 hover:text-gray-600"
+                    onClick={() => handleShare('general')}
+                  >
                     <Share2 className="h-4 w-4" />
                   </Button>
                 </div>

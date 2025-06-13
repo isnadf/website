@@ -508,6 +508,8 @@ const translations = {
     "news.explorePrograms": "Explore Our Programs",
     "news.exploreProgramsDesc": "Discover our scholarship programs and educational initiatives",
     "news.viewPrograms": "View All Programs",
+    "news.share": "Share this article",
+    "news.linkCopied": "Link copied to clipboard",
 
 
   "news.latest.supportTour.title": "Isnad Conducts Support Tours in Six Countries and Provides Educational Grants to Gaza Students",
@@ -1060,6 +1062,8 @@ const translations = {
     "news.explorePrograms": "استكشف برامجنا",
     "news.exploreProgramsDesc": "اكتشف برامج المنح الدراسية ومبادراتنا التعليمية",
     "news.viewPrograms": "عرض جميع البرامج",
+    "news.share": "مشاركة المقال",
+    "news.linkCopied": "تم نسخ الرابط إلى الحافظة",
 
     "news.latest.supportTour.title": "إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
     "news.latest.supportTour.excerpt": "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
