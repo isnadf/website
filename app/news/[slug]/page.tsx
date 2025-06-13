@@ -310,23 +310,26 @@ export default function NewsArticlePage() {
                 </h1>
                 <div 
                   className="flex flex-wrap items-center gap-4 text-muted-foreground"
-                  style={{ justifyContent: isRTL ? 'flex-end' : 'flex-start' }}
+                  style={{ 
+                    justifyContent: isRTL ? 'flex-end' : 'flex-start',
+                    flexDirection: isRTL ? 'row-reverse' : 'row'
+                  }}
                 >
                   {article.date && (
-                    <div className="flex items-center">
-                      <Calendar className="mr-2 h-4 w-4" />
+                    <div className="flex items-center" style={{ flexDirection: isRTL ? 'row-reverse' : 'row' }}>
+                      <Calendar className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4`} />
                       <span>{article.date}</span>
                     </div>
                   )}
                   {article.author && (
-                    <div className="flex items-center">
-                      <User className="mr-2 h-4 w-4" />
+                    <div className="flex items-center" style={{ flexDirection: isRTL ? 'row-reverse' : 'row' }}>
+                      <User className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4`} />
                       <span>{article.author}</span>
                     </div>
                   )}
                   {article.category && (
-                    <div className="flex items-center">
-                      <Tag className="mr-2 h-4 w-4" />
+                    <div className="flex items-center" style={{ flexDirection: isRTL ? 'row-reverse' : 'row' }}>
+                      <Tag className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4`} />
                       <span>{article.category[language]}</span>
                     </div>
                   )}
