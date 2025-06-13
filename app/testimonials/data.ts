@@ -48,7 +48,7 @@ export const studentTestimonials: Testimonial[] = [
     id: 2,
     name: {
       en: "Hassan Albirok",
-      ar: "حسن البيارق"
+      ar: "حسن البيوك"
     },
     role: {
       en: "Bachelor's Student",
@@ -90,7 +90,7 @@ export const studentTestimonials: Testimonial[] = [
     id: 4,
     name: {
       en: "Omer Qadih",
-      ar: "عمر قاضي"
+      ar: "عمر قديح"
     },
     role: {
       en: "PhD Student",
@@ -111,7 +111,7 @@ export const studentTestimonials: Testimonial[] = [
     id: 5,
     name: {
       en: "Mohammed Algodra",
-      ar: "محمد الجدع"
+      ar: "محمد القدرة"
     },
     role: {
       en: "PhD Student",
