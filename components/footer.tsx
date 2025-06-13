@@ -17,20 +17,24 @@ export default function Footer() {
               <GraduationCap className="h-6 w-6 text-primary" />
               <span className="text-lg font-bold font-sora">IFPPS</span>
             </div>
-            <p className={`mt-4 text-sm text-muted-foreground font-sora ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
+            <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
               {t("footer.description") as string}
             </p>
-            <div className={`mt-6 flex ${isRTL ? 'flex-row-reverse space-x-reverse' : ''} space-x-4`}>
+            <div className="flex items-center space-x-4 rtl:space-x-reverse rtl:space-x-4 mt-6">
               <a
                 href="https://www.facebook.com/Palestian.studentsFund"
-                className="rounded-full bg-muted p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
                 href="https://x.com/IsnadFoundation"
-                className="rounded-full bg-muted p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
                 aria-label="Twitter"
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -39,7 +43,9 @@ export default function Footer() {
               </a>
               <a
                 href="https://www.instagram.com/support.fund.ps/?igsh=MXhvdDFjbjBiMTB2YQ%3D%3D"
-                className="rounded-full bg-muted p-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -96,7 +102,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="tel:+905394300726" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400" dir="ltr">
+                <a href="tel:+905394300726" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 [direction:ltr] [unicode-bidi:isolate]">
                   +90 5394300726
                 </a>
               </li>
@@ -105,9 +111,13 @@ export default function Footer() {
         </div>
 
         {/* Copyright Section */}
-        <div className="border-t border-muted mt-8 pt-8">
-          <div className={`text-center text-sm text-gray-600 dark:text-gray-400 font-sora ${isRTL ? 'text-right' : 'text-left'}`}>
-            © {new Date().getFullYear()} IFPPS. {t("footer.rights") as string}
+        <div className="border-t border-gray-200 dark:border-gray-800 relative">
+          <div className="absolute left-1/2 transform -translate-x-1/2 py-8">
+            <div className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
+              <span>© 2025 IFPPS.</span>
+              <span className="mx-2">|</span>
+              <span>{t("footer.rights")}</span>
+            </div>
           </div>
         </div>
       </div>
