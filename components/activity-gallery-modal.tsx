@@ -6,19 +6,8 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { VisuallyHidden } from "@/components/ui/visually-hidden"
 import { Badge } from "@/components/ui/badge"
-
-interface Activity {
-  id: number
-  title: string
-  date: string
-  location: string
-  description: string
-  full_description: string
-  image: string
-  category: string
-  featured: boolean
-  year: number
-}
+import { Activity } from "@/app/activities/data"
+import { useLanguage } from "@/components/language-provider"
 
 interface ActivityGalleryModalProps {
   isOpen: boolean
@@ -31,6 +20,7 @@ export function ActivityGalleryModal({
   onClose,
   activity,
 }: ActivityGalleryModalProps) {
+  const { language } = useLanguage()
   const [images, setImages] = useState<string[]>([])
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -223,7 +213,7 @@ export function ActivityGalleryModal({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-7xl w-[95vw] max-h-[95vh] p-6 bg-white dark:bg-gray-900 overflow-auto">
         <DialogTitle>
-          <VisuallyHidden>{activity.title} Gallery</VisuallyHidden>
+          <VisuallyHidden>{activity.title[language]} Gallery</VisuallyHidden>
         </DialogTitle>
 
         {loading ? (
@@ -251,7 +241,7 @@ export function ActivityGalleryModal({
                 ) : (
                   <img
                     src={images[selectedImageIndex]}
-                    alt={`${activity.title} image ${selectedImageIndex + 1}`}
+                    alt={`${activity.title[language]} image ${selectedImageIndex + 1}`}
                     className="w-full h-full rounded-lg object-contain"
                   />
                 )}
@@ -289,28 +279,28 @@ export function ActivityGalleryModal({
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <Badge variant="outline" className="bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] flex items-center gap-1 px-3 py-1.5 text-base">
-                  {getActivityIcon(activity.category)}
-                  {activity.category}
+                  {getActivityIcon(activity.category[language])}
+                  {activity.category[language]}
                 </Badge>
                 <span className="text-base font-medium text-muted-foreground">{activity.year}</span>
               </div>
 
-              <h2 className="text-2xl md:text-3xl font-bold">{activity.title}</h2>
+              <h2 className="text-2xl md:text-3xl font-bold">{activity.title[language]}</h2>
 
               <div className="flex flex-wrap gap-4 text-muted-foreground">
                 <div className="flex items-center">
                   <Calendar className="mr-2 h-5 w-5" />
-                  {activity.date}
+                  {activity.date[language]}
                 </div>
                 <div className="flex items-center">
                   <MapPin className="mr-2 h-5 w-5" />
-                  {activity.location}
+                  {activity.location[language]}
                 </div>
               </div>
 
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold">Description</h3>
-                <p className="text-muted-foreground">{activity.full_description}</p>
+                <p className="text-muted-foreground">{activity.full_description[language]}</p>
               </div>
             </div>
           </div>

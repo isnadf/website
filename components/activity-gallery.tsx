@@ -8,25 +8,15 @@ import { Calendar, MapPin } from "lucide-react"
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import Image from 'next/image'
-
-interface Activity {
-  id: number
-  title: string
-  date: string
-  location: string
-  description: string
-  full_description: string
-  image: string
-  category: string
-  featured: boolean
-  year: number
-}
+import { Activity } from "@/app/activities/data"
+import { useLanguage } from "@/components/language-provider"
 
 interface ActivityGalleryProps {
   activity: Activity
 }
 
 export function ActivityGallery({ activity }: ActivityGalleryProps) {
+  const { language } = useLanguage()
   const [images, setImages] = useState<string[]>([])
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -197,20 +187,20 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
       {/* Activity Info */}
       <div className="space-y-4 sm:space-y-6">
         <Badge className="bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] text-sm sm:text-base px-3 py-1.5">
-          {activity.category}
+          {activity.category[language]}
         </Badge>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">{activity.title}</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">{activity.title[language]}</h1>
         <div className="flex flex-wrap gap-3 sm:gap-4 text-sm sm:text-base text-muted-foreground">
           <div className="flex items-center">
             <Calendar className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-            {activity.date}
+            {activity.date[language]}
           </div>
           <div className="flex items-center">
             <MapPin className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-            {activity.location}
+            {activity.location[language]}
           </div>
         </div>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground">{activity.description}</p>
+        <p className="text-sm sm:text-base md:text-lg text-muted-foreground">{activity.description[language]}</p>
       </div>
 
       {/* Main Image Gallery */}
@@ -236,7 +226,7 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
               <div className="relative h-full w-full">
                 <Image
                   src={images[selectedImageIndex]}
-                  alt={`Activity image ${selectedImageIndex + 1}`}
+                  alt={`${activity.title[language]} image ${selectedImageIndex + 1}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                   className="object-cover"

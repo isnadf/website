@@ -8,9 +8,11 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ActivityGallery } from "@/components/activity-gallery"
 import { activitiesData, type Activity } from "@/app/activities/data"
+import { useLanguage } from "@/components/language-provider"
 
 export default function ActivityPage() {
   const params = useParams()
+  const { language } = useLanguage()
   const activityId = parseInt(params.id as string)
   const activity = activitiesData.find((a: Activity) => a.id === activityId)
 
@@ -54,7 +56,7 @@ export default function ActivityPage() {
         <div className="absolute inset-0">
           <img
             src={activity.image || "/placeholder.svg"}
-            alt={activity.title}
+            alt={activity.title[language]}
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
@@ -69,10 +71,10 @@ export default function ActivityPage() {
             </Link>
             <div className="space-y-4">
               <Badge variant="outline" className="bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] text-base px-3 py-1">
-                {getActivityIcon(activity.category)}
-                {activity.category}
+                {getActivityIcon(activity.category[language])}
+                {activity.category[language]}
               </Badge>
-              <h1 className="text-4xl font-bold text-white sm:text-5xl">{activity.title}</h1>
+              <h1 className="text-4xl font-bold text-white sm:text-5xl">{activity.title[language]}</h1>
             </div>
           </div>
         </div>
@@ -82,6 +84,26 @@ export default function ActivityPage() {
       <section className="py-16 md:py-24">
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
+            {/* Activity Details */}
+            <div className="mb-16 space-y-8">
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-2 rounded-full">
+                  <Calendar className="mr-2 h-5 w-5 text-[#1e7e34]" />
+                  {activity.date[language]}
+                </div>
+                <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-2 rounded-full">
+                  <MapPin className="mr-2 h-5 w-5 text-[#1e7e34]" />
+                  {activity.location[language]}
+                </div>
+              </div>
+              <div className="prose dark:prose-invert max-w-none">
+                <p className="text-lg text-gray-600 dark:text-gray-300">{activity.description[language]}</p>
+                <div className="mt-8 text-gray-600 dark:text-gray-300">
+                  {activity.full_description[language]}
+                </div>
+              </div>
+            </div>
+
             {/* Gallery Section */}
             <div className="mb-16">
               <ActivityGallery activity={activity} />

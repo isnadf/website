@@ -5,7 +5,7 @@ import Link from "next/link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin"
-import {Search,Filter,Calendar,MapPin,Users,ChevronLeft,ChevronRight,BookOpen,Presentation,Globe,Award,Handshake} from "lucide-react"
+import { Search, Filter, Calendar, MapPin, Users, ChevronLeft, ChevronRight, BookOpen, Presentation, Globe, Award, Handshake, ThumbsUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -15,34 +15,91 @@ import { Card, CardContent } from "@/components/ui/card"
 import GSAPReveal from "@/components/gsap-reveal"
 import { ActivityGallery } from "@/components/activity-gallery"
 import ActivityGalleryHero from "@/components/activity-gallery-hero"
+import { useLanguage } from "@/components/language-provider"
 
 import { activitiesData, type Activity } from "./data"
 
-// Categories for filtering
-const categories = [
-  "All",
-  "Conference",
-  "Cultural Event",
-  "Education Fair",
-  "Workshop",
-  "Seminar",
-  "Networking"
-]
-const years = ["All", "2023", "2022", "2021"]
-const locations = ["All", "İstanbul, Türkiye","Cairo, Eygpt" ,"Bishkek, Kyrgyzstan", "Kuala Lumpur, Malaysia","Nouakchott, mauritania"]
+// Type definitions
+type Language = 'en' | 'ar'
+
+type Category = {
+  en: string;
+  ar: string;
+}
+
+type Location = {
+  en: string;
+  ar: string;
+}
+
+type LocalizedText = {
+  en: string;
+  ar: string;
+}
+
+// Helper function to get localized text
+const getLocalizedText = (obj: LocalizedText, lang: Language): string => {
+  return obj[lang]
+}
+
+// Helper function to initialize state
+const initializeState = () => {
+  const DEFAULT_CATEGORY: Category = { en: "All", ar: "الكل" }
+  const DEFAULT_LOCATION: Location = { en: "All", ar: "الكل" }
+
+  const categoryOptions: Category[] = [
+    DEFAULT_CATEGORY,
+    { en: "Conference", ar: "مؤتمر" },
+    { en: "Cultural Event", ar: "فعالية ثقافية" },
+    { en: "Education Fair", ar: "معرض تعليمي" },
+    { en: "Workshop", ar: "ورشة عمل" },
+    { en: "Seminar", ar: "ندوة" },
+    { en: "Networking", ar: "تواصل" }
+  ]
+
+  const yearOptions = ["All", "2023", "2022", "2021"]
+
+  const locationOptions: Location[] = [
+    DEFAULT_LOCATION,
+    { en: "İstanbul, Türkiye", ar: "إسطنبول، تركيا" },
+    { en: "Cairo, Egypt", ar: "القاهرة، مصر" },
+    { en: "Bishkek, Kyrgyzstan", ar: "بيشكيك، قيرغيزستان" },
+    { en: "Kuala Lumpur, Malaysia", ar: "كوالالمبور، ماليزيا" },
+    { en: "Nouakchott, Mauritania", ar: "نواكشوط، موريتانيا" }
+  ]
+
+  return {
+    DEFAULT_CATEGORY,
+    DEFAULT_LOCATION,
+    categoryOptions,
+    yearOptions,
+    locationOptions
+  }
+}
 
 export default function ActivitiesPage() {
+  const { language } = useLanguage()
+  const lang = language as Language
+
+  // Initialize state and constants
+  const { DEFAULT_CATEGORY, DEFAULT_LOCATION, categoryOptions, yearOptions, locationOptions } = initializeState()
+
+  // State initialization
   const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [selectedCategoryKey, setSelectedCategoryKey] = useState(DEFAULT_CATEGORY.en)
   const [selectedYear, setSelectedYear] = useState("All")
-  const [selectedLocation, setSelectedLocation] = useState("All")
-  const [currentPage, setCurrentPage] = useState(1)
+  const [selectedLocationKey, setSelectedLocationKey] = useState(DEFAULT_LOCATION.en)
   const [activeTab, setActiveTab] = useState("all")
-  const itemsPerPage = 6
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 9
 
   // State for individual activity gallery modals
   const [galleryActivity, setGalleryActivity] = useState<typeof activitiesData[0] | null>(null)
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
+
+  // Get the full category and location objects from their keys
+  const selectedCategory = categoryOptions.find(c => c.en === selectedCategoryKey) || DEFAULT_CATEGORY
+  const selectedLocation = locationOptions.find(l => l.en === selectedLocationKey) || DEFAULT_LOCATION
 
   const handleViewGallery = (activity: typeof activitiesData[0]) => {
     setGalleryActivity(activity)
@@ -93,15 +150,17 @@ export default function ActivitiesPage() {
   }, [])
 
   // Filter activities based on search query, category, year, location, and tab
-  const filteredActivities = activitiesData.filter((activity) => {
+  const filteredActivities = activitiesData.filter((activity: Activity) => {
     const matchesSearch =
-      activity.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      activity.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      activity.location.toLowerCase().includes(searchQuery.toLowerCase())
+      getLocalizedText(activity.title, lang).toLowerCase().includes(searchQuery.toLowerCase()) ||
+      getLocalizedText(activity.description, lang).toLowerCase().includes(searchQuery.toLowerCase()) ||
+      getLocalizedText(activity.location, lang).toLowerCase().includes(searchQuery.toLowerCase())
 
-    const matchesCategory = selectedCategory === "All" || activity.category === selectedCategory
+    const matchesCategory = selectedCategoryKey === DEFAULT_CATEGORY.en || 
+      getLocalizedText(activity.category, lang) === getLocalizedText(selectedCategory, lang)
     const matchesYear = selectedYear === "All" || activity.year.toString() === selectedYear
-    const matchesLocation = selectedLocation === "All" || activity.location === selectedLocation
+    const matchesLocation = selectedLocationKey === DEFAULT_LOCATION.en || 
+      getLocalizedText(activity.location, lang) === getLocalizedText(selectedLocation, lang)
 
     const matchesTab = activeTab === "all" || (activeTab === "featured" && activity.featured)
 
@@ -115,7 +174,7 @@ export default function ActivitiesPage() {
   // Reset to first page when filters change
   useEffect(() => {
     setCurrentPage(1)
-  }, [searchQuery, selectedCategory, selectedYear, selectedLocation, activeTab])
+  }, [searchQuery, selectedCategoryKey, selectedYear, selectedLocationKey, activeTab])
 
   // Activity type icons
   const getActivityIcon = (category: string) => {
@@ -137,21 +196,22 @@ export default function ActivitiesPage() {
     }
   }
 
+  // Update categories to use language-specific values
+  const categories = [
+    "All",
+    ...Array.from(new Set(activitiesData.map(activity => activity.category[language as Language])))
+  ]
+
+  // Update locations to use language-specific values
+  const locations = [
+    "All",
+    ...Array.from(new Set(activitiesData.map(activity => activity.location[language as Language])))
+  ]
+
   return (
     <main className="flex min-h-screen flex-col bg-[#f8faf8] dark:bg-gray-950">
       {/* Activity Gallery Hero Section */}
-      <ActivityGalleryHero
-        activities={activitiesData}
-      />
-
-      {/* Gallery Modal for individual activities */}
-      {galleryActivity && (
-        <div className="container px-4 md:px-6 py-16">
-          <ActivityGallery activity={galleryActivity} />
-        </div>
-      )}
-
-
+      <ActivityGalleryHero activities={activitiesData} />
 
       {/* Featured Activities */}
       <section className="py-16 md:py-24 bg-white dark:bg-gray-950 relative">
@@ -161,16 +221,18 @@ export default function ActivitiesPage() {
             <div className="mb-16 text-center">
               <div className="inline-flex items-center rounded-full bg-[#1e7e34]/10 dark:bg-[#1e7e34]/20 px-4 py-2 text-base text-[#1e7e34] shadow-sm">
                 <Award className="mr-2 h-5 w-5" />
-                Featured Events
+                {language === 'en' ? 'Featured Events' : 'الفعاليات المميزة'}
               </div>
               <h2 className="mt-3 text-4xl font-bold sm:text-5xl text-gray-900 dark:text-white leading-tight">
                 <span className="relative">
-                  Highlighted Activities
+                  {language === 'en' ? 'Highlighted Activities' : 'الأنشطة البارزة'}
                   <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/0 via-[#1e7e34]/80 to-[#1e7e34]/0"></span>
                 </span>
               </h2>
               <p className="mx-auto mt-8 max-w-[800px] text-gray-600 dark:text-gray-300 text-xl">
-                Our most impactful recent events and initiatives.
+                {language === 'en' 
+                  ? 'Our most impactful recent events and initiatives.'
+                  : 'أحدث فعالياتنا ومبادراتنا الأكثر تأثيراً'}
               </p>
             </div>
           </GSAPReveal>
@@ -182,41 +244,39 @@ export default function ActivitiesPage() {
               .map((activity, index) => (
                 <GSAPReveal key={activity.id} animation="slide-up" delay={0.1 * index}>
                   <Link href={`/activities/${activity.id}`}>
-                  <Card
-                    className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 hover:-translate-y-2 cursor-pointer group bg-white dark:bg-gray-900 rounded-xl"
-                  >
-                    <div className="aspect-video overflow-hidden relative">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
-                      <img
-                        src={activity.image || "/placeholder.svg"}
-                        alt={activity.title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <Badge className="absolute top-4 left-4 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-[#1e7e34] border-0 shadow-md">
-                        {activity.category}
-                      </Badge>
-                      <div className="absolute bottom-4 right-4 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {activity.year}
-                      </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="mb-3 text-xl font-bold line-clamp-2 text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors">{activity.title}</h3>
-                      <div className="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
-                        <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
-                          <Calendar className="mr-2 h-4 w-4 text-[#1e7e34]" />
-                          {activity.date}
-                        </div>
-                        <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
-                          <MapPin className="mr-2 h-4 w-4 text-[#1e7e34]" />
-                          {activity.location}
+                    <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 hover:-translate-y-2 cursor-pointer group bg-white dark:bg-gray-900 rounded-xl">
+                      <div className="aspect-video overflow-hidden relative">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
+                        <img
+                          src={activity.image || "/placeholder.svg"}
+                          alt={activity.title[language as Language]}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <Badge className="absolute top-4 left-4 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-[#1e7e34] border-0 shadow-md">
+                          {activity.category[language as Language]}
+                        </Badge>
+                        <div className="absolute bottom-4 right-4 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300">
+                          {activity.year}
                         </div>
                       </div>
-                      <p className="mb-6 line-clamp-2 text-gray-600 dark:text-gray-300">{activity.description}</p>
-                      <Button className="w-full bg-white dark:bg-gray-900 text-[#1e7e34] border border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group-hover:bg-[#1e7e34] group-hover:text-white">
-                        Read More
-                      </Button>
-                    </CardContent>
-                  </Card>
+                      <CardContent className="p-6">
+                        <h3 className="mb-3 text-xl font-bold line-clamp-2 text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors">{activity.title[language as Language]}</h3>
+                        <div className="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
+                          <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
+                            <Calendar className="mr-2 h-4 w-4 text-[#1e7e34]" />
+                            {activity.date[language as Language]}
+                          </div>
+                          <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
+                            <MapPin className="mr-2 h-4 w-4 text-[#1e7e34]" />
+                            {activity.location[language as Language]}
+                          </div>
+                        </div>
+                        <p className="mb-6 line-clamp-2 text-gray-600 dark:text-gray-300">{activity.description[language as Language]}</p>
+                        <Button className="w-full bg-white dark:bg-gray-900 text-[#1e7e34] border border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group-hover:bg-[#1e7e34] group-hover:text-white">
+                          {language === 'en' ? 'Read More' : 'اقرأ المزيد'}
+                        </Button>
+                      </CardContent>
+                    </Card>
                   </Link>
                 </GSAPReveal>
               ))}
@@ -236,12 +296,14 @@ export default function ActivitiesPage() {
             <div className="mb-16 text-center">
               <h2 className="text-3xl font-bold sm:text-5xl text-gray-900 dark:text-white mb-4">
                 <span className="relative inline-block">
-                  Our Impact
+                  {language === 'en' ? 'Our Impact' : 'تأثيرنا'}
                   <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/0 via-[#1e7e34]/80 to-[#1e7e34]/0"></span>
                 </span>
               </h2>
               <p className="mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 text-xl">
-                The collective reach and influence of our activities and programs.
+                {language === 'en' 
+                  ? 'The collective reach and influence of our activities and programs.'
+                  : 'الوصول والتأثير الجماعي لأنشطتنا وبرامجنا.'}
               </p>
             </div>
           </GSAPReveal>
@@ -253,7 +315,9 @@ export default function ActivitiesPage() {
                   <Award className="h-8 w-8 text-[#1e7e34]" />
                 </div>
                 <span className="text-5xl font-bold text-[#1e7e34] mb-2">7</span>
-                <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">Events & Activities</span>
+                <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+                  {language === 'en' ? 'Events & Activities' : 'الفعاليات والأنشطة'}
+                </span>
               </div>
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.2}>
@@ -262,7 +326,9 @@ export default function ActivitiesPage() {
                   <Users className="h-8 w-8 text-[#1e7e34]" />
                 </div>
                 <span className="text-5xl font-bold text-[#1e7e34] mb-2">1,620+</span>
-                <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">Participants</span>
+                <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+                  {language === 'en' ? 'Participants' : 'المشاركين'}
+                </span>
               </div>
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.3}>
@@ -271,16 +337,20 @@ export default function ActivitiesPage() {
                   <MapPin className="h-8 w-8 text-[#1e7e34]" />
                 </div>
                 <span className="text-5xl font-bold text-[#1e7e34] mb-2">5</span>
-                <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">Cities</span>
+                <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+                  {language === 'en' ? 'Cities' : 'المدن'}
+                </span>
               </div>
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.4}>
               <div className="flex flex-col items-center justify-center text-center p-8 rounded-xl bg-white dark:bg-gray-900 shadow-lg hover:shadow-xl transition-all duration-300 h-full group">
                 <div className="w-16 h-16 rounded-full bg-[#1e7e34]/10 dark:bg-[#1e7e34]/20 flex items-center justify-center mb-4 group-hover:bg-[#1e7e34]/20 dark:group-hover:bg-[#1e7e34]/30 transition-colors">
-                  <Handshake className="h-8 w-8 text-[#1e7e34]" />
+                  <ThumbsUp className="h-8 w-8 text-[#1e7e34]" />
                 </div>
                 <span className="text-5xl font-bold text-[#1e7e34] mb-2">98%</span>
-                <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">Satisfaction Rate</span>
+                <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+                  {language === 'en' ? 'Satisfaction Rate' : 'معدل الرضا'}
+                </span>
               </div>
             </GSAPReveal>
           </div>
@@ -301,16 +371,18 @@ export default function ActivitiesPage() {
             <div className="mb-12 text-center">
               <div className="inline-flex items-center rounded-full bg-[#1e7e34]/10 dark:bg-[#1e7e34]/20 px-4 py-2 text-sm text-[#1e7e34] shadow-sm">
                 <Calendar className="mr-2 h-4 w-4" />
-                Past Events
+                {language === 'en' ? 'Past Events' : 'الفعاليات السابقة'}
               </div>
               <h2 className="mt-3 text-3xl font-bold sm:text-5xl text-gray-900 dark:text-white mb-4">
                 <span className="relative inline-block">
-                  Activity Archive
+                  {language === 'en' ? 'Activity Archive' : 'أرشيف الأنشطة'}
                   <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/0 via-[#1e7e34]/80 to-[#1e7e34]/0"></span>
                 </span>
               </h2>
               <p className="mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 text-xl">
-                Browse through our complete history of events, workshops, and initiatives.
+                {language === 'en' 
+                  ? 'Browse through our complete history of events, workshops, and initiatives.'
+                  : 'تصفح تاريخنا الكامل من الفعاليات وورش العمل والمبادرات.'}
               </p>
             </div>
           </GSAPReveal>
@@ -318,82 +390,97 @@ export default function ActivitiesPage() {
           <div className="mx-auto max-w-5xl">
             {/* Search and Filter */}
             <GSAPReveal animation="fade">
-              <div className="mb-10 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-md">
-                <div className="grid gap-6 md:grid-cols-4">
-                  <div className="relative md:col-span-1">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1e7e34]" />
-                    <Input
-                      placeholder="Search activities..."
-                      className="pl-10 border-gray-200 dark:border-gray-700 focus:border-[#1e7e34] focus:ring-[#1e7e34]/10 rounded-lg dark:bg-gray-800 dark:text-gray-100"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
+              <div className="mb-12 space-y-6">
+                {/* Search Bar */}
+                <div className="relative max-w-2xl mx-auto">
+                  <Search className={`absolute ${language === 'ar' ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400`} />
+                  <Input
+                    type="search"
+                    placeholder={language === 'en' ? "Search activities..." : "البحث في الأنشطة..."}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className={`w-full ${language === 'ar' ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4 text-left'} py-6 text-lg rounded-full border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm focus:ring-2 focus:ring-[#1e7e34] focus:border-transparent`}
+                    dir={language === 'ar' ? 'rtl' : 'ltr'}
+                  />
+                </div>
+
+                {/* Filter Tabs */}
+                <GSAPReveal animation="fade" delay={0.1}>
+                  <div className="flex justify-center -mt-4 mb-10">
+                    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-auto">
+                      <TabsList className="grid w-auto grid-cols-2 bg-[#e8f5e9] dark:bg-[#1e7e34]/20 p-1 rounded-full">
+                        <TabsTrigger
+                          value="all"
+                          className="rounded-full px-6 data-[state=active]:bg-[#1e7e34] data-[state=active]:text-white"
+                        >
+                          {language === 'en' ? 'All Activities' : 'جميع الأنشطة'}
+                        </TabsTrigger>
+                        <TabsTrigger
+                          value="featured"
+                          className="rounded-full px-6 data-[state=active]:bg-[#1e7e34] data-[state=active]:text-white"
+                        >
+                          {language === 'en' ? 'Highlighted' : 'مميز'}
+                        </TabsTrigger>
+                      </TabsList>
+                    </Tabs>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Filter className="h-4 w-4 text-[#1e7e34]" />
-                    <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                      <SelectTrigger className="border-gray-200 dark:border-gray-700 focus:ring-[#1e7e34]/10 rounded-lg dark:bg-gray-800 dark:text-gray-100">
-                        <SelectValue placeholder="Activity Type" />
-                      </SelectTrigger>
-                      <SelectContent className="dark:bg-gray-800 dark:border-gray-700">
-                        {categories.map((category) => (
-                          <SelectItem key={category} value={category} className="dark:text-gray-100 dark:focus:bg-gray-700">
-                            {category}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Select value={selectedYear} onValueChange={setSelectedYear}>
-                      <SelectTrigger className="border-gray-200 dark:border-gray-700 focus:ring-[#1e7e34]/10 rounded-lg dark:bg-gray-800 dark:text-gray-100">
-                        <SelectValue placeholder="Year" />
-                      </SelectTrigger>
-                      <SelectContent className="dark:bg-gray-800 dark:border-gray-700">
-                        {years.map((year) => (
-                          <SelectItem key={year} value={year} className="dark:text-gray-100 dark:focus:bg-gray-700">
-                            {year}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-                      <SelectTrigger className="border-gray-200 dark:border-gray-700 focus:ring-[#1e7e34]/10 rounded-lg dark:bg-gray-800 dark:text-gray-100">
-                        <SelectValue placeholder="Location" />
-                      </SelectTrigger>
-                      <SelectContent className="dark:bg-gray-800 dark:border-gray-700">
-                        {locations.map((location) => (
-                          <SelectItem key={location} value={location} className="dark:text-gray-100 dark:focus:bg-gray-700">
-                            {location}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                </GSAPReveal>
+
+                {/* Filter Controls */}
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Select 
+                    value={selectedCategoryKey} 
+                    onValueChange={setSelectedCategoryKey}
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder={language === 'en' ? "Category" : "الفئة"}>
+                        {getLocalizedText(selectedCategory, lang)}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categoryOptions.map((category) => (
+                        <SelectItem key={category.en} value={category.en}>
+                          {getLocalizedText(category, lang)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  <Select value={selectedYear} onValueChange={setSelectedYear}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder={language === 'en' ? "Year" : "السنة"} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="All">
+                        {language === 'en' ? 'All Years' : 'كل السنوات'}
+                      </SelectItem>
+                      {yearOptions.filter(year => year !== "All").map((year) => (
+                        <SelectItem key={year} value={year}>
+                          {year}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  <Select 
+                    value={selectedLocationKey} 
+                    onValueChange={setSelectedLocationKey}
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder={language === 'en' ? "Location" : "الموقع"}>
+                        {getLocalizedText(selectedLocation, lang)}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {locationOptions.map((location) => (
+                        <SelectItem key={location.en} value={location.en}>
+                          {getLocalizedText(location, lang)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
-            </GSAPReveal>
-
-            {/* Tabs */}
-            <GSAPReveal animation="fade" delay={0.1}>
-              <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-10">
-                <TabsList className="grid w-full max-w-md grid-cols-2 bg-[#e8f5e9] dark:bg-[#1e7e34]/20 p-1 rounded-full">
-                  <TabsTrigger
-                    value="all"
-                    className="rounded-full data-[state=active]:bg-[#1e7e34] data-[state=active]:text-white"
-                  >
-                    All Activities
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="featured"
-                    className="rounded-full data-[state=active]:bg-[#1e7e34] data-[state=active]:text-white"
-                  >
-                    Highlighted
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
             </GSAPReveal>
 
             {/* Activities Grid */}
@@ -403,41 +490,47 @@ export default function ActivitiesPage() {
                   <GSAPReveal key={activity.id} animation="fade" delay={0.1 * index}>
                     <Link href={`/activities/${activity.id}`}>
                       <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0 rounded-xl cursor-pointer group bg-white dark:bg-gray-900">
-                      <div className="grid md:grid-cols-3">
-                        <div className="aspect-video md:aspect-square overflow-hidden relative">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
-                          <img
-                            src={activity.image || "/placeholder.svg"}
-                            alt={activity.title}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
+                        <div className="grid md:grid-cols-3">
+                          <div className={`aspect-video md:aspect-square overflow-hidden relative ${language === 'ar' ? 'order-2' : 'order-1'}`}>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+                            <img
+                              src={activity.image || "/placeholder.svg"}
+                              alt={activity.title[language as Language]}
+                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                          </div>
+                          <div className={`p-6 md:col-span-2 ${language === 'ar' ? 'order-1' : 'order-2'}`}>
+                            <div className={`mb-3 flex flex-wrap items-center gap-3 ${language === 'ar' ? 'justify-end' : ''}`}>
+                              <div className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">{activity.year}</div>
+                              <Badge className="bg-[#e8f5e9] dark:bg-[#1e7e34]/20 text-[#1e7e34] border-0 flex items-center gap-1 px-3 py-1 rounded-full">
+                                {getActivityIcon(activity.category[language as Language])}
+                                {activity.category[language as Language]}
+                              </Badge>
+                            </div>
+                            <h3 className={`mb-3 text-xl font-bold line-clamp-2 text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors ${language === 'ar' ? 'text-right' : ''}`}>
+                              {activity.title[language as Language]}
+                            </h3>
+                            <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end' : ''}`}>
+                              <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
+                                <Calendar className={`${language === 'ar' ? 'ml-2' : 'mr-2'} h-4 w-4 text-[#1e7e34]`} />
+                                {activity.date[language as Language]}
+                              </div>
+                              <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
+                                <MapPin className={`${language === 'ar' ? 'ml-2' : 'mr-2'} h-4 w-4 text-[#1e7e34]`} />
+                                {activity.location[language as Language]}
+                              </div>
+                            </div>
+                            <p className={`mb-5 text-gray-600 dark:text-gray-300 line-clamp-2 ${language === 'ar' ? 'text-right' : ''}`}>
+                              {activity.description[language as Language]}
+                            </p>
+                            <div className={`${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                              <Button className="bg-white dark:bg-gray-900 text-[#1e7e34] border border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group-hover:bg-[#1e7e34] group-hover:text-white shadow-sm">
+                                {language === 'en' ? 'Read More' : 'اقرأ المزيد'}
+                              </Button>
+                            </div>
+                          </div>
                         </div>
-                        <div className="p-6 md:col-span-2">
-                          <div className="mb-3 flex flex-wrap items-center gap-3">
-                            <Badge className="bg-[#e8f5e9] dark:bg-[#1e7e34]/20 text-[#1e7e34] border-0 flex items-center gap-1 px-3 py-1 rounded-full">
-                              {getActivityIcon(activity.category)}
-                              {activity.category}
-                            </Badge>
-                            <div className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">{activity.year}</div>
-                          </div>
-                            <h3 className="mb-3 text-xl font-bold line-clamp-2 text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors">{activity.title}</h3>
-                          <div className="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
-                            <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
-                              <Calendar className="mr-2 h-4 w-4 text-[#1e7e34]" />
-                              {activity.date}
-                            </div>
-                            <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
-                              <MapPin className="mr-2 h-4 w-4 text-[#1e7e34]" />
-                              {activity.location}
-                            </div>
-                          </div>
-                            <p className="mb-5 text-gray-600 dark:text-gray-300 line-clamp-2">{activity.description}</p>
-                            <Button className="bg-white dark:bg-gray-900 text-[#1e7e34] border border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group-hover:bg-[#1e7e34] group-hover:text-white shadow-sm">
-                              Read More
-                            </Button>
-                          </div>
-                      </div>
-                    </Card>
+                      </Card>
                     </Link>
                   </GSAPReveal>
                 ))}
@@ -455,7 +548,7 @@ export default function ActivitiesPage() {
             {/* Pagination */}
             {totalPages > 1 && (
               <GSAPReveal animation="fade" delay={0.2}>
-                <div className="mt-12 flex items-center justify-center gap-2">
+                <div className="mt-12 flex justify-center items-center gap-4">
                   <Button
                     variant="outline"
                     size="icon"
@@ -465,19 +558,11 @@ export default function ActivitiesPage() {
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </Button>
-                  {Array.from({ length: totalPages }).map((_, index) => (
-                    <Button
-                      key={index}
-                      variant={currentPage === index + 1 ? "default" : "outline"}
-                      className={currentPage === index + 1
-                        ? "bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 rounded-full shadow-sm"
-                        : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-[#1e7e34]/5 dark:hover:bg-[#1e7e34]/20 hover:text-[#1e7e34] hover:border-[#1e7e34] rounded-full shadow-sm"}
-                      size="icon"
-                      onClick={() => setCurrentPage(index + 1)}
-                    >
-                      {index + 1}
-                    </Button>
-                  ))}
+                  <span className="text-gray-600 dark:text-gray-300">
+                    {language === 'en' 
+                      ? `Page ${currentPage} of ${totalPages}`
+                      : `الصفحة ${currentPage} من ${totalPages}`}
+                  </span>
                   <Button
                     variant="outline"
                     size="icon"
@@ -494,8 +579,6 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
-
-
       {/* Upcoming Events CTA */}
       <section className="py-16 md:py-24 bg-white relative">
         <div className="absolute inset-0 bg-[#f8faf8]/70"></div>
@@ -506,19 +589,22 @@ export default function ActivitiesPage() {
             <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[#34a853]/5 rounded-full"></div>
 
             <GSAPReveal animation="slide-up">
-              <div className="inline-flex items-center rounded-full bg-[#34a853]/10 px-4 py-2 text-sm text-[#34a853] shadow-sm mb-4">
+              <div className="inline-flex items-center justify-center rounded-full bg-[#34a853]/10 px-4 py-2 text-sm text-[#34a853] shadow-sm mb-4 mx-auto">
                 <Calendar className="mr-2 h-4 w-4" />
-                Stay Connected
+                {language === 'en' ? 'Stay Connected' : 'ابق على تواصل'}
               </div>
-              <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 mb-4">Join Our Upcoming Events</h2>
-              <p className="mx-auto mb-8 max-w-[700px] text-gray-600 text-lg">
-                Stay connected with our community and participate in our upcoming workshops, seminars, and networking
-                opportunities.
+              <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 mb-4 text-center">
+                {language === 'en' ? 'Join Our Upcoming Events' : 'انضم إلى فعالياتنا القادمة'}
+              </h2>
+              <p className="mx-auto mb-8 max-w-[700px] text-gray-600 text-lg text-center">
+                {language === 'en' 
+                  ? 'Stay connected with our community and participate in our upcoming workshops, seminars, and networking opportunities.'
+                  : 'ابق على تواصل مع مجتمعنا وشارك في ورش العمل والندوات وفرص التواصل القادمة.'}
               </p>
-              <div className="mt-8">
+              <div className="mt-8 text-center">
                 <Link href="/contact">
                   <Button className="bg-[#34a853] text-white hover:bg-[#2d9249] px-8 py-6 text-lg font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    Subscribe to Event Updates
+                    {language === 'en' ? 'Subscribe to Event Updates' : 'تواصل معنا'}
                   </Button>
                 </Link>
               </div>
@@ -526,6 +612,13 @@ export default function ActivitiesPage() {
           </div>
         </div>
       </section>
+
+      {/* Gallery Modal for individual activities */}
+      {galleryActivity && (
+        <div className="container px-4 md:px-6 py-16">
+          <ActivityGallery activity={galleryActivity} />
+        </div>
+      )}
     </main>
   )
 }

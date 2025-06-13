@@ -28,7 +28,7 @@ export default function Home() {
       excerpt: t("Card1.desc"),
       image: "/scholer.png?height=400&width=600",
       href: "/news/scholarships-academic-support",
-      date: "May 15, 2024",
+      date: "",
       category: "Scholarships"
     },
     {
@@ -36,7 +36,7 @@ export default function Home() {
       excerpt: t("Card2.desc"),
       image: "/secondCard.png",
       href: "/news/capacity-building",
-      date: "May 10, 2024",
+      date: "",
       category: "Professional Development"
     },
     {
@@ -44,7 +44,7 @@ export default function Home() {
       excerpt: t("Card3.desc"),
       image: "/thirdCard.png?height=400&width=600",
       href: "/news/scientific-research",
-      date: "May 5, 2024",
+      date: "",
       category: "Research"
     },
     {
@@ -52,7 +52,7 @@ export default function Home() {
       excerpt: t("Card4.desc"),
       image: "/fourCard.png?height=400&width=600",
       href: "/news/national-identity",
-      date: "April 28, 2024",
+      date: "",
       category: "Community"
     },
     {
@@ -60,7 +60,7 @@ export default function Home() {
       excerpt: t("Card5.desc"),
       image: "/fifthCard.png?height=400&width=600",
       href: "/news/palestinian-network",
-      date: "April 20, 2024",
+      date: "",
       category: "Network"
     }
   ]
