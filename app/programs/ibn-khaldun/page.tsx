@@ -74,7 +74,7 @@ export default function IbnKhaldunScholarshipPage() {
               <a href="/ProgramsFiles/ibn-khaldun-EN.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
                 <BookOpen size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.download.en")}
               </a>
-              <a href="/ProgramsFiles/ibn-khaldun-AR" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
+              <a href="/ProgramsFiles/ibn-khaldun-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
                 <BookOpen size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.download.ar")}
               </a>
             </div>
