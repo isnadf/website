@@ -625,6 +625,23 @@ const translations = {
     "ibn-khaldun.financial.total.fiveYear": "Total 5-Year Cost per Student",
     "ibn-khaldun.financial.perYear": "per year",
     "ibn-khaldun.financial.note": "Note: The actual costs may vary depending on the university and program of study.",
+
+    // Programs page translations
+    "programs.hero.title": "Scholarship Programs",
+    "programs.hero.subtitle": "Empowering Palestinian Students Through Education Excellence",
+    "programs.hero.flag.alt": "Palestinian Flag",
+    "programs.section.title": "Our Programs",
+    "programs.section.subtitle": "Choose your path to educational excellence",
+    "programs.undergraduate.title": "Undergraduate Programs",
+    "programs.postgraduate.title": "Postgraduate Programs",
+    "programs.postgraduate.subtitle": "Advanced degrees for specialized expertise",
+    "programs.sustainability.title": "Sustainability",
+    "programs.sustainability.description": "200 scholarships in energy and agricultural engineering for Palestine's green future.",
+    "programs.justice.title": "Justice for Palestine",
+    "programs.justice.description": "200 scholarships in political science and international relations for global advocacy.",
+    "programs.ibn-khaldun.title": "Ibn Khaldun",
+    "programs.ibn-khaldun.description": "200 scholarships in sociology and psychology for understanding Palestinian society.",
+    "programs.learn-more": "Learn More",
   },
   ar: {
     "contact.info.subtitlquireme3": "تواصل معنا باستخدام أي من الطرق أدناه :",
@@ -714,7 +731,7 @@ const translations = {
     "footer.contact": "اتصل بنا",
 
     "donate.hero.title": "دعم الطلاب الفلسطينيين",
-    "donate.hero.subtitle": "تبرعك يساعد في توفير المنح الدراسية والدعم التعليمي والفرص للطلاب الفلسطينيين حول العالم.",
+    "donate.hero.subtitle": "تبرعك يساعد في توفير المنح الدراسية والدعم التعليمي والفرص للطلاب الفلسطينيين حول العالم",
     "donate.form.title": "تبرع الآن",
     "donate.form.amount": "اختر المبلغ",
     "donate.form.custom": "مبلغ مخصص",
@@ -1239,7 +1256,38 @@ const translations = {
     "ibn-khaldun.financial.total.fiveYear": "إجمالي التكلفة لمدة 5 سنوات لكل طالب",
     "ibn-khaldun.financial.perYear": "سنوياً",
     "ibn-khaldun.financial.note": "ملاحظة: قد تختلف التكاليف الفعلية حسب الجامعة وبرنامج الدراسة.",
+
+    // Programs page translations
+    "programs.hero.title": "برامج المنح الدراسية",
+    "programs.hero.subtitle": "تمكين الطلاب الفلسطينيين من خلال التميز التعليمي",
+    "programs.hero.flag.alt": "علم فلسطين",
+    "programs.section.title": "برامجنا",
+    "programs.section.subtitle": "اختر مسارك نحو التميز التعليمي",
+    "programs.undergraduate.title": "برامج البكالوريوس",
+    "programs.postgraduate.title": "برامج الدراسات العليا",
+    "programs.postgraduate.subtitle": "درجات متقدمة للخبرة المتخصصة",
+    "programs.sustainability.title": "الاستدامة",
+    "programs.sustainability.description": "200 منحة في هندسة الطاقة والزراعة لمستقبل فلسطين الأخضر.",
+    "programs.justice.title": "العدالة لفلسطين",
+    "programs.justice.description": "200 منحة في العلوم السياسية والعلاقات الدولية للدعوة العالمية.",
+    "programs.ibn-khaldun.title": "ابن خلدون",
+    "programs.ibn-khaldun.description": "200 منحة في علم الاجتماع وعلم النفس لفهم المجتمع الفلسطيني.",
+    "programs.learn-more": "اعرف المزيد",
   },
+}
+
+// Remove duplicate translations
+const cleanTranslations = {
+  en: Object.fromEntries(
+    Object.entries(translations.en).filter(([key], index, self) => 
+      index === self.findIndex(([k]) => k === key)
+    )
+  ),
+  ar: Object.fromEntries(
+    Object.entries(translations.ar).filter(([key], index, self) => 
+      index === self.findIndex(([k]) => k === key)
+    )
+  )
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -1252,11 +1300,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (savedLanguage && ["en", "ar"].includes(savedLanguage)) {
       setLanguageState(savedLanguage)
       document.documentElement.lang = savedLanguage
-      document.documentElement.dir = "ltr"
+      document.documentElement.dir = savedLanguage === "ar" ? "rtl" : "ltr"
     } else {
       // Set default to Arabic if no saved language
       document.documentElement.lang = "ar"
-      document.documentElement.dir = "ltr"
+      document.documentElement.dir = "rtl"
     }
   }, [])
 
@@ -1264,11 +1312,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguageState(lang)
     localStorage.setItem("language", lang)
     document.documentElement.lang = lang
-    document.documentElement.dir = "ltr"
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"
   }
 
   const t = (key: string): string | string[] => {
-    return translations[language][key as keyof (typeof translations)[typeof language]] || key
+    return cleanTranslations[language][key as keyof (typeof cleanTranslations)[typeof language]] || key
   }
 
   return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>
