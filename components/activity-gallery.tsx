@@ -200,7 +200,13 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
             {activity.location[language]}
           </div>
         </div>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground">{activity.description[language]}</p>
+        <div className="prose prose-lg dark:prose-invert max-w-none">
+          {activity.full_description[language].split('\n\n').map((paragraph, index) => (
+            <p key={index} className={`mb-4 text-base sm:text-lg text-muted-foreground leading-relaxed ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+              {paragraph}
+            </p>
+          ))}
+        </div>
       </div>
 
       {/* Main Image Gallery */}
