@@ -2,23 +2,26 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
-import { Quote, Video } from "lucide-react"
+import { Quote, Video, X } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import { TestimonialVideoModal } from "@/components/testimonial-video-modal"
 import { studentTestimonials, publicFigureTestimonials } from "./data"
+import { useLanguage } from "@/components/language-provider"
 
 function TestimonialsContent() {
   const searchParams = useSearchParams()
   const typeParam = searchParams.get('type')
+  const { language, t } = useLanguage()
+  const isRTL = language === 'ar'
   
   // State for testimonial video modal
   const [isTestimonialVideoOpen, setIsTestimonialVideoOpen] = useState(false)
-  const [testimonialVideoPath, setTestimonialVideoPath] = useState("")
   const [testimonialName, setTestimonialName] = useState("")
+  const [testimonialVideoPath, setTestimonialVideoPath] = useState("")
   const [testimonialDescription, setTestimonialDescription] = useState("")
 
-  const handleOpenTestimonialVideo = (name: string, videoFileName: string, description: string) => {
-    setTestimonialName(name)
+  const handleOpenTestimonialVideo = (name: { en: string; ar: string }, videoFileName: string, description: string) => {
+    setTestimonialName(name[language as keyof typeof name])
     setTestimonialVideoPath(`/testomenialVid/${videoFileName}`)
     setTestimonialDescription(description)
     setIsTestimonialVideoOpen(true)
@@ -26,20 +29,24 @@ function TestimonialsContent() {
 
   // Determine which testimonials to show based on URL parameter
   const testimonials = typeParam === 'influencers' ? publicFigureTestimonials : studentTestimonials
-  const title = typeParam === 'influencers' ? 'Public Figures' : 'Student Voices'
+  const title = typeParam === 'influencers' ? t("testimonials.public_figures") : t("testimonials.student_voices")
+  const subtitle = typeParam === 'influencers' ? t("testimonials.public_figure_testimonials") : t("testimonials.student_testimonials")
+  const description = typeParam === 'influencers' ? t("testimonials.public_figure_description") : t("testimonials.student_description")
 
   return (
-    <main className="flex min-h-screen flex-col bg-[#f8faf8] dark:bg-gray-950">
+    <main className={`flex min-h-screen flex-col bg-[#f8faf8] dark:bg-gray-950 ${isRTL ? 'font-arabic' : ''}`}>
       {/* Hero Section */}
       <section className="relative py-20 md:py-28 bg-gradient-to-b from-[#1e7e34] to-[#f8faf8] dark:from-[#1e7e34] dark:to-gray-950 overflow-hidden">
         <div className="container px-4 md:px-6 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Voices of Our Community
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8">
-              Hear directly from {typeParam === 'influencers' ? 'public figures' : 'students'} about their experiences and the impact of our programs.
-            </p>
+          <div className="max-w-3xl mx-auto">
+            <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center">
+                {t("testimonials.hero.title")}
+              </h1>
+              <p className="text-xl md:text-2xl text-white/90 mb-8 text-center">
+                {t("testimonials.hero.subtitle")}
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -61,20 +68,22 @@ function TestimonialsContent() {
 
         <div className="container px-4 md:px-6 relative z-10">
           <GSAPReveal animation="slide-up">
-            <div className="mb-12 text-center">
-              <div className="inline-flex items-center rounded-full bg-[#1e7e34]/10 px-4 py-2 text-sm text-[#1e7e34] shadow-sm">
-                <Quote className="mr-2 h-4 w-4" />
-                {title}
+            <div className="mb-12">
+              <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
+                <div className={`inline-flex items-center rounded-full bg-[#1e7e34]/10 px-4 py-2 text-sm text-[#1e7e34] shadow-sm ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <Quote className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4`} />
+                  {title}
+                </div>
+                <h2 className={`mt-3 text-3xl font-bold sm:text-5xl text-gray-900 dark:text-white mb-4 text-center`}>
+                  <span className="relative inline-block">
+                    {subtitle}
+                    <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/0 via-[#1e7e34]/80 to-[#1e7e34]/0"></span>
+                  </span>
+                </h2>
+                <p className={`mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 text-xl mb-8 text-center`}>
+                  {description}
+                </p>
               </div>
-              <h2 className="mt-3 text-3xl font-bold sm:text-5xl text-gray-900 dark:text-white mb-4">
-                <span className="relative inline-block">
-                  {typeParam === 'influencers' ? 'Public Figure Testimonials' : 'Student Testimonials'}
-                  <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/0 via-[#1e7e34]/80 to-[#1e7e34]/0"></span>
-                </span>
-              </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 text-xl mb-8">
-                Hear from {typeParam === 'influencers' ? 'community leaders' : 'students'} about their experiences and the impact of our programs.
-              </p>
             </div>
           </GSAPReveal>
 
@@ -115,22 +124,15 @@ function TestimonialsContent() {
                       </div>
                     </div>
 
-                    {/* Quote and info */}
+                    {/* Name and degree only */}
                     <div className="mt-auto">
-                      <div className="mb-4">
-                        <Quote className="mb-2 h-8 w-8 text-white/30" />
-                        <p className="text-white/90 text-lg font-medium leading-relaxed line-clamp-3">
-                          "{testimonial.quote}"
-                        </p>
-                      </div>
-
-                      <div className="flex items-center pt-4 border-t border-white/20">
-                        <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center mr-4 text-white font-bold text-lg border border-white/20">
-                          {testimonial.name.charAt(0)}
+                      <div className={`flex items-center pt-4 border-t border-white/20 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                        <div className={`w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center ${isRTL ? 'ml-4' : 'mr-4'} text-white font-bold text-lg border border-white/20`}>
+                          {testimonial.name[language].charAt(0)}
                         </div>
-                        <div>
-                          <p className="font-bold text-white text-lg">{testimonial.name}</p>
-                          <p className="text-white/70">{testimonial.role}, {testimonial.organization}</p>
+                        <div className={isRTL ? 'text-right' : 'text-left'}>
+                          <p className={`font-bold text-white text-lg ${isRTL ? 'font-arabic' : ''}`}>{testimonial.name[language]}</p>
+                          <p className={`text-white/70 ${isRTL ? 'font-arabic' : ''}`}>{testimonial.role[language]}, {testimonial.organization[language]}</p>
                         </div>
                       </div>
                     </div>

@@ -592,6 +592,15 @@ const translations = {
     "success_stories.categories.masters": "Master's",
     "success_stories.categories.phd": "PhD",
     "success_stories.back_to_stories": "Back to Stories",
+
+    "testimonials.hero.title": "Voices of Our Community",
+    "testimonials.hero.subtitle": "Hear directly from students about their experiences and the impact of our programs.",
+    "testimonials.student_voices": "Student Voices",
+    "testimonials.student_testimonials": "Student Testimonials",
+    "testimonials.student_description": "Hear from students about their experiences and the impact of our programs.",
+    "testimonials.public_figures": "Public Figures",
+    "testimonials.public_figure_testimonials": "Public Figure Testimonials",
+    "testimonials.public_figure_description": "Hear from community leaders about their experiences and the impact of our programs.",
   },
   ar: {
     "contact.info.subtitle3": "تواصل معنا باستخدام أي من الطرق أدناه :",
@@ -1173,6 +1182,15 @@ const translations = {
     "success_stories.categories.masters": "ماجستير",
     "success_stories.categories.phd": "دكتوراه",
     "success_stories.back_to_stories": "العودة إلى القصص",
+
+    "testimonials.hero.title": "أصوات مجتمعنا",
+    "testimonials.hero.subtitle": "استمع مباشرة من الطلاب عن تجاربهم وتأثير برامجنا",
+    "testimonials.student_voices": "أصوات الطلاب",
+    "testimonials.student_testimonials": "شهادات الطلاب",
+    "testimonials.student_description": "استمع من الطلاب عن تجاربهم وتأثير برامجنا",
+    "testimonials.public_figures": "الشخصيات العامة",
+    "testimonials.public_figure_testimonials": "شهادات الشخصيات العامة",
+    "testimonials.public_figure_description": "استمع من قادة المجتمع عن تجاربهم وتأثير برامجنا",
   },
 }
 
