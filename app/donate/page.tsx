@@ -120,7 +120,7 @@ export default function DonatePage() {
               
               {/* Donation Type Selection */}
               <div className="mb-8">
-                <Label className={`text-lg font-medium mb-4 flex ${language === "ar" ? "justify-end" : "justify-center"} items-center`}>{t("donate.form.type")}</Label>
+                <Label className={`text-lg font-medium mb-4 flex ${language === "ar" ? "justify-center" : "justify-center"} items-center`}>{t("donate.form.type")}</Label>
                 <RadioGroup
                   value={donationType}
                   onValueChange={(value) => {
