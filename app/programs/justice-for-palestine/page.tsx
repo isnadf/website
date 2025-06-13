@@ -15,12 +15,17 @@ import {
   Sword,
   BookOpen,
   Users,
+  Download,
+  ChevronDown,
+  Lightbulb,
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import Image from "next/image"
 import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export default function JusticeForPalestinePage() {
   const { t, language } = useLanguage()
@@ -57,30 +62,81 @@ export default function JusticeForPalestinePage() {
           <StatsCounter number={2} label={t("justice.fields") as string} />
           <StatsCounter number={5} label={t("justice.years") as string} />
         </div>
-        <div className="max-w-2xl mx-auto mt-4">
-          <h2 className={`text-xl font-bold text-red-700 mb-2 flex items-center justify-center gap-2 ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-            <Scale className={`text-red-600 animate-pulse ${isRTL ? 'order-2' : ''}`} size={28} />
-            <span>{t("justice.about.title")}</span>
-            <Gavel className={`text-black animate-bounce ${isRTL ? 'order-1' : ''}`} size={28} />
-          </h2>
-          <p className={`text-gray-800 dark:text-gray-100 text-base md:text-lg text-center ${isRTL ? 'font-arabic' : ''}`}>
-            {t("justice.about.desc")}
-          </p>
+        <div className="max-w-4xl mx-auto mt-8 px-4">
+          <div className="flex flex-col items-center mb-4">
+            <span className="inline-flex items-center gap-2 text-2xl font-bold text-red-700 mb-2">
+              <Lightbulb className="text-yellow-400" size={28} />
+              {isRTL ? 'حول البرنامج' : 'About the Program'}
+            </span>
+            <div className="w-16 h-1 bg-gradient-to-r from-red-400 to-black mb-6 rounded-full"></div>
+          </div>
+          <div className={`text-gray-800 dark:text-gray-100 text-lg md:text-xl text-center font-medium ${isRTL ? 'font-arabic' : ''}`}
+            style={{lineHeight: 1.7, letterSpacing: isRTL ? '0.01em' : '0.02em'}}>
+            {isRTL ? (
+              <>برنامج منحة العدالة لفلسطين هو مبادرة وطنية استراتيجية أطلقتها مؤسسة إسناد لدعم الطالب الفلسطيني (IFPSS) لتأهيل كفاءات فلسطينية متميزة في العلوم السياسية، العلاقات الدولية، والقانون الدولي، ويقدم 200 منحة دراسية ممولة بالكامل لطلبة الماجستير والدكتوراه من فلسطين والشتات للدراسة في جامعات فلسطينية أو عربية أو دولية مرموقة، بهدف تمكين الباحثين الفلسطينيين من التأثير الفاعل في الساحة السياسية والدبلوماسية الدولية والمساهمة في تطوير السياسات العامة والقانونية المتعلقة بالقضية الفلسطينية.</>
+            ) : (
+              <>The Justice for Palestine Scholarship is a national strategic initiative by the Isnad Foundation (IFPSS) to empower outstanding Palestinian talents in political science, international relations, and international law. The program offers 200 fully funded scholarships for master's and doctoral students from Palestine and the diaspora to study at leading Palestinian, Arab, or international universities, aiming to enable Palestinian researchers to have a real impact in the political and diplomatic arena and contribute to the development of public and legal policies related to the Palestinian cause.</>
+            )}
+          </div>
           <div className={`flex justify-center mt-6 gap-4 flex-wrap ${isRTL ? 'flex-row-reverse' : ''}`}>
             <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-600 to-black text-white font-bold rounded-full shadow-xl hover:from-black hover:to-red-600 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
               <Scale size={22} className={`${isRTL ? 'order-2' : '-ml-1'} animate-pulse`} /> {t("justice.apply")}
             </a>
-            <div className={`flex flex-col md:flex-row gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>  
-              {/* Brochure Buttons */}
-              <div className="flex gap-2">
-                <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className={`inline-flex items-center gap-2 px-5 py-2 border border-red-700 text-red-700 bg-transparent font-bold rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200 text-base ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}> <BookOpen size={18} /> {isRTL ? 'البروشور (عربي)' : 'Brochure (AR)'}</a>
-                <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className={`inline-flex items-center gap-2 px-5 py-2 border border-red-700 text-red-700 bg-transparent font-bold rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200 text-base ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}> <BookOpen size={18} /> {isRTL ? 'Brochure (EN)' : 'Brochure (EN)'}</a>
-              </div>
-              {/* Program Buttons */}
-              <div className="flex gap-2">
-                <a href="/ProgramsFiles/JusticeForPalestine-AR.pdf" download className={`inline-flex items-center gap-2 px-5 py-2 border border-blue-700 text-blue-700 bg-transparent font-bold rounded-full hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 text-base ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}> <BookOpen size={18} /> {isRTL ? 'البرنامج (عربي)' : 'Program (AR)'}</a>
-                <a href="/ProgramsFiles/JusticeForPalestine-EN.pdf" download className={`inline-flex items-center gap-2 px-5 py-2 border border-blue-700 text-blue-700 bg-transparent font-bold rounded-full hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 text-base ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}> <BookOpen size={18} /> {isRTL ? 'Program (EN)' : 'Program (EN)'}</a>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+              {/* Program Downloads Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-red-700 text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 font-semibold bg-transparent group"
+                  >
+                    <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {isRTL ? 'تحميل البرنامج' : 'Download Program'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-red-200 dark:border-red-800">
+                  <DropdownMenuItem asChild>
+                    <a href="/ProgramsFiles/JusticeForPalestine-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      English (EN)
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/ProgramsFiles/JusticeForPalestine-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      العربية (AR)
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              {/* Brochure Downloads Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-blue-700 text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-semibold bg-transparent group"
+                  >
+                    <BookOpen className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {isRTL ? 'تحميل البروشور' : 'Download Brochure'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
+                  <DropdownMenuItem asChild>
+                    <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      English (EN)
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      العربية (AR)
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
