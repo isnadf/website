@@ -89,12 +89,6 @@ export function ActivityGalleryModal({
               "/two/PHOTO-2025-04-20-18-04-04 5.jpg",
               "/two/PHOTO-2025-04-20-18-04-04.jpg",
               "/two/PHOTO-2025-04-20-18-04-05.jpg",
-              "/two/VIDEO-2025-04-20-18-04-05 2.mp4",
-              "/two/VIDEO-2025-04-20-18-04-05 3.mp4",
-              "two/VIDEO-2025-04-20-18-04-05.mp4",
-              "/two/VIDEO-2025-04-20-18-04-05.mp4",
-              "/two/VIDEO-2025-04-20-18-04-06.mp4"
-
             ]
           } else if (folderName === "three") {
             imageList = [
