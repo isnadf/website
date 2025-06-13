@@ -9,10 +9,10 @@ export default function Footer() {
   const isRTL = language === 'ar'
 
   return (
-    <footer className="border-t bg-gradient-to-r from-[hsl(0,76%,40%)]/5 via-transparent to-[hsl(120,61%,34%)]/5 dark:from-[hsl(0,76%,40%)]/10 dark:via-black/80 dark:to-[hsl(120,61%,34%)]/10 font-sora">
+    <footer className="border-t bg-gradient-to-r from-[hsl(0,76%,40%)]/5 via-transparent to-[hsl(120,61%,34%)]/5 dark:from-[hsl(0,76%,40%)]/10 dark:via-black/80 dark:to-[hsl(120,61%,34%)]/10 font-sora" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="container py-12">
         <div className={`grid gap-8 md:grid-cols-2 lg:grid-cols-4 ${isRTL ? 'text-right' : 'text-left'}`}>
-          <div>
+          <div className={isRTL ? 'lg:order-4' : ''}>
             <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <GraduationCap className="h-6 w-6 text-primary" />
               <span className="text-lg font-bold font-sora">IFPPS</span>
@@ -46,7 +46,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <div>
+          <div className={isRTL ? 'lg:order-3' : ''}>
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.programs") as string}</h3>
             <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
               <li>
@@ -66,7 +66,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className={isRTL ? 'lg:order-2' : ''}>
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.about") as string}</h3>
             <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
               <li>
@@ -86,7 +86,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className={isRTL ? 'lg:order-1' : ''}>
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.contact") as string}</h3>
             <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
               <li className="text-gray-600 dark:text-gray-400">Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul</li>
