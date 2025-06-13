@@ -263,7 +263,7 @@ export default function ActivitiesPage() {
                         <h3 className={`mb-4 font-bold ${language === 'ar' ? 'text-lg line-clamp-3 text-right font-arabic' : 'text-xl line-clamp-2 text-left'} text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors`}>
                           {activity.title[language as Language]}
                         </h3>
-                        <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end flex-row-reverse' : 'justify-start'}`}>
                           <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             <Calendar className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
                             <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.date[language as Language]}</span>
@@ -504,9 +504,9 @@ export default function ActivitiesPage() {
                             />
                           </div>
                           <div className={`p-6 md:col-span-2 ${language === 'ar' ? 'order-1' : 'order-2'}`}>
-                            <div className={`mb-3 flex flex-wrap items-center gap-3 ${language === 'ar' ? 'justify-end' : ''}`}>
-                              <div className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">{activity.year}</div>
-                              <Badge className="bg-[#e8f5e9] dark:bg-[#1e7e34]/20 text-[#1e7e34] border-0 flex items-center gap-1 px-3 py-1 rounded-full">
+                            <div className={`mb-3 flex flex-wrap items-center gap-3 ${language === 'ar' ? 'justify-end flex-row-reverse' : 'justify-start'}`}>
+                              <div className={`text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full ${language === 'ar' ? 'text-right' : ''}`}>{activity.year}</div>
+                              <Badge className={`bg-[#e8f5e9] dark:bg-[#1e7e34]/20 text-[#1e7e34] border-0 flex items-center gap-1 px-3 py-1 rounded-full ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
                                 {getActivityIcon(activity.category[language as Language])}
                                 {activity.category[language as Language]}
                               </Badge>
@@ -514,7 +514,7 @@ export default function ActivitiesPage() {
                             <h3 className={`mb-4 font-bold ${language === 'ar' ? 'text-lg line-clamp-3 text-right font-arabic' : 'text-xl line-clamp-2 text-left'} text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors`}>
                               {activity.title[language as Language]}
                             </h3>
-                            <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
+                            <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end flex-row-reverse' : 'justify-start'}`}>
                               <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                                 <Calendar className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
                                 <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.date[language as Language]}</span>
