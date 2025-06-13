@@ -591,6 +591,7 @@ const translations = {
     "success_stories.categories.bachelors": "Bachelor's",
     "success_stories.categories.masters": "Master's",
     "success_stories.categories.phd": "PhD",
+    "success_stories.back_to_stories": "Back to Stories",
   },
   ar: {
     "contact.info.subtitle3": "تواصل معنا باستخدام أي من الطرق أدناه :",
@@ -1171,6 +1172,7 @@ const translations = {
     "success_stories.categories.bachelors": "بكالوريوس",
     "success_stories.categories.masters": "ماجستير",
     "success_stories.categories.phd": "دكتوراه",
+    "success_stories.back_to_stories": "العودة إلى القصص",
   },
 }
 
