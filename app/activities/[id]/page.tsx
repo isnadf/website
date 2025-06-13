@@ -64,17 +64,17 @@ export default function ActivityPage() {
         <div className="container relative h-full px-4 md:px-6">
           <div className="flex h-full flex-col justify-end pb-16">
             <Link href="/activities">
-              <Button variant="ghost" className="mb-8 w-fit text-white hover:bg-white/20">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Activities
+              <Button variant="ghost" className={`mb-8 w-fit text-white hover:bg-white/20 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                <ArrowLeft className={`${language === 'ar' ? 'ml-2 rotate-180' : 'mr-2'} h-4 w-4`} />
+                {language === 'en' ? 'Back to Activities' : 'العودة إلى الأنشطة'}
               </Button>
             </Link>
             <div className="space-y-4">
-              <Badge variant="outline" className="bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] text-base px-3 py-1">
+              <Badge variant="outline" className={`bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] text-base px-3 py-1 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'} flex items-center gap-2`}>
                 {getActivityIcon(activity.category[language])}
                 {activity.category[language]}
               </Badge>
-              <h1 className="text-4xl font-bold text-white sm:text-5xl">{activity.title[language]}</h1>
+              <h1 className={`text-4xl font-bold text-white sm:text-5xl ${language === 'ar' ? 'text-right' : 'text-left'}`}>{activity.title[language]}</h1>
             </div>
           </div>
         </div>
@@ -84,28 +84,8 @@ export default function ActivityPage() {
       <section className="py-16 md:py-24">
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
-            {/* Activity Details */}
-            <div className="mb-16 space-y-8">
-              <div className="flex flex-wrap gap-4">
-                <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-2 rounded-full">
-                  <Calendar className="mr-2 h-5 w-5 text-[#1e7e34]" />
-                  {activity.date[language]}
-                </div>
-                <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-2 rounded-full">
-                  <MapPin className="mr-2 h-5 w-5 text-[#1e7e34]" />
-                  {activity.location[language]}
-                </div>
-              </div>
-              <div className="prose dark:prose-invert max-w-none">
-                <p className="text-lg text-gray-600 dark:text-gray-300">{activity.description[language]}</p>
-                <div className="mt-8 text-gray-600 dark:text-gray-300">
-                  {activity.full_description[language]}
-                </div>
-              </div>
-            </div>
-
             {/* Gallery Section */}
-            <div className="mb-16">
+            <div className={`mb-16 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
               <ActivityGallery activity={activity} />
             </div>
           </div>
