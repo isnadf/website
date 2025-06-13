@@ -113,39 +113,7 @@ export default function IbnKhaldunScholarshipPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 px-4 md:px-0 bg-purple-50 dark:bg-purple-950">
-        <div className="max-w-7xl mx-auto">
-          <GSAPTextReveal element="h2" className={`text-3xl md:text-4xl font-bold text-center text-purple-700 mb-10 ${isRTL ? 'font-arabic' : ''}`}>{t("ibn-khaldun.mission.title")}</GSAPTextReveal>
-          <div className="max-w-4xl mx-auto text-center mb-8">
-            <p className={`text-lg text-gray-800 dark:text-gray-100 font-medium mb-4 tracking-normal ${isRTL ? 'font-arabic' : ''}`}>
-              {t("ibn-khaldun.mission.desc")}
-            </p>
-          </div>
-          <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 ${isRTL ? 'md:grid-flow-col-dense' : ''}`}>
-            <GSAPReveal animation="scale">
-              <div className="flex flex-col items-center bg-white dark:bg-gray-900 rounded-xl shadow p-6 hover:scale-105 transition-transform duration-300">
-                <Eye className="text-purple-700 mb-3" size={40} />
-                <h3 className={`text-xl font-bold text-purple-800 dark:text-purple-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{t("ibn-khaldun.outcomes.scholarships")}</h3>
-                <p className={`text-center text-gray-700 dark:text-gray-200 text-base tracking-wide ${isRTL ? 'font-arabic' : ''}`}>{t("ibn-khaldun.outcomes.scholarships.desc")}</p>
-              </div>
-            </GSAPReveal>
-            <GSAPReveal animation="scale" delay={0.1}>
-              <div className="flex flex-col items-center bg-white dark:bg-gray-900 rounded-xl shadow p-6 hover:scale-105 transition-transform duration-300">
-                <Lightbulb className="text-indigo-700 mb-3" size={40} />
-                <h3 className={`text-xl font-bold text-indigo-800 dark:text-indigo-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{t("ibn-khaldun.outcomes.research")}</h3>
-                <p className={`text-center text-gray-700 dark:text-gray-200 text-base tracking-normal ${isRTL ? 'font-arabic' : ''}`}>{t("ibn-khaldun.outcomes.research.desc")}</p>
-              </div>
-            </GSAPReveal>
-            <GSAPReveal animation="scale" delay={0.2}>
-              <div className="flex flex-col items-center bg-white dark:bg-gray-900 rounded-xl shadow p-6 hover:scale-105 transition-transform duration-300">
-                <Users className="text-purple-700 mb-3" size={40} />
-                <h3 className={`text-xl font-bold text-purple-800 dark:text-purple-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{t("ibn-khaldun.outcomes.development")}</h3>
-                <p className={`text-center text-gray-700 dark:text-gray-200 text-base tracking-wide ${isRTL ? 'font-arabic' : ''}`}>{t("ibn-khaldun.outcomes.development.desc")}</p>
-              </div>
-            </GSAPReveal>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Fields of Study Section */}
       <section className="py-16 px-4 md:px-0 bg-purple-50 dark:bg-purple-950">
