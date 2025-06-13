@@ -252,27 +252,31 @@ export default function ActivitiesPage() {
                           alt={activity.title[language as Language]}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <Badge className="absolute top-4 left-4 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-[#1e7e34] border-0 shadow-md">
+                        <Badge className={`absolute top-4 ${language === 'ar' ? 'right-4' : 'left-4'} z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-[#1e7e34] border-0 shadow-md`}>
                           {activity.category[language as Language]}
                         </Badge>
-                        <div className="absolute bottom-4 right-4 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <div className={`absolute bottom-4 ${language === 'ar' ? 'left-4' : 'right-4'} z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300`}>
                           {activity.year}
                         </div>
                       </div>
                       <CardContent className="p-6">
-                        <h3 className="mb-3 text-xl font-bold line-clamp-2 text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors">{activity.title[language as Language]}</h3>
-                        <div className="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300">
-                          <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
-                            <Calendar className="mr-2 h-4 w-4 text-[#1e7e34]" />
-                            {activity.date[language as Language]}
+                        <h3 className={`mb-3 text-xl font-bold line-clamp-2 text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                          {activity.title[language as Language]}
+                        </h3>
+                        <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
+                          <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                            <Calendar className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
+                            <span className="font-medium">{activity.date[language as Language]}</span>
                           </div>
-                          <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
-                            <MapPin className="mr-2 h-4 w-4 text-[#1e7e34]" />
-                            {activity.location[language as Language]}
+                          <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                            <MapPin className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
+                            <span className="font-medium">{activity.location[language as Language]}</span>
                           </div>
                         </div>
-                        <p className="mb-6 line-clamp-2 text-gray-600 dark:text-gray-300">{activity.description[language as Language]}</p>
-                        <Button className="w-full bg-white dark:bg-gray-900 text-[#1e7e34] border border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group-hover:bg-[#1e7e34] group-hover:text-white">
+                        <p className={`mb-6 line-clamp-2 text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                          {activity.description[language as Language]}
+                        </p>
+                        <Button className={`w-full bg-white dark:bg-gray-900 text-[#1e7e34] border border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group-hover:bg-[#1e7e34] group-hover:text-white ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                           {language === 'en' ? 'Read More' : 'اقرأ المزيد'}
                         </Button>
                       </CardContent>
@@ -303,7 +307,7 @@ export default function ActivitiesPage() {
               <p className="mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 text-xl">
                 {language === 'en' 
                   ? 'The collective reach and influence of our activities and programs.'
-                  : 'الوصول والتأثير الجماعي لأنشطتنا وبرامجنا.'}
+                  : 'الوصول والتأثير الجماعي لأنشطتنا وبرامجنا'}
               </p>
             </div>
           </GSAPReveal>
@@ -510,14 +514,14 @@ export default function ActivitiesPage() {
                             <h3 className={`mb-3 text-xl font-bold line-clamp-2 text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors ${language === 'ar' ? 'text-right' : ''}`}>
                               {activity.title[language as Language]}
                             </h3>
-                            <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end' : ''}`}>
-                              <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
-                                <Calendar className={`${language === 'ar' ? 'ml-2' : 'mr-2'} h-4 w-4 text-[#1e7e34]`} />
-                                {activity.date[language as Language]}
+                            <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
+                              <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                                <Calendar className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
+                                <span className="font-medium">{activity.date[language as Language]}</span>
                               </div>
-                              <div className="flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-3 py-1 rounded-full">
-                                <MapPin className={`${language === 'ar' ? 'ml-2' : 'mr-2'} h-4 w-4 text-[#1e7e34]`} />
-                                {activity.location[language as Language]}
+                              <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                                <MapPin className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
+                                <span className="font-medium">{activity.location[language as Language]}</span>
                               </div>
                             </div>
                             <p className={`mb-5 text-gray-600 dark:text-gray-300 line-clamp-2 ${language === 'ar' ? 'text-right' : ''}`}>
