@@ -386,7 +386,7 @@ export default function ActivitiesPage() {
               <p className="mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 text-xl">
                 {language === 'en' 
                   ? 'Browse through our complete history of events, workshops, and initiatives.'
-                  : 'تصفح تاريخنا الكامل من الفعاليات وورش العمل والمبادرات.'}
+                  : 'تصفح تاريخنا الكامل من الفعاليات وورش العمل والمبادرات'}
               </p>
             </div>
           </GSAPReveal>
