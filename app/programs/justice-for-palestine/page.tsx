@@ -69,10 +69,10 @@ export default function JusticeForPalestinePage() {
               <Scale size={22} className={`${isRTL ? 'order-2' : '-ml-1'} animate-pulse`} /> {t("justice.apply")}
             </a>
             <div className={`flex gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <a href="/ProgramsFiles/Justice for Palestine Scholarship.docx" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-                <GraduationCap size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("justice.download.en")}
+              <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
+                <GraduationCap size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("justice.download.brochure")}
               </a>
-              <a href="/ProgramsFiles/Justice for Palestine Scholarship AR.docx" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
+              <a href="/ProgramsFiles/JusticeForPalestine-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
                 <GraduationCap size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("justice.download.ar")}
               </a>
             </div>
