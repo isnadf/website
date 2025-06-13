@@ -112,17 +112,17 @@ export default function PulseOfLifePage() {
       <section className="py-16 px-4 md:px-0 bg-white dark:bg-black">
         <div className="max-w-4xl mx-auto">
           <GSAPTextReveal element="h2" className="text-3xl md:text-4xl font-bold text-center text-green-700 mb-8 pt-4">{t("pulse.goals.title")}</GSAPTextReveal>
-          <ul className={`space-y-4 text-lg text-gray-800 dark:text-gray-100 font-medium mb-8 ${getRTLTextAlign()}`}>
-            <li className={`flex items-center gap-3 ${getRTLFlex()}`}>
-              <UserPlus className="text-green-700" size={24} />
+          <ul className={`space-y-4 text-lg text-gray-800 dark:text-gray-100 font-medium mb-8 ${language === 'ar' ? 'items-end' : 'items-start'} ${getRTLTextAlign()}`}>
+            <li className={`flex items-center ${language === 'ar' ? 'flex-row-reverse justify-end' : 'flex-row'} gap-3 w-full`}>
+              <UserPlus className={`text-green-700 ${language === 'ar' ? 'order-last' : ''}`} size={24} />
               <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.train")}</span>
             </li>
-            <li className={`flex items-center gap-3 ${getRTLFlex()}`}>
-              <Stethoscope className="text-green-700" size={24} />
+            <li className={`flex items-center ${language === 'ar' ? 'flex-row-reverse justify-end' : 'flex-row'} gap-3 w-full`}>
+              <Stethoscope className={`text-green-700 ${language === 'ar' ? 'order-last' : ''}`} size={24} />
               <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.support")}</span>
             </li>
-            <li className={`flex items-center gap-3 ${getRTLFlex()}`}>
-              <Home className="text-green-700" size={24} />
+            <li className={`flex items-center ${language === 'ar' ? 'flex-row-reverse justify-end' : 'flex-row'} gap-3 w-full`}>
+              <Home className={`text-green-700 ${language === 'ar' ? 'order-last' : ''}`} size={24} />
               <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>{t("pulse.goals.reach")}</span>
             </li>
           </ul>
