@@ -12,6 +12,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import SuccessStoryCard from "@/components/success-story-card"
+import { useLanguage } from "@/components/language-provider"
 
 // Mock success stories data
 const successStoriesData = [
@@ -143,11 +144,8 @@ const successStoriesData = [
   },
 ]
 
-// Categories for filtering
-const categories = ["All", "Bachelor's", "Master's", "PhD"]
-const years = ["All", "2023", "2022", "2021", "2020", "2019"]
-
 export default function SuccessStoriesPage() {
+  const { t } = useLanguage()
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [selectedYear, setSelectedYear] = useState("All")
@@ -204,6 +202,10 @@ export default function SuccessStoriesPage() {
     setCurrentPage(1)
   }, [searchQuery, selectedCategory, selectedYear, activeTab])
 
+  // Categories for filtering
+  const categories = ["All", t("success_stories.categories.bachelors"), t("success_stories.categories.masters"), t("success_stories.categories.phd")]
+  const years = ["All", "2023", "2022", "2021", "2020", "2019"]
+
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
@@ -221,18 +223,18 @@ export default function SuccessStoriesPage() {
           <div className="bg-white/10 backdrop-blur-md rounded-lg px-4 py-3 border border-white/20">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#1e7e34]"></div>
-              <span className="text-white text-sm font-medium">Success Stories</span>
+              <span className="text-white text-sm font-medium">{t("success_stories.page_indicator")}</span>
             </div>
           </div>
         </div>
         <div className="container relative z-10 px-4 md:px-6 h-full flex items-center justify-center">
           <div className="mx-auto max-w-5xl text-center">
-            <GSAPTextReveal element="h1" className="text-5xl font-bold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl drop-shadow-2xl font-sora">
-              Success Stories
+            <GSAPTextReveal className="text-5xl font-bold tracking-wider sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl drop-shadow-2xl font-sora h-40">
+              {t("success_stories.title")}
             </GSAPTextReveal>
             <GSAPReveal animation="fade" delay={0.3}>
               <p className="mt-8 text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white drop-shadow-xl max-w-4xl mx-auto leading-relaxed">
-                Meet the remarkable students who have transformed their lives through our support programs.
+                {t("success_stories.subtitle")}
               </p>
             </GSAPReveal>
           </div>
@@ -246,11 +248,11 @@ export default function SuccessStoriesPage() {
             <div className="mb-12 text-center">
               <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
                 <Quote className="mr-1 h-4 w-4" />
-                Inspiring Journeys
+                {t("success_stories.inspiring_journeys")}
               </div>
-              <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">Featured Stories</h2>
+              <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">{t("success_stories.featured_stories")}</h2>
               <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
-                Inspiring journeys of determination, resilience, and academic excellence.
+                {t("success_stories.featured_description")}
               </p>
             </div>
           </GSAPReveal>
@@ -287,9 +289,9 @@ export default function SuccessStoriesPage() {
             <GSAPReveal animation="fade">
               <Quote className="mx-auto mb-6 h-16 w-16 opacity-20 text-[#1e7e34] relative z-10" />
               <p className="text-2xl font-medium italic md:text-3xl text-gray-900 dark:text-white relative z-10">
-                Education is the most powerful weapon which you can use to change the world.
+                {t("success_stories.mandela_quote")}
               </p>
-              <p className="mt-4 text-lg text-[#1e7e34] relative z-10">Nelson Mandela</p>
+              <p className="mt-4 text-lg text-[#1e7e34] relative z-10">{t("success_stories.mandela_author")}</p>
             </GSAPReveal>
           </div>
         </div>
@@ -302,11 +304,11 @@ export default function SuccessStoriesPage() {
             <div className="mb-12 text-center">
               <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
                 <Search className="mr-1 h-4 w-4" />
-                Browse Stories
+                {t("success_stories.browse_stories")}
               </div>
-              <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">All Success Stories</h2>
+              <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">{t("success_stories.all_stories")}</h2>
               <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
-                Browse through the inspiring journeys of our scholarship recipients.
+                {t("success_stories.browse_description")}
               </p>
             </div>
           </GSAPReveal>
@@ -318,7 +320,7 @@ export default function SuccessStoriesPage() {
                 <div className="relative md:col-span-2">
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
-                    placeholder="Search stories..."
+                    placeholder={t("success_stories.search_placeholder") as string}
                     className="pl-10"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -328,12 +330,12 @@ export default function SuccessStoriesPage() {
                   <Filter className="h-4 w-4 text-muted-foreground" />
                   <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Degree Level" />
+                      <SelectValue placeholder={t("success_stories.degree_level")} />
                     </SelectTrigger>
                     <SelectContent>
                       {categories.map((category) => (
-                        <SelectItem key={category} value={category}>
-                          {category}
+                        <SelectItem key={category as string} value={category as string}>
+                          {category as string}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -342,7 +344,7 @@ export default function SuccessStoriesPage() {
                 <div className="flex items-center gap-2">
                   <Select value={selectedYear} onValueChange={setSelectedYear}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Graduation Year" />
+                      <SelectValue placeholder={t("success_stories.graduation_year")} />
                     </SelectTrigger>
                     <SelectContent>
                       {years.map((year) => (
@@ -364,13 +366,13 @@ export default function SuccessStoriesPage() {
                     value="all"
                     className="data-[state=active]:bg-[#1e7e34] data-[state=active]:text-white"
                   >
-                    All Stories
+                    {t("success_stories.tabs.all")}
                   </TabsTrigger>
                   <TabsTrigger
                     value="featured"
                     className="data-[state=active]:bg-[#1e7e34] data-[state=active]:text-white"
                   >
-                    Featured
+                    {t("success_stories.tabs.featured")}
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -396,7 +398,7 @@ export default function SuccessStoriesPage() {
                           <p className="mb-3 text-sm text-muted-foreground">{story.university}</p>
                           <p className="italic text-muted-foreground">"{story.quote.substring(0, 100)}..."</p>
                           <div className="mt-4 flex items-center text-sm font-medium text-[#1e7e34]">
-                            Read Full Story
+                            {t("success_stories.read_full_story")}
                             <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
                         </div>
@@ -407,7 +409,7 @@ export default function SuccessStoriesPage() {
               </div>
             ) : (
               <div className="rounded-lg border border-dashed p-8 text-center">
-                <p className="text-muted-foreground">No success stories found matching your criteria.</p>
+                <p className="text-muted-foreground">{t("success_stories.no_stories_found")}</p>
               </div>
             )}
 
@@ -460,16 +462,19 @@ export default function SuccessStoriesPage() {
             <GSAPReveal animation="slide-up">
               <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34] relative z-10">
                 <Quote className="mr-1 h-4 w-4" />
-                Your Journey Matters
+                {t("success_stories.your_journey_matters")}
               </div>
-              <h2 className="mt-2 text-2xl font-bold tracking-tighter sm:text-3xl text-gray-900 dark:text-white relative z-10">Share Your Success Story</h2>
+              <h2 className="mt-2 text-2xl font-bold tracking-tighter sm:text-3xl text-gray-900 dark:text-white relative z-10">
+                {t("success_stories.share_story_title")}
+              </h2>
               <p className="mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 relative z-10">
-                Are you a scholarship recipient with a story to tell? We'd love to feature your journey and inspire
-                others.
+                {t("success_stories.share_story_description")}
               </p>
               <div className="mt-6 relative z-10">
                 <Link href="/contact">
-                  <Button className="bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90">Submit Your Story</Button>
+                  <Button className="bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90">
+                    {t("success_stories.submit_story")}
+                  </Button>
                 </Link>
               </div>
             </GSAPReveal>

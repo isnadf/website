@@ -125,7 +125,7 @@ export default function ContactPage() {
                   {t("contact.info.subtitle") as string}
                 </p>
                 <p className={`mt-4 text-muted-foreground`}>
-                  {t("contact.info.subtitle2") as string}
+                  {t("contact.info.subtitle3") as string}
                 </p>
 
                 <div className="mt-8 space-y-6">
