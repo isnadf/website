@@ -26,7 +26,7 @@ export default function Home() {
     {
       title: t("card1.title"),
       excerpt: t("Card1.desc"),
-      image: "/scholer.png?height=400&width=600",
+      image: "/work/2.jpeg?width=full&height=full",
       href: "/news/scholarships-academic-support",
       date: "",
       category: "Scholarships"
@@ -34,7 +34,7 @@ export default function Home() {
     {
       title: t("Card2.title"),
       excerpt: t("Card2.desc"),
-      image: "/secondCard.png",
+      image: "/work/4.jpeg?width=full&height=full",
       href: "/news/capacity-building",
       date: "",
       category: "Professional Development"
@@ -42,7 +42,7 @@ export default function Home() {
     {
       title: t("Card3.title"),
       excerpt: t("Card3.desc"),
-      image: "/thirdCard.png?height=400&width=600",
+      image: "/work/3.jpeg?width=full&height=full",
       href: "/news/scientific-research",
       date: "",
       category: "Research"
@@ -50,7 +50,7 @@ export default function Home() {
     {
       title: t("Card4.title"),
       excerpt: t("Card4.desc"),
-      image: "/fourCard.png?height=400&width=600",
+      image: "/work/1.jpeg?width=full&height=full",
       href: "/news/national-identity",
       date: "",
       category: "Community"
@@ -58,7 +58,7 @@ export default function Home() {
     {
       title: t("Card5.title"),
       excerpt: t("Card5.desc"),
-      image: "/fifthCard.png?height=400&width=600",
+      image: "/work/3.jpeg?width=full&height=full",
       href: "/news/palestinian-network",
       date: "",
       category: "Network"
