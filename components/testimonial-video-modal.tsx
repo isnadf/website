@@ -12,6 +12,7 @@ interface TestimonialVideoModalProps {
   name: string
   videoPath: string
   description?: string
+  isRTL?: boolean
 }
 
 export function TestimonialVideoModal({
@@ -20,6 +21,7 @@ export function TestimonialVideoModal({
   name,
   videoPath,
   description,
+  isRTL = false,
 }: TestimonialVideoModalProps) {
   // Add keyboard event handler for Escape key
   useEffect(() => {
@@ -58,7 +60,9 @@ export function TestimonialVideoModal({
           
           {description && (
             <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <p className="text-gray-700 dark:text-gray-300">{description}</p>
+              <p className={`text-gray-700 dark:text-gray-300 ${isRTL ? 'text-right font-arabic' : 'text-left font-sans'}`}>
+                {description}
+              </p>
             </div>
           )}
         </div>

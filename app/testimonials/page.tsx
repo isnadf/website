@@ -20,10 +20,9 @@ function TestimonialsContent() {
   const [testimonialVideoPath, setTestimonialVideoPath] = useState("")
   const [testimonialDescription, setTestimonialDescription] = useState("")
 
-  const handleOpenTestimonialVideo = (name: { en: string; ar: string }, videoFileName: string, description: string) => {
+  const handleOpenTestimonialVideo = (name: { en: string; ar: string }, videoFileName: string, quote: { en: string; ar: string }) => {
     setTestimonialName(name[language as keyof typeof name])
     setTestimonialVideoPath(`/testomenialVid/${videoFileName}`)
-    setTestimonialDescription(description)
     setIsTestimonialVideoOpen(true)
   }
 
@@ -57,7 +56,7 @@ function TestimonialsContent() {
         onClose={() => setIsTestimonialVideoOpen(false)}
         name={testimonialName}
         videoPath={testimonialVideoPath}
-        description={testimonialDescription}
+        isRTL={language === 'ar'}
       />
 
       {/* Testimonials Section */}
