@@ -13,6 +13,7 @@ import {
   MessageSquare,
   UserPlus,
   Sword,
+  BookOpen,
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
@@ -65,15 +66,15 @@ export default function JusticeForPalestinePage() {
             {t("justice.about.desc")}
           </p>
           <div className={`flex justify-center mt-6 gap-4 flex-wrap ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-600 to-black text-white font-bold rounded-full shadow-xl hover:from-black hover:to-red-600 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
+            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-600 to-black text-white font-bold rounded-full shadow-xl hover:from-black hover:to-red-600 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
               <Scale size={22} className={`${isRTL ? 'order-2' : '-ml-1'} animate-pulse`} /> {t("justice.apply")}
             </a>
             <div className={`flex gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-                <GraduationCap size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("justice.download.brochure")}
+                <BookOpen size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("justice.download.en")}
               </a>
               <a href="/ProgramsFiles/JusticeForPalestine-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-                <GraduationCap size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("justice.download.ar")}
+                <BookOpen size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("justice.download.ar")}
               </a>
             </div>
           </div>
