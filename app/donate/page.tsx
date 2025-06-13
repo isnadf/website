@@ -12,7 +12,7 @@ import { CheckCircle, CreditCard, Banknote, Gift, Heart, Shield, Users, Building
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function DonatePage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [amount, setAmount] = useState("")
   const [customAmount, setCustomAmount] = useState("")
   const [paymentMethod, setPaymentMethod] = useState("card")
@@ -99,9 +99,9 @@ export default function DonatePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto text-center"
+            className={`max-w-3xl mx-auto text-center ${language === "ar" ? "text-right" : "text-left"}`}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex justify-center items-center">
               {t("donate.hero.title")}
             </h1>
             <p className="text-xl text-gray-600 mb-8">
@@ -116,11 +116,11 @@ export default function DonatePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{t("donate.form.title")}</h2>
+              <h2 className={`text-2xl font-bold text-gray-900 mb-6 flex justify-center items-center ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.form.title")}</h2>
               
               {/* Donation Type Selection */}
               <div className="mb-8">
-                <Label className="text-lg font-medium mb-4 block">{t("donate.form.type")}</Label>
+                <Label className={`text-lg font-medium mb-4 flex ${language === "ar" ? "justify-end" : "justify-center"} items-center`}>{t("donate.form.type")}</Label>
                 <RadioGroup
                   value={donationType}
                   onValueChange={(value) => {
@@ -134,7 +134,7 @@ export default function DonatePage() {
                       donationType === "general" 
                         ? "bg-green-50 border-green-200" 
                         : "hover:bg-gray-50 border-gray-200"
-                    }`}
+                    } ${language === "ar" ? "space-x-reverse" : ""}`}
                     onClick={() => {
                       setDonationType("general")
                       setSelectedProgram("")
@@ -143,9 +143,9 @@ export default function DonatePage() {
                     <RadioGroupItem value="general" id="general" className="cursor-pointer" />
                     <Label 
                       htmlFor="general" 
-                      className="flex items-center cursor-pointer flex-1"
+                      className={`flex items-center cursor-pointer flex-1 ${language === "ar" ? "flex-row-reverse" : ""}`}
                     >
-                      <Building2 className={`w-5 h-5 mr-2 ${donationType === "general" ? "text-green-600" : "text-gray-600"}`} />
+                      <Building2 className={`w-5 h-5 ${language === "ar" ? "ml-2" : "mr-2"} ${donationType === "general" ? "text-green-600" : "text-gray-600"}`} />
                       <span className={donationType === "general" ? "text-green-700 font-medium" : ""}>
                         {t("donate.form.general")}
                       </span>
@@ -156,7 +156,7 @@ export default function DonatePage() {
                       donationType === "program" 
                         ? "bg-green-50 border-green-200" 
                         : "hover:bg-gray-50 border-gray-200"
-                    }`}
+                    } ${language === "ar" ? "space-x-reverse" : ""}`}
                     onClick={() => {
                       setDonationType("program")
                       setSelectedProgram("")
@@ -165,9 +165,9 @@ export default function DonatePage() {
                     <RadioGroupItem value="program" id="program" className="cursor-pointer" />
                     <Label 
                       htmlFor="program" 
-                      className="flex items-center cursor-pointer flex-1"
+                      className={`flex items-center cursor-pointer flex-1 ${language === "ar" ? "flex-row-reverse" : ""}`}
                     >
-                      <GraduationCap className={`w-5 h-5 mr-2 ${donationType === "program" ? "text-green-600" : "text-gray-600"}`} />
+                      <GraduationCap className={`w-5 h-5 ${language === "ar" ? "ml-2" : "mr-2"} ${donationType === "program" ? "text-green-600" : "text-gray-600"}`} />
                       <span className={donationType === "program" ? "text-green-700 font-medium" : ""}>
                         {t("donate.form.specific")}
                       </span>
@@ -179,16 +179,16 @@ export default function DonatePage() {
               {/* Program Selection - Only show when specific program is selected */}
               {donationType === "program" && (
                 <div className="mb-8">
-                  <Label className="text-lg font-medium mb-4 block">{t("donate.form.select_program")}</Label>
+                  <Label className={`text-lg font-medium mb-4 block ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.form.select_program")}</Label>
                   <Select value={selectedProgram} onValueChange={setSelectedProgram}>
-                    <SelectTrigger className="w-full h-12">
+                    <SelectTrigger className={`w-full h-12 ${language === "ar" ? "text-right" : "text-left"}`}>
                       <SelectValue placeholder={t("donate.form.choose_program")} />
                     </SelectTrigger>
                     <SelectContent>
                       {programs.map((program) => (
                         <SelectItem key={program.id} value={program.id}>
-                          <div className="flex items-center">
-                            <program.icon className="w-4 h-4 mr-2" />
+                          <div className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
+                            <program.icon className={`w-4 h-4 ${language === "ar" ? "ml-2" : "mr-2"}`} />
                             {program.name}
                           </div>
                         </SelectItem>
@@ -206,26 +206,26 @@ export default function DonatePage() {
                     if (!program) return null
                     return (
                       <>
-                        <h3 className="text-lg font-semibold mb-4 flex items-center">
-                          <program.icon className="w-5 h-5 mr-2" />
+                        <h3 className={`text-lg font-semibold mb-4 flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
+                          <program.icon className={`w-5 h-5 ${language === "ar" ? "ml-2" : "mr-2"}`} />
                           {program.name}
                         </h3>
-                        <div className="space-y-4">
+                        <div className={`space-y-4 ${language === "ar" ? "text-right" : "text-left"}`}>
                           <p className="text-gray-600">{program.description}</p>
                           <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
                               <span className="font-medium text-gray-700">{t("donate.programs.scholarships")}:</span>
-                              <span className="ml-2 text-gray-600">{program.scholarships}</span>
+                              <span className={`${language === "ar" ? "mr-2" : "ml-2"} text-gray-600`}>{program.scholarships}</span>
                             </div>
                             {program.duration && (
                               <div>
                                 <span className="font-medium text-gray-700">{t("donate.programs.duration")}:</span>
-                                <span className="ml-2 text-gray-600">{program.duration}</span>
+                                <span className={`${language === "ar" ? "mr-2" : "ml-2"} text-gray-600`}>{program.duration}</span>
                               </div>
                             )}
                             <div className="col-span-2">
                               <span className="font-medium text-gray-700">{t("donate.programs.focus")}:</span>
-                              <span className="ml-2 text-gray-600">{program.focus}</span>
+                              <span className={`${language === "ar" ? "mr-2" : "ml-2"} text-gray-600`}>{program.focus}</span>
                             </div>
                           </div>
                         </div>
@@ -237,7 +237,7 @@ export default function DonatePage() {
 
               {/* Amount Selection */}
               <div className="mb-8">
-                <Label className="text-lg font-medium mb-4 block">{t("donate.form.amount")}</Label>
+                <Label className={`text-lg font-medium mb-4 block ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.form.amount")}</Label>
                 <div className="grid grid-cols-3 gap-4 mb-4">
                   {presetAmounts.map((preset) => (
                     <Button
@@ -256,7 +256,7 @@ export default function DonatePage() {
                   ))}
                 </div>
                 <div className="mt-4">
-                  <Label className="text-sm text-gray-600 mb-2 block">{t("donate.form.custom")}</Label>
+                  <Label className={`text-sm text-gray-600 mb-2 block ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.form.custom")}</Label>
                   <Input
                     type="number"
                     placeholder={t("donate.form.custom") as string}
@@ -265,32 +265,42 @@ export default function DonatePage() {
                       setCustomAmount(e.target.value)
                       setAmount("")
                     }}
-                    className="h-12 text-lg"
+                    className={`h-12 text-lg ${language === "ar" ? "text-right" : "text-left"}`}
                   />
                 </div>
               </div>
 
               {/* Payment Method Selection */}
               <div className="mb-8">
-                <Label className="text-lg font-medium mb-4 block">{t("donate.form.payment")}</Label>
+                <Label className={`text-lg font-medium mb-4 block ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.form.payment")}</Label>
                 <RadioGroup
                   value={paymentMethod}
                   onValueChange={setPaymentMethod}
-                  className="space-y-4"
+                  className={`space-y-4 ${language === "ar" ? "text-right" : "text-left"}`}
                 >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="card" id="card" />
-                    <Label htmlFor="card" className="flex items-center">
-                      <CreditCard className="w-5 h-5 mr-2" />
-                      {t("donate.form.card")}
-                    </Label>
+                  <div className={`flex items-center ${language === "ar" ? "justify-end" : ""}`}>
+                    <div className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
+                      <RadioGroupItem value="card" id="card" className={language === "ar" ? "ml-2" : "mr-2"} />
+                      <Label 
+                        htmlFor="card" 
+                        className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}
+                      >
+                        <CreditCard className={`w-5 h-5 ${language === "ar" ? "ml-2" : "mr-2"}`} />
+                        <span className={language === "ar" ? "text-right" : ""}>{t("donate.form.card")}</span>
+                      </Label>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="bank" id="bank" />
-                    <Label htmlFor="bank" className="flex items-center">
-                      <Banknote className="w-5 h-5 mr-2" />
-                      {t("donate.form.bank")}
-                    </Label>
+                  <div className={`flex items-center ${language === "ar" ? "justify-end" : ""}`}>
+                    <div className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
+                      <RadioGroupItem value="bank" id="bank" className={language === "ar" ? "ml-2" : "mr-2"} />
+                      <Label 
+                        htmlFor="bank" 
+                        className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}
+                      >
+                        <Banknote className={`w-5 h-5 ${language === "ar" ? "ml-2" : "mr-2"}`} />
+                        <span className={language === "ar" ? "text-right" : ""}>{t("donate.form.bank")}</span>
+                      </Label>
+                    </div>
                   </div>
                 </RadioGroup>
               </div>
@@ -308,13 +318,13 @@ export default function DonatePage() {
               </Button>
 
               {/* Trust Indicators */}
-              <div className="mt-6 flex items-center justify-center space-x-4 text-sm text-gray-500">
-                <div className="flex items-center">
-                  <Shield className="w-4 h-4 mr-1" />
+              <div className={`mt-6 flex items-center justify-center space-x-4 text-sm text-gray-500 ${language === "ar" ? "space-x-reverse" : ""}`}>
+                <div className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
+                  <Shield className={`w-4 h-4 ${language === "ar" ? "ml-1" : "mr-1"}`} />
                   {t("donate.trust.secure")}
                 </div>
-                <div className="flex items-center">
-                  <CheckCircle className="w-4 h-4 mr-1" />
+                <div className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
+                  <CheckCircle className={`w-4 h-4 ${language === "ar" ? "ml-1" : "mr-1"}`} />
                   {t("donate.trust.tax")}
                 </div>
               </div>
@@ -326,7 +336,7 @@ export default function DonatePage() {
       {/* Impact Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          <h2 className={`text-3xl font-bold text-center text-gray-900 mb-12 ${language === "ar" ? "text-right flex justify-center items-center" : "text-left"}`}>
             {t("donate.impact.title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -336,11 +346,11 @@ export default function DonatePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 text-center shadow-md"
+                className={`bg-white rounded-xl p-6 text-center shadow-md ${language === "ar" ? "text-right" : "text-left"}`}
               >
                 <stat.icon className="w-12 h-12 text-[#34a853] mx-auto mb-4" />
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2 flex justify-center items-center">{stat.value}</div>
+                <div className="text-gray-600 flex justify-center items-center">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -350,21 +360,25 @@ export default function DonatePage() {
       {/* FAQ Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          <h2 className={`text-3xl font-bold text-center text-gray-900 mb-12 ${language === "ar" ? "text-right flex justify-center items-center" : "text-left"}`}>
             {t("donate.faq.title")}
           </h2>
           <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible className={`space-y-4 ${language === "ar" ? "text-right" : "text-left"}`}>
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="border rounded-lg px-4"
+                  className={`border rounded-lg px-4 ${language === "ar" ? "text-right" : "text-left"}`}
                 >
-                  <AccordionTrigger className="text-lg font-medium">
-                    {faq.question}
+                  <AccordionTrigger 
+                    className={`text-lg font-medium w-full ${language === "ar" ? "flex-row-reverse justify-end" : ""}`}
+                  >
+                    <div className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
+                      {faq.question}
+                    </div>
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
+                  <AccordionContent className={`text-gray-600 ${language === "ar" ? "text-right" : "text-left"}`}>
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
