@@ -14,13 +14,17 @@ import {
   UserPlus,
   Scroll,
   Library,
-  Microscope
+  Microscope,
+  ChevronDown,
+  Download
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import Image from "next/image"
 import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export default function IbnKhaldunScholarshipPage() {
   const { t, language } = useLanguage()
@@ -66,18 +70,44 @@ export default function IbnKhaldunScholarshipPage() {
           <p className={`text-gray-800 dark:text-gray-100 text-base md:text-lg text-center ${isRTL ? 'font-arabic' : ''}`}>
             {t("ibn-khaldun.about.desc")}
           </p>
-          <div className={`flex justify-center mt-6 gap-4 flex-wrap ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold rounded-full shadow-xl hover:from-indigo-600 hover:to-purple-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-              <GraduationCap size={22} className={`${isRTL ? 'order-2' : '-ml-1'} animate-pulse`} /> {t("ibn-khaldun.apply")}
-            </a>
-            <div className={`flex gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <a href="/ProgramsFiles/ibn-khaldun-EN.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-                <BookOpen size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.download.en")}
+          <div className={`flex justify-center mt-6 gap-4 items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
+            >
+              <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer">
+                <GraduationCap size={22} className={`${isRTL ? 'order-2' : '-ml-1'} animate-pulse`} /> {t("ibn-khaldun.apply")}
               </a>
-              <a href="/ProgramsFiles/ibn-khaldun-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-                <BookOpen size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.download.ar")}
-              </a>
-            </div>
+            </Button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-black hover:bg-transparent hover:text-purple-600 border-none font-semibold group"
+                >
+                  <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                  {language === 'ar' ? 'تحميل البرنامج' : 'Download Program'}
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="border border-gray-200">
+                <DropdownMenuItem asChild>
+                  <a href="/ProgramsFiles/ibn-khaldun-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <Download className="h-4 w-4" />
+                    English (EN)
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="/ProgramsFiles/ibn-khaldun-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <Download className="h-4 w-4" />
+                    العربية (AR)
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </section>
@@ -186,18 +216,44 @@ export default function IbnKhaldunScholarshipPage() {
           </div>
         </div>
 
-        <div className={`flex justify-center my-8 gap-4 flex-wrap ${isRTL ? 'flex-row-reverse' : ''}`}>
-          <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-bold rounded-full shadow-lg hover:from-indigo-600 hover:to-purple-500 transition-colors duration-300 text-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-            <UserPlus size={26} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.apply.now")}
-          </a>
-          <div className={`flex gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <a href="/ProgramsFiles/Ibn Khaldun Scholarship.docx" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-              <BookOpen size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.download.en")}
+        <div className={`flex justify-center my-8 gap-4 items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <Button
+            asChild
+            size="lg"
+            className="bg-gradient-to-r from-purple-600 to-indigo-500 hover:from-indigo-600 hover:to-purple-500 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
+          >
+            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer">
+              <UserPlus size={26} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.apply.now")}
             </a>
-            <a href="/ProgramsFiles/Ibn Khaldun Scholarship-AR.docx" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-              <BookOpen size={20} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.download.ar")}
-            </a>
-          </div>
+          </Button>
+
+          <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-black hover:bg-transparent hover:text-purple-600 border-none font-semibold group"
+                >
+                  <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                  {language === 'ar' ? 'تحميل البرنامج' : 'Download Program'}
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="border border-gray-200">
+                <DropdownMenuItem asChild>
+                  <a href="/ProgramsFiles/ibn-khaldun-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <Download className="h-4 w-4" />
+                    English (EN)
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="/ProgramsFiles/ibn-khaldun-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <Download className="h-4 w-4" />
+                    العربية (AR)
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
         </div>
       </section>
     </main>
