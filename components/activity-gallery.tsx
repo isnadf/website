@@ -186,7 +186,7 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
           {activity.category[language]}
         </Badge>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">{activity.title[language]}</h1>
-        <div className={`flex flex-wrap gap-3 sm:gap-4 text-sm sm:text-base text-muted-foreground ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
+        {/* <div className={`flex flex-wrap gap-3 sm:gap-4 text-sm sm:text-base text-muted-foreground ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
           <div className={`flex items-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
             <Calendar className={`${language === 'ar' ? 'ml-2' : 'mr-2'} h-4 w-4 sm:h-5 sm:w-5`} />
             {activity.date[language]}
@@ -195,7 +195,7 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
             <MapPin className={`${language === 'ar' ? 'ml-2' : 'mr-2'} h-4 w-4 sm:h-5 sm:w-5`} />
             {activity.location[language]}
           </div>
-        </div>
+        </div> */}
         <div className="prose prose-lg dark:prose-invert max-w-none">
           {activity.full_description[language].split('\n\n').map((paragraph, index) => (
             <p key={index} className={`mb-4 text-base sm:text-lg text-muted-foreground leading-relaxed ${language === 'ar' ? 'text-right' : 'text-left'}`}>

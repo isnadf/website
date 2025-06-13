@@ -63,23 +63,21 @@ export default function ActivityPage() {
         </div>
         <div className="container relative h-full px-4 md:px-6">
           <div className="flex h-full flex-col justify-end pb-16">
-            <div className={`flex ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
-              <Link href="/activities">
-                <Button variant="ghost" className={`mb-8 w-fit text-white hover:bg-white/20 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
-                  <ArrowLeft className={`${language === 'ar' ? 'ml-2 rotate-180' : 'mr-2'} h-4 w-4`} />
-                  {language === 'en' ? 'Back to Activities' : 'العودة إلى الأنشطة'}
-                </Button>
-              </Link>
-            </div>
-            <div className="space-y-4">
-              <div className={`flex ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
+            <div className={`w-full ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+              <div className={`inline-flex flex-col items-end space-y-4 ${language === 'ar' ? 'float-right' : 'float-left'}`}>
+                <Link href="/activities">
+                  <Button variant="ghost" className={`w-fit text-white hover:bg-white/20 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                    <ArrowLeft className={`${language === 'ar' ? 'ml-2 rotate-180' : 'mr-2'} h-4 w-4`} />
+                    {language === 'en' ? 'Back to Activities' : 'العودة إلى الأنشطة'}
+                  </Button>
+                </Link>
                 <Badge variant="outline" className={`bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] text-base px-3 py-1 inline-flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                   {getActivityIcon(activity.category[language])}
                   {activity.category[language]}
                 </Badge>
               </div>
-              <h1 className={`text-4xl font-bold text-white sm:text-5xl ${language === 'ar' ? 'text-right' : 'text-left'}`}>{activity.title[language]}</h1>
             </div>
+            <h1 className={`text-4xl font-bold text-white sm:text-5xl mt-4 ${language === 'ar' ? 'text-right' : 'text-left'}`}>{activity.title[language]}</h1>
           </div>
         </div>
       </section>
