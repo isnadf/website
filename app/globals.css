@@ -443,5 +443,11 @@ body.translated-rtl footer font[style*="vertical-align"] {
   display: contents !important;
 }
 
+.font-arabic {
+  font-family: 'Tajawal', 'Cairo', 'Amiri', 'Noto Kufi Arabic', 'Arial', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
 
 
