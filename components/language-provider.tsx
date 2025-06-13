@@ -12,6 +12,12 @@ interface LanguageContextType {
 
 const translations = {
   en: {
+    "news.latest.pulseOfLifeDisbursement.title": "Disbursements of the first phase of the Pulse of Life program have begun in Türkiye",
+    "news.latest.pulseOfLifeDisbursement.excerpt": "The Isnad Foundation for Palestinian Student Support announced the commencement of disbursing scholarships to students benefiting from the first phase of the Nabd Al-Hayat program, starting May 1, 2025, in partnership with and with the generous support of the Turkish National Youth Association (MGV - Milli Gençlik Vakfı).",
+    "news.latest.pulseOfLifeDisbursement.category": "Scholarships",
+
+
+
     "nav.home": "Home",
     "nav.about": "About",
     "nav.programs": "Our Programs",
@@ -644,6 +650,10 @@ const translations = {
     "programs.learn-more": "Learn More",
   },
   ar: {
+      "news.latest.pulseOfLifeDisbursement.title": "بدء صرف منح المرحلة الأولى من برنامج نبض الحياة في تركيا",
+      "news.latest.pulseOfLifeDisbursement.excerpt": "علنت مؤسسة إسناد لدعم الطالب الفلسطيني عن بدء صرف المنح الدراسية للطلبة المستفيدين ضمن المرحلة الأولى من برنامج نبض الحياة، وذلك اعتبارًا من 1 مايو 2025",
+
+
     "contact.info.subtitlquireme3": "تواصل معنا باستخدام أي من الطرق أدناه :",
     // Navigation translations
     "nav.home": "الرئيسية",

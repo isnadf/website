@@ -139,6 +139,15 @@ export default function Home() {
       date: "May 25, 2025",
       category: t("news.latest.pulseOfLifeEnd.category") as string,
       isClickable: true
+    },
+    {
+      title: t("news.latest.pulseOfLifeDisbursement.title") as string,
+      excerpt: t("news.latest.pulseOfLifeDisbursement.excerpt") as string,
+      image: "/LastNews/latestnews4.jpeg",
+      href: "/news/pulse-of-life-disbursement",
+      date: "June 06, 2024",
+      category: t("news.latest.pulseOfLifeDisbursement.category") as string,
+      isClickable: true
     }
   ]
 
