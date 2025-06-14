@@ -27,7 +27,7 @@ export default function Home() {
       title: t("card1.title"),
       excerpt: t("Card1.desc"),
       image: "/work/2.jpeg",
-      href: "/news/scholarships-academic-support",
+      href: "/programs",
       date: "",
       category: "Scholarships"
     },
@@ -35,15 +35,15 @@ export default function Home() {
       title: t("Card2.title"),
       excerpt: t("Card2.desc"),
       image: "/work/4.jpeg",
-      href: "/news/capacity-building",
+      href: "/activities/2",
       date: "",
       category: "Professional Development"
     },
-    {
+    { 
       title: t("Card3.title"),
       excerpt: t("Card3.desc"),
       image: "/work/3.jpeg",
-      href: "/news/scientific-research",
+      href: "/success-stories",
       date: "",
       category: "Research"
     },
@@ -51,7 +51,7 @@ export default function Home() {
       title: t("Card4.title"),
       excerpt: t("Card4.desc"),
       image: "/work/1.jpeg",
-      href: "/news/national-identity",
+      href: "/activities/6",
       date: "",
       category: "Community"
     },
@@ -59,7 +59,7 @@ export default function Home() {
       title: t("Card5.title"),
       excerpt: t("Card5.desc"),
       image: "/work/3.jpeg",
-      href: "/news/palestinian-network",
+      href: "/activities/1",
       date: "",
       category: "Network"
     }
@@ -253,7 +253,7 @@ export default function Home() {
             href: card.href,
             date: card.date,
             category: card.category,
-            isClickable: false
+            isClickable: true
           }))}
           isAnyCardHovered={isAnyCardHovered}
           onHoverChange={setIsAnyCardHovered}
