@@ -108,7 +108,6 @@ export default function Home() {
     { name: "YediHilal", logo: "/partners/p2.png", type: "Academic Partner" },
     { name: "Hüdayi Vakfı", logo: "/partners/p3.jpeg", type: "Academic Partner" },
     { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: "International Organization" },
-    { name: "FEDERATION OF INTERNATIONAL STUDENT ASSOCIATIONS", logo: "/partners/p5.png", type: "Development Partner" },
     { name: "Alkhidmat Europe", logo: "/partners/p6.png", type: "Government Partner" }
   ]
 
@@ -660,7 +659,7 @@ export default function Home() {
             </GSAPReveal>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-5 gap-8">
             {partners.map((partner, index) => (
               <GSAPReveal key={index} animation="fade" delay={index * 0.1}>
                 <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-primary/5 dark:hover:bg-primary/10 hover:shadow-md">
