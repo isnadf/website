@@ -144,7 +144,7 @@ export default function Home() {
       excerpt: t("news.latest.pulseOfLifeDisbursement.excerpt") as string,
       image: "/LastNews/latestnews4.jpeg",
       href: "/news/pulse-of-life-disbursement",
-      date: "June 06, 2024",
+      date: "May 20, 2025",
       category: t("news.latest.pulseOfLifeDisbursement.category") as string,
       isClickable: true
     }
