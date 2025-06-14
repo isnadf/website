@@ -524,7 +524,7 @@ const translations = {
   "news.latest.supportTour.date": "June 06, 2024",
 
   "news.latest.pulseOfLifeStart.title":  "Continuation of First Phase Interviews for Pulse of Life Scholarship to Select 100 Students from Gaza",
-  "news.latest.pulseOfLifeStart.excerpt": "The first phase interviews of the Pulse of Life program, implemented by the Isnad Palestinian Student Fund in partnership with Alkhidmat Europe, continued today, Monday, targeting Palestinian medical students, especially in the Gaza Strip.",
+  "news.latest.pulseOfLifeStart.excerpt": "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي تنفذه مؤسسة إسنَاد لدعم الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
   "news.latest.pulseOfLifeStart.category": "Scholarships",
   "news.latest.pulseOfLifeStart.date": "May 5, 2025",
 
@@ -1166,13 +1166,13 @@ const translations = {
     "news.share": "مشاركة المقال",
     "news.linkCopied": "تم نسخ الرابط إلى الحافظة",
 
-    "news.latest.supportTour.title": "إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
-    "news.latest.supportTour.excerpt": "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
+    "news.latest.supportTour.title": "مؤسسة إسنَاد لدعم الطالب الفلسطيني تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
+    "news.latest.supportTour.excerpt": "نفذت مؤسسة إسنَاد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
     "news.latest.supportTour.category": "Education & Humanitarian Support",
     "news.latest.supportTour.date": "June 06, 2024",
 
     "news.latest.pulseOfLifeStart.title": "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج",
-    "news.latest.pulseOfLifeStart.excerpt": "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
+    "news.latest.pulseOfLifeStart.excerpt": "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي تنفذه مؤسسة إسنَاد لدعم الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة.",
     "news.latest.pulseOfLifeStart.category": "Scholarships",
     "news.latest.pulseOfLifeStart.date": "May 5, 2025",
 

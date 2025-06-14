@@ -40,7 +40,7 @@ const newsData = [
     date: "May 5, 2025",
     excerpt: {
       en: "The first phase interviews of the Pulse of Life program, implemented by the Isnad Palestinian Student Fund in partnership with Alkhidmat Europe, continued today, Monday, targeting Palestinian medical students, especially in the Gaza Strip.",
-      ar: "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي ينفذه صندوق إسناد الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة."
+      ar: "تواصلت اليوم الإثنين مقابلات المرحلة الأولى من برنامج منحة نبض الحياة، الذي تنفذه مؤسسة إسنَاد لدعم الطالب الفلسطيني بالشراكة مع مؤسسة الخدمات أوروبا (Alkhidmat Europe)، والتي تستهدف طلبة الطب الفلسطينيين خاصة في قطاع غزة."
     },
     image: "/LastNews/pulseOfLife-start.png",
     href: "/news/nabd-al-hayat-grant-interviews",
