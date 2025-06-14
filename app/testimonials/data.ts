@@ -148,7 +148,7 @@ export const publicFigureTestimonials: Testimonial[] = [
     },
     quote: {
       en: "The work that the Isnad Foundation is doing is vital for the future of our youth. Education is the most powerful tool we can give to the next generation.",
-      ar: "العمل الذي تقوم به مؤسسة إسناد حيوي لمستقبل شبابنا. التعليم هو أقوى أداة يمكننا تقديمها للجيل القادم"
+      ar: "العمل الذي تقوم به مؤسسة إسنَاد لدعم الطالب الفلسطيني حيوي لمستقبل شبابنا. التعليم هو أقوى أداة يمكننا تقديمها للجيل القادم"
     },
     videoFileName: "1.mp4",
     type: 'public_figure'
@@ -169,7 +169,7 @@ export const publicFigureTestimonials: Testimonial[] = [
     },
     quote: {
       en: "I've seen firsthand how the Fund's programs transform lives. These students are not just receiving an education; they're becoming ambassadors for Palestine.",
-      ar: "لقد رأيت بنفسي كيف تحول برامج الصندوق حياة الطلاب. هؤلاء الطلاب لا يتلقون التعليم فحسب، بل أصبحوا سفراء لفلسطين"
+      ar: "لقد رأيت بنفسي كيف تحول برامج مؤسسة إسنَاد لدعم الطالب الفلسطيني حياة الطلاب. هؤلاء الطلاب لا يتلقون التعليم فحسب، بل أصبحوا سفراء لفلسطين"
     },
     videoFileName: "2.mp4",
     type: 'public_figure'
@@ -190,7 +190,7 @@ export const publicFigureTestimonials: Testimonial[] = [
     },
     quote: {
       en: "The partnership between our ministry and the Fund has been instrumental in developing our educational infrastructure and supporting our brightest minds.",
-      ar: "كانت الشراكة بين وزارتنا والصندوق عاملاً أساسياً في تطوير البنية التحتية التعليمية لدينا ودعم عقولنا المتميزة"
+      ar: "كانت الشراكة بين وزارتنا ومؤسسة إسنَاد لدعم الطالب الفلسطيني عاملاً أساسياً في تطوير البنية التحتية التعليمية لدينا ودعم عقولنا المتميزة"
     },
     videoFileName: "3.mp4",
     type: 'public_figure'

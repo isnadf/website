@@ -33,7 +33,7 @@ const successStoriesData = [
     },
     quote: {
       en: "The support from the Palestinian Student Fund transformed my academic journey and opened doors I never thought possible.",
-      ar: "دعم صندوق الطلاب الفلسطينيين غير مسيرتي الأكاديمية وفتح أمامي أبواباً لم أكن أتخيلها ممكنة."
+      ar: "دعم مؤسسة إسنَاد لدعم الطالب الفلسطيني غير مسيرتي الأكاديمية وفتح أمامي أبواباً لم أكن أتخيلها ممكنة."
     },
     category: "PhD",
     featured: true,
