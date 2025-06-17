@@ -474,7 +474,7 @@ export default function Home() {
               <StatsCounter number={3} label={t("stats.pillars") as string} />
             </GSAPReveal>
             <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={6} label={t("stats.partners") as string} />
+              <StatsCounter number={5} label={t("stats.partners") as string} />
             </GSAPReveal>
           </div>
         </div>
