@@ -27,6 +27,7 @@ type ArticleData = {
   }
   image: string
   heroImage?: string
+  heroVideo?: string
   content: {
     en: string[]
     ar: string[]
@@ -148,6 +149,7 @@ const newsArticles: Record<string, ArticleData> = {
     },
     image: "/LastNews/latestnews4.jpeg",
     heroImage: "/LastNews/latestnews4.jpeg",
+    heroVideo: "/newVid/new4Vid.mp4",
     content: {
       en: [
         "Istanbul / Turkey",
@@ -200,6 +202,7 @@ export default function NewsArticlePage() {
     },
     image: "/placeholder.svg?height=600&width=1200",
     heroImage: "/placeholder.svg?height=600&width=1200",
+    heroVideo: undefined,
     content: {
       en: ["The requested article could not be found."],
       ar: ["لم يتم العثور على المقال المطلوب."]
@@ -272,13 +275,23 @@ export default function NewsArticlePage() {
   return (
     <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
-      <section className="relative h-[calc(50vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
+      <section className="relative h-[calc(70vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
         <div className="absolute inset-0 z-0">
-          <img
-            src={article.heroImage || article.image}
-            alt={article.title[language]}
-            className="h-full w-full object-contain object-center"
-          />
+          {article.heroVideo ? (
+            <video
+              src={article.heroVideo}
+              autoPlay
+              loop
+              playsInline
+              className="h-full w-full object-cover object-center"
+            />
+          ) : (
+            <img
+              src={article.heroImage || article.image}
+              alt={article.title[language]}
+              className="h-full w-full object-contain object-center"
+            />
+          )}
         </div>
         {/* Page Indicator */}
         <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-10">
