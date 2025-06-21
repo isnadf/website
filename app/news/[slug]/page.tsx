@@ -1,11 +1,11 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Calendar, User, Tag, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
+import { Calendar, User, Tag, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -188,6 +188,25 @@ export default function NewsArticlePage() {
   const { language, t } = useLanguage()
   const isRTL = language === "ar"
 
+  // State for video loading
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [videoError, setVideoError] = useState(false)
+
+  // Video Skeleton Component
+  const VideoSkeleton = ({ className = "" }: { className?: string }) => (
+    <div className={`bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center ${className}`}>
+      <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+          <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
+        </div>
+        <div className="text-center">
+          <div className="w-32 h-4 bg-gray-300 dark:bg-gray-600 rounded mb-2"></div>
+          <div className="w-24 h-3 bg-gray-300 dark:bg-gray-600 rounded"></div>
+        </div>
+      </div>
+    </div>
+  )
+
   // Get article data or use default if not found
   const article = newsArticles[slug as keyof typeof newsArticles] || {
     title: {
@@ -264,6 +283,20 @@ export default function NewsArticlePage() {
     }
   }
 
+  // Add timeout fallback for video loading
+  useEffect(() => {
+    if (article.heroVideo) {
+      // Fallback timeout - show video after 5 seconds even if not fully loaded
+      const timeout = setTimeout(() => {
+        if (!videoLoaded && !videoError) {
+          setVideoLoaded(true)
+        }
+      }, 5000)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [article.heroVideo, videoLoaded, videoError])
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
@@ -278,13 +311,41 @@ export default function NewsArticlePage() {
       <section className="relative h-[calc(70vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
         <div className="absolute inset-0 z-0">
           {article.heroVideo ? (
-            <video
-              src={article.heroVideo}
-              autoPlay
-              loop
-              playsInline
-              className="h-full w-full object-cover object-center"
-            />
+            <>
+              {/* Video Skeleton */}
+              {!videoLoaded && !videoError && (
+                <VideoSkeleton className="h-full w-full" />
+              )}
+
+              {/* Actual Video */}
+              <video
+                src={article.heroVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className={`h-full w-full object-cover object-center transition-opacity duration-500 ${
+                  videoLoaded || videoError ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoadedData={() => {
+                  console.log('News video loaded data')
+                  setVideoLoaded(true)
+                }}
+                onCanPlay={() => {
+                  console.log('News video can play')
+                  setVideoLoaded(true)
+                }}
+                onLoadedMetadata={() => {
+                  console.log('News video metadata loaded')
+                  setVideoLoaded(true)
+                }}
+                onError={(e) => {
+                  console.error('News video error:', e)
+                  setVideoError(true)
+                }}
+              />
+            </>
           ) : (
             <img
               src={article.heroImage || article.image}

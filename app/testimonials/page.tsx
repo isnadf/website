@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
-import { Quote, Video, X } from "lucide-react"
+import { Quote, Video, X, Play } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import { TestimonialVideoModal } from "@/components/testimonial-video-modal"
 import { studentTestimonials, publicFigureTestimonials } from "./data"
@@ -13,18 +13,53 @@ function TestimonialsContent() {
   const typeParam = searchParams.get('type')
   const { language, t } = useLanguage()
   const isRTL = language === 'ar'
-  
+
   // State for testimonial video modal
   const [isTestimonialVideoOpen, setIsTestimonialVideoOpen] = useState(false)
   const [testimonialName, setTestimonialName] = useState("")
   const [testimonialVideoPath, setTestimonialVideoPath] = useState("")
   const [testimonialDescription, setTestimonialDescription] = useState("")
 
+  // State for video loading (hero only)
+  const [heroVideoLoaded, setHeroVideoLoaded] = useState(false)
+  const [heroVideoError, setHeroVideoError] = useState(false)
+
   const handleOpenTestimonialVideo = (name: { en: string; ar: string }, videoFileName: string, quote: { en: string; ar: string }) => {
     setTestimonialName(name[language as keyof typeof name])
     setTestimonialVideoPath(`/testomenialVid/${videoFileName}`)
     setIsTestimonialVideoOpen(true)
   }
+
+  // Add timeout fallback for video loading
+  useEffect(() => {
+    if (typeParam === 'students') {
+      // Fallback timeout for hero video - show video after 5 seconds even if not fully loaded
+      const heroTimeout = setTimeout(() => {
+        if (!heroVideoLoaded && !heroVideoError) {
+          setHeroVideoLoaded(true)
+        }
+      }, 5000)
+
+      return () => clearTimeout(heroTimeout)
+    }
+  }, [typeParam, heroVideoLoaded, heroVideoError])
+
+  // Video Skeleton Component
+  const VideoSkeleton = ({ className = "", showPlayButton = false }: { className?: string, showPlayButton?: boolean }) => (
+    <div className={`bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center ${className}`}>
+      <div className="flex flex-col items-center justify-center space-y-4">
+        {showPlayButton && (
+          <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+            <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
+          </div>
+        )}
+        <div className="text-center">
+          <div className="w-32 h-4 bg-gray-300 dark:bg-gray-600 rounded mb-2"></div>
+          <div className="w-24 h-3 bg-gray-300 dark:bg-gray-600 rounded"></div>
+        </div>
+      </div>
+    </div>
+  )
 
   // Determine which testimonials to show based on URL parameter
   const testimonials = typeParam === 'influencers' ? publicFigureTestimonials : studentTestimonials
@@ -35,20 +70,68 @@ function TestimonialsContent() {
   return (
     <main className={`flex min-h-screen flex-col bg-[#f8faf8] dark:bg-gray-950 ${isRTL ? 'font-arabic' : ''}`}>
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-b from-[#1e7e34] to-[#f8faf8] dark:from-[#1e7e34] dark:to-gray-950 overflow-hidden">
-        <div className="container px-4 md:px-6 relative z-10">
-          <div className="max-w-3xl mx-auto">
-            <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center">
-                {t("testimonials.hero.title")}
-              </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-8 text-center">
-                {typeParam === 'influencers' ? t("testimonials.hero.subtitle_influencers") : t("testimonials.hero.subtitle")}
-              </p>
+      {typeParam === 'students' ? (
+        // Full video hero for students
+        <section className="relative h-[calc(50vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
+          <div className="absolute inset-0 z-0">
+            {/* Video Skeleton */}
+            {!heroVideoLoaded && !heroVideoError && (
+              <VideoSkeleton
+                className="h-full w-full"
+                showPlayButton={true}
+              />
+            )}
+
+            {/* Actual Video */}
+            <video
+              src="/newVid/students.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className={`h-full w-full object-cover object-center transition-opacity duration-500 ${
+                heroVideoLoaded || heroVideoError ? 'opacity-100' : 'opacity-0'
+              }`}
+              onLoadedData={() => {
+                console.log('Hero video loaded data')
+                setHeroVideoLoaded(true)
+              }}
+              onCanPlay={() => {
+                console.log('Hero video can play')
+                setHeroVideoLoaded(true)
+              }}
+              onLoadedMetadata={() => {
+                console.log('Hero video metadata loaded')
+                setHeroVideoLoaded(true)
+              }}
+              onError={(e) => {
+                console.error('Hero video error:', e)
+                setHeroVideoError(true)
+              }}
+              onLoadStart={() => {
+                console.log('Hero video load start')
+              }}
+            />
+          </div>
+        </section>
+      ) : (
+        // Original hero for other types
+        <section className="relative py-20 md:py-28 bg-gradient-to-b from-[#1e7e34] to-[#f8faf8] dark:from-[#1e7e34] dark:to-gray-950 overflow-hidden">
+          <div className="container px-4 md:px-6 relative z-10">
+            <div className="max-w-3xl mx-auto">
+              <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center">
+                  {t("testimonials.hero.title")}
+                </h1>
+                <p className="text-xl md:text-2xl text-white/90 mb-8 text-center">
+                  {typeParam === 'influencers' ? t("testimonials.hero.subtitle_influencers") : t("testimonials.hero.subtitle")}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Testimonial Video Modal */}
       <TestimonialVideoModal
