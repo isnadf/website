@@ -256,7 +256,7 @@ export default function NewsPage() {
               <div className="relative">
                 {/* Video Skeleton - Shows while loading */}
                 {!videosLoaded['lastnews1'] && (
-                  <div className="absolute inset-0 z-10 aspect-video">
+                  <div className="absolute inset-0 z-10 w-full h-[400px]">
                     <VideoSkeleton className="w-full h-full" />
                   </div>
                 )}
@@ -303,7 +303,7 @@ export default function NewsPage() {
               <div className="relative">
                 {/* Video Skeleton - Shows while loading */}
                 {!videosLoaded['lastnews2'] && (
-                  <div className="absolute inset-0 z-10 aspect-video">
+                  <div className="absolute inset-0 z-10 w-full h-[400px]">
                     <VideoSkeleton className="w-full h-full" />
                   </div>
                 )}
