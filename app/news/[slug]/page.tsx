@@ -199,10 +199,6 @@ export default function NewsArticlePage() {
         <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
           <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
         </div>
-        <div className="text-center">
-          <div className="w-32 h-4 bg-gray-300 dark:bg-gray-600 rounded mb-2"></div>
-          <div className="w-24 h-3 bg-gray-300 dark:bg-gray-600 rounded"></div>
-        </div>
       </div>
     </div>
   )
@@ -312,21 +308,23 @@ export default function NewsArticlePage() {
         <div className="absolute inset-0 z-0">
           {article.heroVideo ? (
             <>
-              {/* Video Skeleton */}
-              {!videoLoaded && !videoError && (
-                <VideoSkeleton className="h-full w-full" />
+              {/* Video Skeleton - Shows while loading */}
+              {!videoLoaded && (
+                <div className="absolute inset-0 z-10">
+                  <VideoSkeleton className="h-full w-full" />
+                </div>
               )}
 
-              {/* Actual Video */}
+              {/* Actual Video - Always present but hidden until loaded */}
               <video
                 src={article.heroVideo}
                 autoPlay
-                muted
                 loop
                 playsInline
                 preload="metadata"
-                className={`h-full w-full object-cover object-center transition-opacity duration-500 ${
-                  videoLoaded || videoError ? 'opacity-100' : 'opacity-0'
+                poster="" // Remove default poster to avoid flash
+                className={`h-full w-full object-cover object-center transition-opacity duration-700 ${
+                  videoLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
                 onLoadedData={() => {
                   console.log('News video loaded data')
@@ -343,6 +341,9 @@ export default function NewsArticlePage() {
                 onError={(e) => {
                   console.error('News video error:', e)
                   setVideoError(true)
+                }}
+                onLoadStart={() => {
+                  console.log('News video load start')
                 }}
               />
             </>

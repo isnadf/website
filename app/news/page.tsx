@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search, Filter, Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { Search, Filter, Calendar, ArrowRight, ChevronLeft, ChevronRight, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -106,6 +106,59 @@ export default function NewsPage() {
   const [activeTab, setActiveTab] = useState("all")
   const itemsPerPage = 6
 
+  // Video loading states
+  const [videosLoaded, setVideosLoaded] = useState<Record<string, boolean>>({
+    'lastnews1': false,
+    'lastnews2': false
+  })
+  const [videosError, setVideosError] = useState<Record<string, boolean>>({
+    'lastnews1': false,
+    'lastnews2': false
+  })
+
+  const handleVideoLoad = (videoId: string) => {
+    console.log(`Video ${videoId} loaded successfully`)
+    setVideosLoaded(prev => ({ ...prev, [videoId]: true }))
+  }
+
+  const handleVideoError = (videoId: string) => {
+    console.error(`Video ${videoId} failed to load`)
+    setVideosError(prev => ({ ...prev, [videoId]: true }))
+  }
+
+  // Add timeout fallback for videos
+  useEffect(() => {
+    const timeouts: NodeJS.Timeout[] = []
+
+    // Set fallback timeouts for each video
+    const videoIds: string[] = ['lastnews1', 'lastnews2'];
+    videoIds.forEach((videoId: string) => {
+      const timeout = setTimeout(() => {
+        if (!videosLoaded[videoId] && !videosError[videoId]) {
+          console.log(`Video ${videoId} timeout - showing anyway`)
+          setVideosLoaded(prev => ({ ...prev, [videoId]: true }))
+        }
+      }, 8000) // 8 second timeout for news videos
+
+      timeouts.push(timeout)
+    })
+
+    return () => {
+      timeouts.forEach(timeout => clearTimeout(timeout))
+    }
+  }, [videosLoaded, videosError])
+
+  // Video Skeleton Component
+  const VideoSkeleton = ({ className = "" }: { className?: string }) => (
+    <div className={`bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center ${className}`}>
+      <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+          <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
+        </div>
+      </div>
+    </div>
+  )
+
   // Filter news based on search query, category, and tab
   const filteredNews = newsData.filter((news) => {
     const matchesSearch =
@@ -173,7 +226,7 @@ export default function NewsPage() {
             {newsData
               .filter((news) => news.featured)
               .slice(0, 3)
-              .map((news, index) => (
+              .map((news) => (
                 <NewsCard
                   key={news.id}
                   title={news.title[language]}
@@ -183,6 +236,115 @@ export default function NewsPage() {
                   href={news.href}
                 />
               ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest News Videos */}
+      <section className="py-8 md:py-12">
+        <div className="container px-4 md:px-6">
+          <div className="mb-6 text-center">
+            <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
+              <Play className="mr-1 h-4 w-4" />
+              {language === 'ar' ? 'أحدث الفيديوهات' : 'Latest Videos'}
+            </div>
+          </div>
+
+          <div className="mx-auto max-w-2xl grid gap-1 md:grid-cols-2 place-items-center">
+            {/* Video 1 */}
+            <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg inline-block">
+              <div className="relative">
+                {/* Video Skeleton - Shows while loading */}
+                {!videosLoaded['lastnews1'] && (
+                  <div className="absolute inset-0 z-10 aspect-video">
+                    <VideoSkeleton className="w-full h-full" />
+                  </div>
+                )}
+
+                {/* Actual Video - Always present but hidden until loaded */}
+                <video
+                  className={`max-h-[400px] object-contain transition-opacity duration-700 block ${
+                    videosLoaded['lastnews1'] ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  controls
+                  preload="metadata"
+                  poster="" // Remove default poster to avoid flash
+                  onLoadedData={() => {
+                    console.log('Video 1 - loadedData event fired')
+                    handleVideoLoad('lastnews1')
+                  }}
+                  onCanPlay={() => {
+                    console.log('Video 1 - canPlay event fired')
+                    handleVideoLoad('lastnews1')
+                  }}
+                  onLoadedMetadata={() => {
+                    console.log('Video 1 - loadedMetadata event fired')
+                    handleVideoLoad('lastnews1')
+                  }}
+                  onError={(e) => {
+                    console.error('Video 1 error:', e)
+                    handleVideoError('lastnews1')
+                  }}
+                  onLoadStart={() => {
+                    console.log('Video 1 - loadStart event fired')
+                  }}
+                >
+                  <source src="/newVid/lastnews1.mp4" type="video/mp4" />
+                  {language === 'ar'
+                    ? 'متصفحك لا يدعم تشغيل الفيديو'
+                    : 'Your browser does not support the video tag.'
+                  }
+                </video>
+              </div>
+            </div>
+
+            {/* Video 2 */}
+            <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg inline-block">
+              <div className="relative">
+                {/* Video Skeleton - Shows while loading */}
+                {!videosLoaded['lastnews2'] && (
+                  <div className="absolute inset-0 z-10 aspect-video">
+                    <VideoSkeleton className="w-full h-full" />
+                  </div>
+                )}
+
+                {/* Actual Video - Always present but hidden until loaded */}
+                <video
+                  className={`max-h-[400px] object-contain transition-opacity duration-700 block ${
+                    videosLoaded['lastnews2'] ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  controls
+                  autoPlay
+                  preload="metadata"
+                  poster="" // Remove default poster to avoid flash
+                  onLoadedData={() => {
+                    console.log('Video 2 - loadedData event fired')
+                    handleVideoLoad('lastnews2')
+                  }}
+                  onCanPlay={() => {
+                    console.log('Video 2 - canPlay event fired')
+                    handleVideoLoad('lastnews2')
+                  }}
+                  onLoadedMetadata={() => {
+                    console.log('Video 2 - loadedMetadata event fired')
+                    handleVideoLoad('lastnews2')
+                  }}
+                  onError={(e) => {
+                    console.error('Video 2 error:', e)
+                    handleVideoError('lastnews2')
+                  }}
+                  onLoadStart={() => {
+                    console.log('Video 2 - loadStart event fired')
+                  }}
+                >
+                  <source src="/newVid/lastnews2.mp4" type="video/mp4" />
+                  {language === 'ar'
+                    ? 'متصفحك لا يدعم تشغيل الفيديو'
+                    : 'Your browser does not support the video tag.'
+                  }
+                </video>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -233,7 +395,7 @@ export default function NewsPage() {
             {/* News Grid */}
             {paginatedNews.length > 0 ? (
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {paginatedNews.map((news, index) => (
+                {paginatedNews.map((news) => (
                   <div key={news.id} className="group relative overflow-hidden rounded-lg border-2 border-[#1e7e34]/20 bg-card transition-all hover:shadow-md dark:bg-gray-900 dark:border-[#1e7e34]/30">
                     <div className="aspect-video overflow-hidden">
                       <img

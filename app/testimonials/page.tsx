@@ -53,10 +53,6 @@ function TestimonialsContent() {
             <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
           </div>
         )}
-        <div className="text-center">
-          <div className="w-32 h-4 bg-gray-300 dark:bg-gray-600 rounded mb-2"></div>
-          <div className="w-24 h-3 bg-gray-300 dark:bg-gray-600 rounded"></div>
-        </div>
       </div>
     </div>
   )
@@ -68,30 +64,32 @@ function TestimonialsContent() {
   const description = typeParam === 'influencers' ? t("testimonials.public_figure_description") : t("testimonials.student_description")
 
   return (
-    <main className={`flex min-h-screen flex-col bg-[#f8faf8] dark:bg-gray-950 ${isRTL ? 'font-arabic' : ''}`}>
+    <main className={`flex min-h-screen flex-col dark:bg-gray-950 ${isRTL ? 'font-arabic' : ''}`}>
       {/* Hero Section */}
       {typeParam === 'students' ? (
         // Full video hero for students
         <section className="relative h-[calc(50vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
           <div className="absolute inset-0 z-0">
-            {/* Video Skeleton */}
-            {!heroVideoLoaded && !heroVideoError && (
-              <VideoSkeleton
-                className="h-full w-full"
-                showPlayButton={true}
-              />
+            {/* Video Skeleton - Shows while loading */}
+            {!heroVideoLoaded && (
+              <div className="absolute inset-0 z-10">
+                <VideoSkeleton
+                  className="h-full w-full"
+                  showPlayButton={true}
+                />
+              </div>
             )}
 
-            {/* Actual Video */}
+            {/* Actual Video - Always present but hidden until loaded */}
             <video
               src="/newVid/students.mp4"
               autoPlay
-              muted
               loop
               playsInline
               preload="metadata"
-              className={`h-full w-full object-cover object-center transition-opacity duration-500 ${
-                heroVideoLoaded || heroVideoError ? 'opacity-100' : 'opacity-0'
+              poster="" // Remove default poster to avoid flash
+              className={`h-full w-full object-cover object-center transition-opacity duration-700 ${
+                heroVideoLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               onLoadedData={() => {
                 console.log('Hero video loaded data')
