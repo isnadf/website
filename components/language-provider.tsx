@@ -32,7 +32,7 @@ const translations = {
     "nav.media": "Media",
     "nav.media.success": "Success Stories",
     "nav.media.activities": "Previous Activities",
-    "nav.media.testimonials": "Testimonials",
+    "nav.media.testimonials": "What They Say About Us",
 
     "hero.title": "Empowering Palestinian Students Worldwide",
     "hero.subtitle":
@@ -601,7 +601,7 @@ const translations = {
 
     "testimonials.hero.title": "Voices of Our Community",
     "testimonials.hero.subtitle": "Hear directly from students about their experiences and the impact of our programs.",
-    "testimonials.student_voices": "Student Voices",
+    "testimonials.student_voices": "Beneficiary students",
     "testimonials.student_testimonials": "Student Testimonials",
     "testimonials.student_description": "Hear from students about their experiences and the impact of our programs.",
     "testimonials.public_figures": "Public Figures",
@@ -669,7 +669,7 @@ const translations = {
     "nav.media": "الإعلام",
     "nav.media.success": "قصص النجاح",
     "nav.media.activities": "الأنشطة السابقة",
-    "nav.media.testimonials": "الشهادات",
+    "nav.media.testimonials": "قالوا عنا ",
 
     // Remove duplicate hero translations
     "about.widgt": "القيم",
@@ -1250,10 +1250,10 @@ const translations = {
     "testimonials.hero.title": "أصوات مجتمعنا",
     "testimonials.hero.subtitle": "استمع مباشرة من الطلاب عن تجاربهم وتأثير برامجنا",
     "testimonials.hero.subtitle_influencers": "استمع مباشرة من العلماء والشخصيات العامة عن تجاربهم وتأثير برامجنا",
-    "testimonials.student_voices": "أصوات الطلاب",
+    "testimonials.student_voices": "طلاب مستفيدون",
     "testimonials.student_testimonials": "شهادات الطلاب",
     "testimonials.student_description": "استمع من الطلاب عن تجاربهم وتأثير برامجنا",
-    "testimonials.public_figures": "الشخصيات العامة",
+    "testimonials.public_figures": "شخصيات عامة",
     "testimonials.public_figure_testimonials": "شهادات الشخصيات العامة",
     "testimonials.public_figure_description": "استمع من قادة المجتمع عن تجاربهم وتأثير برامجنا",
     "ibn-khaldun.financial.title": "هيكل الدعم المالي",
