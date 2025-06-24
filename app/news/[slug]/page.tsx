@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { gsap } from "gsap"
@@ -25,7 +25,7 @@ type ArticleData = {
     en: string
     ar: string
   }
-  image: string
+  image?: string
   heroImage?: string
   heroVideo?: string
   content: {
@@ -147,8 +147,6 @@ const newsArticles: Record<string, ArticleData> = {
       en: "Scholarships",
       ar: "المنح الدراسية"
     },
-    image: "/LastNews/latestnews4.jpeg",
-    heroImage: "/LastNews/latestnews4.jpeg",
     heroVideo: "/newVid/new4Vid.mp4",
     content: {
       en: [
@@ -187,21 +185,6 @@ export default function NewsArticlePage() {
   const slug = params.slug as string
   const { language, t } = useLanguage()
   const isRTL = language === "ar"
-
-  // State for video loading
-  const [videoLoaded, setVideoLoaded] = useState(false)
-  const [videoError, setVideoError] = useState(false)
-
-  // Video Skeleton Component
-  const VideoSkeleton = ({ className = "" }: { className?: string }) => (
-    <div className={`bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center ${className}`}>
-      <div className="flex flex-col items-center justify-center space-y-4">
-        <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
-          <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
-        </div>
-      </div>
-    </div>
-  )
 
   // Get article data or use default if not found
   const article = newsArticles[slug as keyof typeof newsArticles] || {
@@ -279,19 +262,42 @@ export default function NewsArticlePage() {
     }
   }
 
-  // Add timeout fallback for video loading
-  useEffect(() => {
-    if (article.heroVideo) {
-      // Fallback timeout - show video after 5 seconds even if not fully loaded
-      const timeout = setTimeout(() => {
-        if (!videoLoaded && !videoError) {
-          setVideoLoaded(true)
-        }
-      }, 5000)
+  // Video loading states
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [videoInView, setVideoInView] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoContainerRef = useRef<HTMLDivElement>(null)
 
-      return () => clearTimeout(timeout)
-    }
-  }, [article.heroVideo, videoLoaded, videoError])
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (!videoContainerRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVideoInView(true)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(videoContainerRef.current)
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Video event handlers
+  const handleVideoCanPlayThrough = () => {
+    setVideoLoaded(true)
+  }
+
+  const handleVideoError = () => {
+    // Fallback to show video anyway after error
+    setVideoLoaded(true)
+  }
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -305,48 +311,42 @@ export default function NewsArticlePage() {
     <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
       <section className="relative h-[calc(70vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0" ref={videoContainerRef}>
           {article.heroVideo ? (
-            <>
-              {/* Video Skeleton - Shows while loading */}
+            <div className="relative w-full h-full">
+              {/* Video Skeleton */}
               {!videoLoaded && (
-                <div className="absolute inset-0 z-10">
-                  <VideoSkeleton className="h-full w-full" />
+                <div className="absolute inset-0 z-10 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
+                  <div className="flex flex-col items-center justify-center space-y-4">
+                    <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                      <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
+                    </div>
+                    <div className="text-gray-400 dark:text-gray-500 text-sm">
+                      {language === 'ar' ? 'جاري تحميل الفيديو...' : 'Loading video...'}
+                    </div>
+                  </div>
                 </div>
               )}
 
-              {/* Actual Video - Always present but hidden until loaded */}
-              <video
-                src={article.heroVideo}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                className={`absolute inset-0 w-full h-full object-contain object-center transition-opacity duration-700${
-                  videoLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-                onLoadedData={() => {
-                  console.log('News video loaded data')
-                  setVideoLoaded(true)
-                }}
-                onCanPlay={() => {
-                  console.log('News video can play')
-                  setVideoLoaded(true)
-                }}
-                onLoadedMetadata={() => {
-                  console.log('News video metadata loaded')
-                  setVideoLoaded(true)
-                }}
-                onError={(e) => {
-                  console.error('News video error:', e)
-                  setVideoError(true)
-                }}
-                onLoadStart={() => {
-                  console.log('News video load start')
-                }}
-              />
-            </>
+              {/* Video Element */}
+              {videoInView && (
+                <video
+                  ref={videoRef}
+                  src={article.heroVideo}
+                  poster={article.image || "/placeholder.svg?height=600&width=1200"}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  onCanPlayThrough={handleVideoCanPlayThrough}
+                  onError={handleVideoError}
+                  className={`absolute inset-0 w-full h-full object-contain object-center transition-opacity duration-700 ${
+                    videoLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              )}
+            </div>
           ) : (
             <img
               src={article.heroImage || article.image}
