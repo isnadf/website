@@ -199,9 +199,23 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: hsl(var(--primary));
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)));
   transform-origin: 0%;
-  z-index: 100;
+  z-index: 9999;
+}
+
+/* Video skeleton shimmer animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
 }
 
 /* Custom Animations */

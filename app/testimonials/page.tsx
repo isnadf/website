@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect, Suspense } from "react"
+import { useState, Suspense, useRef, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
-import { Quote, Video, X, Play } from "lucide-react"
+import { Quote, Video, X, Volume2, VolumeX, Play } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import { TestimonialVideoModal } from "@/components/testimonial-video-modal"
 import { studentTestimonials, publicFigureTestimonials } from "./data"
@@ -13,6 +13,8 @@ function TestimonialsContent() {
   const typeParam = searchParams.get('type')
   const { language, t } = useLanguage()
   const isRTL = language === 'ar'
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoContainerRef = useRef<HTMLDivElement>(null)
 
   // State for testimonial video modal
   const [isTestimonialVideoOpen, setIsTestimonialVideoOpen] = useState(false)
@@ -20,9 +22,41 @@ function TestimonialsContent() {
   const [testimonialVideoPath, setTestimonialVideoPath] = useState("")
   const [testimonialDescription, setTestimonialDescription] = useState("")
 
-  // State for video loading (hero only)
-  const [heroVideoLoaded, setHeroVideoLoaded] = useState(false)
-  const [heroVideoError, setHeroVideoError] = useState(false)
+  // State for hero video loading
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [videoInView, setVideoInView] = useState(false)
+  const [isVideoMuted, setIsVideoMuted] = useState(true)
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (!videoContainerRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVideoInView(true)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(videoContainerRef.current)
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Video event handlers
+  const handleVideoCanPlayThrough = () => {
+    setVideoLoaded(true)
+  }
+
+  const handleVideoError = () => {
+    // Fallback to show video anyway after error
+    setVideoLoaded(true)
+  }
 
   const handleOpenTestimonialVideo = (name: { en: string; ar: string }, videoFileName: string, quote: { en: string; ar: string }) => {
     setTestimonialName(name[language as keyof typeof name])
@@ -30,32 +64,12 @@ function TestimonialsContent() {
     setIsTestimonialVideoOpen(true)
   }
 
-  // Add timeout fallback for video loading
-  useEffect(() => {
-    if (typeParam === 'students') {
-      // Fallback timeout for hero video - show video after 5 seconds even if not fully loaded
-      const heroTimeout = setTimeout(() => {
-        if (!heroVideoLoaded && !heroVideoError) {
-          setHeroVideoLoaded(true)
-        }
-      }, 5000)
-
-      return () => clearTimeout(heroTimeout)
+  const toggleVideoMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted
+      setIsVideoMuted(!isVideoMuted)
     }
-  }, [typeParam, heroVideoLoaded, heroVideoError])
-
-  // Video Skeleton Component
-  const VideoSkeleton = ({ className = "", showPlayButton = false }: { className?: string, showPlayButton?: boolean }) => (
-    <div className={`bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center ${className}`}>
-      <div className="flex flex-col items-center justify-center space-y-4">
-        {showPlayButton && (
-          <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
-            <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
-          </div>
-        )}
-      </div>
-    </div>
-  )
+  }
 
   // Determine which testimonials to show based on URL parameter
   const testimonials = typeParam === 'influencers' ? publicFigureTestimonials : studentTestimonials
@@ -67,50 +81,55 @@ function TestimonialsContent() {
     <main className={`flex min-h-screen flex-col dark:bg-gray-950 ${isRTL ? 'font-arabic' : ''}`}>
       {/* Hero Section */}
       {typeParam === 'students' ? (
-        // Full video hero for students
+        // Full video hero for students with improved loading
         <section className="relative h-[calc(50vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
-          <div className="absolute inset-0 z-0">
-            {/* Video Skeleton - Shows while loading */}
-            {!heroVideoLoaded && (
-              <div className="absolute inset-0 z-10">
-                <VideoSkeleton
-                  className="h-full w-full"
-                  showPlayButton={true}
-                />
-              </div>
-            )}
+          <div className="absolute inset-0 z-0" ref={videoContainerRef}>
+            <div className="relative w-full h-full">
+              {/* Video Skeleton */}
+              {!videoLoaded && (
+                <div className="absolute inset-0 z-10 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
+                  <div className="flex flex-col items-center justify-center space-y-4">
+                    <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                      <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
+                    </div>
+                    <div className="text-gray-400 dark:text-gray-500 text-sm">
+                      {language === 'ar' ? 'جاري تحميل الفيديو...' : 'Loading video...'}
+                    </div>
+                  </div>
+                </div>
+              )}
 
-            {/* Actual Video - Always present but hidden until loaded */}
-            <video
-              src="/newVid/students.mp4"
-              autoPlay
-              loop
-              playsInline
-              preload="metadata"
-              poster="" // Remove default poster to avoid flash
-              className={`h-full w-full object-cover object-center transition-opacity duration-700 ${
-                heroVideoLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-              onLoadedData={() => {
-                console.log('Hero video loaded data')
-                setHeroVideoLoaded(true)
-              }}
-              onCanPlay={() => {
-                console.log('Hero video can play')
-                setHeroVideoLoaded(true)
-              }}
-              onLoadedMetadata={() => {
-                console.log('Hero video metadata loaded')
-                setHeroVideoLoaded(true)
-              }}
-              onError={(e) => {
-                console.error('Hero video error:', e)
-                setHeroVideoError(true)
-              }}
-              onLoadStart={() => {
-                console.log('Hero video load start')
-              }}
-            />
+              {/* Video Element */}
+              {videoInView && (
+                <video
+                  ref={videoRef}
+                  src="/newVid/students.mp4"
+                  poster="/hero-cover.jpg"
+                  autoPlay
+                  loop
+                  playsInline
+                  muted={isVideoMuted}
+                  preload="metadata"
+                  onCanPlayThrough={handleVideoCanPlayThrough}
+                  onError={handleVideoError}
+                  className={`absolute inset-0 w-full h-full object-contain object-center transition-opacity duration-700 ${
+                    videoLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              )}
+            </div>
+
+            {/* Sound toggle button */}
+            <button
+              onClick={toggleVideoMute}
+              className="absolute bottom-4 right-4 z-20 w-12 h-12 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-lg hover:bg-black/50 transition-all duration-300"
+            >
+              {isVideoMuted ? (
+                <VolumeX className="h-5 w-5 text-white" />
+              ) : (
+                <Volume2 className="h-5 w-5 text-white" />
+              )}
+            </button>
           </div>
         </section>
       ) : (
@@ -183,8 +202,8 @@ function TestimonialsContent() {
                   <div className="absolute inset-0 w-full h-full">
                     <video
                       className="w-full h-full object-cover"
-                      muted
                       loop
+                      muted
                       playsInline
                       autoPlay
                     >
