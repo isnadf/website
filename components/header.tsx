@@ -122,7 +122,7 @@ export default function Header() {
               priority
             />
             <span className={`text-lg sm:text-xl md:text-2xl font-bold ${isRTL ? 'mr-2' : 'ml-2'} text-black`}>
-              IFPPS
+              IFPSS
             </span>
           </Link>
 

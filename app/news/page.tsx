@@ -78,7 +78,7 @@ const newsData = [
     date: "May 20, 2025",
     excerpt: {
       en: "The Isnad Foundation for Palestinian Student Support announced the commencement of disbursing scholarships to students benefiting from the first phase of the Nabd Al-Hayat program, starting May 1, 2025, in partnership with and with the generous support of the Turkish National Youth Association (MGV - Milli Gençlik Vakfı).",
-      ar: "علنت مؤسسة إسناد لدعم الطالب الفلسطيني عن بدء صرف المنح الدراسية للطلبة المستفيدين ضمن المرحلة الأولى من برنامج نبض الحياة، وذلك اعتبارًا من 1 مايو 2025، بالشراكة والدعم الكريم من جمعية الشباب الوطني التركي (MGV - Milli Gençlik Vakfı)."
+      ar: "أعلنت مؤسسة إسناد لدعم الطالب الفلسطيني عن بدء صرف المنح الدراسية للطلبة المستفيدين ضمن المرحلة الأولى من برنامج نبض الحياة، وذلك اعتبارًا من 1 مايو 2025، بالشراكة والدعم الكريم من جمعية الشباب الوطني التركي (MGV - Milli Gençlik Vakfı)."
     },
     image: "/LastNews/latestnews4.jpeg",
     href: "/news/pulse-of-life-disbursement",
