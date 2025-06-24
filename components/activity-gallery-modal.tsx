@@ -272,10 +272,6 @@ export function ActivityGalleryModal({
             {/* Right column - Activity Details */}
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <Badge variant="outline" className="bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] flex items-center gap-1 px-3 py-1.5 text-base">
-                  {getActivityIcon(activity.category[language])}
-                  {activity.category[language]}
-                </Badge>
                 <span className="text-base font-medium text-muted-foreground">{activity.year}</span>
               </div>
 

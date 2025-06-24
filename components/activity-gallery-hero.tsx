@@ -220,7 +220,7 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
               >
                 {/* Tooltip on hover */}
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-black/80 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
-                  {activity.category[language]}
+                  {activity.title[language]}
                 </div>
               </button>
             ))}

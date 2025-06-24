@@ -5,7 +5,7 @@ import Link from "next/link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin"
-import { Search, Filter, Calendar, MapPin, Users, ChevronLeft, ChevronRight, BookOpen, Presentation, Globe, Award, Handshake, ThumbsUp } from "lucide-react"
+import { Search, Filter, Calendar, MapPin, Users, ChevronLeft, ChevronRight, Award, ThumbsUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -21,11 +21,6 @@ import { activitiesData, type Activity } from "./data"
 
 // Type definitions
 type Language = 'en' | 'ar'
-
-type Category = {
-  en: string;
-  ar: string;
-}
 
 type Location = {
   en: string;
@@ -44,18 +39,7 @@ const getLocalizedText = (obj: LocalizedText, lang: Language): string => {
 
 // Helper function to initialize state
 const initializeState = () => {
-  const DEFAULT_CATEGORY: Category = { en: "All", ar: "الكل" }
   const DEFAULT_LOCATION: Location = { en: "All", ar: "الكل" }
-
-  const categoryOptions: Category[] = [
-    DEFAULT_CATEGORY,
-    { en: "Conference", ar: "مؤتمر" },
-    { en: "Cultural Event", ar: "فعالية ثقافية" },
-    { en: "Education Fair", ar: "معرض تعليمي" },
-    { en: "Workshop", ar: "ورشة عمل" },
-    { en: "Seminar", ar: "ندوة" },
-    { en: "Networking", ar: "تواصل" }
-  ]
 
   const yearOptions = ["All", "2023", "2022", "2021"]
 
@@ -69,9 +53,7 @@ const initializeState = () => {
   ]
 
   return {
-    DEFAULT_CATEGORY,
     DEFAULT_LOCATION,
-    categoryOptions,
     yearOptions,
     locationOptions
   }
@@ -82,11 +64,10 @@ export default function ActivitiesPage() {
   const lang = language as Language
 
   // Initialize state and constants
-  const { DEFAULT_CATEGORY, DEFAULT_LOCATION, categoryOptions, yearOptions, locationOptions } = initializeState()
+  const { DEFAULT_LOCATION, yearOptions, locationOptions } = initializeState()
 
   // State initialization
   const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategoryKey, setSelectedCategoryKey] = useState(DEFAULT_CATEGORY.en)
   const [selectedYear, setSelectedYear] = useState("All")
   const [selectedLocationKey, setSelectedLocationKey] = useState(DEFAULT_LOCATION.en)
   const [activeTab, setActiveTab] = useState("all")
@@ -97,8 +78,7 @@ export default function ActivitiesPage() {
   const [galleryActivity, setGalleryActivity] = useState<typeof activitiesData[0] | null>(null)
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
 
-  // Get the full category and location objects from their keys
-  const selectedCategory = categoryOptions.find(c => c.en === selectedCategoryKey) || DEFAULT_CATEGORY
+  // Get the full location object from its key
   const selectedLocation = locationOptions.find(l => l.en === selectedLocationKey) || DEFAULT_LOCATION
 
   const handleViewGallery = (activity: typeof activitiesData[0]) => {
@@ -149,22 +129,20 @@ export default function ActivitiesPage() {
     }
   }, [])
 
-  // Filter activities based on search query, category, year, location, and tab
+  // Filter activities based on search query, location, and tab
   const filteredActivities = activitiesData.filter((activity: Activity) => {
     const matchesSearch =
       getLocalizedText(activity.title, lang).toLowerCase().includes(searchQuery.toLowerCase()) ||
       getLocalizedText(activity.description, lang).toLowerCase().includes(searchQuery.toLowerCase()) ||
       getLocalizedText(activity.location, lang).toLowerCase().includes(searchQuery.toLowerCase())
 
-    const matchesCategory = selectedCategoryKey === DEFAULT_CATEGORY.en || 
-      getLocalizedText(activity.category, lang) === getLocalizedText(selectedCategory, lang)
     const matchesYear = selectedYear === "All" || activity.year.toString() === selectedYear
     const matchesLocation = selectedLocationKey === DEFAULT_LOCATION.en || 
       getLocalizedText(activity.location, lang) === getLocalizedText(selectedLocation, lang)
 
     const matchesTab = activeTab === "all" || (activeTab === "featured" && activity.featured)
 
-    return matchesSearch && matchesCategory && matchesYear && matchesLocation && matchesTab
+    return matchesSearch && matchesYear && matchesLocation && matchesTab
   })
 
   // Pagination
@@ -174,33 +152,7 @@ export default function ActivitiesPage() {
   // Reset to first page when filters change
   useEffect(() => {
     setCurrentPage(1)
-  }, [searchQuery, selectedCategoryKey, selectedYear, selectedLocationKey, activeTab])
-
-  // Activity type icons
-  const getActivityIcon = (category: string) => {
-    switch (category) {
-      case "Conference":
-        return <Users className="h-5 w-5" />
-      case "Workshop":
-        return <BookOpen className="h-5 w-5" />
-      case "Seminar":
-        return <Presentation className="h-5 w-5" />
-      case "Cultural Event":
-        return <Globe className="h-5 w-5" />
-      case "Networking":
-        return <Handshake className="h-5 w-5" />
-      case "Education Fair":
-        return <Award className="h-5 w-5" />
-      default:
-        return <Calendar className="h-5 w-5" />
-    }
-  }
-
-  // Update categories to use language-specific values
-  const categories = [
-    "All",
-    ...Array.from(new Set(activitiesData.map(activity => activity.category[language as Language])))
-  ]
+  }, [searchQuery, selectedYear, selectedLocationKey, activeTab])
 
   // Update locations to use language-specific values
   const locations = [
@@ -252,9 +204,6 @@ export default function ActivitiesPage() {
                           alt={activity.title[language as Language]}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <Badge className={`absolute top-4 ${language === 'ar' ? 'right-4' : 'left-4'} z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-[#1e7e34] border-0 shadow-md`}>
-                          {activity.category[language as Language]}
-                        </Badge>
                         <div className={`absolute bottom-4 ${language === 'ar' ? 'left-4' : 'right-4'} z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300`}>
                           {activity.year}
                         </div>
@@ -432,24 +381,6 @@ export default function ActivitiesPage() {
 
                 {/* Filter Controls */}
                 <div className="flex flex-wrap gap-4 justify-center">
-                  <Select 
-                    value={selectedCategoryKey} 
-                    onValueChange={setSelectedCategoryKey}
-                  >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder={language === 'en' ? "Category" : "الفئة"}>
-                        {getLocalizedText(selectedCategory, lang)}
-                      </SelectValue>
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categoryOptions.map((category) => (
-                        <SelectItem key={category.en} value={category.en}>
-                          {getLocalizedText(category, lang)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
                   <Select value={selectedYear} onValueChange={setSelectedYear}>
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder={language === 'en' ? "Year" : "السنة"} />
@@ -506,10 +437,6 @@ export default function ActivitiesPage() {
                           <div className={`p-6 md:col-span-2 ${language === 'ar' ? 'order-1' : 'order-2'}`}>
                             <div className={`mb-3 flex flex-wrap items-center gap-3 ${language === 'ar' ? 'justify-end flex-row-reverse' : 'justify-start'}`}>
                               <div className={`text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full ${language === 'ar' ? 'text-right' : ''}`}>{activity.year}</div>
-                              <Badge className={`bg-[#e8f5e9] dark:bg-[#1e7e34]/20 text-[#1e7e34] border-0 flex items-center gap-1 px-3 py-1 rounded-full ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
-                                {getActivityIcon(activity.category[language as Language])}
-                                {activity.category[language as Language]}
-                              </Badge>
                             </div>
                             <h3 className={`mb-4 font-bold ${language === 'ar' ? 'text-lg line-clamp-3 text-right font-arabic' : 'text-xl line-clamp-2 text-left'} text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors`}>
                               {activity.title[language as Language]}

@@ -182,9 +182,6 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
     <div className="space-y-6 sm:space-y-8">
       {/* Activity Info */}
       <div className="space-y-4 sm:space-y-6">
-        <Badge className="bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] text-sm sm:text-base px-3 py-1.5">
-          {activity.category[language]}
-        </Badge>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">{activity.title[language]}</h1>
         {/* <div className={`flex flex-wrap gap-3 sm:gap-4 text-sm sm:text-base text-muted-foreground ${language === 'ar' ? 'justify-end' : 'justify-start'}`}>
           <div className={`flex items-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>

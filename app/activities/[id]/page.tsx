@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, Calendar, MapPin, Users, BookOpen, Presentation, Globe, Handshake, Award } from "lucide-react"
+import { ArrowLeft, Calendar, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -30,25 +30,6 @@ export default function ActivityPage() {
     )
   }
 
-  const getActivityIcon = (category: string) => {
-    switch (category) {
-      case "Conference":
-        return <Users className="h-5 w-5" />
-      case "Workshop":
-        return <BookOpen className="h-5 w-5" />
-      case "Seminar":
-        return <Presentation className="h-5 w-5" />
-      case "Cultural Event":
-        return <Globe className="h-5 w-5" />
-      case "Networking":
-        return <Handshake className="h-5 w-5" />
-      case "Education Fair":
-        return <Award className="h-5 w-5" />
-      default:
-        return <Calendar className="h-5 w-5" />
-    }
-  }
-
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
@@ -71,10 +52,6 @@ export default function ActivityPage() {
                     {language === 'en' ? 'Back to Activities' : 'العودة إلى الأنشطة'}
                   </Button>
                 </Link>
-                <Badge variant="outline" className={`bg-[hsl(120,61%,34%)]/10 text-[hsl(120,61%,34%)] text-base px-3 py-1 inline-flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
-                  {getActivityIcon(activity.category[language])}
-                  {activity.category[language]}
-                </Badge>
               </div>
             </div>
             <h1 className={`text-4xl font-bold text-white sm:text-5xl mt-4 ${language === 'ar' ? 'text-right' : 'text-left'}`}>{activity.title[language]}</h1>
