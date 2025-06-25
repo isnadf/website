@@ -15,13 +15,15 @@ import {
   Mail,
   Heart,
   Wallet,
-  Laptop
+  Laptop,
+  Play,
+  ExternalLink
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
-import Image from "next/image"
 import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
+import Link from "next/link"
 
 export default function PulseOfLifePage() {
   const { t, language } = useLanguage()
@@ -234,6 +236,72 @@ export default function PulseOfLifePage() {
               </GSAPReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Latest Program Updates Section */}
+      <section className="py-16 px-4 md:px-0 bg-gradient-to-r from-red-50 via-white to-pink-50 dark:from-red-950 dark:via-black dark:to-pink-950">
+        <div className="max-w-6xl mx-auto">
+          <GSAPTextReveal className="text-3xl md:text-4xl font-bold text-center text-red-700 h-20">
+            {t("news.latest.pulseOfLifeDisbursement.title")}
+          </GSAPTextReveal>
+          <p className={`text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto ${language === 'ar' ? 'tracking-wide' : ''}`} style={getArabicSpacing()}>
+            {t("pulse.news.subtitle")}
+          </p>
+
+          <GSAPReveal animation="slide-up" delay={0.2}>
+            <div className="rounded-3xl overflow-hidden transition-all duration-500">
+              <div className="flex flex-col items-center p-12">
+                {/* Centered Video */}
+                <div className="relative w-full max-w-2xl h-80 md:h-96 mb-8 bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
+                  <div className="absolute inset-0 flex items-center justify-center p-6">
+                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
+                      <video
+                        src="/newVid/new4Vid.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-contain"
+                        poster="/LastNews/pulseOfLife-start.png"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Buttons Under Video */}
+                <div className={`flex flex-col sm:flex-row gap-6 w-full max-w-lg ${getRTLFlex()}`}>
+                  <Link
+                    href="/news/pulse-of-life-disbursement"
+                    className={`flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:from-pink-600 hover:to-red-500 transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`}
+                    style={getArabicSpacing()}
+                  >
+                    <ExternalLink size={20} className={getRTLIcon()} />
+                    {t("pulse.news.read.more")}
+                  </Link>
+
+                  <Link
+                    href="/news/pulse-of-life-disbursement"
+                    className={`flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-xl shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`}
+                    style={getArabicSpacing()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = '/news/pulse-of-life-disbursement';
+                      setTimeout(() => {
+                        const videosSection = document.querySelector('[data-videos-section]');
+                        if (videosSection) {
+                          videosSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }}
+                  >
+                    <Play size={20} className={getRTLIcon()} />
+                    {t("pulse.news.watch.videos")}
+                  </Link>
+                </div>
+              </div>
+              </div>
+          </GSAPReveal>
         </div>
       </section>
 

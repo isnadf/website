@@ -424,8 +424,8 @@ export default function NewsArticlePage() {
               {/* Videos Section - Only for pulse-of-life-disbursement */}
               {slug === "pulse-of-life-disbursement" && (
                 <GSAPReveal animation="fade" delay={0.2}>
-                  <div className="mt-12">
-                    <h3 
+                  <div className="mt-12" data-videos-section>
+                    <h3
                       className="text-2xl font-bold mb-6"
                       style={{ textAlign: isRTL ? 'right' : 'left' }}
                     >
