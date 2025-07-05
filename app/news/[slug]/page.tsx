@@ -147,7 +147,7 @@ const newsArticles: Record<string, ArticleData> = {
       en: "Scholarships",
       ar: "المنح الدراسية"
     },
-    heroVideo: "/newVid/new4Vid.mp4",
+    heroImage: "/LastNews/latestnews4.jpeg",
     content: {
       en: [
         "Istanbul / Turkey",
@@ -431,7 +431,7 @@ export default function NewsArticlePage() {
                     >
                       {language === 'ar' ? 'أحدث الفيديوهات' : 'Latest Videos'}
                     </h3>
-                    <div className="grid gap-6 md:grid-cols-2">
+                    <div className="grid gap-6 md:grid-cols-3">
                       {/* Video 1 */}
                       <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
                         <video
@@ -455,6 +455,20 @@ export default function NewsArticlePage() {
                           preload="metadata"
                         >
                           <source src="/newVid/lastnews2.mp4" type="video/mp4" />
+                          {language === 'ar'
+                            ? 'متصفحك لا يدعم تشغيل الفيديو'
+                            : 'Your browser does not support the video tag.'
+                          }
+                        </video>
+                      </div>
+                      {/* Video 3 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/new4Vid.mp4" type="video/mp4" />
                           {language === 'ar'
                             ? 'متصفحك لا يدعم تشغيل الفيديو'
                             : 'Your browser does not support the video tag.'

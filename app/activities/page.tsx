@@ -291,7 +291,7 @@ export default function ActivitiesPage() {
                 </div>
                 <span className="text-5xl font-bold text-[#1e7e34] mb-2">5</span>
                 <span className="text-lg text-gray-700 dark:text-gray-300 font-medium">
-                  {language === 'en' ? 'Cities' : 'المدن'}
+                  {language === 'en' ? 'Cities' : 'الدول'}
                 </span>
               </div>
             </GSAPReveal>

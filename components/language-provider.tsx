@@ -654,6 +654,9 @@ const translations = {
     "programs.ibn-khaldun.title": "Ibn Khaldun",
     "programs.ibn-khaldun.description": "200 scholarships in sociology and psychology for understanding Palestinian society.",
     "programs.learn-more": "Learn More",
+
+"testimonials.hero.subtitle_influencers": "Hear directly from students about their experiences and the impact of our programs.",
+
   },
   ar: {
       "news.latest.pulseOfLifeDisbursement.title": "بدء صرف منح المرحلة الأولى من برنامج نبض الحياة في تركيا",

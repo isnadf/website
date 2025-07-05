@@ -15,7 +15,7 @@ export default function Footer() {
           <div className={isRTL ? 'lg:order-4' : ''}>
             <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <GraduationCap className="h-6 w-6 text-primary" />
-              <span className="text-lg font-bold font-sora">IFPPS</span>
+              <span className="text-lg font-bold font-sora">IFPSS</span>
             </div>
             <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
               {t("footer.description") as string}

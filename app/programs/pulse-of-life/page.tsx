@@ -258,8 +258,7 @@ export default function PulseOfLifePage() {
                     <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
                       <video
                         src="/newVid/new4Vid.mp4"
-                        autoPlay
-                        muted
+                        controls
                         loop
                         playsInline
                         className="w-full h-full object-contain"

@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, easeInOut } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { ReactNode, useEffect, useState } from "react"
 import { isGoogleTranslateActive } from "@/lib/google-translate-utils"
@@ -84,8 +84,8 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   }
 
   const pageTransition = {
-    type: "tween",
-    ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth feel
+    type: "tween" as const,
+    ease: easeInOut,
     duration: isTranslated ? 0.1 : 0.4, // Faster transitions when translated to reduce mismatch window
   }
 
