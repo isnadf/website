@@ -81,55 +81,19 @@ function TestimonialsContent() {
     <main className={`flex min-h-screen flex-col dark:bg-gray-950 ${isRTL ? 'font-arabic' : ''}`}>
       {/* Hero Section */}
       {typeParam === 'students' ? (
-        // Full video hero for students with improved loading
-        <section className="relative h-[calc(50vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
-          <div className="absolute inset-0 z-0" ref={videoContainerRef}>
-            <div className="relative w-full h-full">
-              {/* Video Skeleton */}
-              {!videoLoaded && (
-                <div className="absolute inset-0 z-10 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center space-y-4">
-                    <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
-                      <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
-                    </div>
-                    <div className="text-gray-400 dark:text-gray-500 text-sm">
-                      {language === 'ar' ? 'جاري تحميل الفيديو...' : 'Loading video...'}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Video Element */}
-              {videoInView && (
-                <video
-                  ref={videoRef}
-                  src="/newVid/students.mp4"
-                  poster="/hero-cover.jpg"
-                  autoPlay
-                  loop
-                  playsInline
-                  muted={isVideoMuted}
-                  preload="metadata"
-                  onCanPlayThrough={handleVideoCanPlayThrough}
-                  onError={handleVideoError}
-                  className={`absolute inset-0 w-full h-full object-contain object-center transition-opacity duration-700 ${
-                    videoLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
-              )}
+        // New hero section for students
+        <section className="relative py-20 md:py-28 bg-gradient-to-b from-[#1e7e34] to-[#f8faf8] dark:from-[#1e7e34] dark:to-gray-950 overflow-hidden mt-24">
+          <div className="container px-4 md:px-6 relative z-10">
+            <div className="max-w-3xl mx-auto">
+              <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center">
+                  {t("testimonials.hero.title")}
+                </h1>
+                <p className="text-xl md:text-2xl text-white/90 mb-8 text-center">
+                  {t("testimonials.hero.subtitle")}
+                </p>
+              </div>
             </div>
-
-            {/* Sound toggle button */}
-            <button
-              onClick={toggleVideoMute}
-              className="absolute bottom-4 right-4 z-20 w-12 h-12 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-lg hover:bg-black/50 transition-all duration-300"
-            >
-              {isVideoMuted ? (
-                <VolumeX className="h-5 w-5 text-white" />
-              ) : (
-                <Volume2 className="h-5 w-5 text-white" />
-              )}
-            </button>
           </div>
         </section>
       ) : (
@@ -242,6 +206,68 @@ function TestimonialsContent() {
           </div>
         </div>
       </section>
+
+      {/* Video Section for Students - moved down */}
+      {typeParam === 'students' && (
+        <section className="relative py-16 md:py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden">
+          <div className="container px-4 md:px-6 relative z-10">
+            <GSAPReveal animation="slide-up">
+              <div className="mb-12">
+                <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
+                  <h2 className={`text-3xl font-bold sm:text-4xl text-gray-900 dark:text-white mb-4 text-center`}>
+                    <span className="relative inline-block">
+                      {language === 'ar' ? 'شاهد قصص طلابنا' : 'Watch Our Students Stories'}
+                      <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/0 via-[#1e7e34]/80 to-[#1e7e34]/0"></span>
+                    </span>
+                  </h2>
+                  <p className={`mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 text-lg mb-8 text-center`}>
+                    {language === 'ar' ? 'تعرف على تجارب طلابنا وكيف ساعدهم صندوق إسناد في تحقيق أحلامهم' : 'Discover the experiences of our students and how the Palestinian Student Fund helped them achieve their dreams'}
+                  </p>
+                </div>
+              </div>
+            </GSAPReveal>
+
+            {/* Video Container */}
+            <div className="max-w-4xl mx-auto">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl" ref={videoContainerRef}>
+                <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
+                  {/* Video Skeleton */}
+                  {!videoLoaded && (
+                    <div className="absolute inset-0 z-10 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
+                      <div className="flex flex-col items-center justify-center space-y-4">
+                        <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                          <Play className="h-8 w-8 text-gray-400 dark:text-gray-500" />
+                        </div>
+                        <div className="text-gray-400 dark:text-gray-500 text-sm">
+                          {language === 'ar' ? 'جاري تحميل الفيديو...' : 'Loading video...'}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Video Element */}
+                  {videoInView && (
+                    <video
+                      ref={videoRef}
+                      src="/newVid/students.mp4"
+                      poster="/hero-cover.jpg"
+                      loop
+                      controls
+                      playsInline
+                      preload="metadata"
+                      onCanPlayThrough={handleVideoCanPlayThrough}
+                      onError={handleVideoError}
+                      className={`w-full h-full object-contain transition-opacity duration-700 ${
+                        videoLoaded ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
     </main>
   )
 }
