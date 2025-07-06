@@ -605,7 +605,7 @@ const translations = {
     "success_stories.categories.phd": "PhD",
     "success_stories.back_to_stories": "Back to Stories",
 
-    "testimonials.hero.title": "Voices of Our Community",
+    "testimonials.hero.title": "Isnad's Footprint in Our Students' Journey",
     "testimonials.hero.subtitle": "Hear directly from students about their experiences and the impact of our programs.",
     "testimonials.student_voices": "Beneficiary students",
     "testimonials.student_testimonials": "Student Testimonials",
@@ -1262,7 +1262,7 @@ const translations = {
     "success_stories.categories.phd": "دكتوراه",
     "success_stories.back_to_stories": "العودة إلى القصص",
 
-    "testimonials.hero.title": "أصوات مجتمعنا",
+    "testimonials.hero.title": "بصمة إسناد في مسيرة طلابنا",
     "testimonials.hero.subtitle": "استمع مباشرة من الطلاب عن تجاربهم وتأثير برامجنا",
     "testimonials.hero.subtitle_influencers": "استمع مباشرة من العلماء والشخصيات العامة عن تجاربهم وتأثير برامجنا",
     "testimonials.student_voices": "طلاب مستفيدون",

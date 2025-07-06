@@ -87,7 +87,9 @@ function TestimonialsContent() {
             <div className="max-w-3xl mx-auto">
               <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center">
-                  {t("testimonials.hero.title")}
+                  <span className={language === 'ar' ? 'whitespace-nowrap' : ''}>
+                    {t("testimonials.hero.title")}
+                  </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-white/90 mb-8 text-center">
                   {t("testimonials.hero.subtitle")}
@@ -103,7 +105,9 @@ function TestimonialsContent() {
             <div className="max-w-3xl mx-auto">
               <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center">
-                  {t("testimonials.hero.title")}
+                  <span className={language === 'ar' ? 'whitespace-nowrap' : ''}>
+                    {t("testimonials.hero.title")}
+                  </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-white/90 mb-8 text-center">
                   {typeParam === 'influencers' ? t("testimonials.hero.subtitle_influencers") : t("testimonials.hero.subtitle")}
@@ -216,7 +220,9 @@ function TestimonialsContent() {
                 <div className={`flex flex-col items-center justify-center ${isRTL ? 'font-arabic' : ''}`}>
                   <h2 className={`text-3xl font-bold sm:text-4xl text-gray-900 dark:text-white mb-4 text-center`}>
                     <span className="relative inline-block">
-                      {language === 'ar' ? 'شاهد قصص طلابنا' : 'Watch Our Students Stories'}
+                      <span className={language === 'ar' ? 'whitespace-nowrap' : ''}>
+                        {language === 'ar' ? 'حين تروي العذابات حكاية طلابنا' : 'When Hardships Tell Our Students Story'}
+                      </span>
                       <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/0 via-[#1e7e34]/80 to-[#1e7e34]/0"></span>
                     </span>
                   </h2>
