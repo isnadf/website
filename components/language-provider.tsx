@@ -660,7 +660,7 @@ const translations = {
   },
   ar: {
       "news.latest.pulseOfLifeDisbursement.title": "بدء صرف منح المرحلة الأولى من برنامج نبض الحياة في تركيا",
-      "news.latest.pulseOfLifeDisbursement.excerpt": "علنت مؤسسة إسناد لدعم الطالب الفلسطيني عن بدء صرف المنح الدراسية للطلبة المستفيدين ضمن المرحلة الأولى من برنامج نبض الحياة، وذلك اعتبارًا من 1 مايو 2025",
+      "news.latest.pulseOfLifeDisbursement.excerpt": "أعلنت مؤسسة إسناد لدعم الطالب الفلسطيني عن بدء صرف المنح الدراسية للطلبة المستفيدين ضمن المرحلة الأولى من برنامج نبض الحياة، وذلك اعتبارًا من 1 مايو 2025",
 
 
     "contact.info.subtitlquireme3": "تواصل معنا باستخدام أي من الطرق أدناه :",
@@ -840,7 +840,7 @@ const translations = {
     "ibn-khaldun.apply.now": "قدم الآن",
 
     // Sustainability Scholarship Arabic translations
-    "sustainability.title": " منحة الأستدامة",
+    "sustainability.title": " منحة الاستدامة",
     "sustainability.subtitle": "نحو السيادة العالمية ومجتمع يقود تنميته الذاتية",
     "sustainability.scholarships": "منح دراسية",
     "sustainability.years": "سنوات",

@@ -114,7 +114,7 @@ export default function Footer() {
         <div className="border-t border-gray-200 dark:border-gray-800 relative">
           <div className="absolute left-1/2 transform -translate-x-1/2 py-8">
             <div className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
-              <span>© 2025 IFPPS.</span>
+              <span>© 2025 IFPSS.</span>
               <span className="mx-2">|</span>
               <span>{t("footer.rights")}</span>
             </div>
