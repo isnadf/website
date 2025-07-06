@@ -655,9 +655,15 @@ const translations = {
     "programs.ibn-khaldun.title": "Ibn Khaldun",
     "programs.ibn-khaldun.description": "200 scholarships in sociology and psychology for understanding Palestinian society.",
     "programs.learn-more": "Learn More",
-
-"testimonials.hero.subtitle_influencers": "Hear directly from students about their experiences and the impact of our programs.",
-
+    "testimonials.hero.subtitle_influencers": "Hear directly from students about their experiences and the impact of our programs.",
+    
+    // Educational Environment Hero translations
+    "educational.environment.hero.title": "Palestinian Educational Environment",
+    "educational.environment.hero.subtitle": "Amid bombardment, siege, displacement, and arrest, Palestinian education faces existential challenges that threaten its continuity, yet it remains a symbol of resilience and knowledge in the face of systematic exclusion and destruction policies",
+    "educational.environment.hero.learnReality": "Learn About Reality",
+    "educational.environment.hero.supportPalestinianEducation": "Support Palestinian Education",
+    "educational.environment.section1.title": "Reality and Challenges",
+    "educational.environment.section1.body": "Despite the Israeli occupation and restrictions on movement and resources, higher education in Palestine has remained a cornerstone of resilience and capacity building. Since the Nakba, Palestine has graduated thousands of academics and established an advanced educational system despite the lack of independence. With more than 50 educational institutions receiving 210,000 students annually, the academic journey still faces major challenges, most notably Israeli restrictions, the arrest of students and academics, and the destruction of infrastructure, leading to shortages in vital cadres and specializations, especially amid the ongoing humanitarian catastrophe in Gaza since October 2023.",
   },
   ar: {
       "news.latest.pulseOfLifeDisbursement.title": "بدء صرف منح المرحلة الأولى من برنامج نبض الحياة في تركيا",
@@ -1300,6 +1306,12 @@ const translations = {
     "programs.ibn-khaldun.title": "ابن خلدون",
     "programs.ibn-khaldun.description": "200 منحة في علم الاجتماع وعلم النفس لفهم المجتمع الفلسطيني.",
     "programs.learn-more": "اعرف المزيد",
+    "educational.environment.hero.title": "البيئة التعليمية الفلسطينية",
+    "educational.environment.hero.subtitle": "في ظل القصف والحصار والتهجير والاعتقال، يواجه التعليم الفلسطيني تحديات وجودية تهدد استمراره، لكنه يظل رمزًا للصمود والمعرفة في وجه سياسات الإقصاء والتدمير الممنهج",
+    "educational.environment.hero.learnReality": "تعرف على الواقع",
+    "educational.environment.hero.supportPalestinianEducation": "ساهم معنا",
+    "educational.environment.section1.title": "الواقع والتحديات",
+    "educational.environment.section1.body": "رغم الاحتلال الإسرائيلي والقيود المفروضة على الحركة والموارد، ظل التعليم العالي في فلسطين ركيزة أساسية للصمود وبناء القدرات. ومنذ النكبة، خرجت فلسطين آلاف الأكاديميين وأسست نظامًا تعليميًا متقدمًا رغم غياب الاستقلال. ومع وجود أكثر من 50 مؤسسة تعليمية تستقبل 210,000 طالب سنويًا، لا تزال المسيرة العلمية تواجه تحديات كبيرة أبرزها التضييق الإسرائيلي، اعتقال الطلبة والأكاديميين، وتدمير البنية التحتية، مما أدى إلى نقص في الكوادر والتخصصات الحيوية، خصوصًا في ظل الكارثة الإنسانية المتواصلة في قطاع غزة منذ أكتوبر 2023.",
   },
 }
 

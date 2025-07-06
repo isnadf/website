@@ -260,12 +260,12 @@ html {
 }
 
 /* Specific styling for hero title in Arabic - make it more specific */
-h1.hero-title:lang(ar) {
+/* h1.hero-title:lang(ar) {
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "rlig" 1;
   text-align: center;
-  word-spacing: -0.1em !important; /* Increased space between words and forced with !important */
+  word-spacing: -0.1em !important; 
   letter-spacing: -2px;
-}
+} */
 
 /* You can remove or comment out these general styles since we're targeting the hero title specifically */
 /*.text-4xl:lang(ar),
