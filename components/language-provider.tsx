@@ -33,6 +33,7 @@ const translations = {
     "nav.media.success": "Success Stories",
     "nav.media.activities": "Previous Activities",
     "nav.media.testimonials": "What They Say About Us",
+    "nav.educational.environment": "Educational Environment",
 
     "hero.title": "Empowering Palestinian Students Worldwide",
     "hero.subtitle":
@@ -679,6 +680,7 @@ const translations = {
     "nav.media.success": "قصص النجاح",
     "nav.media.activities": "الأنشطة السابقة",
     "nav.media.testimonials": "قالوا عنا ",
+    "nav.educational.environment": "البيئة التعليمية",
 
     // Remove duplicate hero translations
     "about.widgt": "القيم",

@@ -66,6 +66,7 @@ export default function Header() {
         }
       ]
     },
+    { name: t("nav.educational.environment") as string, href: "/educational-environment" },
     {
       name: t("nav.media") as string,
       href: "/media",
@@ -111,8 +112,8 @@ export default function Header() {
         }`}
         dir={isRTL ? 'rtl' : 'ltr'}
       >
-        <div className="w-full flex items-center justify-between">
-          <Link href="/" className={`flex items-center z-50 ${isRTL ? 'pr-4 sm:pr-6 lg:pr-8' : 'pl-4 sm:pl-6 lg:pl-8'}`}>
+        <div className="w-full flex items-center">
+          <Link href="/" className={`flex items-center z-50 flex-shrink-0 ${isRTL ? 'pr-4 sm:pr-6 lg:pr-8' : 'pl-4 sm:pl-6 lg:pl-8'}`}>
             <Image
               src="/logo.png"
               alt="ifpps logo"
@@ -126,7 +127,7 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 ${isRTL ? 'pr-4 sm:pr-6 lg:pr-8' : 'pl-4 sm:pl-6 lg:pl-8'}`}>
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
             {navItems.map((item) => (
               (item as any).dropdown ? (
                 <NavigationMenu key={item.href}>
@@ -184,7 +185,7 @@ export default function Header() {
             <DonateButton />
           </nav>
 
-          <div className={`flex items-center gap-3 ${isRTL ? 'pl-4 sm:pl-6 lg:pl-8' : 'pr-4 sm:pr-6 lg:pr-8'}`}>
+          <div className={`flex items-center gap-3 flex-shrink-0 ${isRTL ? 'pl-4 sm:pl-6 lg:pl-8' : 'pr-4 sm:pr-6 lg:pr-8'}`}>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
