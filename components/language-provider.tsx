@@ -44,7 +44,7 @@ const translations = {
 
     "about.widgt": "Values",
     "about.title":"Our Values",
-    "about.subtitle":"IFPPS",
+    "about.subtitle":"IFPSS",
     "about.identity": "National Belonging",
     "about.identity.desc": "We operate from a deep commitment to the Palestinian cause, striving to instill national identity in everything we do.",
     "about.identity2":"Academic Excellence",
@@ -125,7 +125,7 @@ const translations = {
     "donate.faq.use": "How will my donation be used?",
     "donate.faq.use.answer": "Your donation directly supports Palestinian students through scholarships, educational programs, and academic support. We ensure transparency in fund allocation and provide regular updates on the impact of your contribution.",
     "donate.faq.tax": "Is my donation tax-deductible?",
-    "donate.faq.tax.answer": "Yes, all donations to IFPPS are tax-deductible. We provide donation receipts for all contributions, which can be used for tax purposes in applicable jurisdictions.",
+    "donate.faq.tax.answer": "Yes, all donations to IFPSS are tax-deductible. We provide donation receipts for all contributions, which can be used for tax purposes in applicable jurisdictions.",
     "donate.faq.recurring": "Can I make a recurring donation?",
     "donate.faq.recurring.answer": "Yes, we offer monthly, quarterly, and annual recurring donation options. You can set up and manage your recurring donations through our secure payment system.",
     "donate.faq.track": "How can I track the impact of my donation?",
@@ -691,7 +691,7 @@ const translations = {
     // Remove duplicate hero translations
     "about.widgt": "القيم",
     "about.title":"قيمنا",
-    "about.subtitle":"IFPPS",
+    "about.subtitle":"IFPSS",
     "about.identity": "الانتماء الوطني",
     "about.identity.desc": "نعمل انطلاقًا من التزامنا الراسخ بالقضية الفلسطينية، ونسعى جاهدين لترسيخ الهوية الوطنية في كل ما نقوم به",
     "about.identity2":"التميز الأكاديمي",
