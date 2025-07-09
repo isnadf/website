@@ -1,18 +1,16 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).end();
-
-  const { orderId, amount } = req.body as { orderId: string; amount: string };
+export async function POST(req: NextRequest) {
+  const { orderId, amount } = await req.json();
 
   // Validate inputs
   if (!amount || isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
-    return res.status(400).json({ error: "Invalid amount" });
+    return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
   }
 
   if (!orderId || orderId.length < 3) {
-    return res.status(400).json({ error: "Invalid order ID" });
+    return NextResponse.json({ error: "Invalid order ID" }, { status: 400 });
   }
 
   // Validate environment variables
@@ -23,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!clientId || !storeKey || !okUrl || !failUrl) {
     console.error("Missing payment configuration");
-    return res.status(500).json({ error: "Payment configuration error" });
+    return NextResponse.json({ error: "Payment configuration error" }, { status: 500 });
   }
 
   const rnd = Date.now().toString();
@@ -51,19 +49,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const escapeHtml = (str: string) => str.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   const formInputs = Object.entries(fields)
-    .map(([key, val]) => `<input type="hidden" name="${escapeHtml(key)}" value="${escapeHtml(val)}" />`)
+    .map(([key, val]) => `<input type=\"hidden\" name=\"${escapeHtml(key)}\" value=\"${escapeHtml(val)}\" />`)
     .join("");
 
   const html = `
     <html>
-      <body onload="document.forms[0].submit()">
-        <form method="post" action="https://vpos.ziraatkatilim.com.tr/MPI/Default.aspx">
+      <body onload=\"document.forms[0].submit()\">
+        <form method=\"post\" action=\"https://vpos.ziraatkatilim.com.tr/MPI/Default.aspx\">
           ${formInputs}
         </form>
       </body>
     </html>
   `;
 
-  res.setHeader("Content-Type", "text/html");
-  res.end(html);
-}
+  return new NextResponse(html, {
+    headers: { "Content-Type": "text/html" },
+  });
+} 
