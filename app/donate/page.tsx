@@ -20,42 +20,54 @@ export default function DonatePage() {
   const [selectedProgram, setSelectedProgram] = useState("")
 
   const handleDonate = async () => {
-  const finalAmount = customAmount || amount;
+    const finalAmount = customAmount || amount;
 
-  if (!finalAmount) {
-    alert("Please enter an amount");
-    return;
-  }
-
-  const orderId = `ORD-${Date.now()}`;
-
-  try {
-    const res = await fetch("/api/payment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        orderId,
-        amount: parseFloat(finalAmount).toFixed(2),
-      }),
-    });
-
-    const html = await res.text();
-
-    const win = window.open("", "_blank");
-
-    if (win) {
-      win.document.write(html);
-      win.document.close();
-    } else {
-      alert("Popup blocked. Please enable popups to continue.");
+    if (!finalAmount || parseFloat(finalAmount) <= 0) {
+      alert("Please enter a valid amount");
+      return;
     }
-  } catch (err) {
-    console.error("Payment initiation failed", err);
-    alert("Something went wrong. Please try again.");
-  }
-};
+
+    const orderId = `ORD-${Date.now()}`;
+
+    try {
+      const res = await fetch("/api/payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderId,
+          amount: parseFloat(finalAmount).toFixed(2),
+        }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP ${res.status}`);
+      }
+
+      const html = await res.text();
+
+      // Validate response is HTML with payment form
+      if (!html.includes("<form") || !html.includes("ziraatkatilim.com.tr")) {
+        console.error("Invalid payment response:", html);
+        alert("Payment gateway error. Please try again.");
+        return;
+      }
+
+      const win = window.open("", "_blank");
+
+      if (win) {
+        win.document.write(html);
+        win.document.close();
+      } else {
+        alert("Popup blocked. Please enable popups to continue.");
+      }
+    } catch (err) {
+      console.error("Payment initiation failed", err);
+      alert("Something went wrong. Please try again.");
+    }
+  };
 
   const presetAmounts = ["50", "100", "250", "500", "1000"]
 
