@@ -664,6 +664,14 @@ const translations = {
     "educational.environment.hero.supportPalestinianEducation": "Support Palestinian Education",
     "educational.environment.section1.title": "Reality and Challenges",
     "educational.environment.section1.body": "Despite the Israeli occupation and restrictions on movement and resources, higher education in Palestine has remained a cornerstone of resilience and capacity building. Since the Nakba, Palestine has graduated thousands of academics and established an advanced educational system despite the lack of independence. With more than 50 educational institutions receiving 210,000 students annually, the academic journey still faces major challenges, most notably Israeli restrictions, the arrest of students and academics, and the destruction of infrastructure, leading to shortages in vital cadres and specializations, especially amid the ongoing humanitarian catastrophe in Gaza since October 2023.",
+    "payment.success.title": "Donation Successful!",
+    "payment.success.thankyou": "Your donation has been received successfully.\n\nIt will go directly toward empowering Palestinian students—through scholarships, mentorship, and educational opportunities—helping build future leaders in Palestine.",
+    "payment.success.home": "Return to Home Page",
+    "payment.fail.title": "Payment Failed",
+    "payment.fail.message": "Unfortunately, your donation was not completed.\nSomething went wrong while processing your payment. Please check your information and try again. If the problem continues, contact us at info@isnadf.org.",
+    "payment.fail.retry": "\ud83d\udd01 Try Again",
+    "payment.fail.home": "\ud83c\udfe0 Back to Homepage",
+    "payment.success.donate": "Donate Again",
   },
   ar: {
       "news.latest.pulseOfLifeDisbursement.title": "بدء صرف منح المرحلة الأولى من برنامج نبض الحياة في تركيا",
@@ -1312,6 +1320,14 @@ const translations = {
     "educational.environment.hero.supportPalestinianEducation": "ساهم معنا",
     "educational.environment.section1.title": "الواقع والتحديات",
     "educational.environment.section1.body": "رغم الاحتلال الإسرائيلي والقيود المفروضة على الحركة والموارد، ظل التعليم العالي في فلسطين ركيزة أساسية للصمود وبناء القدرات. ومنذ النكبة، خرجت فلسطين آلاف الأكاديميين وأسست نظامًا تعليميًا متقدمًا رغم غياب الاستقلال. ومع وجود أكثر من 50 مؤسسة تعليمية تستقبل 210,000 طالب سنويًا، لا تزال المسيرة العلمية تواجه تحديات كبيرة أبرزها التضييق الإسرائيلي، اعتقال الطلبة والأكاديميين، وتدمير البنية التحتية، مما أدى إلى نقص في الكوادر والتخصصات الحيوية، خصوصًا في ظل الكارثة الإنسانية المتواصلة في قطاع غزة منذ أكتوبر 2023.",
+    "payment.success.title": "تم التبرع بنجاح",
+    "payment.success.thankyou": "شكرًا لتبرعك!\nلقد تم استلام التبرع بنجاح، وسيُستخدم مباشرة لدعم الطلاب الفلسطينيين—من خلال منح دراسية، وإرشاد أكاديمي، وفرص تعليمية—لبناء قيادات مستقبلية في فلسطين.",
+    "payment.success.home": "العودة إلى الصفحة الرئيسية",
+    "payment.fail.title": "\u274c فشل في عملية الدفع",
+    "payment.fail.message": "نأسف، لم يتم إتمام التبرع.\nحدث خطأ أثناء معالجة الدفع. يرجى التحقق من معلوماتك والمحاولة مرة أخرى. إذا استمرت المشكلة، يمكنك التواصل معنا عبر البريد: info@isnadf.org.",
+    "payment.fail.retry": "\ud83d\udd01 إعادة المحاولة",
+    "payment.fail.home": "\ud83c\udfe0 العودة إلى الصفحة الرئيسية",
+    "payment.success.donate":"التبرع بالمزيد؟"
   },
 }
 

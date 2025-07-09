@@ -117,7 +117,7 @@ export default function DonatePage() {
 
   const impactStats = [
     { icon: Users, value: "500+", label: t("donate.impact.students") },
-    { icon: Gift, value: "$1M+", label: t("donate.impact.scholarships") },
+    { icon: Gift, value: "₺1M+", label: t("donate.impact.scholarships") },
     { icon: Heart, value: "20+", label: t("donate.impact.countries") },
   ]
 
@@ -301,7 +301,7 @@ export default function DonatePage() {
                         setCustomAmount("")
                       }}
                     >
-                      ${preset}
+                      ₺{preset}
                     </Button>
                   ))}
                 </div>
@@ -315,7 +315,7 @@ export default function DonatePage() {
                       setCustomAmount(e.target.value)
                       setAmount("")
                     }}
-                    className={`h-12 text-lg ${language === "ar" ? "text-right" : "text-left"}`}
+                    className={`h-12 text-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${language === "ar" ? "text-right" : "text-left"}`}
                   />
                 </div>
               </div>
