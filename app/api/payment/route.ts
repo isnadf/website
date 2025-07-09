@@ -35,47 +35,59 @@ export async function POST(req: NextRequest) {
     }
 
     // Validate environment variables
-    const clientId = process.env.MERCHANT_ID;
-    const storeKey = process.env.STORE_KEY;
+    const merchantId = process.env.MERCHANT_ID;
+    const merchantPass = process.env.STORE_KEY;
     const okUrl = process.env.OK_URL;
     const failUrl = process.env.FAIL_URL;
 
     console.log("Environment variables check:", {
-      hasClientId: !!clientId,
-      hasStoreKey: !!storeKey,
+      hasMerchantId: !!merchantId,
+      hasMerchantPass: !!merchantPass,
       hasOkUrl: !!okUrl,
       hasFailUrl: !!failUrl
     });
 
-    if (!clientId || !storeKey || !okUrl || !failUrl) {
+    if (!merchantId || !merchantPass || !okUrl || !failUrl) {
       console.error("Missing payment configuration:", {
-        MERCHANT_ID: !!clientId,
-        STORE_KEY: !!storeKey,
+        MERCHANT_ID: !!merchantId,
+        STORE_KEY: !!merchantPass,
         OK_URL: !!okUrl,
         FAIL_URL: !!failUrl
       });
       return NextResponse.json({ error: "Payment configuration error" }, { status: 500 });
     }
 
-    const rnd = Date.now().toString();
+    // Ziraat 3D Host payment configuration
+    const mbrId = "12"; // Kurum Kodu
+    const userCode = "apifodd"; // From your credentials
+    const secureType = "3DHost";
+    const txnType = "Auth";
+    const installmentCount = "0";
     const currency = "949";
-    const storeType = "3d_pay_hosting";
-    const lang = "tr";
+    const lang = "TR";
+    const orgOrderId = ""; // Empty for new transactions
+    const rnd = Date.now().toString();
 
-    const hashString = clientId + orderId + amount + okUrl + failUrl + rnd + storeKey;
+    // Correct Ziraat hash calculation
+    const hashString = mbrId + orderId + amount + okUrl + failUrl + txnType + installmentCount + rnd + merchantPass;
     const hash = crypto.createHash("sha1").update(hashString).digest("base64");
 
     const fields: Record<string, string> = {
-      clientid: clientId,
-      amount,
-      oid: orderId,
-      okUrl,
-      failUrl,
-      rnd,
-      currency,
-      storetype: storeType,
-      lang,
-      hash,
+      MbrId: mbrId,
+      MerchantID: merchantId,
+      UserCode: userCode,
+      SecureType: secureType,
+      TxnType: txnType,
+      InstallmentCount: installmentCount,
+      Currency: currency,
+      OkUrl: okUrl,
+      FailUrl: failUrl,
+      OrderId: orderId,
+      OrgOrderId: orgOrderId,
+      PurchAmount: amount,
+      Lang: lang,
+      Rnd: rnd,
+      Hash: hash,
     };
 
     // Escape HTML values to prevent XSS
@@ -88,7 +100,7 @@ export async function POST(req: NextRequest) {
     const html = `
       <html>
         <body onload=\"document.forms[0].submit()\">
-          <form method=\"post\" action=\"https://vpos.ziraatkatilim.com.tr/MPI/Default.aspx\">
+          <form method=\"post\" action=\"https://vpos.ziraatkatilim.com.tr/Mpi/3DHost.aspx\">
             ${formInputs}
           </form>
         </body>
