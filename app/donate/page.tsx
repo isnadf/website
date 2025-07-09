@@ -19,6 +19,44 @@ export default function DonatePage() {
   const [donationType, setDonationType] = useState<"general" | "program">("general")
   const [selectedProgram, setSelectedProgram] = useState("")
 
+  const handleDonate = async () => {
+  const finalAmount = customAmount || amount;
+
+  if (!finalAmount) {
+    alert("Please enter an amount");
+    return;
+  }
+
+  const orderId = `ORD-${Date.now()}`;
+
+  try {
+    const res = await fetch("/api/payment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        orderId,
+        amount: parseFloat(finalAmount).toFixed(2),
+      }),
+    });
+
+    const html = await res.text();
+
+    const win = window.open("", "_blank");
+
+    if (win) {
+      win.document.write(html);
+      win.document.close();
+    } else {
+      alert("Popup blocked. Please enable popups to continue.");
+    }
+  } catch (err) {
+    console.error("Payment initiation failed", err);
+    alert("Something went wrong. Please try again.");
+  }
+};
+
   const presetAmounts = ["50", "100", "250", "500", "1000"]
 
   const programs = [
@@ -308,14 +346,11 @@ export default function DonatePage() {
               {/* Donate Button */}
               <Button
                 className="w-full h-14 text-lg bg-[#34a853] hover:bg-[#2d9249] text-white"
-                onClick={() => {
-                  // Handle donation submission
-                  const finalAmount = customAmount || amount
-                  console.log(`Processing ${paymentMethod} payment for $${finalAmount}`)
-                }}
+                onClick={handleDonate}
               >
                 {t("donate.form.button")}
               </Button>
+
 
               {/* Trust Indicators */}
               <div className={`mt-6 flex items-center justify-center space-x-4 text-sm text-gray-500 ${language === "ar" ? "space-x-reverse" : ""}`}>
