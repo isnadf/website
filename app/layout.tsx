@@ -67,7 +67,6 @@ export default function RootLayout({
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <body className={`${inter.variable} ${poppins.variable} ${notoKufiArabic.variable} ${playfair.variable} ${sora.variable} font-sora`}>
         <TranslationSafeWrapper>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
             <LanguageProvider>
               <LoadingBar />
               <div className="flex min-h-screen flex-col">
@@ -79,7 +78,6 @@ export default function RootLayout({
               </div>
               <Toaster />
             </LanguageProvider>
-          </ThemeProvider>
           <TranslationDebug />
         </TranslationSafeWrapper>
         <Analytics />
