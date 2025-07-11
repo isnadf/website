@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { CheckCircle, CreditCard, Banknote, Gift, Heart, Shield, Users, Building2, GraduationCap, Stethoscope, Star, Leaf, Scale, Brain } from "lucide-react"
+import { CheckCircle, CreditCard, Banknote, Gift, Heart, Shield, Users, Building2, GraduationCap, Stethoscope, Star, Leaf, Scale, Brain, Copy, Check } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function DonatePage() {
@@ -18,6 +18,26 @@ export default function DonatePage() {
   const [paymentMethod, setPaymentMethod] = useState("card")
   const [donationType, setDonationType] = useState<"general" | "program">("general")
   const [selectedProgram, setSelectedProgram] = useState("")
+  const [copiedField, setCopiedField] = useState<string | null>(null)
+
+  const copyToClipboard = async (text: string, fieldName: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedField(fieldName)
+      setTimeout(() => setCopiedField(null), 2000)
+    } catch (err) {
+      console.error('Failed to copy text: ', err)
+    }
+  }
+
+  const bankInfo = {
+    accountName: "FİLİSTİNLİ ÖĞRENCİLERİ DESTEKLEME VE DAYANIŞMA DERNEĞİ",
+    tryAccount: "TR230020900001928671000001",
+    usdAccount: "TR660020900001928671000003",
+    eurAccount: "TR930020900001928671000002",
+    bankName: "Ziraat Katılım Bankası A.S",
+    swiftCode: "ZKBATRIS"
+  }
 
   const handleDonate = async () => {
     const finalAmount = customAmount || amount;
@@ -69,51 +89,9 @@ export default function DonatePage() {
     }
   };
 
-  const presetAmounts = ["50", "100", "250", "500", "1000"]
+  const presetAmounts = ["500", "1000", "2500", "3500", "5000"]
 
-  const programs = [
-    {
-      id: "pulse-of-life",
-      name: t("donate.programs.pulse"),
-      icon: Stethoscope,
-      description: t("donate.programs.pulse.desc"),
-      scholarships: "1,000",
-      duration: "5 years",
-      focus: "Medicine and Health Sciences"
-    },
-    {
-      id: "palestinian-talented",
-      name: t("donate.programs.talented"),
-      icon: Star,
-      description: t("donate.programs.talented.desc"),
-      scholarships: "1,000",
-      focus: "Various Academic Fields"
-    },
-    {
-      id: "sustainability",
-      name: t("donate.programs.sustainability"),
-      icon: Leaf,
-      description: t("donate.programs.sustainability.desc"),
-      scholarships: "200",
-      focus: "Energy and Agricultural Engineering"
-    },
-    {
-      id: "justice-for-palestine",
-      name: t("donate.programs.justice"),
-      icon: Scale,
-      description: t("donate.programs.justice.desc"),
-      scholarships: "200",
-      focus: "Political Science and International Relations"
-    },
-    {
-      id: "ibn-khaldun",
-      name: t("donate.programs.ibn-khaldun"),
-      icon: Brain,
-      description: t("donate.programs.ibn-khaldun.desc"),
-      scholarships: "200",
-      focus: "Sociology and Psychology"
-    }
-  ]
+ 
 
   const impactStats = [
     { icon: Users, value: "500+", label: t("donate.impact.students") },
@@ -162,14 +140,14 @@ export default function DonatePage() {
       </section>
 
       {/* Donation Form Section */}
-      <section className="py-16 bg-white">
+      <section className="pt-8 pb-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl p-8">
+            <div className="bg-white rounded-2xl shadow-2xl p-8">
               <h2 className={`text-2xl font-bold text-gray-900 mb-6 flex justify-center items-center ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.form.title")}</h2>
               
               {/* Donation Type Selection */}
-              <div className="mb-8">
+              {/* <div className="mb-8">
                 <Label className={`text-lg font-medium mb-4 flex ${language === "ar" ? "justify-center" : "justify-center"} items-center`}>{t("donate.form.type")}</Label>
                 <RadioGroup
                   value={donationType}
@@ -224,10 +202,10 @@ export default function DonatePage() {
                     </Label>
                   </div>
                 </RadioGroup>
-              </div>
+              </div> */}
 
               {/* Program Selection - Only show when specific program is selected */}
-              {donationType === "program" && (
+              {/* {donationType === "program" && (
                 <div className="mb-8">
                   <Label className={`text-lg font-medium mb-4 block ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.form.select_program")}</Label>
                   <Select value={selectedProgram} onValueChange={setSelectedProgram}>
@@ -246,10 +224,10 @@ export default function DonatePage() {
                     </SelectContent>
                   </Select>
                 </div>
-              )}
+              )} */}
 
               {/* Program Details - Only show when a program is selected */}
-              {donationType === "program" && selectedProgram && (
+              {/* {donationType === "program" && selectedProgram && (
                 <div className="mb-8 p-6 bg-gray-50 rounded-lg">
                   {(() => {
                     const program = programs.find(p => p.id === selectedProgram)
@@ -283,7 +261,7 @@ export default function DonatePage() {
                     )
                   })()}
                 </div>
-              )}
+              )} */}
 
               {/* Amount Selection */}
               <div className="mb-8">
@@ -307,16 +285,27 @@ export default function DonatePage() {
                 </div>
                 <div className="mt-4">
                   <Label className={`text-sm text-gray-600 mb-2 block ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.form.custom")}</Label>
-                  <Input
-                    type="number"
-                    placeholder={t("donate.form.custom") as string}
-                    value={customAmount}
-                    onChange={(e) => {
-                      setCustomAmount(e.target.value)
-                      setAmount("")
-                    }}
-                    className={`h-12 text-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${language === "ar" ? "text-right" : "text-left"}`}
-                  />
+                  <div
+                    className="flex items-center justify-between border border-gray-300 rounded-lg bg-white h-20 px-4 focus-within:border-green-500"
+                  >
+                    {/* Left: Currency symbol and label */}
+                    <div className="flex flex-col items-start justify-center">
+                      <span className="text-2xl font-bold text-gray-800">₺</span>
+                      <span className="text-xs text-gray-700 font-semibold mt-1">TRY</span>
+                    </div>
+                    {/* Right: Amount input */}
+                    <input
+                      type="number"
+                      placeholder={t("donate.form.custom") as string}
+                      value={customAmount}
+                      onChange={e => {
+                        setCustomAmount(e.target.value)
+                        setAmount("")
+                      }}
+                      className="w-full text-right border-none outline-none bg-transparent text-4xl font-bold text-gray-900 placeholder-gray-400 focus:ring-0 px-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      style={{maxWidth: '80%', direction: language === 'ar' ? 'rtl' : 'ltr'}}
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -328,24 +317,24 @@ export default function DonatePage() {
                   onValueChange={setPaymentMethod}
                   className={`space-y-4 ${language === "ar" ? "text-right" : "text-left"}`}
                 >
-                  <div className={`flex items-center ${language === "ar" ? "justify-end" : ""}`}>
+                  <div className={`flex items-center ${language === "ar" ? "justify-end" : ""} cursor-pointer`}>
                     <div className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
-                      <RadioGroupItem value="card" id="card" className={language === "ar" ? "ml-2" : "mr-2"} />
+                      <RadioGroupItem value="card" id="card" className={`${language === "ar" ? "ml-2" : "mr-2"} cursor-pointer`} />
                       <Label 
                         htmlFor="card" 
-                        className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}
+                        className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""} cursor-pointer`}
                       >
                         <CreditCard className={`w-5 h-5 ${language === "ar" ? "ml-2" : "mr-2"}`} />
                         <span className={language === "ar" ? "text-right" : ""}>{t("donate.form.card")}</span>
                       </Label>
                     </div>
                   </div>
-                  <div className={`flex items-center ${language === "ar" ? "justify-end" : ""}`}>
+                  <div className={`flex items-center ${language === "ar" ? "justify-end" : ""} cursor-pointer`}>
                     <div className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}>
-                      <RadioGroupItem value="bank" id="bank" className={language === "ar" ? "ml-2" : "mr-2"} />
+                      <RadioGroupItem value="bank" id="bank" className={`${language === "ar" ? "ml-2" : "mr-2"} cursor-pointer`} />
                       <Label 
                         htmlFor="bank" 
-                        className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""}`}
+                        className={`flex items-center ${language === "ar" ? "flex-row-reverse" : ""} cursor-pointer`}
                       >
                         <Banknote className={`w-5 h-5 ${language === "ar" ? "ml-2" : "mr-2"}`} />
                         <span className={language === "ar" ? "text-right" : ""}>{t("donate.form.bank")}</span>
@@ -355,12 +344,176 @@ export default function DonatePage() {
                 </RadioGroup>
               </div>
 
+              {/* Bank Information - Show when bank transfer is selected */}
+              {paymentMethod === "bank" && (
+                <div className="mb-8 p-4 bg-gray-50 rounded-lg border">
+                  <h3 className={`text-lg font-semibold mb-4 ${language === "ar" ? "text-right" : "text-left"}`}>
+                    {language === "ar" ? "معلومات التحويل البنكي" : "Bank Transfer Information"}
+                  </h3>
+                  
+                  <div className="space-y-3">
+                    {/* Account Name */}
+                    <div className="flex items-center justify-between bg-white p-3 rounded border">
+                      <div className={`flex-1 ${language === "ar" ? "text-right" : "text-left"}`}>
+                        <p className="text-sm font-medium text-gray-700 mb-1">
+                          {language === "ar" ? "اسم الحساب" : "Account Name"}
+                        </p>
+                        <p className="text-gray-900 text-sm">{bankInfo.accountName}</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard(bankInfo.accountName, "accountName")}
+                        className={`${language === "ar" ? "mr-2" : "ml-2"} hover:bg-transparent`}
+                      >
+                        {copiedField === "accountName" ? (
+                          <Check className="w-4 h-4 text-green-600" />
+                        ) : (
+                          <Copy className="w-4 h-4 text-gray-600" />
+                        )}
+                      </Button>
+                    </div>
+
+                    {/* Bank Name */}
+                    <div className="flex items-center justify-between bg-white p-3 rounded border">
+                      <div className={`flex-1 ${language === "ar" ? "text-right" : "text-left"}`}>
+                        <p className="text-sm font-medium text-gray-700 mb-1">
+                          {language === "ar" ? "اسم البنك" : "Bank Name"}
+                        </p>
+                        <p className="text-gray-900 text-sm">{bankInfo.bankName}</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard(bankInfo.bankName, "bankName")}
+                        className={`${language === "ar" ? "mr-2" : "ml-2"} hover:bg-transparent`}
+                      >
+                        {copiedField === "bankName" ? (
+                          <Check className="w-4 h-4 text-green-600" />
+                        ) : (
+                          <Copy className="w-4 h-4 text-gray-600" />
+                        )}
+                      </Button>
+                    </div>
+
+                    {/* SWIFT Code */}
+                    <div className="flex items-center justify-between bg-white p-3 rounded border">
+                      <div className={`flex-1 ${language === "ar" ? "text-right" : "text-left"}`}>
+                        <p className="text-sm font-medium text-gray-700 mb-1">
+                          {language === "ar" ? "رمز سويفت" : "SWIFT Code"}
+                        </p>
+                        <p className="text-gray-900 font-mono text-sm">{bankInfo.swiftCode}</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard(bankInfo.swiftCode, "swiftCode")}
+                        className={`${language === "ar" ? "mr-2" : "ml-2"} hover:bg-transparent`}
+                      >
+                        {copiedField === "swiftCode" ? (
+                          <Check className="w-4 h-4 text-green-600" />
+                        ) : (
+                          <Copy className="w-4 h-4 text-gray-600" />
+                        )}
+                      </Button>
+                    </div>
+
+                    {/* Account Numbers */}
+                    <div className="space-y-2">
+                      <h4 className={`font-medium text-gray-900 ${language === "ar" ? "text-right" : "text-left"}`}>
+                        {language === "ar" ? "أرقام الحسابات" : "Account Numbers"}
+                      </h4>
+                      
+                      {/* TRY Account */}
+                      <div className="flex items-center justify-between bg-white p-3 rounded border">
+                        <div className={`flex-1 ${language === "ar" ? "text-right" : "text-left"}`}>
+                          <p className="text-sm font-medium text-gray-700 mb-1">
+                            {language === "ar" ? "حساب الليرة التركية" : "TRY Account"}
+                          </p>
+                          <p className="text-gray-900 font-mono text-sm">{bankInfo.tryAccount}</p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyToClipboard(bankInfo.tryAccount, "tryAccount")}
+                          className={`${language === "ar" ? "mr-2" : "ml-2"} hover:bg-transparent`}
+                        >
+                          {copiedField === "tryAccount" ? (
+                            <Check className="w-4 h-4 text-green-600" />
+                          ) : (
+                            <Copy className="w-4 h-4 text-gray-600" />
+                          )}
+                        </Button>
+                      </div>
+
+                      {/* USD Account */}
+                      <div className="flex items-center justify-between bg-white p-3 rounded border">
+                        <div className={`flex-1 ${language === "ar" ? "text-right" : "text-left"}`}>
+                          <p className="text-sm font-medium text-gray-700 mb-1">
+                            {language === "ar" ? "حساب الدولار الأمريكي" : "USD Account"}
+                          </p>
+                          <p className="text-gray-900 font-mono text-sm">{bankInfo.usdAccount}</p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyToClipboard(bankInfo.usdAccount, "usdAccount")}
+                          className={`${language === "ar" ? "mr-2" : "ml-2"} hover:bg-transparent`}
+                        >
+                          {copiedField === "usdAccount" ? (
+                            <Check className="w-4 h-4 text-green-600" />
+                          ) : (
+                            <Copy className="w-4 h-4 text-gray-600" />
+                          )}
+                        </Button>
+                      </div>
+
+                      {/* EUR Account */}
+                      <div className="flex items-center justify-between bg-white p-3 rounded border">
+                        <div className={`flex-1 ${language === "ar" ? "text-right" : "text-left"}`}>
+                          <p className="text-sm font-medium text-gray-700 mb-1">
+                            {language === "ar" ? "حساب اليورو" : "EUR Account"}
+                          </p>
+                          <p className="text-gray-900 font-mono text-sm">{bankInfo.eurAccount}</p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyToClipboard(bankInfo.eurAccount, "eurAccount")}
+                          className={`${language === "ar" ? "mr-2" : "ml-2"} hover:bg-transparent`}
+                        >
+                          {copiedField === "eurAccount" ? (
+                            <Check className="w-4 h-4 text-green-600" />
+                          ) : (
+                            <Copy className="w-4 h-4 text-gray-600" />
+                          )}
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Instructions */}
+                    <div className="bg-blue-50 p-3 rounded border border-blue-200">
+                      <p className={`text-sm text-blue-800 ${language === "ar" ? "text-right" : "text-left"}`}>
+                        {language === "ar" 
+                          ? "يرجى استخدام رقم الحساب المناسب للعملة المفضلة لديك. بعد إجراء التحويل، يرجى الاحتفاظ بالإيصال كسجل."
+                          : "Please use the account number corresponding to your preferred currency. After making the transfer, please keep the receipt for your records."
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Donate Button */}
               <Button
                 className="w-full h-14 text-lg bg-[#34a853] hover:bg-[#2d9249] text-white"
                 onClick={handleDonate}
+                disabled={paymentMethod === "bank"}
               >
-                {t("donate.form.button")}
+                {paymentMethod === "bank" 
+                  ? (language === "ar" ? "تم اختيار التحويل البنكي - استخدم تفاصيل الحساب أعلاه" : "Bank transfer selected - use account details above")
+                  : (language === "ar" ? "تبرع الآن" : t("donate.form.button"))
+                }
               </Button>
 
 
