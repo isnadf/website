@@ -23,7 +23,7 @@ const sections = [
   },
   {
     id: 2,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p2.jpg",
     titleKey: "educational.environment.section2.title",
     bodyKey: "educational.environment.section2.body",
     color: "from-green-500 to-emerald-500",
@@ -31,7 +31,7 @@ const sections = [
   },
   {
     id: 3,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p6.jpeg",
     titleKey: "educational.environment.section3.title",
     bodyKey: "educational.environment.section3.body",
     color: "from-purple-500 to-pink-500",
@@ -39,7 +39,7 @@ const sections = [
   },
   {
     id: 4,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p4.jpg",
     titleKey: "educational.environment.section4.title",
     bodyKey: "educational.environment.section4.body",
     color: "from-orange-500 to-red-500",
@@ -47,7 +47,7 @@ const sections = [
   },
   {
     id: 5,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p1.webp",
     titleKey: "educational.environment.section5.title",
     bodyKey: "educational.environment.section5.body",
     color: "from-indigo-500 to-blue-500",
@@ -55,7 +55,7 @@ const sections = [
   },
   {
     id: 6,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p5.jpeg",
     titleKey: "educational.environment.section6.title",
     bodyKey: "educational.environment.section6.body",
     color: "from-red-500 to-pink-500",
@@ -63,7 +63,7 @@ const sections = [
   },
   {
     id: 7,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p10.jpg",
     titleKey: "educational.environment.section7.title",
     bodyKey: "educational.environment.section7.body",
     color: "from-gray-600 to-black",
@@ -71,7 +71,7 @@ const sections = [
   },
   {
     id: 8,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p3.jpg",
     titleKey: "educational.environment.section8.title",
     bodyKey: "educational.environment.section8.body",
     color: "from-brown-600 to-red-800",
@@ -79,7 +79,7 @@ const sections = [
   },
   {
     id: 9,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p8.jpeg",
     titleKey: "educational.environment.section9.title",
     bodyKey: "educational.environment.section9.body",
     color: "from-yellow-600 to-orange-600",
@@ -600,7 +600,7 @@ export default function EducationalEnvironmentPage() {
                       <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 text-center section-text">
                         {t(section.titleKey)}
                       </h2>
-                      <div className="text-xl text-gray-600 text-center w-full mx-auto section-text">
+                      <div className="text-xl text-gray-600 text-justify w-full mx-auto section-text max-w-4xl">
                         {t(section.bodyKey)}
                       </div>
                       <VerticalInfiniteTable items={assassinatedAcademics} language={language} />
@@ -631,7 +631,7 @@ export default function EducationalEnvironmentPage() {
                           {t(section.titleKey)}
                         </h2>
                         {/* Body Content */}
-                        <div className="text-xl leading-relaxed text-gray-600 section-text max-w-2xl">
+                        <div className="text-xl leading-relaxed text-gray-600 section-text max-w-2xl text-justify">
                           {t(section.bodyKey)}
                         </div>
                       </div>
