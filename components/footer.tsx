@@ -111,9 +111,9 @@ export default function Footer() {
         </div>
 
         {/* Copyright Section */}
-        <div className="border-t border-gray-200 dark:border-gray-800 relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 py-8">
-            <div className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
+        <div className="border-t border-gray-200 dark:border-gray-800 mt-8 pt-8">
+          <div className="text-center">
+            <div className="text-sm text-gray-500 dark:text-gray-400">
               <span>© 2025 IFPSS.</span>
               <span className="mx-2">|</span>
               <span>{t("footer.rights")}</span>

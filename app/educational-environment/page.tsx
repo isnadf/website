@@ -87,7 +87,7 @@ const sections = [
   },
   {
     id: 10,
-    image: "/educationalenvironment/hero.jpg",
+    image: "/educationalenvironment/p7.jpeg",
     titleKey: "educational.environment.section10.title",
     bodyKey: "educational.environment.section10.body",
     color: "from-rose-700 to-rose-900",
@@ -166,13 +166,13 @@ function VerticalInfiniteTable({ items, language }: { items: typeof assassinated
       return (
       <div className="w-11/12 mx-auto rounded-xl shadow-lg flex flex-col items-stretch relative">
       {/* Animated content only */}
-      <div className="overflow-hidden h-80 w-full">
+      <div className="overflow-hidden h-screen w-full">
         <table className="w-full text-center border-0">
           <tbody className="animate-vertical-marquee-table">
             {items.concat(items).map((item, idx) => (
               <tr key={idx}>
-                <td className="py-3 px-6 font-semibold text-gray-800 dark:text-gray-100">{language === 'ar' ? item.name : item.nameEn}</td>
-                <td className="py-3 px-6 text-gray-600 dark:text-gray-300">{language === 'ar' ? item.position : item.positionEn}</td>
+                <td className="py-3 px-6 font-bold text-black drop-shadow-md">{language === 'ar' ? item.name : item.nameEn}</td>
+                <td className="py-3 px-6 font-semibold text-black drop-shadow-sm">{language === 'ar' ? item.position : item.positionEn}</td>
               </tr>
             ))}
           </tbody>
@@ -282,6 +282,9 @@ export default function EducationalEnvironmentPage() {
     // Enhanced section animations with alternating layouts
     sectionsRef.current.forEach((section, sectionIndex) => {
       if (!section) return
+
+      // Skip animations for section 10 (assassinated academics section)
+      if (sectionIndex === 9) return
 
       const isEven = sectionIndex % 2 === 0
       const imageElement = section.querySelector('.section-image')
@@ -428,6 +431,8 @@ export default function EducationalEnvironmentPage() {
         toggleActions: "play none none reverse"
       }
     })
+
+
 
     // Navbar control
     ScrollTrigger.create({
@@ -592,19 +597,43 @@ export default function EducationalEnvironmentPage() {
               <section
                 key={section.id}
                 ref={(el: HTMLDivElement | null) => { sectionsRef.current[index] = el }}
-                className={`py-32 ${section.id === 10 ? 'px-0' : 'px-6'} relative`}
+                className={`${section.id === 10 ? 'py-2 px-0' : 'py-32 px-6'} relative`}
               >
                 <div className={section.id === 10 ? '' : 'max-w-7xl mx-auto'}>
                   {section.id === 10 ? (
-                    <div className="flex flex-col items-center justify-center w-full space-y-8">
-                      <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 text-center section-text">
-                        {t(section.titleKey)}
-                      </h2>
-                      <div className="text-xl text-gray-600 text-justify w-full mx-auto section-text max-w-4xl">
-                        {t(section.bodyKey)}
+                    <>
+                      {/* Section 10 Title and Subtitle - Before the background section */}
+                      <section className="py-32 px-6 relative bg-white mb-0">
+                        <div className="max-w-7xl mx-auto">
+                          <div className="flex flex-col items-center justify-center w-full space-y-8">
+                            <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 text-center section-text">
+                              {t("educational.environment.section10.title")}
+                            </h2>
+                            <div className="text-xl text-gray-600 text-justify w-full mx-auto section-text max-w-4xl">
+                              {t("educational.environment.section10.body")}
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                      
+                      {/* Background image and table section */}
+                      <div className="relative flex flex-col items-center justify-center w-full">
+                        {/* Background image with overlay */}
+                        <div className="absolute inset-0 z-0">
+                          <img 
+                            src={section.image} 
+                            alt="Assassinated Academics Memorial"
+                            className="w-full h-full object-cover opacity-80"
+                          />
+                          <div className="absolute inset-0 bg-white/20"></div>
+                        </div>
+                        
+                        {/* Table only */}
+                        <div className="relative z-20 w-full px-6">
+                          <VerticalInfiniteTable items={assassinatedAcademics} language={language} />
+                        </div>
                       </div>
-                      <VerticalInfiniteTable items={assassinatedAcademics} language={language} />
-                    </div>
+                    </>
                   ) : (
                     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${isEven ? '' : 'lg:grid-flow-col-dense'}`}> 
                       {/* Image Section (skip for section 10) */}
