@@ -19,6 +19,8 @@ export default function DonatePage() {
   const [paymentMethod, setPaymentMethod] = useState("card")
   const [donationType, setDonationType] = useState<"individual" | "institution">("individual")
   const [copiedField, setCopiedField] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const copyToClipboard = async (text: string, fieldName: string) => {
     try {
@@ -43,10 +45,12 @@ export default function DonatePage() {
     const finalAmount = customAmount || amount;
 
     if (!finalAmount || parseFloat(finalAmount) <= 0) {
-      alert("Please enter a valid amount");
+      setError(language === "ar" ? "يرجى إدخال مبلغ صحيح" : "Please enter a valid amount");
       return;
     }
 
+    setIsLoading(true);
+    setError(null);
     const orderId = `ORD-${Date.now()}`;
 
     try {
@@ -71,21 +75,28 @@ export default function DonatePage() {
       // Validate response is HTML with payment form
       if (!html.includes("<form") || !html.includes("ziraatkatilim.com.tr")) {
         console.error("Invalid payment response:", html);
-        alert("Payment gateway error. Please try again.");
-        return;
+        throw new Error(language === "ar" ? "خطأ في بوابة الدفع. يرجى المحاولة مرة أخرى." : "Payment gateway error. Please try again.");
       }
 
-      const win = window.open("", "_blank");
-
-      if (win) {
-        win.document.write(html);
-        win.document.close();
+      // Create a temporary form and submit it in the same window
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      const form = tempDiv.querySelector('form');
+      
+      if (form) {
+        // Set form to submit in the same window
+        form.setAttribute('target', '_self');
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
       } else {
-        alert("Popup blocked. Please enable popups to continue.");
+        throw new Error(language === "ar" ? "خطأ في تحميل نموذج الدفع" : "Error loading payment form");
       }
     } catch (err) {
       console.error("Payment initiation failed", err);
-      alert("Something went wrong. Please try again.");
+      setError(err instanceof Error ? err.message : (language === "ar" ? "حدث خطأ ما. يرجى المحاولة مرة أخرى." : "Something went wrong. Please try again."));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -767,13 +778,25 @@ export default function DonatePage() {
                     </div>
                   )}
 
+                  {/* Error Display */}
+                  {error && (
+                    <div className={`mb-4 p-4 bg-red-50 border border-red-200 rounded-lg ${language === "ar" ? "text-right" : "text-left"}`}>
+                      <p className="text-red-700 text-sm">{error}</p>
+                    </div>
+                  )}
+
                   {/* Contribute Button */}
                   <Button
                     className="w-full h-14 text-lg bg-[#34a853] hover:bg-[#2d9249] text-white"
                     onClick={handleDonate}
-                    disabled={paymentMethod === "bank"}
+                    disabled={paymentMethod === "bank" || isLoading}
                   >
-                    {paymentMethod === "bank" 
+                    {isLoading ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        {language === "ar" ? "جاري التحميل..." : "Loading..."}
+                      </div>
+                    ) : paymentMethod === "bank" 
                       ? (language === "ar" ? "تم اختيار التحويل البنكي - استخدم تفاصيل الحساب أعلاه" : "Bank transfer selected - use account details above")
                       : (language === "ar" ? "ساهم الآن" : t("donate.form.button"))
                     }
