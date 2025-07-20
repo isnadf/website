@@ -682,7 +682,7 @@ export default function EducationalEnvironmentPage() {
                       {/* Content Section */}
                       <div className={`${isEven ? 'lg:order-2' : 'lg:order-1'} space-y-8 w-full`}>
                         {/* Title */}
-                        <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight section-text">
+                        <h2 className="text-4xl lg:text-4xl font-bold text-gray-900 section-text">
                           {t(section.titleKey)}
                         </h2>
                         {/* Body Content */}
