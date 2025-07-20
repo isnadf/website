@@ -26,6 +26,20 @@ export default function Header() {
   const pathname = usePathname()
   const isRTL = language === 'ar'
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -112,7 +126,8 @@ export default function Header() {
         }`}
         dir={isRTL ? 'rtl' : 'ltr'}
       >
-        <div className="w-full flex items-center">
+        <div className="w-full flex items-center justify-between">
+          {/* Logo and IFPSS name - positioned on the left (or right in RTL) */}
           <Link href="/" className={`flex items-center z-50 flex-shrink-0 ${isRTL ? 'pr-4 sm:pr-6 lg:pr-8' : 'pl-4 sm:pl-6 lg:pl-8'}`}>
             <Image
               src="/logo.png"
@@ -127,6 +142,7 @@ export default function Header() {
             </span>
           </Link>
 
+          {/* Desktop Navigation - centered */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
             {navItems.map((item) => (
               (item as any).dropdown ? (
@@ -185,6 +201,7 @@ export default function Header() {
             <DonateButton />
           </nav>
 
+          {/* Language selector and mobile menu - positioned on the right (or left in RTL) */}
           <div className={`flex items-center gap-3 flex-shrink-0 ${isRTL ? 'pl-4 sm:pl-6 lg:pl-8' : 'pr-4 sm:pr-6 lg:pr-8'}`}>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -236,10 +253,10 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[72px] bg-white dark:bg-background z-40 lg:hidden"
+            className="fixed inset-0 top-[72px] bg-white dark:bg-background z-40 lg:hidden overflow-y-auto"
             dir={isRTL ? 'rtl' : 'ltr'}
           >
-            <div className="container mx-auto px-4 py-6">
+            <div className="container mx-auto px-4 py-6 min-h-full">
               <nav className="flex flex-col space-y-6">
                 {navItems.map((item) => (
                   (item as any).dropdown ? (
