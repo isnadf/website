@@ -354,39 +354,65 @@ export default function EducationalEnvironmentPage() {
           }
         )
 
-                 // Remove breathing and parallax animations to keep images static
+
       }
 
-      // Text reveal with split text
+      // Text reveal with split text - but preserve text justification
       textElements.forEach((textElement, textIndex) => {
-        const splitText = new SplitText(textElement, { type: "lines, words" })
-        
-        gsap.fromTo(
-          splitText.lines,
-          { 
-            opacity: 0,
-            y: 50,
-            rotationX: 15,
-            scale: 0.8
-          },
-          {
-            opacity: 1,
-            y: 0,
-            rotationX: 0,
-            scale: 1,
-            duration: 1,
-            stagger: 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: textElement,
-              start: "top 85%",
-              end: "bottom 15%",
-              toggleActions: "play none none none",
-              fastScrollEnd: true,
-              preventOverlaps: true
+        // Only apply split text animation if it's not a body text element (to preserve justification)
+        if (!textElement.classList.contains('section-text') || (textElement.textContent && textElement.textContent.length < 100)) {
+          const splitText = new SplitText(textElement, { type: "lines, words" })
+          
+          gsap.fromTo(
+            splitText.lines,
+            { 
+              opacity: 0,
+              y: 50,
+              rotationX: 15,
+              scale: 0.8
+            },
+            {
+              opacity: 1,
+              y: 0,
+              rotationX: 0,
+              scale: 1,
+              duration: 1,
+              stagger: 0.1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: textElement,
+                start: "top 85%",
+                end: "bottom 15%",
+                toggleActions: "play none none none",
+                fastScrollEnd: true,
+                preventOverlaps: true
+              }
             }
-          }
-        )
+          )
+        } else {
+          // For body text, use simple fade animation to preserve justification
+          gsap.fromTo(
+            textElement,
+            { 
+              opacity: 0,
+              y: 30
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: textElement,
+                start: "top 85%",
+                end: "bottom 15%",
+                toggleActions: "play none none none",
+                fastScrollEnd: true,
+                preventOverlaps: true
+              }
+            }
+          )
+        }
       })
 
       // Icon animation
@@ -415,7 +441,7 @@ export default function EducationalEnvironmentPage() {
           }
         )
 
-                 // Remove continuous rotation to keep icons static
+
       }
 
 
