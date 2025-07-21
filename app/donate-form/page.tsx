@@ -367,22 +367,22 @@ export default function DonateFormPage() {
               )}
 
               {/* Donate Button */}
-              <Button 
-                onClick={handleDonate}
-                disabled={isLoading || (!amount && !customAmount) || !paymentMethod}
-                className="w-full bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold py-6 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-              >
-                {isLoading ? (
-                  <div className="flex items-center space-x-2">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>{language === "ar" ? "جاري التحميل..." : "Loading..."}</span>
-                  </div>
-                ) : paymentMethod === "bank" ? (
-                  <span className="text-xl">{language === "ar" ? "تم اختيار التحويل البنكي" : "Bank Transfer Selected"}</span>
-                ) : (
-                  <span className="text-xl">{language === "ar" ? "ساهم الآن" : "Donate Now"}</span>
-                )}
-              </Button>
+              {paymentMethod !== "bank" && (
+                <Button 
+                  onClick={handleDonate}
+                  disabled={isLoading || (!amount && !customAmount) || !paymentMethod}
+                  className="w-full bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold py-6 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {isLoading ? (
+                    <div className="flex items-center space-x-2">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>{language === "ar" ? "جاري التحميل..." : "Loading..."}</span>
+                    </div>
+                  ) : (
+                    <span className="text-xl">{language === "ar" ? "ساهم الآن" : "Donate Now"}</span>
+                  )}
+                </Button>
+              )}
 
               {error && (
                 <motion.div
