@@ -124,7 +124,7 @@ export default function JusticeForPalestinePage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/ProgramsFiles/JusticeForPalestine-brochure-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       English (EN)
                     </a>

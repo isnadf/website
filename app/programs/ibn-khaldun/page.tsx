@@ -398,6 +398,28 @@ export default function IbnKhaldunScholarshipPage() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            {/* borche */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-black hover:bg-transparent hover:text-purple-600 border-none font-semibold group"
+                >
+                  <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                  {language === 'ar' ? 'تحميل البرشور' : 'Download Brochure'}
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="border border-gray-200">
+                <DropdownMenuItem asChild>
+                  <a href="/ProgramsFiles/ibn-khaldun-brochure.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <Download className="h-4 w-4" />
+                    English (EN)
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
         </div>
       </section>
     </main>
