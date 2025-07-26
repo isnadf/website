@@ -253,7 +253,8 @@ export default function PulseOfLifePage() {
             <div className="rounded-3xl overflow-hidden transition-all duration-500">
               <div className="flex flex-col items-center p-12">
                 {/* Centered Video */}
-                <div className="relative w-full max-w-2xl h-80 md:h-96 mb-8 bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
+              <div className="flex flex-col md:flex-row items-center gap-6 w-full">
+                <div className="relative w-full max-w-2xl h-80 md:h-96 bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
                   <div className="absolute inset-0 flex items-center justify-center p-6">
                     <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
                       <video
@@ -262,14 +263,29 @@ export default function PulseOfLifePage() {
                         loop
                         playsInline
                         className="w-full h-full object-contain"
-                        poster="/LastNews/pulseOfLife-start.png"
+                        poster="/posters/poster1.png"
                       />
                     </div>
                   </div>
                 </div>
+                <div className="relative w-full max-w-2xl h-80 md:h-96 bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
+                  <div className="absolute inset-0 flex items-center justify-center p-6">
+                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
+                      <video
+                        src="/newVid/nabd-alyha2.mp4"
+                        controls
+                        loop
+                        playsInline
+                        className="w-full h-full object-contain"
+                        poster="/posters/poster2.png"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
 
                 {/* Buttons Under Video */}
-                <div className={`flex flex-col sm:flex-row gap-6 w-full max-w-lg ${getRTLFlex()}`}>
+                <div className={`flex flex-col sm:flex-row gap-6 w-full max-w-lg mt-6 ${getRTLFlex()}`}>
                   <Link
                     href="/news/pulse-of-life-disbursement"
                     className={`flex-1 inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:from-pink-600 hover:to-red-500 transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`}
@@ -298,6 +314,7 @@ export default function PulseOfLifePage() {
                     {t("pulse.news.watch.videos")}
                   </Link>
                 </div>
+                
               </div>
               </div>
           </GSAPReveal>
