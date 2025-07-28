@@ -95,7 +95,7 @@ export default function Footer() {
           <div className={isRTL ? 'lg:order-1' : ''}>
             <h3 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("footer.contact") as string}</h3>
             <ul className={`space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
-              <li className="text-gray-600 dark:text-gray-400">Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul</li>
+              <li className="text-gray-600 dark:text-gray-400">Kayabaşı mahallesi Akzambak sokak no 2P  No : D9 Kovano Kafe kayaşehir</li>
               <li>
                 <a href="mailto:info@isnadf.org" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
                   info@isnadf.org

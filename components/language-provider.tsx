@@ -600,7 +600,7 @@ const translations = {
     "contact.info.title": "Contact Information",
     "contact.info.subtitle": "If you have questions about our programs, the application process, or would like to learn more about our organization, we are here to help.",
     "contact.location.title": "Our Location",
-    "contact.location.address": "Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul",
+    "contact.location.address": "Kayabaşı mahallesi Akzambak sokak no 2P  No : D9 Kovano Kafe kayaşehir",
     "contact.email.title": "Email Us",
     "contact.email.secondary": "Palestinian.pssf@gmail.com",
     "contact.phone.title": "Call Us",
@@ -1338,7 +1338,7 @@ const translations = {
     "contact.info.title": "معلومات الاتصال",
     "contact.info.subtitle": "في حال كان لديك أسئلة حول برامجنا، أو عملية التقديم، أو ترغب في معرفة المزيد عن مؤسستنا، فنحن هنا لمساعدتك.",
     "contact.location.title": "موقعنا",
-    "contact.location.address": "Kayabaşı Mah. Adnan Menderes Blv. A4 Blok No:7A Kapı No:11 Başakşehir/İstanbul",
+    "contact.location.address": "Kayabaşı mahallesi Akzambak sokak no 2P  No : D9 Kovano Kafe kayaşehir",
     "contact.email.title": "راسلنا عبر البريد الإلكتروني",
     "contact.email.secondary": "Palestinian.pssf@gmail.com",
     "contact.phone.title": "اتصل بنا",
@@ -1459,7 +1459,9 @@ const translations = {
     "payment.fail.message": "نأسف، لم يتم إتمام التبرع.\nحدث خطأ أثناء معالجة الدفع. يرجى التحقق من معلوماتك والمحاولة مرة أخرى. إذا استمرت المشكلة، يمكنك التواصل معنا عبر البريد: info@isnadf.org.",
     "payment.fail.retry": "\ud83d\udd01 إعادة المحاولة",
     "payment.fail.home": "\ud83c\udfe0 العودة إلى الصفحة الرئيسية",
-    "payment.success.donate":"التبرع بالمزيد؟"
+    "payment.success.donate":"التبرع بالمزيد؟",
+
+    "contact.info.subtitle3": "تواصل معنا باستخدام أي من الطرق الموضحة أدناه.",
   },
 }
 

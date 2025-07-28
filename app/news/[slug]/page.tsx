@@ -333,7 +333,7 @@ export default function NewsArticlePage() {
                 <video
                   ref={videoRef}
                   src={article.heroVideo}
-                  poster={article.image || "/placeholder.svg?height=600&width=1200"}
+                  poster={article.image || "/latestnews4.jpeg?height=600&width=1200"}
                   autoPlay
                   muted
                   loop
@@ -431,7 +431,7 @@ export default function NewsArticlePage() {
                     >
                       {language === 'ar' ? 'أحدث الفيديوهات' : 'Latest Videos'}
                     </h3>
-                    <div className="grid gap-6 md:grid-cols-3">
+                    <div className="grid gap-6 md:grid-cols-4">
                       {/* Video 1 */}
                       <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
                         <video
@@ -469,6 +469,20 @@ export default function NewsArticlePage() {
                           preload="metadata"
                         >
                           <source src="/newVid/new4Vid.mp4" type="video/mp4" />
+                          {language === 'ar'
+                            ? 'متصفحك لا يدعم تشغيل الفيديو'
+                            : 'Your browser does not support the video tag.'
+                          }
+                        </video>
+                      </div>
+                      {/* Video 4 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/nabd-alyha2.mp4" type="video/mp4" />
                           {language === 'ar'
                             ? 'متصفحك لا يدعم تشغيل الفيديو'
                             : 'Your browser does not support the video tag.'

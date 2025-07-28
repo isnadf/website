@@ -321,16 +321,17 @@ export default function ContactPage() {
               </div>
               <div className="aspect-video w-full overflow-hidden rounded-lg border border-[hsl(120,61%,34%)]/20 shadow-sm h-[450px] relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.9848269944!2d28.774727!3d41.118961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDA3JzA4LjMiTiAyOMKwNDYnMjkuMCJF!5e0!3m2!1sen!2str!4v1718193600000!5m2!1sen!2str"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d658.780531356402!2d29.21284671786046!3d40.93622722514771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caaf131ed23bbf%3A0x704d637dafc4692c!2sIsnad%20Foundation!5e0!3m2!1sen!2s!4v1753733019353!5m2!1sen!2s"
                   width="100%"
                   height="450"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                   title={t("contact.location.address") as string}
                 ></iframe>
                 <a
-                  href="https://www.google.com/maps/place/Kayabaşı+Mah.+Adnan+Menderes+Blv.+A4+Blok+No:7A+Kapı+No:11+Başakşehir/İstanbul/@41.118961,28.774727,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!2zNDHCsDA3JzA4LjMiTiAyOMKwNDYnMjkuMCJF!8m2!3d41.118961!4d28.774727!16s%2Fg%2F11t8z0z0z0"
+                  href="https://www.google.com/maps/place/Isnad+Foundation/@40.9362272,29.2128467,17z/data=!3m1!4b1!4m6!3m5!1s0x14caaf131ed23bbf:0x704d637dafc4692c!2sIsnad+Foundation!8m2!3d40.9362272!4d29.2128467!16s%2Fg%2F11t8z0z0z0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors cursor-pointer"
