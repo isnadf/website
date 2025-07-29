@@ -282,9 +282,14 @@ export default function DonatePage() {
                   
                   {/* Content */}
                   <div className="relative z-10">
-                    <p className={`text-gray-800 leading-relaxed text-lg font-medium group-hover:text-gray-900 transition-colors duration-300 ${
-                      language === "ar" ? "text-right" : "text-left"
-                    }`}>
+                    <p 
+                      className={`text-gray-800 leading-relaxed text-lg font-medium group-hover:text-gray-900 transition-colors duration-300 w-full`}
+                      style={{ 
+                        textAlign: 'justify', 
+                        textAlignLast: language === "ar" ? "right" : "left",
+                        textJustify: 'inter-word'
+                      }}
+                    >
                       {reason}
                     </p>
                   </div>
@@ -354,10 +359,24 @@ export default function DonatePage() {
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
               {t("donate.cost.title")}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+            <p 
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8 w-full"
+              style={{ 
+                textAlign: 'justify', 
+                textAlignLast: language === "ar" ? "right" : "left",
+                textJustify: 'inter-word'
+              }}
+            >
               {t("donate.cost.intro")}
             </p>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p 
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed w-full"
+              style={{ 
+                textAlign: 'justify', 
+                textAlignLast: language === "ar" ? "right" : "left",
+                textJustify: 'inter-word'
+              }}
+            >
               {t("donate.cost.total")}
             </p>
           </div>
