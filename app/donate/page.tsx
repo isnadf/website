@@ -257,7 +257,7 @@ export default function DonatePage() {
       </section>
 
       {/* Why Now Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50" dir={language === "ar" ? "rtl" : "ltr"}>
         <div className="max-w-6xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-20">
@@ -275,13 +275,16 @@ export default function DonatePage() {
                 <div
                   key={index}
                   className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden"
+                  style={{ direction: language === "ar" ? "rtl" : "ltr" }}
                 >
                   {/* Background Pattern */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#34a853]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   {/* Content */}
                   <div className="relative z-10">
-                    <p className="text-gray-800 leading-relaxed text-lg font-medium group-hover:text-gray-900 transition-colors duration-300">
+                    <p className={`text-gray-800 leading-relaxed text-lg font-medium group-hover:text-gray-900 transition-colors duration-300 ${
+                      language === "ar" ? "text-right" : "text-left"
+                    }`}>
                       {reason}
                     </p>
                   </div>
@@ -295,7 +298,7 @@ export default function DonatePage() {
       </section>
 
       {/* What We Offer Section */}
-      <section className="py-24 bg-gradient-to-br from-white via-gray-50 to-white">
+      <section className="py-24 bg-gradient-to-br from-white via-gray-50 to-white" dir={language === "ar" ? "rtl" : "ltr"}>
         <div className="max-w-6xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-20">
@@ -313,6 +316,7 @@ export default function DonatePage() {
                 <div
                   key={index}
                   className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden"
+                  style={{ direction: language === "ar" ? "rtl" : "ltr" }}
                 >
                   {/* Background Pattern */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#34a853]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -324,7 +328,9 @@ export default function DonatePage() {
                   
                   {/* Content */}
                   <div className="relative z-10">
-                    <p className="text-gray-800 leading-relaxed text-base font-medium group-hover:text-gray-900 transition-colors duration-300">
+                    <p className={`text-gray-800 leading-relaxed text-base font-medium group-hover:text-gray-900 transition-colors duration-300 ${
+                      language === "ar" ? "text-right" : "text-left"
+                    }`}>
                       {item}
                     </p>
                   </div>
@@ -338,7 +344,7 @@ export default function DonatePage() {
       </section>
 
       {/* Cost Breakdown Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50" dir={language === "ar" ? "rtl" : "ltr"}>
         <div className="max-w-6xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-20">
@@ -363,52 +369,52 @@ export default function DonatePage() {
               </h3>
             
             <div className="space-y-6">
-              <div className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300">
+              <div className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
                 <div className={`flex items-center ${language === "ar" ? "space-x-reverse space-x-6" : "space-x-6"}`}>
                   <div className="w-12 h-12 bg-gradient-to-br from-[#34a853]/20 to-[#2d9249]/20 rounded-xl flex items-center justify-center">
                     <GraduationCap className="w-6 h-6 text-[#34a853]" />
                   </div>
-                  <span className="text-lg font-semibold text-gray-800">{t("donate.cost.tuition")}</span>
+                  <span className={`text-lg font-semibold text-gray-800 ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.cost.tuition")}</span>
                 </div>
                 <span className="text-2xl font-bold text-[#34a853]">$5,000</span>
               </div>
               
-              <div className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300">
+              <div className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
                 <div className={`flex items-center ${language === "ar" ? "space-x-reverse space-x-6" : "space-x-6"}`}>
                   <div className="w-12 h-12 bg-gradient-to-br from-[#34a853]/20 to-[#2d9249]/20 rounded-xl flex items-center justify-center">
                     <Building2 className="w-6 h-6 text-[#34a853]" />
                   </div>
-                  <span className="text-lg font-semibold text-gray-800">{t("donate.cost.living")}</span>
+                  <span className={`text-lg font-semibold text-gray-800 ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.cost.living")}</span>
                 </div>
                 <span className="text-2xl font-bold text-[#34a853]">$4,500</span>
               </div>
               
-              <div className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300">
+              <div className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
                 <div className={`flex items-center ${language === "ar" ? "space-x-reverse space-x-6" : "space-x-6"}`}>
                   <div className="w-12 h-12 bg-gradient-to-br from-[#34a853]/20 to-[#2d9249]/20 rounded-xl flex items-center justify-center">
                     <ArrowRight className="w-6 h-6 text-[#34a853]" />
                   </div>
-                  <span className="text-lg font-semibold text-gray-800">{t("donate.cost.transport")}</span>
+                  <span className={`text-lg font-semibold text-gray-800 ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.cost.transport")}</span>
                 </div>
                 <span className="text-2xl font-bold text-[#34a853]">$1,000</span>
               </div>
               
-              <div className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300">
+              <div className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
                 <div className={`flex items-center ${language === "ar" ? "space-x-reverse space-x-6" : "space-x-6"}`}>
                   <div className="w-12 h-12 bg-gradient-to-br from-[#34a853]/20 to-[#2d9249]/20 rounded-xl flex items-center justify-center">
                     <BookOpen className="w-6 h-6 text-[#34a853]" />
                   </div>
-                  <span className="text-lg font-semibold text-gray-800">{t("donate.cost.academic")}</span>
+                  <span className={`text-lg font-semibold text-gray-800 ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.cost.academic")}</span>
                 </div>
                 <span className="text-2xl font-bold text-[#34a853]">$1,500</span>
               </div>
               
-              <div className="flex justify-between items-center p-8 bg-gradient-to-br from-[#34a853] to-[#2d9249] text-white rounded-2xl shadow-lg">
+              <div className="flex justify-between items-center p-8 bg-gradient-to-br from-[#34a853] to-[#2d9249] text-white rounded-2xl shadow-lg" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
                 <div className={`flex items-center ${language === "ar" ? "space-x-reverse space-x-6" : "space-x-6"}`}>
                   <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
                     <Star className="w-6 h-6 text-white" />
                   </div>
-                  <span className="text-xl font-bold">Total</span>
+                  <span className={`text-xl font-bold ${language === "ar" ? "text-right" : "text-left"}`}>Total</span>
                 </div>
                 <span className="text-3xl font-bold">$12,000</span>
               </div>
@@ -418,7 +424,7 @@ export default function DonatePage() {
       </section>
 
       {/* How to Contribute Section */}
-      <section className="py-24 bg-gradient-to-br from-white via-gray-50 to-white">
+      <section className="py-24 bg-gradient-to-br from-white via-gray-50 to-white" dir={language === "ar" ? "rtl" : "ltr"}>
         <div className="max-w-6xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-20">
@@ -449,21 +455,21 @@ export default function DonatePage() {
               
               {/* Options */}
               <div className="relative z-10 space-y-6">
-                <div className="p-6 bg-gradient-to-r from-[#34a853]/10 to-white rounded-2xl border border-[#34a853]/20 hover:shadow-lg transition-all duration-300">
-                  <h4 className="text-xl font-bold text-[#34a853] mb-3">$12,000 USD → {t("donate.full_sponsorship")}</h4>
+                <div className="p-6 bg-gradient-to-r from-[#34a853]/10 to-white rounded-2xl border border-[#34a853]/20 hover:shadow-lg transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-xl font-bold text-[#34a853] mb-3 ${language === "ar" ? "text-right" : "text-left"}`}>$12,000 USD → {t("donate.full_sponsorship")}</h4>
                   </div>
                 
-                <div className="p-6 bg-gradient-to-r from-[#34a853]/10 to-white rounded-2xl border border-[#34a853]/20 hover:shadow-lg transition-all duration-300">
-                  <h4 className="text-xl font-bold text-[#34a853] mb-3">{t("donate.partial_sponsorship")}</h4>
-                  <div className="space-y-2 text-gray-700">
+                <div className="p-6 bg-gradient-to-r from-[#34a853]/10 to-white rounded-2xl border border-[#34a853]/20 hover:shadow-lg transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-xl font-bold text-[#34a853] mb-3 ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.partial_sponsorship")}</h4>
+                  <div className={`space-y-2 text-gray-700 ${language === "ar" ? "text-right" : "text-left"}`}>
                     <p>• {t("donate.partial_50")}</p>
                     <p>• {t("donate.tuition_only")}</p>
                     <p>• {t("donate.living_only")}</p>
                   </div>
                 </div>
                 
-                <div className="p-6 bg-gradient-to-r from-[#34a853]/10 to-white rounded-2xl border border-[#34a853]/20 hover:shadow-lg transition-all duration-300">
-                  <h4 className="text-xl font-bold text-[#34a853] mb-3">{t("donate.one_time")}</h4>
+                <div className="p-6 bg-gradient-to-r from-[#34a853]/10 to-white rounded-2xl border border-[#34a853]/20 hover:shadow-lg transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-xl font-bold text-[#34a853] mb-3 ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.one_time")}</h4>
                 </div>
                 
                 {/* Donate Now Button */}
@@ -501,23 +507,23 @@ export default function DonatePage() {
               
               {/* Options */}
               <div className="relative z-10 space-y-4">
-                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300">
-                  <h4 className="text-lg font-bold text-[#34a853]">{t("donate.full_program")}</h4>
+                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-lg font-bold text-[#34a853] ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.full_program")}</h4>
                   </div>
-                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300">
-                  <h4 className="text-lg font-bold text-[#34a853]">{t("donate.student_numbers")}</h4>
+                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-lg font-bold text-[#34a853] ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.student_numbers")}</h4>
                   </div>
-                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300">
-                  <h4 className="text-lg font-bold text-[#34a853]">{t("donate.training_partnership")}</h4>
+                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-lg font-bold text-[#34a853] ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.training_partnership")}</h4>
                   </div>
-                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300">
-                  <h4 className="text-lg font-bold text-[#34a853]">{t("donate.media_partnership")}</h4>
+                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-lg font-bold text-[#34a853] ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.media_partnership")}</h4>
                   </div>
-                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300">
-                  <h4 className="text-lg font-bold text-[#34a853]">{t("donate.endowment")}</h4>
+                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-lg font-bold text-[#34a853] ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.endowment")}</h4>
                   </div>
-                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300">
-                  <h4 className="text-lg font-bold text-[#34a853]">{t("donate.adopt_program")}</h4>
+                <div className="p-4 bg-gradient-to-r from-[#34a853]/10 to-white rounded-xl border border-[#34a853]/20 hover:shadow-md transition-all duration-300" style={{ direction: language === "ar" ? "rtl" : "ltr" }}>
+                  <h4 className={`text-lg font-bold text-[#34a853] ${language === "ar" ? "text-right" : "text-left"}`}>{t("donate.adopt_program")}</h4>
                 </div>
               </div>
             </div>
