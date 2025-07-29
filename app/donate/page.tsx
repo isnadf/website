@@ -143,22 +143,37 @@ export default function DonatePage() {
 
             {/* Main Title */}
             <h1
-              className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight tracking-tight text-center"
+              className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight tracking-tight w-full max-w-6xl mx-auto"
               dir={language === "ar" ? "rtl" : "ltr"}
+              style={{ 
+                textAlign: 'justify', 
+                textAlignLast: 'center',
+                textJustify: 'inter-word'
+              }}
             >
                 {t("donate.hero.title")}
               </h1>
 
             {/* Subtitle */}
             <p
-              className="text-lg md:text-xl lg:text-2xl text-white/95 max-w-4xl mx-auto leading-relaxed font-medium"
+              className="text-lg md:text-xl lg:text-2xl text-white/95 max-w-4xl mx-auto leading-relaxed font-medium w-full"
+              style={{ 
+                textAlign: 'justify', 
+                textAlignLast: 'center',
+                textJustify: 'inter-word'
+              }}
             >
                 {t("donate.hero.subtitle")}
               </p>
 
             {/* Description */}
             <p
-              className="text-base md:text-lg text-white/85 max-w-3xl mx-auto leading-relaxed"
+              className="text-base md:text-lg text-white/85 max-w-3xl mx-auto leading-relaxed w-full"
+              style={{ 
+                textAlign: 'justify', 
+                textAlignLast: 'center',
+                textJustify: 'inter-word'
+              }}
             >
                 {t("donate.hero.main_text")}
               </p>
