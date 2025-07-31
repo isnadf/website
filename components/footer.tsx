@@ -116,7 +116,14 @@ export default function Footer() {
             <div className="text-sm text-gray-500 dark:text-gray-400">
               <span>© 2025 IFPSS.</span>
               <span className="mx-2">|</span>
-              <span>{t("footer.rights")}</span>
+              <a
+                href="https://kahrba.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              >
+                {t("footer.rights")}
+              </a>
             </div>
           </div>
         </div>

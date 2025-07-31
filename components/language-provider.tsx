@@ -102,7 +102,7 @@ const translations = {
     "Card5.title": "Building a network of Palestinian competencies",
     "Card5.desc": "linking local Palestinian competencies abroad, and activating bridges of communication between academics, researchers, and relevant institutions.",
 
-    "footer.rights": "All rights reserved.",
+    "footer.rights": "© 2025 IFPSS. All rights reserved. | Developed by Ahmed Mohammed",
     "footer.programs": "Programs",
     "footer.about": "About",
     "footer.contact": "Contact",
@@ -827,7 +827,7 @@ const translations = {
     "Card4.desc":"تنفيذ برامج ثقافية وتعليمية وتوعوية تهدف إلى ترسيخ القيم الوطنية وتفعيل دور الشباب في الحياة العامة.",
     "Card5.title": "بناء شبكة كفاءات فلسطينية",
     "Card5.desc": "ربط الكفاءات الفلسطينية المحلية بالخارج، وتفعيل جسور التواصل بين الأكاديميين والباحثين والمؤسسات ذات العلاقة.",
-    "footer.rights": "جميع الحقوق محفوظة.",
+    "footer.rights": "© 2025 IFPSS. جميع الحقوق محفوظة. | تطوير أحمد محمد",
     "footer.programs": "البرامج",
     "footer.about": "عن المؤسسة",
     "footer.contact": "اتصل بنا",
