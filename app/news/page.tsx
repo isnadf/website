@@ -23,7 +23,7 @@ const newsData = [
       en: "The Isnad Foundation for Palestinian Student Support launched the new phase of the 'Pulse of Life' scholarship program, specifically designed for medical students in the Gaza Strip. The foundation has begun disbursing monthly scholarships for a full year, renewable, aiming to enable students to continue their education amid the exceptional circumstances facing the sector.",
       ar: "أطلقت مؤسسة إسناد لدعم الطالب الفلسطيني المرحلة الجديدة من برنامج \"منحة نبض الحياة\"، والمخصصة لطلبة الطب البشري في قطاع غزة، حيث بدأت بصرف منح شهرية لمدة عام كامل قابلة للتجديد، بهدف تمكين الطلبة من مواصلة تعليمهم وسط الظروف الاستثنائية التي يعيشها القطاع."
     },
-    image: "/LastNews/pulseOfLife-end.png",
+    image: "/hero-cover.jpg",
     href: "/news/pulse-of-life-gaza-medical-scholarships",
     category: {
       en: "Scholarships",
@@ -258,7 +258,7 @@ export default function NewsPage() {
                       <img
                         src={news.image || "/cover3.png"}
                         alt={news.title[language]}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                     <div className="p-4">
