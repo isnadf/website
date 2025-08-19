@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import { useLanguage } from "@/components/language-provider"
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils"
 
 // Define the type for article data
 type ArticleData = {
@@ -51,11 +52,11 @@ const newsArticles: Record<string, ArticleData> = {
     heroImage: "/LastNews/new3.jpeg",
     content: {
       en: [
-        "Since the beginning of the genocide war in the Gaza Strip, the Isnad Foundation for Palestinian Student Support has implemented a series of meetings and events in several countries including Turkey, Egypt, Mauritania, Kyrgyzstan, Malaysia, and the Gaza Strip, as part of its urgent response to the needs of Palestinian students affected by the ongoing war on the Gaza Strip since October 2023.",
-        "These tours aimed to directly communicate with students, understand their living and educational conditions, and provide psychological and moral support to them, amid the living difficulties and psychological pressures they face due to the loss of their families or the disruption of support channels.",
-        "During the meetings, the foundation announced the provision of direct educational grants to a number of students, as an urgent contribution to alleviate their burden and ensure the continuity of their academic achievement. Isnad also worked to establish partnerships with local institutions in the visited countries, with the aim of securing additional sustainable grants for Palestinian students and enhancing educational opportunities in a safe and supportive environment.",
-        "The foundation confirmed that these efforts come within a rapid response plan launched since the beginning of the war, aiming to provide comprehensive support to students from various psychological, educational, and social aspects, with a focus on Gaza students amid the catastrophic conditions the Strip is going through.",
-        "The Isnad Foundation for Palestinian Student Support is a Palestinian civil society organization established in Turkey, aiming to academically and socially empower Palestinian students through providing educational grants, psychological and social support, and contributing to building an educational environment that embraces Palestinian students inside Palestine and in areas of refuge and diaspora, through sustainable local and international partnerships."
+        "Since the beginning of the genocidal war on Gaza, the Isnad Foundation for Supporting the Palestinian Student has carried out a series of meetings and urgent support missions in six countries — Turkey, Egypt, Mauritania, Kyrgyzstan, Malaysia, and Gaza itself — as part of its urgent response to the humanitarian and educational needs of Palestinian students affected by the ongoing genocide since October 2023.",
+        "These tours aimed to engage directly with students, assess their academic and living conditions, and provide psychological and emotional support amid the severe hardship and trauma many are facing, including the loss of their family members and the collapse of essential support systems.",
+        "During these meetings, the Foundation also announced the provision of direct educational grants to several students, offering immediate assistance to ease their burdens and help ensure the continuation of their academic journey. The Isnad Foundation has also worked to establish partnerships with local institutions in the countries it visited, with the goal of securing additional sustainable grants for Palestinian students and expanding educational opportunities in safe and supportive environments.",
+        "The Foundation confirmed that these efforts are part of a rapid response plan launched at the beginning of the war, aimed at providing comprehensive support to students — educationally, psychologically, and socially — with a special focus on Gaza’s students, many of whom are facing catastrophic conditions under the ongoing aggression.",
+        "The Isnad Foundation for Supporting the Palestinian Student is a Palestinian civil society organization established in Turkey. It is committed to empowering Palestinian students both academically and socially by offering educational grants, psychological and social support, and contributing to the creation of an educational environment that embraces Palestinian students — whether inside Palestine, in refugee camps, or across the diaspora — through sustainable local and international partnerships."
       ],
       ar: [
         "نفذت مؤسسة إسناد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
@@ -68,7 +69,7 @@ const newsArticles: Record<string, ArticleData> = {
   },
   "nabd-al-hayat-grant-interviews": {
     title: {
-      en: "Launch of First Phase Interviews for Pulse of Life Scholarship",
+      en: "Launch of First Phase Interviews for Pulse of Life Scholarship – Istanbul / Turkey",
       ar: "انطلاق مقابلات المرحلة الأولى من منحة نبض الحياة"
     },
     date: "May 5, 2025",
@@ -82,13 +83,10 @@ const newsArticles: Record<string, ArticleData> = {
     content: {
       en: [
         "Istanbul / Turkey",
-        "Today, Tuesday, the first interviews for the Pulse of Life scholarship, launched by the Isnad Palestinian Student Fund, began.",
-        "The interviews, conducted by the fund online, witnessed the participation of dozens of Palestinian students who are pursuing their studies in medical specialties.",
-        "During the interviews, the foundation got to know the students who passed the initial selection after electronic registration for the scholarship.",
-        "Successful candidates in the Pulse of Life scholarship interviews will receive various forms of assistance, including financial grants, educational seats, and educational equipment such as tablets and computers.",
+        "On Tuesday, the Isnad Palestinian Student Fund began the first phase of interviews for the Pulse of Life scholarship. Conducted online, these interviews involved dozens of Palestinian students pursuing medical studies who had already passed the initial electronic registration and selection process. Through these sessions, the foundation gained deeper insight into each candidate’s background and needs. Successful candidates will receive various forms of support, including financial grants, educational placements, and essential equipment such as tablets and computers.",
         "It is worth noting that 'Pulse of Life' is one of the most prominent scholarship programs launched by the Isnad Palestinian Student Fund, which aims to provide scholarships to Palestinian students who wish to or are pursuing their studies in medical specialties.",
-        "The program seeks to provide grants and assistance to 1,000 Palestinian students, within a five-year work plan.",
-        "The Isnad Palestinian Student Fund is an independent Palestinian developmental non-profit organization, aiming to support higher education in Palestine through investing in young academic energies, by providing scholarships within a comprehensive developmental vision."
+        "The Pulse of Life scholarship is one of the Isnad Foundation’s most prominent programs, aimed at providing scholarships to Palestinian students studying or wishing to study in medical fields. The program’s goal is to support 1,000 Palestinian students over a five-year plan.",
+        "The Isnad Palestinian Student Fund is an independent Palestinian developmental non-profit organization dedicated to supporting higher education in Palestine by investing in young academic talent through scholarships based on a comprehensive developmental vision."
       ],
       ar: [
         "اسطنبول/ تركيا",
@@ -104,7 +102,7 @@ const newsArticles: Record<string, ArticleData> = {
   },
   "nabd-al-hayat-scholarship-interviews": {
     title: {
-      en: "Completion of First Phase of Pulse of Life Scholarship Interviews",
+      en: "Completion of First Phase of Pulse of Life Scholarship Interviews – Istanbul / Turkey",
       ar: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة"
     },
     date: "May 25, 2025",
@@ -118,12 +116,12 @@ const newsArticles: Record<string, ArticleData> = {
     content: {
       en: [
         "Istanbul / Turkey",
-        "The Isnad Foundation for Palestinian Student Support concluded, on Saturday, May 25, 2025, the first phase of the 'Pulse of Life' scholarship interviews, which extended over three weeks starting from May 5, with the participation of dozens of outstanding Palestinian students in the field of human medicine, graduates and applicants from Gaza Strip universities.",
-        "The interviews were conducted remotely via the internet, aiming to closely examine the academic and living conditions of the students and evaluate their eligibility for support, after they passed the initial screening stage through electronic registration.",
-        "In this phase, launched in strategic partnership with Alkhidmat Europe, the Isnad Foundation provides monthly financial support for 12 months to accepted students, a step aimed at alleviating their study burdens and enabling them to continue their higher education amid existing challenges.",
-        "The 'Pulse of Life' scholarship is one of the most prominent programs launched by the Isnad Foundation, focusing particularly on supporting Palestinian students in medical specialties, especially from the Gaza Strip, whose educational journey has been affected by harsh humanitarian conditions, siege, and repeated wars.",
-        "The program aims to enable about 1,000 Palestinian students to complete their medical studies in its successive phases, within an ambitious five-year plan, focusing on investing in young scientific competencies and preparing a qualified medical generation that contributes to serving the Palestinian society and enhancing its resilience.",
-        "The Isnad Foundation is an independent Palestinian non-profit organization that dedicates its efforts to supporting higher education in Palestine, through providing sustainable educational and developmental scholarships, based on a comprehensive vision for building the Palestinian human being and empowering them through science and knowledge."
+        "On Saturday, May 25, 2025, the Isnad Foundation for Supporting the Palestinian Student successfully concluded the first phase of interviews for the Pulse of Life scholarship. This initial phase, conducted remotely over three weeks starting May 5, involved dozens of outstanding Palestinian students specializing in human medicine — both graduates and applicants from Gaza Strip universities.",
+        "The purpose of the interviews was to assess each student's academic performance and living conditions to determine their eligibility for support, following their successful completion of the electronic registration and initial screening.",
+        "In this phase, launched in strategic partnership with Alkhidmat Europe, the Isnad Foundation provides accepted students with monthly financial support for a full year — a step aimed at easing their academic burdens and enabling them to continue their higher education despite ongoing challenges.",
+        "The Pulse of Life scholarship is one of the Isnad Foundation’s leading programs, dedicated to supporting Palestinian students in medical fields — particularly those from the Gaza Strip, whose educational paths have been severely affected by harsh humanitarian conditions, prolonged blockade, and repeated wars.",
+        "As part of this ambitious five-year initiative, the program seeks to support around 1,000 Palestinian students in completing their medical studies — investing in young scientific talent and preparing a qualified generation of doctors committed to serving Palestinian society and strengthening its resilience.",
+        "The Isnad Foundation is an independent Palestinian non-profit organization committed to supporting higher education in Palestine by providing sustainable educational and developmental scholarships. Guided by a comprehensive vision, the Foundation aims to build and empower the Palestinian individual through science and knowledge."
       ],
       ar: [
         "إسطنبول / تركيا",
@@ -138,7 +136,7 @@ const newsArticles: Record<string, ArticleData> = {
   },
   "pulse-of-life-disbursement": {
     title: {
-      en: "Disbursements of the first phase of the Pulse of Life program have begun in Türkiye.",
+      en: "Disbursements of the first phase of the Pulse of Life program have begin in Türkiye.",
       ar: "بدء صرف منح المرحلة الأولى من برنامج نبض الحياة في تركيا"
     },
     date: "June 06, 2024",
@@ -151,11 +149,11 @@ const newsArticles: Record<string, ArticleData> = {
     content: {
       en: [
         "Istanbul / Turkey",
-        "The Isnad Foundation for Palestinian Student Support announced the commencement of disbursing scholarships to students benefiting from the first phase of the Pulse of Life program, starting May 1, 2025, in partnership with and with the generous support of the Turkish National Youth Association (MGV - Milli Gençlik Vakfı).",
-        "The first phase included ten Palestinian students studying in Turkish universities in human medicine specialties, where the first two monthly grant payments were disbursed, in a practical step aimed at supporting their academic and living stability and helping them overcome the challenges they face.",
-        "In this context, the foundation met with a number of beneficiary students and documented special video clips in which they expressed their gratitude to the supporting parties, while also encouraging their fellow students to register for the program and benefit from this unique opportunity.",
-        "The Pulse of Life is one of the pioneering initiatives launched by the Isnad Foundation in partnership with several institutions, targeting the provision of sustainable financial grants to one thousand Palestinian students in medical specialties, with the aim of enabling them to continue their studies and contribute to serving their community and homeland, within a five-year support plan.",
-        "The Isnad Foundation confirmed that it continues to receive registration applications for the next phase of the program, as part of its vision to enhance the resilience of Palestinian students and provide a safe educational environment that supports academic excellence and creativity."
+        "On May 1, 2025, the Isnad Foundation for Supporting the Palestinian Student announced the start of scholarship disbursements for students benefiting from the first phase of the Pulse of Life program. This phase was launched in partnership with, and with the generous support of, the Turkish National Youth Foundation (MGV – Milli Gençlik Vakfı).",
+        "The initial phase includes ten Palestinian students pursuing degrees in human medicine at universities in Türkiye. The first two monthly scholarship payments have been disbursed, marking a practical step toward ensuring their academic and living stability and helping them overcome the significant challenges they face.",
+        "The Foundation also met with several students benefiting from the program and documented video messages in which the students expressed their gratitude to supporting partners and encouraged fellow Palestinian students to register and benefit from this opportunity.",
+        "Pulse of Life is one of the pioneering initiatives launched by the Isnad Foundation in cooperation with multiple institutions. It aims to provide sustainable financial support to 1,000 Palestinian students in medical fields over a five-year period — empowering them to complete their education and contribute to serving their communities and homeland.",
+        "The Isnad Foundation confirmed that it is continuing to accept registration applications for the program’s upcoming phases, as part of its broader vision to strengthen the resilience of Palestinian students and provide a supportive, secure educational environment that nurtures academic excellence and creativity."
       ],
       ar: [
         "إسطنبول / تركيا",

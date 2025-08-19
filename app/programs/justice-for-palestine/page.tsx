@@ -174,14 +174,14 @@ export default function JusticeForPalestinePage() {
             <GSAPReveal animation="slide-up">
               <div className="bg-gradient-to-br from-red-100 via-white to-blue-100 dark:from-red-900 dark:via-gray-900 dark:to-blue-900 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center h-full transition-transform hover:scale-105">
                 <Flag className="text-red-600 mb-4" size={38} />
-                <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'ضعف التمثيل الفلسطيني في المحافل الدولية' : 'Weak Palestinian representation in international forums'}</h3>
-                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تعاني القضية الفلسطينية من ضعف التمثيل في المحافل الدولية، مما يحد من إيصال صوت الشعب الفلسطيني إلى العالم.' : 'The Palestinian cause suffers from weak representation in international forums, limiting the ability to convey the voice of the Palestinian people to the world.'}</p>
+                <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'ضعف التمثيل الفلسطيني في المحافل الدولية' : 'Limited Palestinian representation in international forums'}</h3>
+                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تعاني القضية الفلسطينية من ضعف التمثيل في المحافل الدولية، مما يحد من إيصال صوت الشعب الفلسطيني إلى العالم.' : 'The Palestinian cause is underrepresented in international forums, hindering its ability to convey the voice of the Palestinian people to the world.'}</p>
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.1}>
               <div className="bg-gradient-to-br from-red-100 via-white to-blue-100 dark:from-red-900 dark:via-gray-900 dark:to-blue-900 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center h-full transition-transform hover:scale-105">
                 <Gavel className="text-blue-700 mb-4" size={38} />
-                <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'غياب الكوادر المتخصصة في العلوم السياسية والعلاقات الدولية' : 'Lack of specialized cadres in political science and international relations'}</h3>
+                <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'غياب الكوادر المتخصصة في العلوم السياسية والعلاقات الدولية' : 'Lack of specialized professionals in political science and international relations'}</h3>
                 <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'يواجه المجتمع الفلسطيني نقصاً في الكفاءات المتخصصة في مجالات العلوم السياسية والدبلوماسية والعلاقات الدولية.' : 'The Palestinian community faces a shortage of specialists in political science, diplomacy, and international relations.'}</p>
               </div>
             </GSAPReveal>
@@ -189,28 +189,28 @@ export default function JusticeForPalestinePage() {
               <div className="bg-gradient-to-br from-red-100 via-white to-blue-100 dark:from-red-900 dark:via-gray-900 dark:to-blue-900 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center h-full transition-transform hover:scale-105">
                 <Award className="text-yellow-600 mb-4" size={38} />
                 <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تدني الاستثمار في التعليم السياسي والدبلوماسي' : 'Low investment in political and diplomatic education'}</h3>
-                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'لا تحظى التخصصات السياسية والدبلوماسية بالاستثمار الكافي مقارنة بالتخصصات الأخرى، مما يضعف من حضور الكفاءات الفلسطينية في هذا المجال.' : 'Political and diplomatic specializations do not receive sufficient investment compared to other fields, weakening Palestinian presence in this area.'}</p>
+                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'لا تحظى التخصصات السياسية والدبلوماسية بالاستثمار الكافي مقارنة بالتخصصات الأخرى، مما يضعف من حضور الكفاءات الفلسطينية في هذا المجال.' : 'Political and diplomatic specializations receive insufficient investment compared to other fields, weakening Palestinian presence in this arena.'}</p>
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.3}>
               <div className="bg-gradient-to-br from-red-100 via-white to-blue-100 dark:from-red-900 dark:via-gray-900 dark:to-blue-900 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center h-full transition-transform hover:scale-105">
                 <BookOpen className="text-green-700 mb-4" size={38} />
-                <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'ضعف الارتباط بين المخرج الأكاديمي والإعلام والدعوة' : 'Weak links between academic output and media/advocacy'}</h3>
-                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'هناك فجوة بين مخرجات التعليم الأكاديمي في العلوم السياسية والعلاقات الدولية وبين العمل الإعلامي والدعوي.' : 'There is a gap between academic output in political science/international relations and work in media and advocacy.'}</p>
+                <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'ضعف الارتباط بين المخرج الأكاديمي والإعلام والدعوة' : 'Weak connection between academic output and media/advocacy'}</h3>
+                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'هناك فجوة بين مخرجات التعليم الأكاديمي في العلوم السياسية والعلاقات الدولية وبين العمل الإعلامي والدعوي.' : 'There is a gap between academic output in political science/international relations and international relations and its use in media and advocacy work.'}</p>
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.4}>
               <div className="bg-gradient-to-br from-red-100 via-white to-blue-100 dark:from-red-900 dark:via-gray-900 dark:to-blue-900 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center h-full transition-transform hover:scale-105">
                 <Globe className="text-blue-600 mb-4" size={38} />
                 <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'غياب برامج وطنية للدعوة الدولية' : 'Lack of national programs for international advocacy'}</h3>
-                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تفتقر فلسطين إلى برامج وطنية متخصصة في إعداد كفاءات للدعوة الدولية والدبلوماسية.' : 'Palestine lacks national programs specialized in preparing cadres for international advocacy and diplomacy.'}</p>
+                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تفتقر فلسطين إلى برامج وطنية متخصصة في إعداد كفاءات للدعوة الدولية والدبلوماسية.' : 'Palestine lacks national programs dedicated to training professionals for international advocacy and diplomacy.'}</p>
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.5}>
               <div className="bg-gradient-to-br from-red-100 via-white to-blue-100 dark:from-red-900 dark:via-gray-900 dark:to-blue-900 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center h-full transition-transform hover:scale-105">
                 <Shield className="text-red-700 mb-4" size={38} />
                 <h3 className={`text-lg font-bold text-center text-red-800 dark:text-red-300 mb-2 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تحديات إقليمية وعالمية تواجه القضية الفلسطينية' : 'Regional and global challenges facing the Palestinian cause'}</h3>
-                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تواجه القضية الفلسطينية تحديات إقليمية ودولية تتطلب كفاءات قادرة على التعامل مع الإعلام والمؤسسات الدولية.' : 'The Palestinian cause faces regional and international challenges that require cadres capable of dealing with media and international institutions.'}</p>
+                <p className={`text-gray-900 dark:text-gray-200 text-sm text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تواجه القضية الفلسطينية تحديات إقليمية ودولية تتطلب كفاءات قادرة على التعامل مع الإعلام والمؤسسات الدولية.' : 'The Palestinian cause faces regional and international challenges that require skilled professionals capable of engaging with media and international institutions.'}</p>
               </div>
             </GSAPReveal>
           </div>
@@ -220,11 +220,11 @@ export default function JusticeForPalestinePage() {
       {/* Financial Support Section */}
       <section className="py-16 px-4 md:px-0 bg-gradient-to-r from-red-100/40 via-white to-blue-100/40 dark:from-red-900/30 dark:via-black dark:to-blue-900/30">
         <div className="max-w-5xl mx-auto">
-          <GSAPTextReveal element="h2" className={`text-3xl md:text-4xl font-bold text-center text-red-700 mb-10 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'الدعم المالي' : 'Financial Support'}</GSAPTextReveal>
+          <GSAPTextReveal element="h2" className={`text-3xl md:text-4xl font-bold text-center text-red-700 mb-10 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'الدعم المالي' : 'Justice for Palestine Scholarship — Financial Support'}</GSAPTextReveal>
           <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 text-center`}>
             <GSAPReveal animation="slide-up"><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-6 flex flex-col items-center min-h-[180px] justify-center">
               <Award className="text-red-700 mb-2" size={32} />
-              <h3 className={`text-lg font-bold text-red-800 dark:text-red-300 mb-1 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'مقاعد دراسية' : 'Annual Tuition Fees'}</h3>
+              <h3 className={`text-lg font-bold text-red-800 dark:text-red-300 mb-1 ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'مقاعد دراسية' : 'Annual Tuition'}</h3>
               <p className={`text-gray-700 dark:text-gray-200 text-base ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تغطي المنحة الرسوم الجامعية السنوية بمتوسط 3,000 دولار أمريكي لكل طالب.' : 'The scholarship covers annual tuition fees, averaging $3,000 per student.'}</p>
             </div></GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.1}><div className="bg-white dark:bg-gray-900 rounded-xl shadow p-6 flex flex-col items-center min-h-[180px] justify-center">
@@ -254,11 +254,11 @@ export default function JusticeForPalestinePage() {
             </div>
             <div className="bg-gradient-to-br from-red-100 via-white to-blue-100 dark:from-red-900 dark:via-gray-900 dark:to-blue-900 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center h-full transition-transform hover:scale-105">
               <Users className="text-blue-700 mb-4" size={40} />
-              <p className={`text-lg text-gray-900 dark:text-gray-100 font-semibold text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'بناء كوادر علمية متخصصة تدعم التمثيل الفلسطيني، وتساهم في الدفاع عن الحقوق الوطنية في المحافل العالمية.' : 'Build specialized academic cadres to support Palestinian representation and contribute to defending national rights in global forums.'}</p>
+              <p className={`text-lg text-gray-900 dark:text-gray-100 font-semibold text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'بناء كوادر علمية متخصصة تدعم التمثيل الفلسطيني، وتساهم في الدفاع عن الحقوق الوطنية في المحافل العالمية.' : 'Build specialized academic cadres to strengthen Palestinian representation and contribute to defending national rights in global forums.'}</p>
             </div>
             <div className="bg-gradient-to-br from-red-100 via-white to-blue-100 dark:from-red-900 dark:via-gray-900 dark:to-blue-900 rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center h-full transition-transform hover:scale-105">
               <BookOpen className="text-green-700 mb-4" size={40} />
-              <p className={`text-lg text-gray-900 dark:text-gray-100 font-semibold text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تعزيز إنتاج المعرفة السياسية والقانونية الفلسطينية وربطها بصناعة القرار الدولي.' : 'Promote the production of Palestinian political and legal knowledge and link it to international decision-making.'}</p>
+              <p className={`text-lg text-gray-900 dark:text-gray-100 font-semibold text-center ${isRTL ? 'font-arabic' : ''}`}>{isRTL ? 'تعزيز إنتاج المعرفة السياسية والقانونية الفلسطينية وربطها بصناعة القرار الدولي.' : 'Promote the production of Palestinian political and legal knowledge and connect it to international decision-making.'}</p>
             </div>
           </div>
         </div>

@@ -183,8 +183,8 @@ export default function ActivitiesPage() {
               </h2>
               <p className="mx-auto mt-8 max-w-[800px] text-gray-600 dark:text-gray-300 text-xl">
                 {language === 'en' 
-                  ? 'Our most impactful recent events and initiatives.'
-                  : 'أحدث فعالياتنا ومبادراتنا الأكثر تأثيراً'}
+                  ? 'A selection of our most impactful recent events and initiatives.'
+                  : 'اختيار من أحدث فعالياتنا ومبادراتنا الأكثر تأثيراً'}
               </p>
             </div>
           </GSAPReveal>
@@ -334,7 +334,7 @@ export default function ActivitiesPage() {
               </h2>
               <p className="mx-auto mt-4 max-w-[700px] text-gray-600 dark:text-gray-300 text-xl">
                 {language === 'en' 
-                  ? 'Browse through our complete history of events, workshops, and initiatives.'
+                  ? 'Browse our full archive of events, workshops, and initiatives.'
                   : 'تصفح تاريخنا الكامل من الفعاليات وورش العمل والمبادرات'}
               </p>
             </div>

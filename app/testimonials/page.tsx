@@ -221,7 +221,7 @@ function TestimonialsContent() {
                   <h2 className={`text-3xl font-bold sm:text-4xl text-gray-900 dark:text-white mb-4 text-center`}>
                     <span className="relative inline-block">
                       <span className={language === 'ar' ? 'whitespace-nowrap' : ''}>
-                        {language === 'ar' ? 'حين تروي العذابات حكاية طلابنا' : 'When Hardships Tell Our Students Story'}
+                        {language === 'ar' ? 'حين تروي العذابات حكاية طلابنا' : 'When Hardships shape Our Students Story'}
                       </span>
                       <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/0 via-[#1e7e34]/80 to-[#1e7e34]/0"></span>
                     </span>

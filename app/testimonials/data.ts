@@ -177,7 +177,7 @@ export const publicFigureTestimonials: Testimonial[] = [
   {
     id: 8,
     name: {
-      en: "Mohamed al-Saghir",
+      en: "Sheikh Mohamed al-Saghir",
       ar: "محمد الصغير"
     },
     role: {
