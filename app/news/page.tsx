@@ -15,6 +15,25 @@ const newsData = [
   {
     id: 1,
     title: {
+      en: "Isnad Begins Monthly Scholarship Disbursements for Medical Students in Gaza Under 'Pulse of Life' Program",
+      ar: "إسناد تبدأ صرف منح شهرية لطلبة الطب البشري في غزة ضمن برنامج \"نبض الحياة\""
+    },
+    date: "January 15, 2025",
+    excerpt: {
+      en: "The Isnad Foundation for Palestinian Student Support launched the new phase of the 'Pulse of Life' scholarship program, specifically designed for medical students in the Gaza Strip. The foundation has begun disbursing monthly scholarships for a full year, renewable, aiming to enable students to continue their education amid the exceptional circumstances facing the sector.",
+      ar: "أطلقت مؤسسة إسناد لدعم الطالب الفلسطيني المرحلة الجديدة من برنامج \"منحة نبض الحياة\"، والمخصصة لطلبة الطب البشري في قطاع غزة، حيث بدأت بصرف منح شهرية لمدة عام كامل قابلة للتجديد، بهدف تمكين الطلبة من مواصلة تعليمهم وسط الظروف الاستثنائية التي يعيشها القطاع."
+    },
+    image: "/LastNews/pulseOfLife-end.png",
+    href: "/news/pulse-of-life-gaza-medical-scholarships",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    featured: true,
+  },
+  {
+    id: 2,
+    title: {
       en: "Completion of First Phase of Pulse of Life Scholarship Interviews",
       ar: "انتهاء المرحلة الأولى من مقابلات منحة نبض الحياة"
     },
@@ -32,7 +51,7 @@ const newsData = [
     featured: true,
   },
   {
-    id: 2,
+    id: 3,
     title: {
       en: "Continuation of First Phase Interviews for Pulse of Life Scholarship to Select 100 Students from Gaza",
       ar: "استمرار مقابلات المرحلة الأولى من منحة نبض الحياة لاختيار 100 طالب من غزة للاستفادة من البرنامج"
@@ -51,7 +70,7 @@ const newsData = [
     featured: true,
   },
   {
-    id: 3,
+    id: 4,
     title: {
       en: "Isnad Conducts Support Tours in Six Countries and Provides Educational Grants to Gaza Students",
       ar: "إسناد تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة"
@@ -70,7 +89,7 @@ const newsData = [
     featured: true,
   },
   {
-    id: 4,
+    id: 5,
     title:{
       en: "Disbursements of First Phase of Pulse of Life Program Begins in Türkiye – Istanbul / Turkey",
       ar: "بدء صرف منح المرحلة الأولى من برنامج نبض الحياة في تركيا",

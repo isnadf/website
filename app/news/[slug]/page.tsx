@@ -164,6 +164,41 @@ const newsArticles: Record<string, ArticleData> = {
         "وأكدت مؤسسة إسنَاد أنها مستمرة في استقبال طلبات التسجيل للمرحلة المقبلة من البرنامج، في إطار رؤيتها لتعزيز صمود الطلبة الفلسطينيين وتوفير بيئة تعليمية آمنة تدعم التميز الأكاديمي والإبداع."
       ]
     }
+  },
+  "pulse-of-life-gaza-medical-scholarships": {
+    title: {
+      en: "Isnad Begins Monthly Scholarship Disbursements for Medical Students in Gaza Under 'Pulse of Life' Program",
+      ar: "إسناد تبدأ صرف منح شهرية لطلبة الطب البشري في غزة ضمن برنامج \"نبض الحياة\""
+    },
+    date: "January 15, 2025",
+    author: "Isnad Foundation",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    image: "/LastNews/pulseOfLife-end.png",
+    heroImage: "/LastNews/pulseOfLife-end.png",
+    heroVideo: "/newsVid[1]/vid1.mp4",
+    content: {
+      en: [
+        "Gaza – The Isnad Foundation for Palestinian Student Support launched the new phase of the 'Pulse of Life' scholarship program, specifically designed for medical students in the Gaza Strip. The foundation has begun disbursing monthly scholarships for a full year, renewable, aiming to enable students to continue their education amid the exceptional circumstances facing the sector.",
+        "In this context, scholarship contracts were signed between the benefiting students and the foundation, in a step that reflects Isnad's commitment to ensuring regular financial support for them, covering their academic and living needs during the scholarship period.",
+        "The scholarship-winning students addressed words of thanks to the foundation and supporters, and presented the difficulties they face in their academic journey under siege and aggression, within documentary videos prepared by the foundation to document the reality of medical sector students in Gaza who won the scholarship, and highlight their determination to complete their studies and serve their community.",
+        "The foundation confirmed that these scholarships come within the framework of its commitment to investing in Palestinian medical cadres, and providing an educational environment that qualifies them to provide distinguished health service to their people, especially in light of the urgent need for doctors within the sector.",
+        "The 'Pulse of Life' scholarship is one of the most prominent programs launched by the Isnad Foundation, which focuses specifically on supporting Palestinian students in medical specialties, especially from the Gaza Strip, whose educational path has been affected by harsh humanitarian conditions, siege, and repeated wars.",
+        "The program aims in its successive stages to enable about 1,000 Palestinian students to complete their medical studies, within an ambitious five-year plan, concerned with investing in young scientific talents, and preparing a qualified medical generation that contributes to serving Palestinian society and strengthening its resilience.",
+        "The Isnad Foundation is an independent Palestinian non-profit organization, dedicated to supporting higher education in Palestine, through providing sustainable educational and developmental scholarships, based on a comprehensive vision for building the Palestinian individual and empowering them through science and knowledge."
+      ],
+      ar: [
+        "غزة – أطلقت مؤسسة إسناد لدعم الطالب الفلسطيني المرحلة الجديدة من برنامج \"منحة نبض الحياة\"، والمخصصة لطلبة الطب البشري في قطاع غزة، حيث بدأت بصرف منح شهرية لمدة عام كامل قابلة للتجديد، بهدف تمكين الطلبة من مواصلة تعليمهم وسط الظروف الاستثنائية التي يعيشها القطاع.",
+        "وفي ذات السياق تم توقيع عقود المنح بين الطلبة المستفيدين والمؤسسة، في خطوة تعكس التزام إسناد بضمان الدعم المالي المنتظم لهم، بما يغطي احتياجاتهم الدراسية والمعيشية خلال فترة المنحة.",
+        "وتوجّه الطلبة الفائزين بالمنحة بكلمات، عبّروا فيها عن شكرهم للمؤسسة والداعمين، واستعرضوا الصعوبات التي تواجههم في مسيرتهم الأكاديمية في ظل الحصار والعدوان، وذلك ضمن فيديوهات توثيقية أعدّتها المؤسسة لرصد واقع طلبة القطاع الطبي في غزة الفائزين بالمنحة، وإبراز إصرارهم على استكمال دراستهم وخدمة مجتمعهم.",
+        "وأكدت المؤسسة أن هذه المنح تأتي في إطار التزامها بالاستثمار في الكوادر الطبية الفلسطينية، وتوفير البيئة التعليمية التي تؤهلهم لتقديم خدمة صحية متميزة لشعبهم، خاصة في ظل الحاجة الماسة للأطباء داخل القطاع.",
+        "وتُعد منحة \"نبض الحياة\" من أبرز البرامج التي أطلقتها مؤسسة إسناد والتي تركز بشكل خاص على دعم الطلبة الفلسطينيين في التخصصات الطبية، ولا سيما من قطاع غزة، الذين تأثرت مسيرتهم التعليمية جراء الأوضاع الإنسانية القاسية والحصار والحروب المتكررة.",
+        "ويستهدف البرنامج في مراحله المتتالية تمكين نحو 1000 طالب فلسطيني من استكمال دراستهم الطبية، ضمن خطة طموحة تمتد على خمس سنوات، تُعنى بالاستثمار في الكفاءات العلمية الشابة، وإعداد جيل طبي مؤهل يساهم في خدمة المجتمع الفلسطيني وتعزيز صموده.",
+        "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
+      ]
+    }
   }
 }
 
@@ -419,8 +454,8 @@ export default function NewsArticlePage() {
                 </div>
               </GSAPReveal>
 
-              {/* Videos Section - Only for pulse-of-life-disbursement */}
-              {slug === "pulse-of-life-disbursement" && (
+              {/* Videos Section - Only for pulse-of-life-disbursement and pulse-of-life-gaza-medical-scholarships */}
+              {(slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships") && (
                 <GSAPReveal animation="fade" delay={0.2}>
                   <div className="mt-12" data-videos-section>
                     <h3
@@ -429,15 +464,15 @@ export default function NewsArticlePage() {
                     >
                       {language === 'ar' ? 'أحدث الفيديوهات' : 'Latest Videos'}
                     </h3>
-                    <div className="grid gap-6 md:grid-cols-4">
+                    <div className={`grid gap-6 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "md:grid-cols-2" : "md:grid-cols-4"}`}>
                       {/* Video 1 */}
-                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                      <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "md:col-span-2" : ""}`}>
                         <video
-                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
                           controls
                           preload="metadata"
                         >
-                          <source src="/newVid/lastnews1.mp4" type="video/mp4" />
+                          <source src={slug === "pulse-of-life-gaza-medical-scholarships" ? "/newsVid[1]/vid1.mp4" : "/newVid/lastnews1.mp4"} type="video/mp4" />
                           {language === 'ar'
                             ? 'متصفحك لا يدعم تشغيل الفيديو'
                             : 'Your browser does not support the video tag.'
@@ -446,13 +481,13 @@ export default function NewsArticlePage() {
                       </div>
 
                       {/* Video 2 */}
-                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                      <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "md:col-span-2" : ""}`}>
                         <video
-                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
                           controls
                           preload="metadata"
                         >
-                          <source src="/newVid/lastnews2.mp4" type="video/mp4" />
+                          <source src={slug === "pulse-of-life-gaza-medical-scholarships" ? "/newsVid[1]/vid2.mp4" : "/newVid/lastnews2.mp4"} type="video/mp4" />
                           {language === 'ar'
                             ? 'متصفحك لا يدعم تشغيل الفيديو'
                             : 'Your browser does not support the video tag.'
@@ -460,33 +495,35 @@ export default function NewsArticlePage() {
                         </video>
                       </div>
                       {/* Video 3 */}
-                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                      <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "md:col-span-2" : ""}`}>
                         <video
-                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
                           controls
                           preload="metadata"
                         >
-                          <source src="/newVid/new4Vid.mp4" type="video/mp4" />
+                          <source src={slug === "pulse-of-life-gaza-medical-scholarships" ? "/newsVid[1]/vid3.mp4" : "/newVid/new4Vid.mp4"} type="video/mp4" />
                           {language === 'ar'
                             ? 'متصفحك لا يدعم تشغيل الفيديو'
                             : 'Your browser does not support the video tag.'
                           }
                         </video>
                       </div>
-                      {/* Video 4 */}
-                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
-                        <video
-                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
-                          controls
-                          preload="metadata"
-                        >
-                          <source src="/newVid/nabd-alyha2.mp4" type="video/mp4" />
-                          {language === 'ar'
-                            ? 'متصفحك لا يدعم تشغيل الفيديو'
-                            : 'Your browser does not support the video tag.'
-                          }
-                        </video>
-                      </div>
+                      {/* Video 4 - Only for pulse-of-life-disbursement */}
+                      {slug === "pulse-of-life-disbursement" && (
+                        <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                          <video
+                            className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                            controls
+                            preload="metadata"
+                          >
+                            <source src="/newVid/nabd-alyha2.mp4" type="video/mp4" />
+                            {language === 'ar'
+                              ? 'متصفحك لا يدعم تشغيل الفيديو'
+                              : 'Your browser does not support the video tag.'
+                            }
+                          </video>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </GSAPReveal>
