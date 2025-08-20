@@ -14,6 +14,7 @@ import ProgramCard from "@/components/program-card"
 import SuccessStoryCard from "@/components/success-story-card"
 import StatsCounter from "@/components/stats-counter"
 import ScrollingCards from "@/components/scrolling-cards"
+import CustomVideoPlayer from "@/components/custom-video-player"
 
 export default function Home() {
   const { t, language } = useLanguage()
@@ -209,17 +210,27 @@ export default function Home() {
         ref={heroRef}
         className="relative h-screen w-full overflow-hidden"
       >
-        <div className="absolute inset-0 z-0 hero-image">
-          {/* Desktop/PC Hero Image */}
-          <img
-            src="/hero-cover.jpg"
-            alt="Isnad Foundation - Palestinian Student Support"
-            className="hidden md:block h-full w-full object-contain"
+        <div className="absolute inset-0 z-0 hero-video">
+          {/* Desktop/PC Hero Video */}
+          <CustomVideoPlayer
+            src="/newsVid[1]/hero-4k.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/hero-cover.jpg"
+            preload="metadata"
+            className="hidden md:block h-full w-full object-cover"
           />
-          {/* Mobile Hero Image */}
-          <img
-            src="/cover-mobil-isnad.png"
-            alt="Isnad Foundation - Palestinian Student Support"
+          {/* Mobile Hero Video */}
+          <CustomVideoPlayer
+            src="/newsVid[1]/hero-4k.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/cover-mobil-isnad.png"
+            preload="metadata"
             className="block md:hidden h-full w-full object-cover"
           />
         </div>
