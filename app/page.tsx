@@ -218,7 +218,6 @@ export default function Home() {
             muted
             loop
             playsInline
-            poster="/hero-cover.jpg"
             preload="metadata"
             className="hidden md:block h-full w-full object-cover"
           />
@@ -229,7 +228,6 @@ export default function Home() {
             muted
             loop
             playsInline
-            poster="/cover-mobil-isnad.png"
             preload="metadata"
             className="block md:hidden h-full w-full object-cover"
           />
