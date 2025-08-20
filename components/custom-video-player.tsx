@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Play, Pause, Volume2, VolumeX, Maximize, Minimize, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Hls from 'hls.js'
 
 interface CustomVideoPlayerProps {
   src: string
@@ -29,6 +30,7 @@ export default function CustomVideoPlayer({
 }: CustomVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const hlsRef = useRef<Hls | null>(null)
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const [isMuted, setIsMuted] = useState(muted)
   const [isFullscreen, setIsFullscreen] = useState(false)
@@ -37,6 +39,64 @@ export default function CustomVideoPlayer({
   const [progress, setProgress] = useState(0)
   const [isInView, setIsInView] = useState(!lazy)
   const [videoSrc, setVideoSrc] = useState<string | undefined>(!lazy ? src : undefined)
+  const [isHlsSupported, setIsHlsSupported] = useState(false)
+
+  // Check if HLS is supported natively or via HLS.js
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const isNativeHlsSupported = video.canPlayType('application/vnd.apple.mpegurl') !== ''
+    setIsHlsSupported(isNativeHlsSupported || Hls.isSupported())
+  }, [])
+
+  // Initialize HLS if needed
+  useEffect(() => {
+    if (!isInView || !videoSrc) return
+
+    const video = videoRef.current
+    if (!video) return
+
+    const isHlsStream = videoSrc.includes('.m3u8')
+    
+    if (isHlsStream && Hls.isSupported() && !video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Use HLS.js for HLS streams
+      if (hlsRef.current) {
+        hlsRef.current.destroy()
+      }
+      
+      hlsRef.current = new Hls({
+        enableWorker: true,
+        lowLatencyMode: true,
+      })
+      
+      hlsRef.current.loadSource(videoSrc)
+      hlsRef.current.attachMedia(video)
+      
+      hlsRef.current.on(Hls.Events.MANIFEST_PARSED, () => {
+        if (autoPlay) {
+          video.play().catch(() => {
+            // Autoplay might be blocked
+            setIsPlaying(false)
+          })
+        }
+      })
+      
+      hlsRef.current.on(Hls.Events.ERROR, (event, data) => {
+        console.error('HLS error:', data)
+      })
+    } else {
+      // Regular video or native HLS support
+      video.src = videoSrc
+    }
+
+    return () => {
+      if (hlsRef.current) {
+        hlsRef.current.destroy()
+        hlsRef.current = null
+      }
+    }
+  }, [videoSrc, isInView, autoPlay])
 
   useEffect(() => {
     const video = videoRef.current
@@ -125,8 +185,6 @@ export default function CustomVideoPlayer({
     }
   }, [autoPlay, isInView])
 
-
-
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -171,8 +229,6 @@ export default function CustomVideoPlayer({
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
-
-
   return (
     <div 
       ref={containerRef}
@@ -180,7 +236,6 @@ export default function CustomVideoPlayer({
     >
       <video
         ref={videoRef}
-        src={videoSrc}
         autoPlay={false}
         muted={muted}
         loop={loop}

@@ -6,19 +6,20 @@ interface HeroVideoProps {
   className?: string
 }
 
-export default function HeroVideo({ className = "" }: HeroVideoProps) {
-  // Direct video URL from Vercel Blob storage - no loading state needed
-  const videoUrl = 'https://rx5dqaxk8k008yuv.public.blob.vercel-storage.com/hero-video-1755718572053.mp4'
+export default function HeroVideo({ className = "object-contain" }: HeroVideoProps) {
+  // MUX video source for optimized streaming
+  const muxVideoUrl = "https://stream.mux.com/ZLLecc3gAF2cvMgjM026xKi4t4r200ndMKuAPzReH9021I.m3u8"
 
   return (
     <CustomVideoPlayer
-      src={videoUrl}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
+      src={muxVideoUrl}
+      autoPlay={true}
+      muted={true}
+      loop={true}
+      playsInline={true}
+      preload="auto"
       className={className}
+      lazy={false}
     />
   )
 }

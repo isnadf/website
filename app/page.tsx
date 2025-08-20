@@ -212,7 +212,7 @@ export default function Home() {
         className="relative h-screen w-full overflow-hidden"
       >
         <div className="absolute inset-0 z-0 hero-video">
-          <HeroVideo className="h-full w-full object-cover" />
+          <HeroVideo className="h-full w-full object-contain" />
         </div>
       </section>
 
