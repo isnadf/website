@@ -15,6 +15,7 @@ import SuccessStoryCard from "@/components/success-story-card"
 import StatsCounter from "@/components/stats-counter"
 import ScrollingCards from "@/components/scrolling-cards"
 import CustomVideoPlayer from "@/components/custom-video-player"
+import HeroVideo from "@/components/hero-video"
 
 export default function Home() {
   const { t, language } = useLanguage()
@@ -211,26 +212,7 @@ export default function Home() {
         className="relative h-screen w-full overflow-hidden"
       >
         <div className="absolute inset-0 z-0 hero-video">
-          {/* Desktop/PC Hero Video */}
-          <CustomVideoPlayer
-            src="/newsVid[1]/hero-4k.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="hidden md:block h-full w-full object-cover"
-          />
-          {/* Mobile Hero Video */}
-          <CustomVideoPlayer
-            src="/newsVid[1]/hero-4k.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="block md:hidden h-full w-full object-cover"
-          />
+          <HeroVideo className="h-full w-full object-cover" />
         </div>
       </section>
 
