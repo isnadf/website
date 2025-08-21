@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef, useState, useEffect } from 'react'
-import { Play, Pause, Volume2, VolumeX, Maximize, Minimize, RotateCcw } from 'lucide-react'
+import { Play, Pause, Volume2, VolumeX, Maximize, Minimize } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Hls from 'hls.js'
 
@@ -15,6 +15,7 @@ interface CustomVideoPlayerProps {
   poster?: string
   preload?: "none" | "metadata" | "auto"
   lazy?: boolean
+  videoClassName?: string
 }
 
 export default function CustomVideoPlayer({
@@ -26,7 +27,8 @@ export default function CustomVideoPlayer({
   className = "",
   poster,
   preload = "metadata",
-  lazy = true
+  lazy = true,
+  videoClassName = ""
 }: CustomVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -236,13 +238,13 @@ export default function CustomVideoPlayer({
     >
       <video
         ref={videoRef}
-        autoPlay={false}
+        autoPlay={autoPlay}
         muted={muted}
         loop={loop}
         playsInline={playsInline}
         poster={poster}
         preload={isInView ? preload : "none"}
-        className="w-full h-full object-cover"
+        className={`w-full h-full ${videoClassName || 'object-cover'}`}
       />
       
       {/* Overlay for click to play */}
