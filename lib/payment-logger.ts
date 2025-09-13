@@ -372,11 +372,11 @@ export async function cancelPendingPayments(olderThanMinutes: number = 5): Promi
     const cutoffTime = new Date(Date.now() - olderThanMinutes * 60 * 1000);
 
     const result = await pool.query(
-      `UPDATE payments 
-       SET status = 'cancelled', 
+      `UPDATE payments
+       SET status = 'cancelled',
            updated_at = NOW(),
            fail_at = NOW()
-       WHERE status = 'pending' 
+       WHERE status = 'pending'
          AND created_at < $1::timestamptz`,
       [cutoffTime]
     );

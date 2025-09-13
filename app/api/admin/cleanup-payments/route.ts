@@ -1,32 +1,30 @@
 import { NextResponse } from "next/server";
 import { cancelPendingPayments } from "@/lib/payment-logger";
 
-export async function POST() {
+async function runCleanup(source: string) {
   try {
-    console.log("Starting payment cleanup job...");
-
     const cancelled = await cancelPendingPayments(5);
-
-    console.log(`Payment cleanup completed. Cancelled ${cancelled} payments.`);
-
     return NextResponse.json({
       success: true,
       cancelled,
-      message: `Cancelled ${cancelled} stale pending payments`,
+      message: `Cancelled ${cancelled} stale pending payments [${source}]`,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("Payment cleanup error:", error);
+    console.error(`Payment cleanup error [${source}]:`, error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal server error", source },
       { status: 500 }
     );
   }
 }
 
+// Vercel Cron → always GET
 export async function GET() {
-  return NextResponse.json({
-    message: "Payment cleanup endpoint - use POST method",
-    usage: "POST /api/admin/cleanup-payments",
-  });
+  return runCleanup("cron GET");
+}
+
+// Manual testing (e.g. Postman)
+export async function POST() {
+  return runCleanup("manual POST");
 }
