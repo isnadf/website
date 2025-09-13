@@ -10,9 +10,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import GSAPReveal from "@/components/gsap-reveal"
-import GSAPTextReveal from "@/components/gsap-text-reveal"
 import { useLanguage } from "@/components/language-provider"
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils"
+import Image from "next/image"
 
 // Define the type for article data
 type ArticleData = {
@@ -380,10 +379,12 @@ export default function NewsArticlePage() {
               )}
             </div>
           ) : (
-            <img
-              src={article.heroImage || article.image}
+            <Image
+              src={article.heroImage || article.image || "/cover3.png"}
               alt={article.title[language]}
               className="h-full w-full object-contain object-center"
+              width={1920}
+              height={1080}
             />
           )}
         </div>

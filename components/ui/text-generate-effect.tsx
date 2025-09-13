@@ -5,11 +5,9 @@ import { cn } from "@/lib/utils";
 export const TextGenerateEffect = ({
   words,
   className,
-  duration = 0.5,
 }: {
   words: string;
   className?: string;
-  duration?: number;
 }) => {
   const [visibleWords, setVisibleWords] = useState(0);
   const wordArray = words.split(' ');
@@ -27,7 +25,7 @@ export const TextGenerateEffect = ({
     }, 200); // Show one word every 200ms
 
     return () => clearInterval(interval);
-  }, [words]);
+  }, [words, wordArray.length]);
 
   return (
     <div className={cn("", className)}>

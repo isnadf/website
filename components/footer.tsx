@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { GraduationCap, Facebook, Instagram } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 

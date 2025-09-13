@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react"
 import { useInView } from "framer-motion"
-import { gsap } from "gsap"
 
 interface StatsCounterProps {
   number: number

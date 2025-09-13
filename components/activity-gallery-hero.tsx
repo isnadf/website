@@ -1,10 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import GSAPReveal from "@/components/gsap-reveal"
 import Image from 'next/image'
 import { Activity } from "@/app/activities/data"
@@ -28,20 +27,20 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
   const currentActivity = activities[currentActivityIndex]
   const autoPlayInterval = 5000 // 5 seconds
 
-  const handlePrevActivity = () => {
+  const handlePrevActivity = useCallback(() => {
     setCurrentActivityIndex((prev) => (prev === 0 ? activities.length - 1 : prev - 1))
     setProgress(0)
-  }
+  }, [activities.length])
 
-  const handleNextActivity = () => {
+  const handleNextActivity = useCallback(() => {
     setCurrentActivityIndex((prev) => (prev === activities.length - 1 ? 0 : prev + 1))
     setProgress(0)
-  }
+  }, [activities.length])
 
-  const toggleAutoPlay = () => {
+  const toggleAutoPlay = useCallback(() => {
     setIsAutoPlaying(!isAutoPlaying)
     setProgress(0)
-  }
+  }, [isAutoPlaying])
 
   // Auto-play functionality
   useEffect(() => {
@@ -58,7 +57,7 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
     }, 100)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying, isHovered, currentActivityIndex])
+  }, [isAutoPlaying, isHovered, handleNextActivity])
 
   // Keyboard navigation
   useEffect(() => {
@@ -73,7 +72,7 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
 
     window.addEventListener('keydown', handleKeyPress)
     return () => window.removeEventListener('keydown', handleKeyPress)
-  }, [])
+  }, [handlePrevActivity, handleNextActivity, toggleAutoPlay])
 
   // Get preview images for the current activity
   const getPreviewImages = (activityId: number) => {

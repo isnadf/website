@@ -4,23 +4,19 @@ import {
   Brain,
   Users,
   BookOpen,
-  Lightbulb,
   GraduationCap,
   Award,
   Globe,
   Mail,
   Phone,
-  Eye,
   UserPlus,
   Scroll,
   Library,
-  Microscope,
   ChevronDown,
   Download
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
-import Image from "next/image"
 import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
@@ -191,7 +187,7 @@ export default function IbnKhaldunScholarshipPage() {
           </GSAPTextReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <GSAPReveal animation="slide-up">
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[280px] flex flex-col">
+              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[300px] flex flex-col">
                 <h3 className={`text-xl font-bold text-purple-800 dark:text-purple-300 mb-3 ${isRTL ? 'font-arabic' : ''}`}>
                   {t("ibn-khaldun.problems.experts")}
                 </h3>
@@ -201,7 +197,7 @@ export default function IbnKhaldunScholarshipPage() {
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.1}>
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[280px] flex flex-col">
+              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[300px] flex flex-col">
                 <h3 className={`text-xl font-bold text-purple-800 dark:text-purple-300 mb-3 ${isRTL ? 'font-arabic' : ''}`}>
                   {t("ibn-khaldun.problems.fragmentation")}
                 </h3>
@@ -211,7 +207,7 @@ export default function IbnKhaldunScholarshipPage() {
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.2}>
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[280px] flex flex-col">
+              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[300px] flex flex-col">
                 <h3 className={`text-xl font-bold text-purple-800 dark:text-purple-300 mb-3 ${isRTL ? 'font-arabic' : ''}`}>
                   {t("ibn-khaldun.problems.research")}
                 </h3>
@@ -221,7 +217,7 @@ export default function IbnKhaldunScholarshipPage() {
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.3}>
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[280px] flex flex-col">
+              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[300px] flex flex-col">
                 <h3 className={`text-xl font-bold text-purple-800 dark:text-purple-300 mb-3 ${isRTL ? 'font-arabic' : ''}`}>
                   {t("ibn-khaldun.problems.local")}
                 </h3>
@@ -231,7 +227,7 @@ export default function IbnKhaldunScholarshipPage() {
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.4}>
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[280px] flex flex-col">
+              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[300px] flex flex-col">
                 <h3 className={`text-xl font-bold text-purple-800 dark:text-purple-300 mb-3 ${isRTL ? 'font-arabic' : ''}`}>
                   {t("ibn-khaldun.problems.programs")}
                 </h3>
@@ -241,7 +237,7 @@ export default function IbnKhaldunScholarshipPage() {
               </div>
             </GSAPReveal>
             <GSAPReveal animation="slide-up" delay={0.5}>
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[280px] flex flex-col">
+              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300 h-[300px] flex flex-col">
                 <h3 className={`text-xl font-bold text-purple-800 dark:text-purple-300 mb-3 ${isRTL ? 'font-arabic' : ''}`}>
                   {t("ibn-khaldun.problems.policy")}
                 </h3>

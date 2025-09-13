@@ -19,9 +19,7 @@ import {
   Users,
   Download,
   ExternalLink,
-  ChevronDown,
-  Wallet,
-  Home
+  ChevronDown
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"

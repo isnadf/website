@@ -5,15 +5,11 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Calendar, GraduationCap, MapPin, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Quote, Link as LinkIcon, ArrowRight } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
-import Image from 'next/image'
 import { useLanguage } from "@/components/language-provider"
-
-type Language = 'en' | 'ar'
 
 interface TranslatedText {
   en: string
@@ -650,7 +646,7 @@ export default function SuccessStoryPage() {
             <GSAPReveal animation="fade">
               <div className={`prose prose-lg dark:prose-invert max-w-none ${isRTL ? 'font-arabic text-right' : ''}`}>
                 <blockquote className="border-l-4 border-[#1e7e34] pl-4 italic text-xl">
-                  "{story.quote[language]}"
+                  &quot;{story.quote[language]}&quot;
                 </blockquote>
                 {story.story[language].map((paragraph, index) => (
                   <p key={index} className="mt-6">{paragraph}</p>

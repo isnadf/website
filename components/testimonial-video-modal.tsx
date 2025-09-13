@@ -1,9 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { X } from "lucide-react"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
 import { VisuallyHidden } from "@/components/ui/visually-hidden"
 
 interface TestimonialVideoModalProps {
@@ -43,7 +41,7 @@ export function TestimonialVideoModal({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-4xl w-[95vw] max-h-[95vh] p-6 bg-white dark:bg-gray-900 overflow-auto">
         <DialogTitle>
-          <VisuallyHidden>{name}'s Testimonial</VisuallyHidden>
+          <VisuallyHidden>{name}&apos;s Testimonial</VisuallyHidden>
         </DialogTitle>
 
         <div className="space-y-6">

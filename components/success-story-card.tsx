@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { QuoteIcon } from "lucide-react"
@@ -10,18 +9,13 @@ interface SuccessStoryCardProps {
   degree: string
   university: string
   quote: string
-  image?: string
 }
 
-export default function SuccessStoryCard({ name, degree, university, quote, image }: SuccessStoryCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
-
+export default function SuccessStoryCard({ name, degree, university, quote }: SuccessStoryCardProps) {
   return (
     <motion.div
       whileHover={{ y: -5 }}
       transition={{ duration: 0.2 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <Card className="h-full overflow-hidden backdrop-blur-sm bg-gradient-to-r from-[hsl(0,76%,40%)]/80 via-black/80 to-[hsl(120,61%,34%)]/80 border-white/20 text-white">
         <CardContent className="flex flex-col p-6">

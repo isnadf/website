@@ -3,14 +3,15 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight, BookOpen, Heart } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import GSAPTextReveal from "@/components/gsap-text-reveal"
 import { useLanguage } from "@/components/language-provider"
+import GSAPTextReveal from "@/components/gsap-text-reveal"
+import Image from "next/image"
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { t, language } = useLanguage()
+  const { t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,12 +32,14 @@ export default function HeroSection() {
     <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden text-white">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
-        <img
+        <Image
           src="/main.png"
           alt="Isnad Foundation"
           className="h-full w-full object-cover object-center"
           loading="eager"
           style={{ objectPosition: 'center center' }}
+          width={1920}
+          height={1080}
         />
       </div>
 

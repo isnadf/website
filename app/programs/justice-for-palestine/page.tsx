@@ -11,8 +11,6 @@ import {
   Phone,
   Gavel,
   MessageSquare,
-  UserPlus,
-  Sword,
   BookOpen,
   Users,
   Download,
@@ -21,7 +19,6 @@ import {
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
-import Image from "next/image"
 import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
@@ -75,7 +72,7 @@ export default function JusticeForPalestinePage() {
             {isRTL ? (
               <>برنامج منحة العدالة لفلسطين هو مبادرة وطنية استراتيجية أطلقتها مؤسسة إسناد لدعم الطالب الفلسطيني (IFPSS) لتأهيل كفاءات فلسطينية متميزة في العلوم السياسية، العلاقات الدولية، والقانون الدولي، ويقدم 200 منحة دراسية ممولة بالكامل لطلبة الماجستير والدكتوراه من فلسطين والشتات للدراسة في جامعات فلسطينية أو عربية أو دولية مرموقة، بهدف تمكين الباحثين الفلسطينيين من التأثير الفاعل في الساحة السياسية والدبلوماسية الدولية والمساهمة في تطوير السياسات العامة والقانونية المتعلقة بالقضية الفلسطينية.</>
             ) : (
-              <>The Justice for Palestine Scholarship is a national strategic initiative by the Isnad Foundation (IFPSS) to empower outstanding Palestinian talents in political science, international relations, and international law. The program offers 200 fully funded scholarships for master's and doctoral students from Palestine and the diaspora to study at leading Palestinian, Arab, or international universities, aiming to enable Palestinian researchers to have a real impact in the political and diplomatic arena and contribute to the development of public and legal policies related to the Palestinian cause.</>
+              <>The Justice for Palestine Scholarship is a national strategic initiative by the Isnad Foundation (IFPSS) to empower outstanding Palestinian talents in political science, international relations, and international law. The program offers 200 fully funded scholarships for master&apos;s and doctoral students from Palestine and the diaspora to study at leading Palestinian, Arab, or international universities, aiming to enable Palestinian researchers to have a real impact in the political and diplomatic arena and contribute to the development of public and legal policies related to the Palestinian cause.</>
             )}
           </div>
           <div className={`flex justify-center mt-6 gap-4 flex-wrap ${isRTL ? 'flex-row-reverse' : ''}`}>

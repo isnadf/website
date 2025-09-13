@@ -70,7 +70,7 @@ export default function Error({
           <>
             <h2 className="text-2xl font-bold mb-4">Oops! Something went wrong</h2>
             <p className="text-muted-foreground mb-6">
-              We encountered an unexpected error. Don't worry, you can try again.
+              We encountered an unexpected error. Don&apos;t worry, you can try again.
             </p>
             <div className="space-y-3">
               <Button onClick={reset} className="w-full">

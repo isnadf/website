@@ -1,21 +1,21 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin"
-import { Search, Filter, Calendar, MapPin, Users, ChevronLeft, ChevronRight, Award, ThumbsUp } from "lucide-react"
+import { Search, Calendar, MapPin, Users, ChevronLeft, ChevronRight, Award, ThumbsUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import GSAPReveal from "@/components/gsap-reveal"
 import { ActivityGallery } from "@/components/activity-gallery"
 import ActivityGalleryHero from "@/components/activity-gallery-hero"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 
 import { activitiesData, type Activity } from "./data"
 
@@ -75,36 +75,11 @@ export default function ActivitiesPage() {
   const itemsPerPage = 9
 
   // State for individual activity gallery modals
-  const [galleryActivity, setGalleryActivity] = useState<typeof activitiesData[0] | null>(null)
-  const [isGalleryOpen, setIsGalleryOpen] = useState(false)
+  const [galleryActivity] = useState<typeof activitiesData[0] | null>(null)
 
   // Get the full location object from its key
   const selectedLocation = locationOptions.find(l => l.en === selectedLocationKey) || DEFAULT_LOCATION
 
-  const handleViewGallery = (activity: typeof activitiesData[0]) => {
-    setGalleryActivity(activity)
-    setIsGalleryOpen(true)
-  }
-
-  const scrollToActivityArchive = () => {
-    // @ts-ignore - we know this exists
-    const archiveSection = window.activityArchiveRef;
-
-    if (archiveSection) {
-      // Set the active tab to "all" to show all activities
-      setActiveTab("all")
-
-      // Scroll to the archive section with GSAP animation
-      gsap.to(window, {
-        duration: 0.2,
-        scrollTo: {
-          y: archiveSection,
-          offsetY: 40 // Add some offset to account for fixed headers
-        },
-        ease: "power2.inOut"
-      });
-    }
-  }
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
@@ -154,11 +129,6 @@ export default function ActivitiesPage() {
     setCurrentPage(1)
   }, [searchQuery, selectedYear, selectedLocationKey, activeTab])
 
-  // Update locations to use language-specific values
-  const locations = [
-    "All",
-    ...Array.from(new Set(activitiesData.map(activity => activity.location[language as Language])))
-  ]
 
   return (
     <main className="flex min-h-screen flex-col bg-[#f8faf8] dark:bg-gray-950">
@@ -199,10 +169,12 @@ export default function ActivitiesPage() {
                     <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 hover:-translate-y-2 cursor-pointer group bg-white dark:bg-gray-900 rounded-xl">
                       <div className="aspect-video overflow-hidden relative">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
-                        <img
+                        <Image
                           src={activity.image || "/placeholder.svg"}
                           alt={activity.title[language as Language]}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          width={400}
+                          height={300}
                         />
                         <div className={`absolute bottom-4 ${language === 'ar' ? 'left-4' : 'right-4'} z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300`}>
                           {activity.year}
@@ -314,7 +286,7 @@ export default function ActivitiesPage() {
       <section
         ref={(el) => {
           if (el) {
-            // @ts-ignore - we know this is an HTMLElement
+            // @ts-expect-error - we know this is an HTMLElement
             window.activityArchiveRef = el;
           }
         }}
@@ -428,10 +400,12 @@ export default function ActivitiesPage() {
                         <div className="grid md:grid-cols-3">
                           <div className={`aspect-video md:aspect-square overflow-hidden relative ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
-                            <img
+                            <Image
                               src={activity.image || "/placeholder.svg"}
                               alt={activity.title[language as Language]}
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              width={400}
+                              height={300}
                             />
                           </div>
                           <div className={`p-6 md:col-span-2 ${language === 'ar' ? 'order-1' : 'order-2'}`}>

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Users, ArrowRight, GraduationCap, Globe, Award, Lightbulb, Handshake as HandshakeIcon, Target, Compass, Rocket, CheckCircle2 } from "lucide-react"
+import { Users, ArrowRight, GraduationCap, Globe, Award, Lightbulb, Handshake as HandshakeIcon, Target, Compass, Rocket } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
@@ -14,10 +14,12 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/aboutCover/1.png"
             alt="Hero Cover"
             className="h-full w-full object-contain object-center"
+            width={1920}
+            height={1080}
           />
         </div>
         {/* Page Indicator */}

@@ -1,12 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin } from "lucide-react"
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
 import Image from 'next/image'
 import { Activity } from "@/app/activities/data"
 import { useLanguage } from "@/components/language-provider"
@@ -150,13 +146,13 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
     fetchImages()
   }, [activity.id])
 
-  const handlePrevImage = () => {
+  const handlePrevImage = useCallback(() => {
     setSelectedImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
-  }
+  }, [images.length])
 
-  const handleNextImage = () => {
+  const handleNextImage = useCallback(() => {
     setSelectedImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
-  }
+  }, [images.length])
 
   const handleThumbnailClick = (index: number) => {
     setSelectedImageIndex(index)
@@ -176,7 +172,7 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown)
     }
-  }, [])
+  }, [handleNextImage, handlePrevImage])
 
   return (
     <div className="space-y-6 sm:space-y-8">

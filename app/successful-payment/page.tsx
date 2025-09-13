@@ -1,5 +1,6 @@
 "use client"
 import { useLanguage } from "@/components/language-provider";
+import Link from "next/link";
 
 export default function SuccessfulPaymentPage() {
   const { t } = useLanguage();
@@ -12,8 +13,8 @@ export default function SuccessfulPaymentPage() {
         <h1 className="text-3xl font-bold text-green-700 mb-4">{t("payment.success.title")}</h1>
         <p className="text-lg text-gray-700 mb-6">{t("payment.success.thankyou")}</p>
         <div className="flex flex-row gap-4">
-        <a href="/" className="text-green-600 hover:underline bg-green-100 p-2 rounded-md">{t("payment.success.home")}</a>
-        <a href="/donate" className="text-green-600 hover:underline bg-green-100 p-2 rounded-md">{t("payment.success.donate")}</a>
+        <Link href="/" className="text-green-600 hover:underline bg-green-100 p-2 rounded-md">{t("payment.success.home")}</Link>
+        <Link href="/donate-form" className="text-green-600 hover:underline bg-green-100 p-2 rounded-md">{t("payment.success.donate")}</Link>
         </div>
       </div>
     </div>

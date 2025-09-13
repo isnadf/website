@@ -59,7 +59,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const animationFrameRef = useRef<number | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
-  const lastTransformsRef = useRef(new Map<number, any>());
+  const lastTransformsRef = useRef(new Map<number, { x: number; y: number; scale: number; translateY: number; rotation: number; blur: number }>());
   const isUpdatingRef = useRef(false);
 
   const calculateProgress = useCallback(
@@ -146,6 +146,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       }
 
       const newTransform = {
+        x: 0,
+        y: 0,
         translateY: Math.round(translateY * 100) / 100,
         scale: Math.round(scale * 1000) / 1000,
         rotation: Math.round(rotation * 100) / 100,

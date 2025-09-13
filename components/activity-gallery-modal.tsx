@@ -1,13 +1,13 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { X, ChevronLeft, ChevronRight, Play, Calendar, MapPin, Users, BookOpen, Presentation, Globe, Award, Handshake } from "lucide-react"
+import { ChevronLeft, ChevronRight, Calendar, MapPin } from "lucide-react"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { VisuallyHidden } from "@/components/ui/visually-hidden"
-import { Badge } from "@/components/ui/badge"
 import { Activity } from "@/app/activities/data"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 
 interface ActivityGalleryModalProps {
   isOpen: boolean
@@ -159,30 +159,6 @@ export function ActivityGalleryModal({
     setSelectedImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
   }, [images.length])
 
-  const handleThumbnailClick = (index: number) => {
-    setSelectedImageIndex(index)
-  }
-
-  // Activity type icons
-  const getActivityIcon = (category: string) => {
-    switch (category) {
-      case "Conference":
-        return <Users className="h-5 w-5" />
-      case "Workshop":
-        return <BookOpen className="h-5 w-5" />
-      case "Seminar":
-        return <Presentation className="h-5 w-5" />
-      case "Cultural Event":
-        return <Globe className="h-5 w-5" />
-      case "Networking":
-        return <Handshake className="h-5 w-5" />
-      case "Education Fair":
-        return <Award className="h-5 w-5" />
-      default:
-        return <Calendar className="h-5 w-5" />
-    }
-  }
-
   // Add keyboard event handler for left/right arrow keys
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -233,10 +209,12 @@ export function ActivityGalleryModal({
                     playsInline
                   />
                 ) : (
-                  <img
+                  <Image
                     src={images[selectedImageIndex]}
                     alt={`${activity.title[language]} image ${selectedImageIndex + 1}`}
                     className="w-full h-full rounded-lg object-contain"
+                    width={800}
+                    height={600}
                   />
                 )}
 

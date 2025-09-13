@@ -4,18 +4,16 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ArrowRight, GraduationCap, Users, BookOpen, Award, Calendar, MessageSquare, Stethoscope, Laptop, Heart, Globe, Star, Trophy, Building2, Handshake, Microscope, Rocket, Target, Lightbulb, Globe2, Briefcase, Scale, Brain, Leaf, TreePine, Recycle, Sprout, Droplets, Crown, Library, Scroll, Flag, Gavel } from "lucide-react"
+import { ArrowRight, GraduationCap, Users, BookOpen, Award, Calendar, MessageSquare, Stethoscope, Heart, Trophy, Handshake, Scroll } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import ParallaxSection from "@/components/parallax-section"
-import ProgramCard from "@/components/program-card"
-import SuccessStoryCard from "@/components/success-story-card"
 import StatsCounter from "@/components/stats-counter"
 import ScrollingCards from "@/components/scrolling-cards"
-import CustomVideoPlayer from "@/components/custom-video-player"
 import HeroVideo from "@/components/hero-video"
+import Image from "next/image"
 
 export default function Home() {
   const { t, language } = useLanguage()
@@ -67,42 +65,6 @@ export default function Home() {
     }
   ]
 
-  // Replace impactData with programImpactData
-  const programImpactData = [
-    {
-      title: "Pulse of Life",
-      icon: <Stethoscope className="h-8 w-8" />,
-      description: "Full scholarships in medicine and health sciences, supporting 1,000 students over 5 years",
-      stats: "1,000 Scholarships",
-      image: "/s3.png",
-      color: "from-red-500/20 to-red-600/20",
-      iconColor: "text-red-400",
-      link: "/programs/pulse-of-life",
-      fields: ["Human Medicine", "Dentistry", "Pharmacy", "Allied Health"]
-    },
-    {
-      title: "Palestinian Talented",
-      icon: <Crown className="h-8 w-8" />,
-      description: "Supporting outstanding Palestinian students across various academic fields",
-      stats: "1,000 Scholarships",
-      image: "/cover2.png",
-      color: "from-yellow-500/20 to-blue-600/20",
-      iconColor: "text-yellow-400",
-      link: "/programs/palestinian-talented",
-      fields: ["Business", "Engineering", "Education", "Social Sciences", "Computer Science"]
-    },
-    {
-      title: "Sustainability",
-      icon: <TreePine className="h-8 w-8" />,
-      description: "200 scholarships in energy and agricultural engineering for Palestine's green future",
-      stats: "200 Scholarships",
-      image: "/s3.png",
-      color: "from-green-500/20 to-emerald-600/20",
-      iconColor: "text-green-400",
-      link: "/programs/sustainability",
-      fields: ["Energy Engineering", "Agricultural Engineering", "Natural Resources"]
-    }
-  ]
 
   // Add partners data
   const partners = [
@@ -341,7 +303,7 @@ export default function Home() {
                     </div>
 
                     <blockquote className="relative pl-4 border-l-2 border-red-300/50 italic text-white/90 text-lg">
-                      "{t("programs.pulse.description")}"
+                      &quot;{t("programs.pulse.description")}&quot;
                     </blockquote>
 
                     <div className="grid grid-cols-2 gap-4 pt-4">
@@ -399,7 +361,7 @@ export default function Home() {
                     </div>
 
                     <blockquote className="relative pl-4 border-l-2 border-yellow-300/50 italic text-white/90 text-lg">
-                      "{t("programs.talented.description")}"
+                      &quot;{t("programs.talented.description")}&quot;
                     </blockquote>
 
                     <div className="grid grid-cols-2 gap-4 pt-4">
@@ -655,10 +617,12 @@ export default function Home() {
               <GSAPReveal key={index} animation="fade" delay={index * 0.1}>
                 <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-primary/5 dark:hover:bg-primary/10 hover:shadow-md">
                   <div className="flex items-center justify-center h-32 mb-4">
-                    <img
+                    <Image
                       src={partner.logo}
                       alt={partner.name}
                       className="max-h-32 w-auto object-contain transition-all duration-300 hover:scale-105"
+                      width={200}
+                      height={128}
                     />
                   </div>
                   <p className="font-medium text-black dark:text-white text-sm md:text-base">
@@ -675,10 +639,12 @@ export default function Home() {
       <section className="relative py-32 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/contactUS/cover.jpeg"
             alt="Contact Us Background"
             className="h-full w-full object-cover"
+            width={1920}
+            height={1080}
           />
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/50" />

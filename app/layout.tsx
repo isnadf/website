@@ -2,7 +2,6 @@ import type React from "react"
 import { Inter, Poppins, Noto_Kufi_Arabic, Playfair_Display, Sora } from "next/font/google"
 import type { Metadata } from "next"
 import { Toaster } from "@/components/ui/toaster"
-import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -38,7 +37,6 @@ const sora = Sora({
   variable: "--font-sora",
 })
 
-const SITE_ENABLED = false;
 
 export const metadata: Metadata = {
   title: {

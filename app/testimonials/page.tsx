@@ -2,7 +2,7 @@
 
 import { useState, Suspense, useRef, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
-import { Quote, Video, X, Volume2, VolumeX, Play } from "lucide-react"
+import { Quote, Video, Play } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
 import { TestimonialVideoModal } from "@/components/testimonial-video-modal"
 import { studentTestimonials, publicFigureTestimonials } from "./data"
@@ -20,12 +20,10 @@ function TestimonialsContent() {
   const [isTestimonialVideoOpen, setIsTestimonialVideoOpen] = useState(false)
   const [testimonialName, setTestimonialName] = useState("")
   const [testimonialVideoPath, setTestimonialVideoPath] = useState("")
-  const [testimonialDescription, setTestimonialDescription] = useState("")
 
   // State for hero video loading
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [videoInView, setVideoInView] = useState(false)
-  const [isVideoMuted, setIsVideoMuted] = useState(true)
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -58,17 +56,10 @@ function TestimonialsContent() {
     setVideoLoaded(true)
   }
 
-  const handleOpenTestimonialVideo = (name: { en: string; ar: string }, videoFileName: string, quote: { en: string; ar: string }) => {
+  const handleOpenTestimonialVideo = (name: { en: string; ar: string }, videoFileName: string) => {
     setTestimonialName(name[language as keyof typeof name])
     setTestimonialVideoPath(`/testomenialVid/${videoFileName}`)
     setIsTestimonialVideoOpen(true)
-  }
-
-  const toggleVideoMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted
-      setIsVideoMuted(!isVideoMuted)
-    }
   }
 
   // Determine which testimonials to show based on URL parameter
@@ -162,8 +153,7 @@ function TestimonialsContent() {
                   className="group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
                   onClick={() => handleOpenTestimonialVideo(
                     testimonial.name,
-                    testimonial.videoFileName,
-                    testimonial.quote
+                    testimonial.videoFileName
                   )}
                 >
                   {/* Video background */}

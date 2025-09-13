@@ -2,13 +2,12 @@
 
 import { useParams } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, Calendar, MapPin } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { ActivityGallery } from "@/components/activity-gallery"
 import { activitiesData, type Activity } from "@/app/activities/data"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 
 export default function ActivityPage() {
   const params = useParams()
@@ -21,7 +20,7 @@ export default function ActivityPage() {
       <div className="container px-4 md:px-6 py-16">
         <div className="text-center">
           <h1 className="text-4xl font-bold">Activity Not Found</h1>
-          <p className="mt-4 text-muted-foreground">The activity you're looking for doesn't exist.</p>
+          <p className="mt-4 text-muted-foreground">The activity you&apos;re looking for doesn&apos;t exist.</p>
           <Link href="/activities">
             <Button className="mt-6">Return to Activities</Button>
           </Link>
@@ -35,10 +34,12 @@ export default function ActivityPage() {
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <Image
             src={activity.image || "/placeholder.svg"}
             alt={activity.title[language]}
             className="h-full w-full object-cover"
+            width={1920}
+            height={1080}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         </div>

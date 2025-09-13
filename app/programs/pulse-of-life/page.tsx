@@ -5,11 +5,8 @@ import {
   Award,
   BookOpen,
   Globe,
-  Target,
   UserPlus,
   Stethoscope,
-  Hospital,
-  Microscope,
   Home,
   Phone,
   Mail,
@@ -34,7 +31,6 @@ export default function PulseOfLifePage() {
   const getRTLFlex = () => language === 'ar' ? 'flex-row-reverse' : 'flex-row'
   const getRTLIcon = () => language === 'ar' ? '-mr-1' : '-ml-1'
   const getRTLTextAlign = () => language === 'ar' ? 'text-right' : 'text-left'
-  const getRTLItemsAlign = () => language === 'ar' ? 'items-end' : 'items-start'
 
   return (
     <main className={`flex min-h-screen flex-col bg-gradient-to-br from-red-50 via-pink-50 to-white dark:from-red-950 dark:via-gray-900 dark:to-black ${getRTLClass()}`}>

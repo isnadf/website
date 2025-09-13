@@ -13,6 +13,7 @@ import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import SuccessStoryCard from "@/components/success-story-card"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 
 // Mock success stories data with translations
 const successStoriesData = [
@@ -305,10 +306,13 @@ export default function SuccessStoriesPage() {
       {/* Hero Section */}
       <section className="relative h-screen w-full text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/story.png"
             alt={t("success_stories.hero_alt") as string}
             className="h-full w-full object-cover object-center"
+            width={1920}
+            height={1080}
+            priority
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
@@ -491,7 +495,7 @@ export default function SuccessStoriesPage() {
                           <h3 className={`text-xl font-bold group-hover:text-[#1e7e34] ${isRTL ? 'font-arabic' : ''}`}>{story.name[language]}</h3>
                           <p className={`text-[#1e7e34] ${isRTL ? 'text-right' : 'text-left'}`}>{story.degree[language]}</p>
                           <p className={`text-sm text-muted-foreground ${isRTL ? 'font-arabic text-right' : 'text-left'}`}>{story.university[language]}</p>
-                          <p className={`italic text-muted-foreground ${isRTL ? 'font-arabic text-right' : 'text-left'}`}>"{story.quote[language].substring(0, 100)}..."</p>
+                          <p className={`italic text-muted-foreground ${isRTL ? 'font-arabic text-right' : 'text-left'}`}>&quot;{story.quote[language].substring(0, 100)}...&quot;</p>
                           <div className={`text-sm font-medium text-[#1e7e34] ${isRTL ? 'text-right' : 'text-left'}`}>
                             <div className={`inline-flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                               <span className={isRTL ? 'font-arabic' : ''}>{t("success_stories.read_full_story") as string}</span>

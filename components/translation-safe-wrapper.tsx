@@ -219,12 +219,12 @@ function useTranslationDetection() {
  * Main wrapper component that provides translation-safe rendering
  */
 export default function TranslationSafeWrapper({ children }: { children: ReactNode }) {
+  const { isTranslated, isLoading } = useTranslationDetection()
+  
   // If the fix is disabled, just render children normally
   if (!isTranslationFixEnabled()) {
     return <>{children}</>
   }
-
-  const { isTranslated, isLoading } = useTranslationDetection()
 
   // Only show loading state very briefly and only if translation is detected
   if (isLoading && isTranslated) {

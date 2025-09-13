@@ -6,8 +6,9 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { TextPlugin } from "gsap/TextPlugin"
 import { SplitText } from "gsap/SplitText"
-import { FaUserGraduate, FaChalkboardTeacher, FaBookOpen, FaExclamationTriangle, FaChartBar, FaQuoteLeft, FaArrowRight, FaPlay, FaStar, FaHeart } from "react-icons/fa"
+import { FaUserGraduate, FaChalkboardTeacher, FaBookOpen, FaExclamationTriangle, FaChartBar, FaHeart } from "react-icons/fa"
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
+import Image from "next/image"
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText)
 
@@ -136,31 +137,6 @@ const assassinatedAcademics = [
   { name: "د. سعيد حلال الدهشان", position: "أستاذ وخبير القانون الدولي بجامعات غزة", nameEn: "Dr. Saeed Hilal Al-Dahshan", positionEn: "Professor and International Law Expert at Gaza Universities" }
 ]
 
-// Animated vertical list component
-function VerticalInfiniteList({ items, language }: { items: typeof assassinatedAcademics, language: string }) {
-  return (
-    <div className="overflow-hidden h-40 relative w-full">
-      <div className="animate-vertical-marquee flex flex-col gap-4 absolute left-0 top-0 w-full">
-        {items.concat(items).map((item, idx) => (
-          <div key={idx} className="text-center text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100 flex flex-col">
-            <span>{language === 'ar' ? item.name : item.nameEn}</span>
-            <span className="text-sm text-gray-500 dark:text-gray-300">{language === 'ar' ? item.position : item.positionEn}</span>
-          </div>
-        ))}
-      </div>
-      <style>{`
-        @keyframes vertical-marquee {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
-        }
-        .animate-vertical-marquee {
-          animation: vertical-marquee 12s linear infinite;
-        }
-      `}</style>
-    </div>
-  )
-}
-
 // Animated vertical table component for section 10
 function VerticalInfiniteTable({ items, language }: { items: typeof assassinatedAcademics, language: string }) {
       return (
@@ -197,7 +173,6 @@ export default function EducationalEnvironmentPage() {
   const { t, language } = useLanguage()
   const heroRef = useRef<HTMLDivElement>(null)
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([])
-  const [currentSection, setCurrentSection] = useState(0)
   const [isInImmersiveSection, setIsInImmersiveSection] = useState(false)
 
   useEffect(() => {
@@ -312,8 +287,6 @@ export default function EducationalEnvironmentPage() {
             start: "top 90%",
             end: "bottom 10%",
             toggleActions: "play none none none",
-            onEnter: () => setCurrentSection(sectionIndex),
-            onEnterBack: () => setCurrentSection(sectionIndex),
             markers: false,
             fastScrollEnd: true,
             preventOverlaps: true
@@ -358,7 +331,8 @@ export default function EducationalEnvironmentPage() {
       }
 
       // Text reveal with split text - but preserve text justification
-      textElements.forEach((textElement, textIndex) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      textElements.forEach((textElement, _textIndex) => {
         // Only apply split text animation if it's not a body text element (to preserve justification)
         if (!textElement.classList.contains('section-text') || (textElement.textContent && textElement.textContent.length < 100)) {
           const splitText = new SplitText(textElement, { type: "lines, words" })
@@ -549,11 +523,14 @@ export default function EducationalEnvironmentPage() {
         {/* Hero Section */}
         <section className="relative w-full h-screen flex items-center justify-center overflow-hidden" ref={heroRef}>
           {/* Hero Image Only */}
-          <img 
+          <Image 
             src="/educationalenvironment/hero.jpg" 
             alt="Educational Environment Hero" 
             className="absolute inset-0 w-full h-full object-cover z-0" 
             style={{objectPosition: 'center'}}
+            width={1920}
+            height={1080}
+            priority
           />
           
           {/* Dark overlay for better text readability */}
@@ -576,7 +553,6 @@ export default function EducationalEnvironmentPage() {
                   <TextGenerateEffect 
                     words={t("educational.environment.hero.subtitle") as string}
                     className="text-white"
-                    duration={0.3}
                   />
                 </div>
               </div>
@@ -617,7 +593,6 @@ export default function EducationalEnvironmentPage() {
         <div className="bg-white">
           {sections.map((section, index) => {
             const isEven = index % 2 === 0
-            const IconComponent = section.icon
             
             return (
               <section
@@ -646,10 +621,12 @@ export default function EducationalEnvironmentPage() {
                       <div className="relative flex flex-col items-center justify-center w-full">
                         {/* Background image with overlay */}
                         <div className="absolute inset-0 z-0">
-                          <img 
+                          <Image 
                             src={section.image} 
                             alt="Assassinated Academics Memorial"
                             className="w-full h-full object-cover opacity-80"
+                            width={800}
+                            height={600}
                           />
                           <div className="absolute inset-0 bg-white/20"></div>
                         </div>
@@ -667,11 +644,13 @@ export default function EducationalEnvironmentPage() {
                         <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                           <div className="relative">
                             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl section-image">
-                              <img 
+                              <Image 
                                 src={section.image} 
                                 alt={`Educational Environment Section ${section.id}`}
                                 className="w-full h-full object-cover"
                                 loading="lazy"
+                                width={600}
+                                height={450}
                               />
                             </div>
                             {/* Subtle gradient overlay */}

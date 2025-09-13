@@ -1,0 +1,10 @@
+/*
+I choosed eslintrc.json insted of .eslintrc.js because it is simpler configurations. 
+Use eslintrc.js, eslintrc if you want flexibilty and embed dynamic logic and tailor configurations with javascript.
+*/
+{
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript"
+  ]
+}

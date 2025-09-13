@@ -36,12 +36,16 @@ export default function CustomVideoPlayer({
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const [isMuted, setIsMuted] = useState(muted)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isHlsSupported, setIsHlsSupported] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [progress, setProgress] = useState(0)
   const [isInView, setIsInView] = useState(!lazy)
   const [videoSrc, setVideoSrc] = useState<string | undefined>(!lazy ? src : undefined)
-  const [isHlsSupported, setIsHlsSupported] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false)
 
   // Check if HLS is supported natively or via HLS.js
   useEffect(() => {
@@ -61,6 +65,15 @@ export default function CustomVideoPlayer({
 
     const isHlsStream = videoSrc.includes('.m3u8')
     
+    // Set a timeout to prevent indefinite loading
+    const loadingTimeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn('Video loading timeout')
+        setHasError(true)
+        setIsLoading(false)
+      }
+    }, 10000) // 10 second timeout
+    
     if (isHlsStream && Hls.isSupported() && !video.canPlayType('application/vnd.apple.mpegurl')) {
       // Use HLS.js for HLS streams
       if (hlsRef.current) {
@@ -70,12 +83,21 @@ export default function CustomVideoPlayer({
       hlsRef.current = new Hls({
         enableWorker: true,
         lowLatencyMode: true,
+        maxBufferLength: 30,
+        maxMaxBufferLength: 60,
+        liveSyncDurationCount: 3,
+        liveMaxLatencyDurationCount: 5,
+        enableSoftwareAES: true,
+        debug: false,
       })
       
       hlsRef.current.loadSource(videoSrc)
       hlsRef.current.attachMedia(video)
       
       hlsRef.current.on(Hls.Events.MANIFEST_PARSED, () => {
+        clearTimeout(loadingTimeout)
+        setIsLoading(false)
+        setHasError(false)
         if (autoPlay) {
           video.play().catch(() => {
             // Autoplay might be blocked
@@ -86,19 +108,63 @@ export default function CustomVideoPlayer({
       
       hlsRef.current.on(Hls.Events.ERROR, (event, data) => {
         console.error('HLS error:', data)
+        
+        // Handle different types of HLS errors
+        if (data.fatal) {
+          switch (data.type) {
+            case Hls.ErrorTypes.NETWORK_ERROR:
+              console.error('Fatal network error encountered, trying to recover...')
+              hlsRef.current?.startLoad()
+              break
+            case Hls.ErrorTypes.MEDIA_ERROR:
+              console.error('Fatal media error encountered, trying to recover...')
+              hlsRef.current?.recoverMediaError()
+              break
+            default:
+              console.error('Fatal error, cannot recover')
+              setHasError(true)
+              setIsLoading(false)
+              // Fallback to regular video source if HLS fails
+              if (video && videoSrc) {
+                video.src = videoSrc.replace('.m3u8', '.mp4')
+                video.load()
+              }
+              break
+          }
+        }
       })
     } else {
       // Regular video or native HLS support
       video.src = videoSrc
+      
+      // Add error handling for regular video sources
+      video.addEventListener('error', (e) => {
+        console.error('Video error:', e)
+        setHasError(true)
+        setIsLoading(false)
+        // Try to load a fallback video if available
+        if (videoSrc && !videoSrc.includes('fallback')) {
+          const fallbackSrc = videoSrc.replace(/\.(mp4|webm|ogg)$/, '_fallback.mp4')
+          video.src = fallbackSrc
+          video.load()
+        }
+      })
+      
+      video.addEventListener('loadeddata', () => {
+        clearTimeout(loadingTimeout)
+        setIsLoading(false)
+        setHasError(false)
+      })
     }
 
     return () => {
+      clearTimeout(loadingTimeout)
       if (hlsRef.current) {
         hlsRef.current.destroy()
         hlsRef.current = null
       }
     }
-  }, [videoSrc, isInView, autoPlay])
+  }, [videoSrc, isInView, autoPlay, isLoading])
 
   useEffect(() => {
     const video = videoRef.current
@@ -110,7 +176,7 @@ export default function CustomVideoPlayer({
     }
 
     const handleLoadedMetadata = () => {
-      setDuration(video.duration)
+      // Video metadata loaded
     }
 
     const handleFullscreenChange = () => {
@@ -215,21 +281,6 @@ export default function CustomVideoPlayer({
     }
   }
 
-  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (videoRef.current) {
-      const rect = e.currentTarget.getBoundingClientRect()
-      const clickX = e.clientX - rect.left
-      const width = rect.width
-      const seekTime = (clickX / width) * duration
-      videoRef.current.currentTime = seekTime
-    }
-  }
-
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60)
-    const seconds = Math.floor(time % 60)
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`
-  }
 
   return (
     <div 
@@ -247,8 +298,41 @@ export default function CustomVideoPlayer({
         className={`w-full h-full ${videoClassName || 'object-cover'}`}
       />
       
+      {/* Loading indicator */}
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <div className="text-white text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
+            <p className="text-sm">Loading video...</p>
+          </div>
+        </div>
+      )}
+      
+      {/* Error message */}
+      {hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <div className="text-white text-center p-4">
+            <div className="text-red-400 mb-2">⚠️</div>
+            <p className="text-sm mb-2">Unable to load video</p>
+            <Button
+              onClick={() => {
+                setHasError(false)
+                setIsLoading(true)
+                if (videoRef.current && videoSrc) {
+                  videoRef.current.load()
+                }
+              }}
+              size="sm"
+              className="bg-white/20 hover:bg-white/30 text-white"
+            >
+              Retry
+            </Button>
+          </div>
+        </div>
+      )}
+      
       {/* Overlay for click to play */}
-      {!isPlaying && (
+      {!isPlaying && !isLoading && !hasError && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/30">
           <Button
             onClick={togglePlay}
@@ -261,6 +345,7 @@ export default function CustomVideoPlayer({
       )}
 
       {/* Custom Controls - Small Glass Container */}
+      {!isLoading && !hasError && (
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3">
         <div className="flex items-center space-x-3">
           <Button
@@ -291,6 +376,7 @@ export default function CustomVideoPlayer({
           </Button>
         </div>
       </div>
+      )}
     </div>
   )
 }

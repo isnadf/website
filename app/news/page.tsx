@@ -1,14 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search, Filter, Calendar, ArrowRight, ChevronLeft, ChevronRight, Play } from "lucide-react"
+import { Search, Calendar, ArrowRight, ChevronLeft, ChevronRight, Filter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Badge } from "@/components/ui/badge"
 import NewsCard from "@/components/news-card"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 
 // Mock news data with bilingual support
 const newsData = [
@@ -109,38 +109,26 @@ const newsData = [
   }
 ]
 
-// Categories for filtering with bilingual support
-const categories = [
-  { value: "all", label: { en: "All", ar: "الكل" } },
-  { value: "scholarships", label: { en: "Scholarships", ar: "المنح الدراسية" } },
-  { value: "education", label: { en: "Education & Humanitarian Support", ar: "التعليم والدعم الإنساني" } }
-]
-
 export default function NewsPage() {
   const { t, language } = useLanguage()
   const isRTL = language === "ar"
   const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
   const [currentPage, setCurrentPage] = useState(1)
   const [activeTab, setActiveTab] = useState("all")
   const itemsPerPage = 6
 
-  // Filter news based on search query, category, and tab
+  // Filter news based on search query and tab
   const filteredNews = newsData.filter((news) => {
     const matchesSearch =
       news.title[language].toLowerCase().includes(searchQuery.toLowerCase()) ||
       news.excerpt[language].toLowerCase().includes(searchQuery.toLowerCase())
-
-    const matchesCategory = selectedCategory === "all" || 
-      (selectedCategory === "scholarships" && news.category[language] === categories[1].label[language]) ||
-      (selectedCategory === "education" && news.category[language] === categories[2].label[language])
 
     const matchesTab =
       activeTab === "all" ||
       (activeTab === "featured" && news.featured) ||
       (activeTab === "recent" && new Date(news.date).getTime() > Date.now() - 90 * 24 * 60 * 60 * 1000)
 
-    return matchesSearch && matchesCategory && matchesTab
+    return matchesSearch && matchesTab
   })
 
   // Pagination
@@ -150,17 +138,19 @@ export default function NewsPage() {
   // Reset to first page when filters change
   useEffect(() => {
     setCurrentPage(1)
-  }, [searchQuery, selectedCategory, activeTab])
+  }, [searchQuery, activeTab])
 
   return (
     <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/LastNews/1.png"
             alt={t("news.hero.alt") as string}
             className="h-full w-full object-contain object-center"
+            width={1920}
+            height={1080}
           />
         </div>
         {/* Page Indicator */}
@@ -255,10 +245,12 @@ export default function NewsPage() {
                 {paginatedNews.map((news) => (
                   <div key={news.id} className="group relative overflow-hidden rounded-lg border-2 border-[#1e7e34]/20 bg-card transition-all hover:shadow-md dark:bg-gray-900 dark:border-[#1e7e34]/30">
                     <div className="aspect-video overflow-hidden">
-                      <img
+                      <Image
                         src={news.image || "/cover3.png"}
                         alt={news.title[language]}
                         className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                        width={400}
+                        height={300}
                       />
                     </div>
                     <div className="p-4">

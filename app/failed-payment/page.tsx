@@ -1,5 +1,6 @@
 "use client"
 import { useLanguage } from "@/components/language-provider";
+import Link from "next/link";
 
 export default function FailedPaymentPage() {
   const { t } = useLanguage();
@@ -14,8 +15,8 @@ export default function FailedPaymentPage() {
         <h1 className="text-3xl font-bold text-red-700 mb-4">{t("payment.fail.title")}</h1>
         <p className="text-lg text-gray-700 mb-6">{t("payment.fail.message")}</p>
         <div className="flex flex-row gap-4">
-        <a href="/" className="text-red-600 hover:underline bg-red-100 p-2 rounded-md">{t("payment.fail.home")}</a>
-        <a href="/donate" className="text-red-600 hover:underline bg-red-100 p-2 rounded-md">{t("payment.fail.retry")}</a>
+        <Link href="/" className="text-red-600 hover:underline bg-red-100 p-2 rounded-md">{t("payment.fail.home")}</Link>
+        <Link href="/donate-form" className="text-red-600 hover:underline bg-red-100 p-2 rounded-md">{t("payment.fail.retry")}</Link>
         </div>
       </div>
     </div>

@@ -2,14 +2,11 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, GraduationCap, Moon, Sun, Globe } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Menu, X } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu"
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu"
 import Image from "next/image"
 
 // Define a type for nav items
@@ -21,9 +18,7 @@ type NavItem = { name: string; href: string; dropdown?: true; items?: NavDropdow
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
   const { language, setLanguage, t } = useLanguage()
-  const pathname = usePathname()
   const isRTL = language === 'ar'
 
   // Prevent background scroll when mobile menu is open
@@ -102,9 +97,6 @@ export default function Header() {
     { name: t("nav.contact") as string, href: "/contact" },
   ];
 
-  // Check if we're on the activities page
-  const isActivitiesPage = pathname.includes('/activities')
-
   // Special donation button component
   const DonateButton = () => (
     <Link
@@ -145,7 +137,7 @@ export default function Header() {
           {/* Desktop Navigation - centered */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
             {navItems.map((item) => (
-              (item as any).dropdown ? (
+              'dropdown' in item && item.dropdown ? (
                 <NavigationMenu key={item.href}>
                   <NavigationMenuList>
                     <NavigationMenuItem>
@@ -203,26 +195,17 @@ export default function Header() {
 
           {/* Language selector and mobile menu - positioned on the right (or left in RTL) */}
           <div className={`flex items-center gap-3 flex-shrink-0 ${isRTL ? 'pl-4 sm:pl-6 lg:pl-8' : 'pr-4 sm:pr-6 lg:pr-8'}`}>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-9 w-9"
-                >
-                  <Globe className="h-5 w-5" />
-                  <span className="sr-only">Change language</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align={isRTL ? "start" : "end"}>
-                <DropdownMenuItem onClick={() => setLanguage("en")}>
-                  <span className={language === "en" ? "font-bold" : ""}>English</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("ar")}>
-                  <span className={language === "ar" ? "font-bold" : ""}>العربية</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-9 w-9"
+              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+            >
+              <span className="text-sm font-medium">
+                {language === 'ar' ? 'EN' : 'AR'}
+              </span>
+              <span className="sr-only">Change language</span>
+            </Button>
 
             {/* <Button
               variant="ghost"
@@ -259,7 +242,7 @@ export default function Header() {
             <div className="container mx-auto px-4 py-6 min-h-full">
               <nav className="flex flex-col space-y-6">
                 {navItems.map((item) => (
-                  (item as any).dropdown ? (
+                  'dropdown' in item && item.dropdown ? (
                     <div key={item.href} className="space-y-3">
                       <div className={`text-[15px] font-medium text-black ${isRTL ? 'text-right' : 'text-left'}`}>{item.name}</div>
                       <div className={`${isRTL ? 'pr-4' : 'pl-4'} space-y-4`}>

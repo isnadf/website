@@ -5,8 +5,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { CheckCircle, CreditCard, Banknote, Gift, Heart, Shield, Users, Building2, GraduationCap, Stethoscope, Star, Leaf, Scale, Brain, Copy, Check, ArrowRight, Phone, Mail, MapPin, Clock, BookOpen } from "lucide-react"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { CreditCard, Banknote, Gift, Heart, Shield, Users, Copy, Check } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 
 

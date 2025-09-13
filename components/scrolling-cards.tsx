@@ -23,8 +23,9 @@ export default function ScrollingCards({ cards, isAnyCardHovered, onHoverChange,
   const { language } = useLanguage()
   const isRTL = direction ? direction === "rtl" : language === "ar"
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [containerWidth, setContainerWidth] = useState(0)
   const [isTranslated, setIsTranslated] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [containerWidth, setContainerWidth] = useState(0)
 
   // Use ResizeObserver to handle container size changes
   useEffect(() => {

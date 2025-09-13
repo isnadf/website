@@ -18,13 +18,6 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-const actionTypes = {
-  ADD_TOAST: "ADD_TOAST",
-  UPDATE_TOAST: "UPDATE_TOAST",
-  DISMISS_TOAST: "DISMISS_TOAST",
-  REMOVE_TOAST: "REMOVE_TOAST",
-} as const
-
 let count = 0
 
 function genId() {
@@ -32,23 +25,21 @@ function genId() {
   return count.toString()
 }
 
-type ActionType = typeof actionTypes
-
 type Action =
   | {
-      type: ActionType["ADD_TOAST"]
+      type: "ADD_TOAST"
       toast: ToasterToast
     }
   | {
-      type: ActionType["UPDATE_TOAST"]
+      type: "UPDATE_TOAST"
       toast: Partial<ToasterToast>
     }
   | {
-      type: ActionType["DISMISS_TOAST"]
+      type: "DISMISS_TOAST"
       toastId?: ToasterToast["id"]
     }
   | {
-      type: ActionType["REMOVE_TOAST"]
+      type: "REMOVE_TOAST"
       toastId?: ToasterToast["id"]
     }
 
@@ -56,22 +47,22 @@ interface State {
   toasts: ToasterToast[]
 }
 
-const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
+const toastTimeouts: { [key: string]: ReturnType<typeof setTimeout> } = {}
 
 const addToRemoveQueue = (toastId: string) => {
-  if (toastTimeouts.has(toastId)) {
+  if (toastTimeouts[toastId]) {
     return
   }
 
   const timeout = setTimeout(() => {
-    toastTimeouts.delete(toastId)
+    delete toastTimeouts[toastId]
     dispatch({
       type: "REMOVE_TOAST",
       toastId: toastId,
     })
   }, TOAST_REMOVE_DELAY)
 
-  toastTimeouts.set(toastId, timeout)
+  toastTimeouts[toastId] = timeout
 }
 
 export const reducer = (state: State, action: Action): State => {

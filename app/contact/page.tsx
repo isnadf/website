@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import GSAPReveal from "@/components/gsap-reveal"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 
 export default function ContactPage() {
   const { toast } = useToast()
@@ -67,10 +68,12 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/contactUS/cover.jpeg"
             alt={t("contact.title") as string}
             className="h-full w-full object-cover"
+            width={1920}
+            height={1080}
           />
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/50" />
@@ -358,24 +361,30 @@ export default function ContactPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-[hsl(120,61%,34%)]/20">
-                    <img
+                    <Image
                       src="/office/1.jpeg"
                       alt={t("contact.office.entrance") as string}
                       className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                      width={400}
+                      height={300}
                     />
                   </div>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-[hsl(120,61%,34%)]/20">
-                    <img
+                    <Image
                       src="/office/2.jpeg"
                       alt={t("contact.office.workspace") as string}
                       className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                      width={400}
+                      height={300}
                     />
                   </div>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-[hsl(120,61%,34%)]/20">
-                    <img
+                    <Image
                       src="/office/3.jpeg"
                       alt={t("contact.office.meeting") as string}
                       className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                      width={400}
+                      height={300}
                     />
                   </div>
                 </div>

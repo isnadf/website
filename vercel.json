@@ -2,7 +2,10 @@
   "crons": [
     {
       "path": "/api/admin/cleanup-payments",
-      "schedule": "*/2 * * * *"
+      "schedule": "*/2 * * * *",
+      "headers": {
+        "authorization": "Bearer YOUR_CRON_SECRET"
+      }
     }
   ]
 }
