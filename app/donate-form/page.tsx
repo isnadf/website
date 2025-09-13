@@ -19,6 +19,11 @@ export default function DonateFormPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string>("")
   const [copiedField, setCopiedField] = useState<string | null>(null)
+  const [customerInfo, setCustomerInfo] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  })
 
   const presetAmounts = ["500", "1000", "2500", "3500", "5000"]
 
@@ -62,6 +67,12 @@ export default function DonateFormPage() {
         body: JSON.stringify({
           orderId,
           amount: parseFloat(finalAmount).toFixed(2),
+          paymentMethod,
+          customerInfo: customerInfo.name || customerInfo.email || customerInfo.phone ? customerInfo : undefined,
+          metadata: {
+            referrer: document.referrer,
+            timestamp: new Date().toISOString()
+          }
         }),
       });
 
@@ -214,6 +225,51 @@ export default function DonateFormPage() {
                         }
                       }}
                       className={`flex-1 text-4xl font-bold text-gray-900 bg-transparent border-none outline-none placeholder-gray-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${language === "ar" ? "mr-4" : "ml-4"}`}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Customer Information */}
+              <div className="mb-8">
+                <Label className={`text-xl font-bold mb-6 block ${language === "ar" ? "text-right" : "text-left"}`}>
+                  {language === "ar" ? "معلومات المتبرع (اختيارية)" : "Donor Information (Optional)"}
+                </Label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <Label className={`text-sm font-medium mb-2 block ${language === "ar" ? "text-right" : "text-left"}`}>
+                      {language === "ar" ? "الاسم" : "Name"}
+                    </Label>
+                    <input
+                      type="text"
+                      placeholder={language === "ar" ? "اسمك الكامل" : "Your full name"}
+                      value={customerInfo.name}
+                      onChange={(e) => setCustomerInfo(prev => ({ ...prev, name: e.target.value }))}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#34a853] outline-none transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <Label className={`text-sm font-medium mb-2 block ${language === "ar" ? "text-right" : "text-left"}`}>
+                      {language === "ar" ? "البريد الإلكتروني" : "Email"}
+                    </Label>
+                    <input
+                      type="email"
+                      placeholder={language === "ar" ? "بريدك الإلكتروني" : "Your email"}
+                      value={customerInfo.email}
+                      onChange={(e) => setCustomerInfo(prev => ({ ...prev, email: e.target.value }))}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#34a853] outline-none transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <Label className={`text-sm font-medium mb-2 block ${language === "ar" ? "text-right" : "text-left"}`}>
+                      {language === "ar" ? "رقم الهاتف" : "Phone"}
+                    </Label>
+                    <input
+                      type="tel"
+                      placeholder={language === "ar" ? "رقم هاتفك" : "Your phone number"}
+                      value={customerInfo.phone}
+                      onChange={(e) => setCustomerInfo(prev => ({ ...prev, phone: e.target.value }))}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#34a853] outline-none transition-colors"
                     />
                   </div>
                 </div>
