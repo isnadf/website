@@ -380,7 +380,6 @@ export const getPaymentStats = async (): Promise<{
  */
 export async function cancelPendingPayments(olderThanMinutes: number = 5): Promise<number> {
   try {
-    // cutoff = current time - N minutes
     const cutoffTime = new Date(Date.now() - olderThanMinutes * 60 * 1000);
 
     const result = await pool.query(

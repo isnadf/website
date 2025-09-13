@@ -1,22 +1,13 @@
-// app/api/admin/cleanup-payments/route.ts
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { cancelPendingPayments } from "@/lib/payment-logger";
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
-    // --- AUTH CHECK ---
-    const cronSecret = request.headers.get("authorization");
-    const vercelCronSecret = process.env.CRON_SECRET;
-
-    if (vercelCronSecret && cronSecret !== `Bearer ${vercelCronSecret}`) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     console.log("Starting payment cleanup job...");
 
     const cancelled = await cancelPendingPayments(5);
 
-    console.log("Payment cleanup completed successfully");
+    console.log(`Payment cleanup completed. Cancelled ${cancelled} payments.`);
 
     return NextResponse.json({
       success: true,
