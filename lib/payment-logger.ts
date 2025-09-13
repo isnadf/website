@@ -131,11 +131,11 @@ export const getPayments = (options: {
   }
   
   if (options.startDate) {
-    payments = payments.filter(p => p.createdAt >= options.startDate);
+    payments = payments.filter(p => p.createdAt >= options.startDate!);
   }
   
   if (options.endDate) {
-    payments = payments.filter(p => p.createdAt <= options.endDate);
+    payments = payments.filter(p => p.createdAt <= options.endDate!);
   }
 
   // Sort by creation date (newest first)

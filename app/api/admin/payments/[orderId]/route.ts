@@ -20,10 +20,10 @@ export async function OPTIONS(request: NextRequest) {
 // GET /api/admin/payments/[orderId] - Get specific payment by order ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { orderId: string } }
+  context: { params: Promise<{ orderId: string }> }
 ) {
   try {
-    const { orderId } = params;
+    const { orderId } = await context.params;
 
     if (!orderId) {
       return NextResponse.json({ error: "Order ID is required" }, { status: 400, headers: corsHeaders });
