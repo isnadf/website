@@ -25,11 +25,6 @@ export interface PaymentRecord {
     phone?: string;
     name?: string;
   };
-  metadata?: {
-    ip?: string;
-    userAgent?: string;
-    referrer?: string;
-  };
 }
 
 // Initialize database table if it doesn't exist
@@ -49,7 +44,6 @@ const initializeDatabase = async () => {
         fail_at TIMESTAMP WITH TIME ZONE,
         payment_gateway_response JSONB,
         customer_info JSONB,
-        metadata JSONB
       )
     `);
   } catch (error) {
@@ -75,7 +69,6 @@ export const readPayments = async (): Promise<PaymentRecord[]> => {
       failAt: row.fail_at?.toISOString(),
       paymentGatewayResponse: row.payment_gateway_response,
       customerInfo: row.customer_info,
-      metadata: row.metadata
     }));
   } catch (error) {
     console.error('Error reading payments:', error);
@@ -105,8 +98,8 @@ export const createPaymentRecord = async (data: Partial<PaymentRecord>): Promise
       INSERT INTO payments (
         id, order_id, amount, currency, status, payment_method,
         created_at, updated_at, success_at, fail_at,
-        payment_gateway_response, customer_info, metadata
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+        payment_gateway_response, customer_info
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
     `, [
       payment.id,
       payment.orderId,
@@ -120,7 +113,6 @@ export const createPaymentRecord = async (data: Partial<PaymentRecord>): Promise
       payment.failAt ? new Date(payment.failAt) : null,
       payment.paymentGatewayResponse ? JSON.stringify(payment.paymentGatewayResponse) : null,
       payment.customerInfo ? JSON.stringify(payment.customerInfo) : null,
-      payment.metadata ? JSON.stringify(payment.metadata) : null
     ]);
 
     return payment;
@@ -186,7 +178,6 @@ export const updatePaymentRecord = async (id: string, updates: Partial<PaymentRe
       failAt: row.fail_at?.toISOString(),
       paymentGatewayResponse: row.payment_gateway_response,
       customerInfo: row.customer_info,
-      metadata: row.metadata
     };
   } catch (error) {
     console.error('Error updating payment record:', error);
@@ -218,7 +209,6 @@ export const findPaymentByOrderId = async (orderId: string): Promise<PaymentReco
       failAt: row.fail_at?.toISOString(),
       paymentGatewayResponse: row.payment_gateway_response,
       customerInfo: row.customer_info,
-      metadata: row.metadata
     };
   } catch (error) {
     console.error('Error finding payment by order ID:', error);
@@ -294,7 +284,6 @@ export const getPayments = async (options: {
       failAt: row.fail_at?.toISOString(),
       paymentGatewayResponse: row.payment_gateway_response,
       customerInfo: row.customer_info,
-      metadata: row.metadata
     }));
 
     return {
