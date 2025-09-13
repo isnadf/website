@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
+import { createPaymentRecord } from "@/lib/payment-logger";
 
 export async function GET() {
   // Test endpoint to check if API is working and env vars are set
@@ -21,9 +22,9 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { orderId, amount } = await req.json();
+    const { orderId, amount, paymentMethod, customerInfo, metadata } = await req.json();
 
-    console.log("Payment request received:", { orderId, amount });
+    console.log("Payment request received:", { orderId, amount, paymentMethod });
 
     // Validate inputs
     if (!amount || isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
@@ -56,6 +57,23 @@ export async function POST(req: NextRequest) {
       });
       return NextResponse.json({ error: "Payment configuration error" }, { status: 500 });
     }
+
+    // Create payment record in database immediately as failed (will be updated to success if payment succeeds)
+    const paymentRecord = await createPaymentRecord({
+      orderId,
+      amount: parseFloat(amount),
+      currency: 'TRY',
+      status: 'failed', // Start as failed, will be updated to success if payment succeeds
+      paymentMethod: paymentMethod || 'card',
+      customerInfo,
+      metadata: {
+        ...metadata,
+        ip: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown',
+        userAgent: req.headers.get('user-agent') || 'unknown'
+      }
+    });
+
+    console.log("Payment record created:", paymentRecord.id);
 
     // Ziraat 3D Host payment configuration
     const mbrId = "12"; // Kurum Kodu

@@ -23,8 +23,14 @@ export async function POST(request: NextRequest) {
       currency
     });
 
+    // Validate required fields
+    if (!orderId) {
+      console.error("Missing OrderId in payment callback");
+      return NextResponse.redirect(new URL("/failed-payment", request.url), 302);
+    }
+
     // Find the payment record
-    const payment = findPaymentByOrderId(orderId);
+    const payment = await findPaymentByOrderId(orderId);
     
     if (!payment) {
       console.error("Payment record not found for order:", orderId);
@@ -36,14 +42,16 @@ export async function POST(request: NextRequest) {
       console.error("Payment failed with response code:", responseCode, responseMessage);
       
       // Update payment record as failed
-      const updatedPayment = updatePaymentRecord(payment.id, {
+      const updatedPayment = await updatePaymentRecord(payment.id, {
         status: 'failed',
         failAt: new Date().toISOString(),
         paymentGatewayResponse: {
           responseCode,
           responseMessage,
           transactionId,
-          hash
+          hash,
+          amount,
+          currency
         }
       });
 
@@ -61,7 +69,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Update payment record as successful
-    const updatedPayment = updatePaymentRecord(payment.id, {
+    const updatedPayment = await updatePaymentRecord(payment.id, {
       status: 'success',
       successAt: new Date().toISOString(),
       paymentGatewayResponse: {

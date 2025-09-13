@@ -29,7 +29,7 @@ export async function GET(
       return NextResponse.json({ error: "Order ID is required" }, { status: 400, headers: corsHeaders });
     }
 
-    const payment = findPaymentByOrderId(orderId);
+    const payment = await findPaymentByOrderId(orderId);
 
     if (!payment) {
       return NextResponse.json({ error: "Payment not found" }, { status: 404, headers: corsHeaders });

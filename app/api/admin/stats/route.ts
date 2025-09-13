@@ -20,7 +20,7 @@ export async function OPTIONS(request: NextRequest) {
 // GET /api/admin/stats - Get payment statistics
 export async function GET(request: NextRequest) {
   try {
-    const stats = getPaymentStats();
+    const stats = await getPaymentStats();
 
     return NextResponse.json({
       success: true,

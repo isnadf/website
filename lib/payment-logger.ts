@@ -1,6 +1,14 @@
-import fs from 'fs';
-import path from 'path';
 import crypto from 'crypto';
+
+// Database connection
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 export interface PaymentRecord {
   id: string;
@@ -26,141 +34,290 @@ export interface PaymentRecord {
   };
 }
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'payments.json');
-
-// Ensure data directory exists
-const ensureDataDir = () => {
-  const dataDir = path.dirname(DATA_FILE);
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+// Initialize database table if it doesn't exist
+const initializeDatabase = async () => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS payments (
+        id VARCHAR(255) PRIMARY KEY,
+        order_id VARCHAR(255) UNIQUE NOT NULL,
+        amount DECIMAL(10,2) NOT NULL,
+        currency VARCHAR(10) NOT NULL DEFAULT 'TRY',
+        status VARCHAR(20) NOT NULL,
+        payment_method VARCHAR(20) NOT NULL,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+        success_at TIMESTAMP WITH TIME ZONE,
+        fail_at TIMESTAMP WITH TIME ZONE,
+        payment_gateway_response JSONB,
+        customer_info JSONB,
+        metadata JSONB
+      )
+    `);
+  } catch (error) {
+    console.error('Error initializing database:', error);
   }
 };
 
-// Read payments from file
-export const readPayments = (): PaymentRecord[] => {
+// Read payments from database
+export const readPayments = async (): Promise<PaymentRecord[]> => {
   try {
-    ensureDataDir();
-    if (!fs.existsSync(DATA_FILE)) {
-      return [];
-    }
-    const data = fs.readFileSync(DATA_FILE, 'utf8');
-    return JSON.parse(data);
+    await initializeDatabase();
+    const result = await pool.query('SELECT * FROM payments ORDER BY created_at DESC');
+    return result.rows.map((row: any) => ({
+      id: row.id,
+      orderId: row.order_id,
+      amount: parseFloat(row.amount),
+      currency: row.currency,
+      status: row.status,
+      paymentMethod: row.payment_method,
+      createdAt: row.created_at.toISOString(),
+      updatedAt: row.updated_at.toISOString(),
+      successAt: row.success_at?.toISOString(),
+      failAt: row.fail_at?.toISOString(),
+      paymentGatewayResponse: row.payment_gateway_response,
+      customerInfo: row.customer_info,
+      metadata: row.metadata
+    }));
   } catch (error) {
     console.error('Error reading payments:', error);
     return [];
   }
 };
 
-// Write payments to file
-export const writePayments = (payments: PaymentRecord[]): void => {
-  try {
-    ensureDataDir();
-    fs.writeFileSync(DATA_FILE, JSON.stringify(payments, null, 2));
-  } catch (error) {
-    console.error('Error writing payments:', error);
-  }
-};
-
 // Create a new payment record
-export const createPaymentRecord = (data: Partial<PaymentRecord>): PaymentRecord => {
-  const now = new Date().toISOString();
-  const payment: PaymentRecord = {
-    id: `PAY-${Date.now()}-${crypto.randomBytes(4).toString('hex').toUpperCase()}`,
-    orderId: data.orderId || '',
-    amount: data.amount || 0,
-    currency: data.currency || 'TRY',
-    status: data.status || 'pending',
-    paymentMethod: data.paymentMethod || 'card',
-    createdAt: now,
-    updatedAt: now,
-    ...data
-  };
+export const createPaymentRecord = async (data: Partial<PaymentRecord>): Promise<PaymentRecord> => {
+  try {
+    await initializeDatabase();
+    
+    const now = new Date();
+    const payment: PaymentRecord = {
+      id: `PAY-${Date.now()}-${crypto.randomBytes(4).toString('hex').toUpperCase()}`,
+      orderId: data.orderId || '',
+      amount: data.amount || 0,
+      currency: data.currency || 'TRY',
+      status: data.status || 'pending',
+      paymentMethod: data.paymentMethod || 'card',
+      createdAt: now.toISOString(),
+      updatedAt: now.toISOString(),
+      ...data
+    };
 
-  const payments = readPayments();
-  payments.push(payment);
-  writePayments(payments);
-  
-  return payment;
+    await pool.query(`
+      INSERT INTO payments (
+        id, order_id, amount, currency, status, payment_method,
+        created_at, updated_at, success_at, fail_at,
+        payment_gateway_response, customer_info, metadata
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+    `, [
+      payment.id,
+      payment.orderId,
+      payment.amount,
+      payment.currency,
+      payment.status,
+      payment.paymentMethod,
+      now,
+      now,
+      payment.successAt ? new Date(payment.successAt) : null,
+      payment.failAt ? new Date(payment.failAt) : null,
+      payment.paymentGatewayResponse ? JSON.stringify(payment.paymentGatewayResponse) : null,
+      payment.customerInfo ? JSON.stringify(payment.customerInfo) : null,
+      payment.metadata ? JSON.stringify(payment.metadata) : null
+    ]);
+
+    return payment;
+  } catch (error) {
+    console.error('Error creating payment record:', error);
+    throw error;
+  }
 };
 
 // Update payment record
-export const updatePaymentRecord = (id: string, updates: Partial<PaymentRecord>): PaymentRecord | null => {
-  const payments = readPayments();
-  const index = payments.findIndex(p => p.id === id);
-  
-  if (index === -1) {
+export const updatePaymentRecord = async (id: string, updates: Partial<PaymentRecord>): Promise<PaymentRecord | null> => {
+  try {
+    await initializeDatabase();
+    
+    const updateFields = [];
+    const values = [];
+    let paramCount = 1;
+
+    if (updates.status) {
+      updateFields.push(`status = $${paramCount++}`);
+      values.push(updates.status);
+    }
+    if (updates.successAt) {
+      updateFields.push(`success_at = $${paramCount++}`);
+      values.push(new Date(updates.successAt));
+    }
+    if (updates.failAt) {
+      updateFields.push(`fail_at = $${paramCount++}`);
+      values.push(new Date(updates.failAt));
+    }
+    if (updates.paymentGatewayResponse) {
+      updateFields.push(`payment_gateway_response = $${paramCount++}`);
+      values.push(JSON.stringify(updates.paymentGatewayResponse));
+    }
+
+    updateFields.push(`updated_at = $${paramCount++}`);
+    values.push(new Date());
+    
+    values.push(id); // WHERE clause parameter
+
+    const result = await pool.query(`
+      UPDATE payments 
+      SET ${updateFields.join(', ')}
+      WHERE id = $${paramCount}
+      RETURNING *
+    `, values);
+
+    if (result.rows.length === 0) {
+      return null;
+    }
+
+    const row = result.rows[0];
+    return {
+      id: row.id,
+      orderId: row.order_id,
+      amount: parseFloat(row.amount),
+      currency: row.currency,
+      status: row.status,
+      paymentMethod: row.payment_method,
+      createdAt: row.created_at.toISOString(),
+      updatedAt: row.updated_at.toISOString(),
+      successAt: row.success_at?.toISOString(),
+      failAt: row.fail_at?.toISOString(),
+      paymentGatewayResponse: row.payment_gateway_response,
+      customerInfo: row.customer_info,
+      metadata: row.metadata
+    };
+  } catch (error) {
+    console.error('Error updating payment record:', error);
     return null;
   }
-
-  const updatedPayment = {
-    ...payments[index],
-    ...updates,
-    updatedAt: new Date().toISOString()
-  };
-
-  payments[index] = updatedPayment;
-  writePayments(payments);
-  
-  return updatedPayment;
 };
 
 // Find payment by order ID
-export const findPaymentByOrderId = (orderId: string): PaymentRecord | null => {
-  const payments = readPayments();
-  return payments.find(p => p.orderId === orderId) || null;
+export const findPaymentByOrderId = async (orderId: string): Promise<PaymentRecord | null> => {
+  try {
+    await initializeDatabase();
+    const result = await pool.query('SELECT * FROM payments WHERE order_id = $1', [orderId]);
+    
+    if (result.rows.length === 0) {
+      return null;
+    }
+
+    const row = result.rows[0];
+    return {
+      id: row.id,
+      orderId: row.order_id,
+      amount: parseFloat(row.amount),
+      currency: row.currency,
+      status: row.status,
+      paymentMethod: row.payment_method,
+      createdAt: row.created_at.toISOString(),
+      updatedAt: row.updated_at.toISOString(),
+      successAt: row.success_at?.toISOString(),
+      failAt: row.fail_at?.toISOString(),
+      paymentGatewayResponse: row.payment_gateway_response,
+      customerInfo: row.customer_info,
+      metadata: row.metadata
+    };
+  } catch (error) {
+    console.error('Error finding payment by order ID:', error);
+    return null;
+  }
 };
 
 // Get payments with pagination and filtering
-export const getPayments = (options: {
+export const getPayments = async (options: {
   page?: number;
   limit?: number;
   status?: PaymentRecord['status'];
   paymentMethod?: PaymentRecord['paymentMethod'];
   startDate?: string;
   endDate?: string;
-} = {}): { payments: PaymentRecord[]; total: number; page: number; totalPages: number } => {
-  let payments = readPayments();
+} = {}): Promise<{ payments: PaymentRecord[]; total: number; page: number; totalPages: number }> => {
+  try {
+    await initializeDatabase();
+    
+    const page = options.page || 1;
+    const limit = options.limit || 20;
+    const offset = (page - 1) * limit;
 
-  // Apply filters
-  if (options.status) {
-    payments = payments.filter(p => p.status === options.status);
-  }
-  
-  if (options.paymentMethod) {
-    payments = payments.filter(p => p.paymentMethod === options.paymentMethod);
-  }
-  
-  if (options.startDate) {
-    payments = payments.filter(p => p.createdAt >= options.startDate!);
-  }
-  
-  if (options.endDate) {
-    payments = payments.filter(p => p.createdAt <= options.endDate!);
-  }
+    // Build WHERE clause
+    const whereConditions = [];
+    const queryParams = [];
+    let paramCount = 1;
 
-  // Sort by creation date (newest first)
-  payments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    if (options.status) {
+      whereConditions.push(`status = $${paramCount++}`);
+      queryParams.push(options.status);
+    }
+    
+    if (options.paymentMethod) {
+      whereConditions.push(`payment_method = $${paramCount++}`);
+      queryParams.push(options.paymentMethod);
+    }
+    
+    if (options.startDate) {
+      whereConditions.push(`created_at >= $${paramCount++}`);
+      queryParams.push(new Date(options.startDate));
+    }
+    
+    if (options.endDate) {
+      whereConditions.push(`created_at <= $${paramCount++}`);
+      queryParams.push(new Date(options.endDate));
+    }
 
-  // Apply pagination
-  const page = options.page || 1;
-  const limit = options.limit || 20;
-  const total = payments.length;
-  const totalPages = Math.ceil(total / limit);
-  const startIndex = (page - 1) * limit;
-  const endIndex = startIndex + limit;
-  
-  const paginatedPayments = payments.slice(startIndex, endIndex);
+    const whereClause = whereConditions.length > 0 ? `WHERE ${whereConditions.join(' AND ')}` : '';
 
-  return {
-    payments: paginatedPayments,
-    total,
-    page,
-    totalPages
-  };
+    // Get total count
+    const countResult = await pool.query(`SELECT COUNT(*) FROM payments ${whereClause}`, queryParams);
+    const total = parseInt(countResult.rows[0].count);
+
+    // Get paginated results
+    const result = await pool.query(`
+      SELECT * FROM payments 
+      ${whereClause}
+      ORDER BY created_at DESC 
+      LIMIT $${paramCount} OFFSET $${paramCount + 1}
+    `, [...queryParams, limit, offset]);
+
+    const payments = result.rows.map((row: any) => ({
+      id: row.id,
+      orderId: row.order_id,
+      amount: parseFloat(row.amount),
+      currency: row.currency,
+      status: row.status,
+      paymentMethod: row.payment_method,
+      createdAt: row.created_at.toISOString(),
+      updatedAt: row.updated_at.toISOString(),
+      successAt: row.success_at?.toISOString(),
+      failAt: row.fail_at?.toISOString(),
+      paymentGatewayResponse: row.payment_gateway_response,
+      customerInfo: row.customer_info,
+      metadata: row.metadata
+    }));
+
+    return {
+      payments,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit)
+    };
+  } catch (error) {
+    console.error('Error getting payments:', error);
+    return {
+      payments: [],
+      total: 0,
+      page: 1,
+      totalPages: 0
+    };
+  }
 };
 
 // Get payment statistics
-export const getPaymentStats = (): {
+export const getPaymentStats = async (): Promise<{
   totalPayments: number;
   successfulPayments: number;
   failedPayments: number;
@@ -168,28 +325,52 @@ export const getPaymentStats = (): {
   totalAmount: number;
   successfulAmount: number;
   averageAmount: number;
-} => {
-  const payments = readPayments();
-  
-  const totalPayments = payments.length;
-  const successfulPayments = payments.filter(p => p.status === 'success').length;
-  const failedPayments = payments.filter(p => p.status === 'failed').length;
-  const pendingPayments = payments.filter(p => p.status === 'pending').length;
-  
-  const totalAmount = payments.reduce((sum, p) => sum + p.amount, 0);
-  const successfulAmount = payments
-    .filter(p => p.status === 'success')
-    .reduce((sum, p) => sum + p.amount, 0);
-  
-  const averageAmount = totalPayments > 0 ? totalAmount / totalPayments : 0;
+}> => {
+  try {
+    await initializeDatabase();
+    
+    // Get basic counts
+    const [totalResult, successResult, failedResult, pendingResult] = await Promise.all([
+      pool.query('SELECT COUNT(*) FROM payments'),
+      pool.query("SELECT COUNT(*) FROM payments WHERE status = 'success'"),
+      pool.query("SELECT COUNT(*) FROM payments WHERE status = 'failed'"),
+      pool.query("SELECT COUNT(*) FROM payments WHERE status = 'pending'")
+    ]);
 
-  return {
-    totalPayments,
-    successfulPayments,
-    failedPayments,
-    pendingPayments,
-    totalAmount,
-    successfulAmount,
-    averageAmount
-  };
+    // Get amounts
+    const [totalAmountResult, successAmountResult] = await Promise.all([
+      pool.query('SELECT COALESCE(SUM(amount), 0) as total FROM payments'),
+      pool.query("SELECT COALESCE(SUM(amount), 0) as total FROM payments WHERE status = 'success'")
+    ]);
+
+    const totalPayments = parseInt(totalResult.rows[0].count);
+    const successfulPayments = parseInt(successResult.rows[0].count);
+    const failedPayments = parseInt(failedResult.rows[0].count);
+    const pendingPayments = parseInt(pendingResult.rows[0].count);
+    
+    const totalAmount = parseFloat(totalAmountResult.rows[0].total);
+    const successfulAmount = parseFloat(successAmountResult.rows[0].total);
+    const averageAmount = totalPayments > 0 ? totalAmount / totalPayments : 0;
+
+    return {
+      totalPayments,
+      successfulPayments,
+      failedPayments,
+      pendingPayments,
+      totalAmount,
+      successfulAmount,
+      averageAmount
+    };
+  } catch (error) {
+    console.error('Error getting payment stats:', error);
+    return {
+      totalPayments: 0,
+      successfulPayments: 0,
+      failedPayments: 0,
+      pendingPayments: 0,
+      totalAmount: 0,
+      successfulAmount: 0,
+      averageAmount: 0
+    };
+  }
 };

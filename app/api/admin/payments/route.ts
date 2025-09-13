@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get payments with filters
-    const result = getPayments({
+    const result = await getPayments({
       page,
       limit,
       status: status || undefined,
