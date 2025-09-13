@@ -22,7 +22,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { orderId, amount, paymentMethod, customerInfo, metadata } = await req.json();
+    const { orderId, amount, paymentMethod, customerInfo } = await req.json();
 
     console.log("Payment request received:", { orderId, amount, paymentMethod });
 
@@ -58,19 +58,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Payment configuration error" }, { status: 500 });
     }
 
-    // Create payment record in database immediately as failed (will be updated to success if payment succeeds)
+    // Create payment record in database as pending (will be updated by payment gateway callbacks)
     const paymentRecord = await createPaymentRecord({
       orderId,
       amount: parseFloat(amount),
       currency: 'TRY',
-      status: 'failed', // Start as failed, will be updated to success if payment succeeds
+      status: 'pending', // Start as pending, will be updated by payment gateway callbacks
       paymentMethod: paymentMethod || 'card',
-      customerInfo,
-      metadata: {
-        ...metadata,
-        ip: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown',
-        userAgent: req.headers.get('user-agent') || 'unknown'
-      }
+      customerInfo
     });
 
     console.log("Payment record created:", paymentRecord.id);

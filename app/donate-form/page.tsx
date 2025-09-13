@@ -12,6 +12,7 @@ import { useLanguage } from "@/components/language-provider"
 
 export default function DonateFormPage() {
   const { language } = useLanguage()
+  const isRTL = language === "ar"
 
   const [amount, setAmount] = useState<string>("")
   const [customAmount, setCustomAmount] = useState<string>("")
@@ -19,13 +20,27 @@ export default function DonateFormPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string>("")
   const [copiedField, setCopiedField] = useState<string | null>(null)
-  const [customerInfo, setCustomerInfo] = useState({
-    name: "",
-    email: "",
-    phone: ""
-  })
+  const [customerInfo, setCustomerInfo] = useState("")
 
   const presetAmounts = ["500", "1000", "2500", "3500", "5000"]
+
+  // Validation functions
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  const isValidPhone = (phone: string): boolean => {
+    // Remove all non-digit characters for validation
+    const cleanPhone = phone.replace(/\D/g, '')
+    // Accept phone numbers with 7-15 digits (international format)
+    return cleanPhone.length >= 7 && cleanPhone.length <= 15
+  }
+
+  const isValidCustomerInfo = (info: string): boolean => {
+    const trimmed = info.trim()
+    return trimmed.length > 0 && (isValidEmail(trimmed) || isValidPhone(trimmed))
+  }
 
   const copyToClipboard = async (text: string, fieldName: string) => {
     try {
@@ -54,6 +69,12 @@ export default function DonateFormPage() {
       return;
     }
 
+    // Validate customer info
+    if (!isValidCustomerInfo(customerInfo)) {
+      setError(language === "ar" ? "يرجى إدخال بريد إلكتروني صحيح أو رقم هاتف" : "Please enter a valid email or phone number");
+      return;
+    }
+
     setIsLoading(true);
     setError("");
     const orderId = `ORD-${Date.now()}`;
@@ -68,11 +89,7 @@ export default function DonateFormPage() {
           orderId,
           amount: parseFloat(finalAmount).toFixed(2),
           paymentMethod,
-          customerInfo: customerInfo.name || customerInfo.email || customerInfo.phone ? customerInfo : undefined,
-          metadata: {
-            referrer: document.referrer,
-            timestamp: new Date().toISOString()
-          }
+          customerInfo: customerInfo.trim()
         }),
       });
 
@@ -137,11 +154,11 @@ export default function DonateFormPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 pt-24">
+    <div dir={isRTL ? "rtl" : "ltr"} className={`min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 pt-24 ${isRTL ? "font-arabic" : ""}`}>
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Page Header */}
         <div className="flex items-center justify-between mb-8">
-          <div className={`flex items-center ${language === "ar" ? "space-x-reverse space-x-4" : "space-x-4"}`}>
+          <div className={`flex items-center ${isRTL ? "space-x-reverse space-x-4" : "space-x-4"}`}>
             <div className="w-12 h-12 bg-gradient-to-br from-[#34a853] to-[#2d9249] rounded-xl flex items-center justify-center">
               <Heart className="w-6 h-6 text-white" />
             </div>
@@ -154,7 +171,7 @@ export default function DonateFormPage() {
             onClick={() => window.history.back()}
             className="border-[#34a853] text-[#34a853] hover:bg-[#34a853] hover:text-white"
           >
-            {language === "ar" ? "العودة" : "Back"}
+            {isRTL ? "العودة" : "Back"}
           </Button>
         </div>
         
@@ -171,7 +188,7 @@ export default function DonateFormPage() {
 
               {/* Amount Selection */}
               <div className="mb-8">
-                <Label className={`text-xl font-bold mb-6 block ${language === "ar" ? "text-right" : "text-left"}`}>
+                <Label className={`text-xl font-bold mb-6 block ${isRTL ? "text-right" : "text-left"}`}>
                   {language === "ar" ? "اختر المبلغ" : "Choose Amount"}
                 </Label>
                 <div className="grid grid-cols-3 gap-4 mb-6">
@@ -232,52 +249,43 @@ export default function DonateFormPage() {
 
               {/* Customer Information */}
               <div className="mb-8">
-                <Label className={`text-xl font-bold mb-6 block ${language === "ar" ? "text-right" : "text-left"}`}>
-                  {language === "ar" ? "معلومات المتبرع (اختيارية)" : "Donor Information (Optional)"}
+                <Label className={`text-xl font-bold mb-6 block ${isRTL ? "text-right" : "text-left"}`}>
+                  {language === "ar" ? "معلومات المتبرع" : "Donor Information"}
                 </Label>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                    <Label className={`text-sm font-medium mb-2 block ${language === "ar" ? "text-right" : "text-left"}`}>
-                      {language === "ar" ? "الاسم" : "Name"}
-                    </Label>
-                    <input
-                      type="text"
-                      placeholder={language === "ar" ? "اسمك الكامل" : "Your full name"}
-                      value={customerInfo.name}
-                      onChange={(e) => setCustomerInfo(prev => ({ ...prev, name: e.target.value }))}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#34a853] outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <Label className={`text-sm font-medium mb-2 block ${language === "ar" ? "text-right" : "text-left"}`}>
-                      {language === "ar" ? "البريد الإلكتروني" : "Email"}
-                    </Label>
-                    <input
-                      type="email"
-                      placeholder={language === "ar" ? "بريدك الإلكتروني" : "Your email"}
-                      value={customerInfo.email}
-                      onChange={(e) => setCustomerInfo(prev => ({ ...prev, email: e.target.value }))}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#34a853] outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <Label className={`text-sm font-medium mb-2 block ${language === "ar" ? "text-right" : "text-left"}`}>
-                      {language === "ar" ? "رقم الهاتف" : "Phone"}
-                    </Label>
-                    <input
-                      type="tel"
-                      placeholder={language === "ar" ? "رقم هاتفك" : "Your phone number"}
-                      value={customerInfo.phone}
-                      onChange={(e) => setCustomerInfo(prev => ({ ...prev, phone: e.target.value }))}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#34a853] outline-none transition-colors"
-                    />
-                  </div>
+                <div>
+                  <Label className={`text-sm font-medium mb-2 block ${isRTL ? "text-right" : "text-left"}`}>
+                    {language === "ar" ? "البريد الإلكتروني أو رقم الهاتف *" : "Email or Phone Number *"}
+                  </Label>
+                  <input
+                    type="text"
+                    placeholder={language === "ar" ? "بريدك الإلكتروني أو رقم هاتفك" : "Your email or phone number"}
+                    value={customerInfo}
+                    onChange={(e) => setCustomerInfo(e.target.value)}
+                    className={`w-full px-4 py-3 border-2 rounded-xl focus:border-[#34a853] outline-none transition-colors ${
+                      customerInfo.trim() && !isValidCustomerInfo(customerInfo) 
+                        ? "border-red-500" 
+                        : customerInfo.trim() && isValidCustomerInfo(customerInfo)
+                        ? "border-green-500"
+                        : "border-gray-300"
+                    }`}
+                    required
+                  />
+                  {customerInfo.trim() && !isValidCustomerInfo(customerInfo) && (
+                    <p className={`text-red-500 text-sm mt-1 ${isRTL ? "text-right" : "text-left"}`}>
+                      {language === "ar" ? "يرجى إدخال بريد إلكتروني صحيح أو رقم هاتف" : "Please enter a valid email or phone number"}
+                    </p>
+                  )}
+                  {customerInfo.trim() && isValidCustomerInfo(customerInfo) && (
+                    <p className={`text-green-500 text-sm mt-1 ${isRTL ? "text-right" : "text-left"}`}>
+                      {language === "ar" ? "✓ صحيح" : "✓ Valid"}
+                    </p>
+                  )}
                 </div>
               </div>
 
               {/* Payment Method */}
               <div className="mb-8">
-                <Label className={`text-xl font-bold mb-6 block ${language === "ar" ? "text-right" : "text-left"}`}>
+                <Label className={`text-xl font-bold mb-6 block ${isRTL ? "text-right" : "text-left"}`}>
                   {language === "ar" ? "طريقة الدفع" : "Payment Method"}
                 </Label>
                 <RadioGroup
@@ -290,15 +298,15 @@ export default function DonateFormPage() {
                       paymentMethod === "card" 
                         ? "bg-green-50 border-[#34a853] shadow-lg" 
                         : "hover:bg-gray-50 border-gray-200"
-                    } ${language === "ar" ? "space-x-reverse" : ""}`}
+                    } ${isRTL ? "space-x-reverse" : ""}`}
                     onClick={() => setPaymentMethod("card")}
                   >
                     <RadioGroupItem value="card" id="card" className="cursor-pointer" />
                     <Label 
                       htmlFor="card" 
-                      className={`flex items-center cursor-pointer flex-1 ${language === "ar" ? "flex-row-reverse" : ""}`}
+                      className={`flex items-center cursor-pointer flex-1 ${isRTL ? "flex-row-reverse" : ""}`}
                     >
-                      <CreditCard className={`w-6 h-6 ${language === "ar" ? "ml-3" : "mr-3"} ${paymentMethod === "card" ? "text-[#34a853]" : "text-gray-600"}`} />
+                      <CreditCard className={`w-6 h-6 ${isRTL ? "ml-3" : "mr-3"} ${paymentMethod === "card" ? "text-[#34a853]" : "text-gray-600"}`} />
                       <span className={`text-lg font-semibold ${paymentMethod === "card" ? "text-[#34a853]" : "text-gray-700"}`}>
                         {language === "ar" ? "بطاقة ائتمان/خصم" : "Credit/Debit Card"}
                       </span>
@@ -309,15 +317,15 @@ export default function DonateFormPage() {
                       paymentMethod === "bank" 
                         ? "bg-green-50 border-[#34a853] shadow-lg" 
                         : "hover:bg-gray-50 border-gray-200"
-                    } ${language === "ar" ? "space-x-reverse" : ""}`}
+                    } ${isRTL ? "space-x-reverse" : ""}`}
                     onClick={() => setPaymentMethod("bank")}
                   >
                     <RadioGroupItem value="bank" id="bank" className="cursor-pointer" />
                     <Label 
                       htmlFor="bank" 
-                      className={`flex items-center cursor-pointer flex-1 ${language === "ar" ? "flex-row-reverse" : ""}`}
+                      className={`flex items-center cursor-pointer flex-1 ${isRTL ? "flex-row-reverse" : ""}`}
                     >
-                      <Banknote className={`w-6 h-6 ${language === "ar" ? "ml-3" : "mr-3"} ${paymentMethod === "bank" ? "text-[#34a853]" : "text-gray-600"}`} />
+                      <Banknote className={`w-6 h-6 ${isRTL ? "ml-3" : "mr-3"} ${paymentMethod === "bank" ? "text-[#34a853]" : "text-gray-600"}`} />
                       <span className={`text-lg font-semibold ${paymentMethod === "bank" ? "text-[#34a853]" : "text-gray-700"}`}>
                         {language === "ar" ? "تحويل بنكي" : "Bank Transfer"}
                       </span>
@@ -426,7 +434,7 @@ export default function DonateFormPage() {
               {paymentMethod !== "bank" && (
                 <Button 
                   onClick={handleDonate}
-                  disabled={isLoading || (!amount && !customAmount) || !paymentMethod}
+                  disabled={isLoading || (!amount && !customAmount) || !paymentMethod || !isValidCustomerInfo(customerInfo)}
                   className="w-full bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold py-6 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isLoading ? (
