@@ -5,18 +5,22 @@ import CustomVideoPlayer from './custom-video-player'
 
 interface HeroVideoProps {
   className?: string
+  src?: string
+  poster?: string
 }
 
-export default function HeroVideo({ className = "h-full w-full" }: HeroVideoProps) {
-  // MUX video source for optimized streaming
+export default function HeroVideo({ className = "h-full w-full", src, poster }: HeroVideoProps) {
+  // Default MUX video source for optimized streaming
   const muxVideoUrl = "https://stream.mux.com/ZLLecc3gAF2cvMgjM026xKi4t4r200ndMKuAPzReH9021I.m3u8"
+  const videoSrc = src || muxVideoUrl
+  const posterSrc = poster || "/cover-mobil-isnad.png"
 
   return (
     <div className={className}>
       {/* Mobile: show static cover image */}
       <div className="relative h-full w-full block md:hidden">
         <Image
-          src="/cover-mobil-isnad.png"
+          src={posterSrc}
           alt="ISNAD Foundation hero cover"
           fill
           priority
@@ -28,7 +32,7 @@ export default function HeroVideo({ className = "h-full w-full" }: HeroVideoProp
       {/* Desktop/Tablet: show streaming video */}
       <div className="hidden md:block h-full w-full">
         <CustomVideoPlayer
-          src={muxVideoUrl}
+          src={videoSrc}
           autoPlay={true}
           muted={true}
           loop={true}

@@ -174,7 +174,15 @@ export default function Home() {
         className="relative h-screen w-full overflow-hidden"
       >
         <div className="absolute inset-0 z-0 hero-video">
-          <HeroVideo className="h-full w-full object-contain" />
+          {/* <HeroVideo className="h-full w-full object-contain" /> */}
+          <Image 
+            src="/hero-cover.jpg"
+            className="w-full h-full object-contain"
+            alt="hero cover"
+            fill
+            priority
+            sizes="100vw"
+          />
         </div>
       </section>
 

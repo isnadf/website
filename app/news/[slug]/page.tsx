@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import GSAPReveal from "@/components/gsap-reveal"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
+import HeroVideo from "@/components/hero-video"
 
 // Define the type for article data
 type ArticleData = {
@@ -129,7 +130,7 @@ const newsArticles: Record<string, ArticleData> = {
         "وتمنح مؤسسة إسناد، في هذه المرحلة التي أُطلقت بشراكة استراتيجية مع مؤسسة الخدمت يوروب (Alkhidmat Europe)، دعماً مالياً شهرياً لمدة 12 شهراً للطلبة المقبولين، في خطوة تهدف إلى التخفيف من أعبائهم الدراسية وتمكينهم من مواصلة تعليمهم العالي في ظل التحديات القائمة.",
         "وتُعد منحة \"نبض الحياة\" من أبرز البرامج التي أطلقتها مؤسسة إسنَاد والتي تركز بشكل خاص على دعم الطلبة الفلسطينيين في التخصصات الطبية، ولا سيما من قطاع غزة، الذين تأثرت مسيرتهم التعليمية جراء الأوضاع الإنسانية القاسية والحصار والحروب المتكررة.",
         "ويستهدف البرنامج في مراحله المتتالية تمكين نحو 1000 طالب فلسطيني من استكمال دراستهم الطبية، ضمن خطة طموحة تمتد على خمس سنوات، تُعنى بالاستثمار في الكفاءات العلمية الشابة، وإعداد جيل طبي مؤهل يساهم في خدمة المجتمع الفلسطيني وتعزيز صموده.",
-        "وتُعد مؤسسة إسنَاد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
+        "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
       ]
     }
   },
@@ -145,6 +146,7 @@ const newsArticles: Record<string, ArticleData> = {
       ar: "المنح الدراسية"
     },
     heroImage: "/LastNews/latestnews4.jpeg",
+    heroVideo: "/newVid/hero-pusleOfLife.mp4",
     content: {
       en: [
         "Istanbul / Turkey",
@@ -343,9 +345,9 @@ export default function NewsArticlePage() {
       {/* Hero Section */}
       <section className="relative h-[calc(70vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
         <div className="absolute inset-0 z-0" ref={videoContainerRef}>
+          {/*
           {article.heroVideo ? (
             <div className="relative w-full h-full">
-              {/* Video Skeleton */}
               {!videoLoaded && (
                 <div className="absolute inset-0 z-10 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
                   <div className="flex flex-col items-center justify-center space-y-4">
@@ -359,23 +361,14 @@ export default function NewsArticlePage() {
                 </div>
               )}
 
-              {/* Video Element */}
               {videoInView && (
-                <video
-                  ref={videoRef}
-                  src={article.heroVideo}
-                  poster={article.image || "/latestnews4.jpeg?height=600&width=1200"}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  onCanPlayThrough={handleVideoCanPlayThrough}
-                  onError={handleVideoError}
-                  className={`absolute inset-0 w-full h-full object-contain object-center transition-opacity duration-700 ${
-                    videoLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
+                <div className="absolute inset-0 w-full h-full">
+                  <HeroVideo
+                    className="h-full w-full"
+                    src={article.heroVideo}
+                    poster={article.image || "/latestnews4.jpeg?height=600&width=1200"}
+                  />
+                </div>
               )}
             </div>
           ) : (
@@ -387,6 +380,15 @@ export default function NewsArticlePage() {
               height={1080}
             />
           )}
+          */}
+
+          <Image
+            src={article.heroImage || article.image || "/cover3.png"}
+            alt={article.title[language]}
+            className="h-full w-full object-contain object-center"
+            width={1920}
+            height={1080}
+          />
         </div>
         {/* Page Indicator */}
         <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-10">
@@ -604,65 +606,131 @@ export default function NewsArticlePage() {
                     {language === 'ar' ? 'أحدث الفيديوهات' : 'Latest Videos'}
                   </h3>
                 </div>
-                <div className={`grid gap-6 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "md:grid-cols-2" : "md:grid-cols-4"}`}>
-                  {/* Video 1 */}
-                  <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "" : ""}`}>
-                    <video
-                      className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
-                      controls
-                      preload="metadata"
-                    >
-                      <source src={slug === "pulse-of-life-gaza-medical-scholarships" ? "/newsVid[1]/vid1.mp4" : "/newVid/lastnews1.mp4"} type="video/mp4" />
-                      {language === 'ar'
-                        ? 'متصفحك لا يدعم تشغيل الفيديو'
-                        : 'Your browser does not support the video tag.'
-                      }
-                    </video>
-                  </div>
+                <div className={`grid gap-6 ${slug === "pulse-of-life-disbursement" ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
+                  {slug === "pulse-of-life-disbursement" ? (
+                    <>
+                      {/* Video 1 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/vid1.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
 
-                  {/* Video 2 */}
-                  <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "" : ""}`}>
-                    <video
-                      className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
-                      controls
-                      preload="metadata"
-                    >
-                      <source src={slug === "pulse-of-life-gaza-medical-scholarships" ? "/newsVid[1]/vid2.mp4" : "/newVid/lastnews2.mp4"} type="video/mp4" />
-                      {language === 'ar'
-                        ? 'متصفحك لا يدعم تشغيل الفيديو'
-                        : 'Your browser does not support the video tag.'
-                      }
-                    </video>
-                  </div>
-                  {/* Video 3 */}
-                  <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "" : ""}`}>
-                    <video
-                      className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
-                      controls
-                      preload="metadata"
-                    >
-                      <source src={slug === "pulse-of-life-gaza-medical-scholarships" ? "/newsVid[1]/vid3.mp4" : "/newVid/new4Vid.mp4"} type="video/mp4" />
-                      {language === 'ar'
-                        ? 'متصفحك لا يدعم تشغيل الفيديو'
-                        : 'Your browser does not support the video tag.'
-                      }
-                    </video>
-                  </div>
-                  {/* Video 4 - Only for pulse-of-life-disbursement */}
-                  {slug === "pulse-of-life-disbursement" && (
-                    <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
-                      <video
-                        className="w-full max-h-[400px] object-contain transition-opacity duration-700"
-                        controls
-                        preload="metadata"
-                      >
-                        <source src="/newVid/nabd-alyha2.mp4" type="video/mp4" />
-                        {language === 'ar'
-                          ? 'متصفحك لا يدعم تشغيل الفيديو'
-                          : 'Your browser does not support the video tag.'
-                        }
-                      </video>
-                    </div>
+                      {/* Video 2 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/vid2.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+
+                      {/* Video 3 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/vid3.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+
+                      {/* Video 4 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/vid4.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+
+                      {/* Video 5 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/vid5.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+
+                      {/* Video 6 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/vid6.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+
+                      {/* Video 7 */}
+                      <div className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg">
+                        <video
+                          className="w-full max-h-[400px] object-contain transition-opacity duration-700"
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newVid/vid7.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Video 1 (Gaza scholarships) */}
+                      <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "" : ""}`}>
+                        <video
+                          className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newsVid[1]/vid1.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+
+                      {/* Video 2 (Gaza scholarships) */}
+                      <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "" : ""}`}>
+                        <video
+                          className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newsVid[1]/vid2.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+
+                      {/* Video 3 (Gaza scholarships) */}
+                      <div className={`group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg ${slug === "pulse-of-life-gaza-medical-scholarships" ? "" : ""}`}>
+                        <video
+                          className={`w-full transition-opacity duration-700 ${slug === "pulse-of-life-gaza-medical-scholarships" ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/newsVid[1]/vid3.mp4" type="video/mp4" />
+                          {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                        </video>
+                      </div>
+                    </>
                   )}
                 </div>
               </GSAPReveal>
