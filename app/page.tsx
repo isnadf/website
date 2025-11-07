@@ -71,9 +71,10 @@ export default function Home() {
     { name: "Milli Gençlik Vakfı", logo: "/partners/p1.png", type: "Academic Partner" },
     { name: "YediHilal", logo: "/partners/p2.png", type: "Academic Partner" },
     { name: "Hüdayi Vakfı", logo: "/partners/p3.jpeg", type: "Academic Partner" },
-    { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: "International Organization" },
-    { name: "Alkhidmat Europe", logo: "/partners/p6.png", type: "Government Partner" }
+    { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: "International Organization" }
   ]
+
+  const specialPartner = { name: "Cinta Gaza Malaysia", logo: "/partners/p6.svg", type: "International Organization" }
 
   const newsCards = [
     {
@@ -622,7 +623,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-5 gap-8">
             {partners.map((partner, index) => (
-              <GSAPReveal key={index} animation="fade" delay={index * 0.1}>
+              <GSAPReveal key={partner.name} animation="fade" delay={index * 0.1}>
                 <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-primary/5 dark:hover:bg-primary/10 hover:shadow-md">
                   <div className="flex items-center justify-center h-32 mb-4">
                     <Image
@@ -631,6 +632,7 @@ export default function Home() {
                       className="max-h-32 w-auto object-contain transition-all duration-300 hover:scale-105"
                       width={200}
                       height={128}
+                      sizes="(min-width: 1024px) 18vw, 50vw"
                     />
                   </div>
                   <p className="font-medium text-black dark:text-white text-sm md:text-base">
@@ -639,6 +641,24 @@ export default function Home() {
                 </div>
               </GSAPReveal>
             ))}
+
+            <GSAPReveal key={specialPartner.name} animation="fade" delay={partners.length * 0.1}>
+              <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-primary/5 dark:hover:bg-primary/10 hover:shadow-md">
+                <div className="flex items-center justify-center h-32 mb-4">
+                  <Image
+                    src={specialPartner.logo}
+                    alt={specialPartner.name}
+                    className="h-24 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={160}
+                    height={160}
+                    sizes="(min-width: 1024px) 18vw, 50vw"
+                  />
+                </div>
+                <p className="font-medium text-black dark:text-white text-sm md:text-base">
+                  {specialPartner.name}
+                </p>
+              </div>
+            </GSAPReveal>
           </div>
         </div>
       </section>
