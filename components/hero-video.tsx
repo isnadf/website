@@ -10,9 +10,8 @@ interface HeroVideoProps {
 }
 
 export default function HeroVideo({ className = "h-full w-full", src, poster }: HeroVideoProps) {
-  // Default MUX video source for optimized streaming
-  const muxVideoUrl = "https://stream.mux.com/ZLLecc3gAF2cvMgjM026xKi4t4r200ndMKuAPzReH9021I.m3u8"
-  const videoSrc = src || muxVideoUrl
+  // Only use provided MP4 (or other) source; no default HLS
+  const videoSrc = src
   const posterSrc = poster || "/cover-mobil-isnad.png"
 
   return (
@@ -31,17 +30,28 @@ export default function HeroVideo({ className = "h-full w-full", src, poster }: 
 
       {/* Desktop/Tablet: show streaming video */}
       <div className="hidden md:block h-full w-full">
-        <CustomVideoPlayer
-          src={videoSrc}
-          autoPlay={true}
-          muted={true}
-          loop={true}
-          playsInline={true}
-          preload="auto"
-          className="h-full w-full"
-          videoClassName="object-cover"
-          lazy={false}
-        />
+        {videoSrc ? (
+          <CustomVideoPlayer
+            src={videoSrc}
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            playsInline={true}
+            preload="auto"
+            className="h-full w-full"
+            videoClassName="object-cover"
+            lazy={false}
+          />
+        ) : (
+          <Image
+            src={posterSrc}
+            alt="ISNAD Foundation hero cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        )}
       </div>
     </div>
   )

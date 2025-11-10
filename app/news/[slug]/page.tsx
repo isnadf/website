@@ -179,7 +179,7 @@ const newsArticles: Record<string, ArticleData> = {
     },
     image: "/hero-cover.jpg",
     heroImage: "/hero-cover.jpg",
-    heroVideo: "/newVid/VIDEO-2025-NOC-10-2.mp4",
+    heroVideo: "https://stream.mux.com/tUcLISpzq9mnuVu1OpF7LXG1CHZTZCbgLV02Zq6ilkVg.m3u8",
     content: {
       en: [
         "Gaza – The Isnad Foundation for Palestinian Student Support launched the new phase of the 'Pulse of Life' scholarship program, specifically designed for medical students in the Gaza Strip. The foundation has begun disbursing monthly scholarships for a full year, renewable, aiming to enable students to continue their education amid the exceptional circumstances facing the sector.",

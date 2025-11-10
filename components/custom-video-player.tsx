@@ -143,6 +143,8 @@ export default function CustomVideoPlayer({
       video.setAttribute('playsinline', '')
       video.setAttribute('webkit-playsinline', '')
       video.setAttribute('x-webkit-airplay', 'allow')
+      // Hint to avoid remote playback disruptions
+      video.setAttribute('disableRemotePlayback', '')
       video.src = videoSrc
       
       // Add error handling for regular video sources
@@ -165,6 +167,9 @@ export default function CustomVideoPlayer({
       })
 
       // Attempt to auto-recover if the stream stalls or waits
+      let lastTime = 0
+      let lastAdvanceTs = performance.now()
+
       const handleStalled = () => {
         // Try nudging the playback to continue
         const current = video.currentTime
@@ -181,6 +186,35 @@ export default function CustomVideoPlayer({
           // ignore
         }
       }
+      const handleTimeUpdateGuard = () => {
+        const now = performance.now()
+        if (video.currentTime > lastTime + 0.05) {
+          lastTime = video.currentTime
+          lastAdvanceTs = now
+          return
+        }
+        // If playback hasn't advanced for > 2500ms while not paused/ended, attempt recovery
+        if (!video.paused && !video.ended && now - lastAdvanceTs > 2500) {
+          // If readyState is low, try reload and resume
+          if (video.readyState < 3) {
+            try {
+              const ct = video.currentTime
+              video.load()
+              video.currentTime = ct
+            } catch {}
+          }
+          handleStalled()
+        }
+      }
+      const handleEndedLoop = () => {
+        if (loop) {
+          try {
+            video.currentTime = 0
+            const p = video.play()
+            if (p && typeof p.then === 'function') p.catch(() => {})
+          } catch {}
+        }
+      }
       video.addEventListener('stalled', handleStalled)
       video.addEventListener('waiting', handleStalled)
       video.addEventListener('suspend', () => {
@@ -189,6 +223,8 @@ export default function CustomVideoPlayer({
           handleStalled()
         }
       })
+      video.addEventListener('timeupdate', handleTimeUpdateGuard)
+      video.addEventListener('ended', handleEndedLoop)
 
       // Cleanup for non-HLS listeners
       return () => {
@@ -196,6 +232,8 @@ export default function CustomVideoPlayer({
         video.removeEventListener('loadeddata', () => {})
         video.removeEventListener('stalled', handleStalled)
         video.removeEventListener('waiting', handleStalled)
+        video.removeEventListener('timeupdate', handleTimeUpdateGuard)
+        video.removeEventListener('ended', handleEndedLoop)
         // Note: suspend uses anonymous handler; safe to ignore
       }
     }
