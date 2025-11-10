@@ -7,40 +7,46 @@ interface HeroVideoProps {
   className?: string
   src?: string
   poster?: string
+  objectFit?: "cover" | "contain"
+  autoPlay?: boolean
+  muted?: boolean
+  loop?: boolean
+  playsInline?: boolean
+  preload?: "none" | "metadata" | "auto"
+  lazy?: boolean
 }
 
-export default function HeroVideo({ className = "h-full w-full", src, poster }: HeroVideoProps) {
+export default function HeroVideo({
+  className = "h-full w-full",
+  src,
+  poster,
+  objectFit = "cover",
+  autoPlay = true,
+  muted = true,
+  loop = true,
+  playsInline = true,
+  preload = "auto",
+  lazy = false
+}: HeroVideoProps) {
   // Only use provided MP4 (or other) source; no default HLS
   const videoSrc = src
   const posterSrc = poster || "/cover-mobil-isnad.png"
+  const objectClass = objectFit === "contain" ? "object-contain" : "object-cover"
 
   return (
     <div className={className}>
-      {/* Mobile: show static cover image */}
-      <div className="relative h-full w-full block md:hidden">
-        <Image
-          src={posterSrc}
-          alt="ISNAD Foundation hero cover"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </div>
-
-      {/* Desktop/Tablet: show streaming video */}
-      <div className="hidden md:block h-full w-full">
+      <div className="h-full w-full">
         {videoSrc ? (
           <CustomVideoPlayer
             src={videoSrc}
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            playsInline={true}
-            preload="auto"
+            autoPlay={autoPlay}
+            muted={muted}
+            loop={loop}
+            playsInline={playsInline}
+            preload={preload}
             className="h-full w-full"
-            videoClassName="object-cover"
-            lazy={false}
+            videoClassName={`h-full w-full ${objectClass}`}
+            lazy={lazy}
           />
         ) : (
           <Image
@@ -49,7 +55,7 @@ export default function HeroVideo({ className = "h-full w-full", src, poster }: 
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className={`${objectClass}`}
           />
         )}
       </div>

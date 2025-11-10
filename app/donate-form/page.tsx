@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { CreditCard, Banknote, Gift, Heart, Shield, Users, Copy, Check } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 
 
 export default function DonateFormPage() {
@@ -131,6 +132,11 @@ export default function DonateFormPage() {
     { icon: Users, value: "500+", label: language === "ar" ? "طالب مدعوم" : "Supported Students" },
     { icon: Gift, value: "₺1M+", label: language === "ar" ? "منحة مقدمة" : "Scholarships Provided" },
     { icon: Heart, value: "20+", label: language === "ar" ? "دولة مستفيدة" : "Beneficiary Countries" },
+  ]
+
+  const paymentBrands = [
+    { name: "Visa", logo: "/visa.svg" },
+    { name: "Mastercard", logo: "/mastercard.svg" },
   ]
 
   const faqs = [
@@ -431,20 +437,36 @@ export default function DonateFormPage() {
 
               {/* Donate Button */}
               {paymentMethod !== "bank" && (
-                <Button 
-                  onClick={handleDonate}
-                  disabled={isLoading || (!amount && !customAmount) || !paymentMethod || !isValidCustomerInfo(customerInfo)}
-                  className="w-full bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold py-6 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                >
-                  {isLoading ? (
-                    <div className="flex items-center space-x-2">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>{language === "ar" ? "جاري التحميل..." : "Loading..."}</span>
-                    </div>
-                  ) : (
-                    <span className="text-xl">{language === "ar" ? "ساهم الآن" : "Donate Now"}</span>
-                  )}
-                </Button>
+                <>
+                  <Button 
+                    onClick={handleDonate}
+                    disabled={isLoading || (!amount && !customAmount) || !paymentMethod || !isValidCustomerInfo(customerInfo)}
+                    className="w-full bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold py-6 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  >
+                    {isLoading ? (
+                      <div className="flex items-center space-x-2">
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>{language === "ar" ? "جاري التحميل..." : "Loading..."}</span>
+                      </div>
+                    ) : (
+                      <span className="text-xl">{language === "ar" ? "ساهم الآن" : "Donate Now"}</span>
+                    )}
+                  </Button>
+
+                  <div className="mt-6 flex items-center justify-center gap-2">
+                    {paymentBrands.map((brand) => (
+                      <Image
+                        key={brand.name}
+                        src={brand.logo}
+                        alt={brand.name}
+                        width={brand.name === "Mastercard" ? 100 : 80}
+                        height={brand.name === "Mastercard" ? 35 : 28}
+                        className={brand.name === "Mastercard" ? "h-9 w-auto" : "h-7 w-auto"}
+                        priority={false}
+                      />
+                    ))}
+                  </div>
+                </>
               )}
 
               {error && (

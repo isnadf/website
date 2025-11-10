@@ -146,7 +146,6 @@ const newsArticles: Record<string, ArticleData> = {
       ar: "المنح الدراسية"
     },
     heroImage: "/LastNews/latestnews4.jpeg",
-    heroVideo: "/newVid/hero-pusleOfLife.mp4",
     content: {
       en: [
         "Istanbul / Turkey",
@@ -179,7 +178,7 @@ const newsArticles: Record<string, ArticleData> = {
     },
     image: "/hero-cover.jpg",
     heroImage: "/hero-cover.jpg",
-    heroVideo: "https://stream.mux.com/tUcLISpzq9mnuVu1OpF7LXG1CHZTZCbgLV02Zq6ilkVg.m3u8",
+    heroVideo: "https://stream.mux.com/2LDUskhxrh15pitM5xk6DeVXl5mOVIQbW5yHTzsyK00A.m3u8",
     content: {
       en: [
         "Gaza – The Isnad Foundation for Palestinian Student Support launched the new phase of the 'Pulse of Life' scholarship program, specifically designed for medical students in the Gaza Strip. The foundation has begun disbursing monthly scholarships for a full year, renewable, aiming to enable students to continue their education amid the exceptional circumstances facing the sector.",
@@ -225,7 +224,7 @@ const pulseOfLifeDisbursementVideos = [
 ] as const
 
 const pulseOfLifeGazaVideos = [
-  "/newVid/VIDEO-2025-NOV-10.mp4",
+  "/newVid/VIDEO-2025-NOC-10-2.mp4",
   "/newsVid[1]/vid1.mp4",
   "/newsVid[1]/vid2.mp4",
   "/newsVid[1]/vid3.mp4"
@@ -349,13 +348,14 @@ export default function NewsArticlePage() {
   return (
     <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
-      <section className="relative h-[calc(70vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(80vh)] xl:h-[calc(85vh)] w-full overflow-hidden mt-24">
+      <section className="relative h-[calc(80vh)] sm:h-[calc(70vh)] md:h-[calc(80vh)] lg:h-[calc(90vh)] xl:h-[calc(95vh)] w-full overflow-hidden mt-24">
         <div className="absolute inset-0 z-0" ref={videoContainerRef}>
           {article.heroVideo && videoInView ? (
             <HeroVideo
               className="h-full w-full"
               src={article.heroVideo}
               poster={article.heroImage || article.image || "/cover3.png"}
+              objectFit="contain"
             />
           ) : (
             <Image
