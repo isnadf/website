@@ -65,15 +65,19 @@ export default function CustomVideoPlayer({
 
     const isHlsStream = videoSrc.includes('.m3u8')
     
-    // Set a timeout to prevent indefinite loading
-    const loadingTimeout = setTimeout(() => {
-      if (isLoading) {
-        console.warn('Video loading timeout')
-        setHasError(true)
-        setIsLoading(false)
-      }
-    }, 10000) // 10 second timeout
-    
+    let loadingTimeout: number | undefined = undefined
+
+    // For HLS streams, set a conservative timeout; for MP4 progressive, rely on loadeddata
+    if (isHlsStream) {
+      loadingTimeout = window.setTimeout(() => {
+        if (isLoading) {
+          console.warn('Video loading timeout')
+          setHasError(true)
+          setIsLoading(false)
+        }
+      }, 30000) // 30 second timeout for slower networks
+    }
+ 
     if (isHlsStream && Hls.isSupported() && !video.canPlayType('application/vnd.apple.mpegurl')) {
       // Use HLS.js for HLS streams
       if (hlsRef.current) {
@@ -135,6 +139,10 @@ export default function CustomVideoPlayer({
       })
     } else {
       // Regular video or native HLS support
+      // Ensure inline playback attributes for iOS Safari
+      video.setAttribute('playsinline', '')
+      video.setAttribute('webkit-playsinline', '')
+      video.setAttribute('x-webkit-airplay', 'allow')
       video.src = videoSrc
       
       // Add error handling for regular video sources
@@ -151,14 +159,49 @@ export default function CustomVideoPlayer({
       })
       
       video.addEventListener('loadeddata', () => {
-        clearTimeout(loadingTimeout)
+        if (loadingTimeout !== undefined) clearTimeout(loadingTimeout)
         setIsLoading(false)
         setHasError(false)
       })
+
+      // Attempt to auto-recover if the stream stalls or waits
+      const handleStalled = () => {
+        // Try nudging the playback to continue
+        const current = video.currentTime
+        try {
+          video.currentTime = Math.max(0, current - 0.001)
+          // Attempt to resume
+          const playPromise = video.play()
+          if (playPromise && typeof playPromise.then === 'function') {
+            playPromise.catch(() => {
+              // ignore autoplay block here
+            })
+          }
+        } catch {
+          // ignore
+        }
+      }
+      video.addEventListener('stalled', handleStalled)
+      video.addEventListener('waiting', handleStalled)
+      video.addEventListener('suspend', () => {
+        // Some browsers fire suspend during normal playback; only act if not playing
+        if (video.paused && autoPlay) {
+          handleStalled()
+        }
+      })
+
+      // Cleanup for non-HLS listeners
+      return () => {
+        video.removeEventListener('error', () => {})
+        video.removeEventListener('loadeddata', () => {})
+        video.removeEventListener('stalled', handleStalled)
+        video.removeEventListener('waiting', handleStalled)
+        // Note: suspend uses anonymous handler; safe to ignore
+      }
     }
 
     return () => {
-      clearTimeout(loadingTimeout)
+      if (loadingTimeout !== undefined) clearTimeout(loadingTimeout)
       if (hlsRef.current) {
         hlsRef.current.destroy()
         hlsRef.current = null
@@ -295,6 +338,7 @@ export default function CustomVideoPlayer({
         playsInline={playsInline}
         poster={poster}
         preload={isInView ? preload : "none"}
+        crossOrigin="anonymous"
         className={`w-full h-full ${videoClassName || 'object-cover'}`}
       />
       

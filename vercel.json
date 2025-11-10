@@ -4,5 +4,31 @@
       "path": "/api/admin/cleanup-payments",
       "schedule": "0 */12 * * *"
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.m3u8",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=31536000, immutable" },
+        { "key": "Content-Type", "value": "application/vnd.apple.mpegurl" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.ts",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=31536000, immutable" },
+        { "key": "Content-Type", "value": "video/MP2T" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(mp4|webm|ogg)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=31536000, immutable" },
+        { "key": "Accept-Ranges", "value": "bytes" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
   ]
 }
