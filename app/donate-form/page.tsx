@@ -53,10 +53,10 @@ export default function DonateFormPage() {
   }
 
   const bankInfo = {
-    accountName: "FİLİSTİNLİ ÖĞRENCİLERİ DESTEKLEME VE DAYANIŞMA DERNEĞİ",
-    tryAccount: "TR230020900001928671000001",
-    usdAccount: "TR660020900001928671000003",
-    eurAccount: "TR930020900001928671000002",
+    accountName: "İSNAD ÖĞRENCİ DESTEK DERNEĞİ",
+    tryAccount: "TR420020900002315850000001",
+    usdAccount: "TR150020900002315850000002",
+    eurAccount: "TR850020900002315850000003",
     bankName: "Ziraat Katılım Bankası A.S",
     swiftCode: "ZKBATRIS"
   }
@@ -75,6 +75,11 @@ export default function DonateFormPage() {
       return;
     }
 
+    setIsLoading(false);
+    setError(language === "ar" ? "الدفع غير متاح حالياً وسيعود قريباً. نعمل على تحديث معلومات الحساب." : "Donations are temporarily unavailable while we update our account details. Please try again soon.");
+    
+    /*
+    // Original payment flow - temporarily disabled while updating bank information.
     setIsLoading(true);
     setError("");
     const orderId = `ORD-${Date.now()}`;
@@ -126,6 +131,9 @@ export default function DonateFormPage() {
     } finally {
       setIsLoading(false);
     }
+    */
+
+    return;
   };
 
   const impactStats = [
