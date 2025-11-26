@@ -130,7 +130,6 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
           imageList = [
             "/seven/1.jpeg",
             "/seven/2.jpeg",
-            "/seven/video.mp4"
           ]
         }
 
