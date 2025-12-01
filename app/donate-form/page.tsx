@@ -75,11 +75,6 @@ export default function DonateFormPage() {
       return;
     }
 
-    setIsLoading(false);
-    setError(language === "ar" ? "الدفع غير متاح حالياً وسيعود قريباً. نعمل على تحديث معلومات الحساب." : "Donations are temporarily unavailable while we update our account details. Please try again soon.");
-    
-    /*
-    // Original payment flow - temporarily disabled while updating bank information.
     setIsLoading(true);
     setError("");
     const orderId = `ORD-${Date.now()}`;
@@ -131,9 +126,6 @@ export default function DonateFormPage() {
     } finally {
       setIsLoading(false);
     }
-    */
-
-    return;
   };
 
   const impactStats = [
