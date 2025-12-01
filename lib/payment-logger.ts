@@ -43,7 +43,7 @@ const initializeDatabase = async () => {
         success_at TIMESTAMP WITH TIME ZONE,
         fail_at TIMESTAMP WITH TIME ZONE,
         payment_gateway_response JSONB,
-        customer_info JSONB,
+        customer_info JSONB
       )
     `);
   } catch (error) {
