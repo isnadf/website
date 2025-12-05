@@ -10,6 +10,13 @@ export async function POST(request: NextRequest) {
     const responseCode = formData.get('ResponseCode') as string;
     const responseMessage = formData.get('ResponseMessage') as string;
     const transactionId = formData.get('TransactionId') as string;
+    const procReturnCode = formData.get('ProcReturnCode') as string;
+    const response = formData.get('Response') as string;
+    const mdStatus = formData.get('MDStatus') as string;
+    const threeDStatus = formData.get('3DStatus') as string;
+    const hostRefNum = formData.get('HostRefNum') as string;
+    const authCode = formData.get('AuthCode') as string;
+    const transId = formData.get('TransId') as string;
     const amount = formData.get('PurchAmount') as string;
     const currency = formData.get('Currency') as string;
     const hash = formData.get('Hash') as string;
@@ -17,7 +24,14 @@ export async function POST(request: NextRequest) {
     console.log("Payment success callback received:", {
       orderId,
       responseCode,
+      procReturnCode,
       responseMessage,
+      response,
+      mdStatus,
+      threeDStatus,
+      hostRefNum,
+      authCode,
+      transId,
       transactionId,
       amount,
       currency
@@ -37,9 +51,29 @@ export async function POST(request: NextRequest) {
       return NextResponse.redirect(new URL("/failed-payment", request.url), 302);
     }
 
-    // Verify payment success (ResponseCode "00" means success)
-    if (responseCode !== "00") {
-      console.error("Payment failed with response code:", responseCode, responseMessage);
+    // Verify payment success per bank samples: ProcReturnCode == "00" and 3D/MD status success
+    const normalizedCode = (procReturnCode || responseCode || "").trim();
+    const codeSuccess = ["00", "0", "0000"].includes(normalizedCode);
+    const textSuccess = (response || "").toLowerCase() === "approved";
+    const threeDSuccess = threeDStatus
+      ? threeDStatus === "1"
+      : mdStatus
+        ? ["1", "2", "3", "4"].includes(mdStatus)
+        : false;
+    const isSuccess = (codeSuccess || textSuccess) && threeDSuccess;
+
+    if (!isSuccess) {
+      console.error("Payment failed with response code:", {
+        responseCode,
+        procReturnCode,
+        responseMessage,
+        response,
+        mdStatus,
+        threeDStatus,
+        hostRefNum,
+        authCode,
+        transId,
+      });
       
       // Update payment record as failed
       const updatedPayment = await updatePaymentRecord(payment.id, {
@@ -47,7 +81,14 @@ export async function POST(request: NextRequest) {
         failAt: new Date().toISOString(),
         paymentGatewayResponse: {
           responseCode,
+          procReturnCode,
           responseMessage,
+          response,
+          mdStatus,
+          threeDStatus,
+          hostRefNum,
+          authCode,
+          transId,
           transactionId,
           hash,
           amount,
@@ -74,7 +115,14 @@ export async function POST(request: NextRequest) {
       successAt: new Date().toISOString(),
       paymentGatewayResponse: {
         responseCode,
+        procReturnCode,
         responseMessage,
+        response,
+        mdStatus,
+        threeDStatus,
+        hostRefNum,
+        authCode,
+        transId,
         transactionId,
         hash,
         amount,
