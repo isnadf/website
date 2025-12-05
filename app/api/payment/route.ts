@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
   try {
     const { orderId, amount, paymentMethod, customerInfo } = await req.json();
 
-    console.log("Payment request received:", { orderId, amount, paymentMethod });
+    console.log("Payment request received:", { orderId, amount, paymentMethod, amountType: typeof amount });
 
     // Validate inputs
     if (!amount || isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
@@ -81,8 +81,21 @@ export async function POST(req: NextRequest) {
     const orgOrderId = ""; // Empty for new transactions
     const rnd = Date.now().toString();
 
-    // Correct Ziraat hash calculation
-    const hashString = mbrId + orderId + amount + okUrl + failUrl + txnType + installmentCount + rnd + merchantPass;
+    // Format amount for Ziraat: remove decimal separator to match PHP example format
+    // PHP example shows $PurchAmount="1" for 1 TRY (no decimal separator)
+    // Example: "10.00" → "10" 
+    // For TRY currency (949), bank expects amount as integer string without decimal point
+    const numericAmount = parseFloat(amount);
+    const formattedAmount = Math.round(numericAmount).toString();
+    
+    console.log("Amount formatting:", { 
+      original: amount, 
+      numeric: numericAmount, 
+      formatted: formattedAmount 
+    });
+    
+    // Correct Ziraat hash calculation - use formatted amount (must match PurchAmount exactly)
+    const hashString = mbrId + orderId + formattedAmount + okUrl + failUrl + txnType + installmentCount + rnd + merchantPass;
     const hash = crypto.createHash("sha1").update(hashString).digest("base64");
 
     const fields: Record<string, string> = {
@@ -97,7 +110,7 @@ export async function POST(req: NextRequest) {
       FailUrl: failUrl,
       OrderId: orderId,
       OrgOrderId: orgOrderId,
-      PurchAmount: amount,
+      PurchAmount: formattedAmount,
       Lang: lang,
       Rnd: rnd,
       Hash: hash,
