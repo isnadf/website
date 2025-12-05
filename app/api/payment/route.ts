@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
 
     // Ziraat 3D Host payment configuration
     const mbrId = "12"; // Kurum Kodu
-    const userCode = "apifodd"; // From your credentials
+    const userCode = "apiısnad"; // From your credentials
     const secureType = "3DHost";
     const txnType = "Auth";
     const installmentCount = "0";
