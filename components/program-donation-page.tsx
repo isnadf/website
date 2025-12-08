@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { CreditCard, Banknote, Heart, Shield, Users, Copy, Check, Share2, CheckCircle, Globe, Gift, Sparkles, Star, Smile, ArrowRight, Leaf, X, MessageCircle, Facebook, Twitter } from "lucide-react"
+import { CreditCard, Banknote, Heart, Shield, Users, Copy, Check, Share2, CheckCircle, Globe, Gift, Sparkles, Star, Smile, ArrowRight, Leaf, X, Facebook, Twitter } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
 
@@ -223,7 +223,6 @@ export default function ProgramDonationPage({
   }
 
   const progressPercentage = Math.min((raisedAmount / goalAmount) * 100, 100)
-  const finalAmount = selectedSuggestedAmount || (customAmount ? parseFloat(customAmount) : (amount ? parseFloat(amount) : 0))
 
   // Animated counter for raised amount
   const [animatedRaised, setAnimatedRaised] = useState(0)

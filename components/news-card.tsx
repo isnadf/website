@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
+import { Card, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
@@ -18,7 +18,6 @@ interface NewsCardProps {
 }
 
 export default function NewsCard({ title, excerpt, image, href, date }: NewsCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
   const { language, t } = useLanguage()
   const isRTL = language === "ar"
 
@@ -27,8 +26,6 @@ export default function NewsCard({ title, excerpt, image, href, date }: NewsCard
       style={{ direction: isRTL ? 'rtl' : 'ltr' }}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.2 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="w-full h-full"
     >
       <Link href={href} className="block h-full">

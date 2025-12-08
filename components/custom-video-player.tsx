@@ -245,7 +245,7 @@ export default function CustomVideoPlayer({
         hlsRef.current = null
       }
     }
-  }, [videoSrc, isInView, autoPlay, isLoading])
+  }, [videoSrc, isInView, autoPlay, isLoading, loop])
 
   useEffect(() => {
     const video = videoRef.current

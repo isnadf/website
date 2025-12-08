@@ -54,7 +54,7 @@ function DialogProvider({ children, transition }: DialogProviderProps) {
 
   return (
     <DialogContext.Provider
-      //@ts-ignore
+      //@ts-expect-error - contextValue type mismatch is intentional for DialogContext
       value={contextValue}
     >
       <MotionConfig transition={transition}>{children}</MotionConfig>
@@ -256,7 +256,7 @@ function DialogContainer({
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   useEffect(() => {
     setMounted(true);

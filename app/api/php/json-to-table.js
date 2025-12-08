@@ -47,6 +47,7 @@ String.prototype.format = function()
  *                                                                              
  * @return string Converted JSON to HTML table                                  
  */                                                                             
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)      
 {                                                                               
     //Patterns for links and NULL value                                         
@@ -55,9 +56,11 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
                           '<a href="{0}">{0}</a>';                              
                                                                                   
     //Pattern for table                                                           
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     var idMarkup = tableId ? ' id="' + tableId + '"' :                          
                              '';                                                  
                                                                                   
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     var classMarkup = tableClassName ? ' class="' + tableClassName + '"' :      
                                        '';                                        
                                                                                   
