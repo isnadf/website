@@ -60,6 +60,12 @@ export default function PulseOfLifePage() {
           <StatsCounter number={5} label={t("pulse.stats.years") as string} />
           <StatsCounter number={3} label={t("pulse.stats.pillars") as string} />
         </div>
+        {/* Hero Donate Button */}
+        <div className="mt-6 mb-4">
+          <Link href="/donate/pulse-of-life" className={`inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-[#34a853] to-[#2d9249] text-white font-bold rounded-full shadow-2xl hover:from-[#2d9249] hover:to-[#34a853] transition-all duration-300 text-xl hover:scale-110 hover:shadow-3xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.1em', letterSpacing: '0.05em' } : {}}>
+            <Heart size={24} className={`${getRTLIcon()}`} /> {t("donate.donate")}
+          </Link>
+        </div>
         <div className="max-w-2xl mx-auto mt-4">
           <h2 className={`text-xl font-bold text-red-700 mb-2 flex items-center justify-center gap-2 ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
             <Heart className={`text-red-500 animate-bounce ${language === 'ar' ? 'order-last' : ''}`} size={20} />

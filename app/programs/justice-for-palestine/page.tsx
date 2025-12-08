@@ -23,6 +23,8 @@ import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function JusticeForPalestinePage() {
   const { t, language } = useLanguage()
@@ -58,6 +60,12 @@ export default function JusticeForPalestinePage() {
           <StatsCounter number={200} label={t("justice.scholarships") as string} />
           <StatsCounter number={2} label={t("justice.fields") as string} />
           <StatsCounter number={5} label={t("justice.years") as string} />
+        </div>
+        {/* Hero Donate Button */}
+        <div className="mt-6 mb-4">
+          <Link href="/donate/justice-for-palestine" className={`inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-[#34a853] to-[#2d9249] text-white font-bold rounded-full shadow-2xl hover:from-[#2d9249] hover:to-[#34a853] transition-all duration-300 text-xl hover:scale-110 hover:shadow-3xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
+            <Heart size={24} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("donate.donate")}
+          </Link>
         </div>
         <div className="max-w-4xl mx-auto mt-8 px-4">
           <div className="flex flex-col items-center mb-4">

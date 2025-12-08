@@ -21,6 +21,8 @@ import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function IbnKhaldunScholarshipPage() {
   const { t, language } = useLanguage()
@@ -56,6 +58,18 @@ export default function IbnKhaldunScholarshipPage() {
           <StatsCounter number={200} label={t("ibn-khaldun.scholarships") as string} />
           <StatsCounter number={2} label={t("ibn-khaldun.fields") as string} />
           <StatsCounter number={5} label={t("ibn-khaldun.years") as string} />
+        </div>
+        {/* Hero Donate Button */}
+        <div className={`mt-6 mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <Button
+            asChild
+            size="lg"
+            className="bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold px-10 py-5 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 text-xl hover:scale-110"
+          >
+            <Link href="/donate/ibn-khaldun">
+              <Heart size={24} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("donate.donate")}
+            </Link>
+          </Button>
         </div>
         <div className="max-w-2xl mx-auto mt-4">
           <h2 className={`text-xl font-bold text-indigo-700 mb-2 flex items-center justify-center gap-2 ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>

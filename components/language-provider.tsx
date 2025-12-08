@@ -177,6 +177,61 @@ const translations = {
     "donate.faq.recurring": "Can I make a recurring contribution?",
     "donate.faq.recurring.answer": "Yes, we offer monthly, quarterly, and annual recurring contribution options. You can set up and manage your recurring contributions through our secure payment system.",
     "donate.faq.track": "How can I track the impact of my contribution?",
+
+    // Program-specific donation pages
+    "donate.share": "Share",
+    "donate.donate": "Donate",
+    "donate.supporters": "supporters",
+    "donate.daysLeft": "days left",
+    "donate.impact": "Impact",
+    "donate.verified": "Verified for authenticity",
+    "donate.donors.title": "Donors",
+    "donate.donors.shareText": "Your share could raise over",
+    "donate.donors.recentSupporters": "Recent supporters",
+    "donate.donors.anonymous": "An Anonymous kind soul",
+    "donate.donors.ago": "ago",
+    "donate.shareModal.title": "Invite to good",
+    "donate.shareModal.description": "Giving is better together! Your share could raise over",
+    "donate.shareModal.quote": "Whoever guides someone to goodness will have a reward like the one who did it.",
+    "donate.shareModal.prophet": "Prophet Muhammad",
+
+    // Pulse of Life donation page
+    "donate.pulse.title": "Pulse of Life Scholarship Program",
+    "donate.pulse.goal": "500000",
+    "donate.pulse.raised": "160610",
+    "donate.pulse.description": "Join us in rebuilding Gaza's healthcare system by supporting medical and health sciences students. Your contribution helps provide full scholarships for 1,000 students over 5 years, creating a new generation of healthcare professionals.",
+    "donate.pulse.suggested.1.title": "Support Medical Student",
+    "donate.pulse.suggested.1.desc": "Help fund a medical student's education for one semester",
+    "donate.pulse.suggested.2.title": "Fund Clinical Training",
+    "donate.pulse.suggested.2.desc": "Support clinical training and practical experience",
+    "donate.pulse.suggested.3.title": "Full Year Scholarship",
+    "donate.pulse.suggested.3.desc": "Provide a complete year of medical education",
+    "donate.pulse.suggested.4.title": "Build Healthcare Future",
+    "donate.pulse.suggested.4.desc": "Create lasting impact for future healthcare professionals",
+
+    // Palestinian Talented donation page
+    "donate.talented.title": "Palestinian Talented Excellence Scholarship",
+    "donate.talented.goal": "500000",
+    "donate.talented.raised": "120000",
+    "donate.talented.description": "Support exceptional Palestinian students across various academic fields. This program identifies and nurtures talented youth, providing comprehensive scholarships and mentorship to develop future leaders.",
+
+    // Sustainability donation page
+    "donate.sustainability.title": "Sustainability Scholarship Program",
+    "donate.sustainability.goal": "400000",
+    "donate.sustainability.raised": "95000",
+    "donate.sustainability.description": "Invest in Palestine's green future by supporting students in energy engineering and agriculture. This program prepares 200 students to lead sustainable development initiatives.",
+
+    // Justice for Palestine donation page
+    "donate.justice.title": "Justice for Palestine Scholarship",
+    "donate.justice.goal": "450000",
+    "donate.justice.raised": "110000",
+    "donate.justice.description": "Empower Palestinian voices in international advocacy by supporting students in political science and international relations. Help train 200 future diplomats and advocates.",
+
+    // Ibn Khaldun donation page
+    "donate.ibn-khaldun.title": "Ibn Khaldun Scholarship Program",
+    "donate.ibn-khaldun.goal": "400000",
+    "donate.ibn-khaldun.raised": "88000",
+    "donate.ibn-khaldun.description": "Support research and understanding of Palestinian society through scholarships in sociology and psychology. This program enables 200 students to contribute to social development and community well-being.",
     "donate.faq.track.answer": "We provide regular updates through our newsletter and annual impact reports. You can also follow our success stories and student testimonials on our website and social media channels.",
     "donate.form.type": "Select Donation Type",
     "donate.form.general": "General Donation",
@@ -927,6 +982,61 @@ const translations = {
     "donate.faq.recurring": "هل يمكنني تقديم مساهمة متكررة؟",
     "donate.faq.recurring.answer": "نعم، نقدم خيارات المساهمة المتكررة الشهرية والربعية والسنوية. يمكنك إعداد وإدارة مساهماتك المتكررة من خلال نظام الدفع الآمن لدينا.",
     "donate.faq.track": "كيف يمكنني تتبع تأثير مساهمتي؟",
+
+    // Program-specific donation pages Arabic
+    "donate.share": "مشاركة",
+    "donate.donate": "تبرع",
+    "donate.supporters": "داعم",
+    "donate.daysLeft": "يوم متبقي",
+    "donate.impact": "التأثير",
+    "donate.verified": "متحقق من صحته",
+    "donate.donors.title": "المتبرعون",
+    "donate.donors.shareText": "مشاركتك يمكن أن تجمع أكثر من",
+    "donate.donors.recentSupporters": "الداعمون الأخيرون",
+    "donate.donors.anonymous": "نفس طيبة مجهولة",
+    "donate.donors.ago": "منذ",
+    "donate.shareModal.title": "ادعُ للخير",
+    "donate.shareModal.description": "العطاء أفضل معاً! مشاركتك يمكن أن تجمع أكثر من",
+    "donate.shareModal.quote": "من دل على خير فله مثل أجر فاعله",
+    "donate.shareModal.prophet": "رسول الله صلى الله عليه وسلم",
+
+    // Pulse of Life donation page Arabic
+    "donate.pulse.title": "برنامج منحة نبض الحياة",
+    "donate.pulse.goal": "500000",
+    "donate.pulse.raised": "160610",
+    "donate.pulse.description": "انضم إلينا في إعادة بناء نظام الرعاية الصحية في غزة من خلال دعم طلاب الطب والعلوم الصحية. تساعد مساهمتك في توفير منح دراسية كاملة لـ 1,000 طالب على مدى 5 سنوات، مما يخلق جيلاً جديداً من المهنيين الصحيين.",
+    "donate.pulse.suggested.1.title": "دعم طالب طب",
+    "donate.pulse.suggested.1.desc": "ساعد في تمويل تعليم طالب طب لفصل دراسي واحد",
+    "donate.pulse.suggested.2.title": "تمويل التدريب السريري",
+    "donate.pulse.suggested.2.desc": "ادعم التدريب السريري والخبرة العملية",
+    "donate.pulse.suggested.3.title": "منحة سنة كاملة",
+    "donate.pulse.suggested.3.desc": "وفر سنة كاملة من التعليم الطبي",
+    "donate.pulse.suggested.4.title": "بناء مستقبل الرعاية الصحية",
+    "donate.pulse.suggested.4.desc": "أنشئ تأثيراً دائماً لمهنيي الرعاية الصحية المستقبليين",
+
+    // Palestinian Talented donation page Arabic
+    "donate.talented.title": "منحة الموهوب الفلسطيني للتميز",
+    "donate.talented.goal": "500000",
+    "donate.talented.raised": "120000",
+    "donate.talented.description": "ادعم الطلاب الفلسطينيين المتميزين في مختلف المجالات الأكاديمية. يحدد هذا البرنامج الشباب الموهوبين ويرعاهم، ويوفر منحاً دراسية شاملة وإرشاداً لتطوير قادة المستقبل.",
+
+    // Sustainability donation page Arabic
+    "donate.sustainability.title": "برنامج منحة الاستدامة",
+    "donate.sustainability.goal": "400000",
+    "donate.sustainability.raised": "95000",
+    "donate.sustainability.description": "استثمر في مستقبل فلسطين الأخضر من خلال دعم الطلاب في هندسة الطاقة والزراعة. يعد هذا البرنامج 200 طالب لقيادة مبادرات التنمية المستدامة.",
+
+    // Justice for Palestine donation page Arabic
+    "donate.justice.title": "منحة العدالة لفلسطين",
+    "donate.justice.goal": "450000",
+    "donate.justice.raised": "110000",
+    "donate.justice.description": "مكن الأصوات الفلسطينية في الدعوة الدولية من خلال دعم الطلاب في العلوم السياسية والعلاقات الدولية. ساعد في تدريب 200 دبلوماسي ومحامٍ مستقبلي.",
+
+    // Ibn Khaldun donation page Arabic
+    "donate.ibn-khaldun.title": "برنامج منحة ابن خلدون",
+    "donate.ibn-khaldun.goal": "400000",
+    "donate.ibn-khaldun.raised": "88000",
+    "donate.ibn-khaldun.description": "ادعم البحث وفهم المجتمع الفلسطيني من خلال المنح الدراسية في علم الاجتماع وعلم النفس. يتيح هذا البرنامج لـ 200 طالب المساهمة في التنمية الاجتماعية ورفاهية المجتمع.",
     "donate.faq.track.answer": "نقدم تحديثات منتظمة من خلال النشرة الإخبارية والتقارير السنوية للتأثير. يمكنك أيضًا متابعة قصص النجاح وشهادات الطلاب على موقعنا الإلكتروني وقنوات التواصل الاجتماعي.",
     "donate.form.type": "اختر نوع التبرع",
     "donate.form.general": "تبرع عام",

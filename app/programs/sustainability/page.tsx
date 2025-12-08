@@ -28,6 +28,8 @@ import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function SustainabilityScholarshipPage() {
   const { t, language } = useLanguage()
@@ -79,7 +81,7 @@ export default function SustainabilityScholarshipPage() {
 
           {/* Stats */}
           <GSAPReveal animation="slide-up" delay={0.3}>
-            <div className="flex flex-wrap justify-center gap-8 mb-12">
+            <div className="flex flex-wrap justify-center gap-8 mb-8">
               <div className="text-center">
                 <StatsCounter number={200} label={t("sustainability.scholarships") as string} />
               </div>
@@ -89,6 +91,22 @@ export default function SustainabilityScholarshipPage() {
               <div className="text-center">
                 <StatsCounter number={5} label={t("sustainability.pillars") as string} />
               </div>
+            </div>
+          </GSAPReveal>
+
+          {/* Hero Donate Button */}
+          <GSAPReveal animation="slide-up" delay={0.4}>
+            <div className="mb-8">
+              <Button
+                asChild
+                size="lg"
+                className="bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold px-10 py-5 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 text-xl hover:scale-110"
+              >
+                <Link href="/donate/sustainability">
+                  <Heart className="mr-2 h-6 w-6" />
+                  {t("donate.donate")}
+                </Link>
+              </Button>
             </div>
           </GSAPReveal>
 

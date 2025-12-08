@@ -31,6 +31,8 @@ import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
+import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function PalestinianTalentedScholarshipPage() {
   const { t, language } = useLanguage()
@@ -66,6 +68,12 @@ export default function PalestinianTalentedScholarshipPage() {
           <StatsCounter number={1000} label={t("talented.scholarships") as string} />
           <StatsCounter number={8} label={t("talented.areas") as string} />
           <StatsCounter number={3} label={t("talented.pillars") as string} />
+        </div>
+        {/* Hero Donate Button */}
+        <div className="mt-6 mb-4">
+          <Link href="/donate/palestinian-talented" className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-[#34a853] to-[#2d9249] text-white font-bold rounded-full shadow-2xl hover:from-[#2d9249] hover:to-[#34a853] transition-all duration-300 text-xl hover:scale-110 hover:shadow-3xl">
+            <Heart size={24} className="-ml-1" /> {t("donate.donate")}
+          </Link>
         </div>
         <div className="max-w-3xl mx-auto bg-gradient-to-r from-yellow-50/90 to-blue-50/90 dark:bg-gradient-to-r dark:from-yellow-900/80 dark:to-blue-900/80 rounded-xl shadow-xl p-6 mt-4 border border-yellow-300">
           <h2 className="text-xl font-bold text-blue-700 mb-2 flex items-center justify-center gap-2">
