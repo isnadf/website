@@ -5,6 +5,7 @@ import Link from "next/link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ArrowRight, GraduationCap, Users, BookOpen, Award, Calendar, MessageSquare, Stethoscope, Heart, Trophy, Handshake, Scroll } from "lucide-react"
+import ImageAccordion from "@/components/ImageAccordion"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import GSAPReveal from "@/components/gsap-reveal"
@@ -12,8 +13,8 @@ import GSAPTextReveal from "@/components/gsap-text-reveal"
 import ParallaxSection from "@/components/parallax-section"
 import StatsCounter from "@/components/stats-counter"
 import ScrollingCards from "@/components/scrolling-cards"
-import HeroVideo from "@/components/hero-video"
 import Image from "next/image"
+import NewsCard from "@/components/news-card"
 
 export default function Home() {
   const { t, language } = useLanguage()
@@ -234,21 +235,29 @@ export default function Home() {
                   {t("news.badge")}
                 </div>
                 <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">{t("news.title")}</GSAPTextReveal>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t("news.subtitle")}
-                </p>
               </div>
             </GSAPReveal>
           </div>
         </div>
 
-        {/* News Cards */}
-        <ScrollingCards
-          cards={newsCards}
-          isAnyCardHovered={isAnyCardHovered}
-          onHoverChange={setIsAnyCardHovered}
-          direction={isRTL ? 'rtl' : 'ltr'}
-        />
+        {/* News Cards - 3 Cards in Center */}
+        <div className="container px-4 md:px-6">
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl w-full">
+              {newsCards.slice(0, 3).map((news, index) => (
+                <GSAPReveal key={news.href} animation="fade" delay={index * 0.1}>
+                  <NewsCard
+                    title={news.title}
+                    excerpt={news.excerpt}
+                    image={news.image}
+                    href={news.href}
+                    date={news.date}
+                  />
+                </GSAPReveal>
+              ))}
+            </div>
+          </div>
+        </div>
 
         <div className="container px-4 md:px-6 mt-8">
           <GSAPReveal animation="fade" delay={0.4}>
@@ -261,6 +270,39 @@ export default function Home() {
               </Link>
             </div>
           </GSAPReveal>
+        </div>
+      </section>
+
+      {/* Mission & Vision Highlight */}
+      <section className="py-20 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          {/* Image Accordion on Top */}
+          <div className="mb-16 w-full max-w-5xl mx-auto overflow-hidden">
+            <ImageAccordion />
+          </div>
+
+          {/* Mission & Vision Side by Side */}
+          <div className="grid gap-12 md:grid-cols-2 items-start max-w-6xl mx-auto">
+            <div className="flex flex-col items-center text-center space-y-4 max-w-xl mx-auto">
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">
+                {t("about.mission.title") as string}
+              </h3>
+              <span className="h-1 w-12 rounded-full bg-amber-500" />
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                {t("about.mission.text") as string}
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center text-center space-y-4 max-w-xl mx-auto">
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">
+                {t("about.vision.title") as string}
+              </h3>
+              <span className="h-1 w-12 rounded-full bg-amber-500" />
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                {t("about.vision.text") as string}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -613,52 +655,53 @@ export default function Home() {
                   <Handshake className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                   {t("partners.badge")}
                 </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">{t("partners.title")}</GSAPTextReveal>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t("partners.subtitle")}
-                </p>
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">
+                  {t("about.partners.title")}
+                </GSAPTextReveal>
               </div>
             </GSAPReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-5 gap-8">
-            {partners.map((partner, index) => (
-              <GSAPReveal key={partner.name} animation="fade" delay={index * 0.1}>
-                <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-primary/5 dark:hover:bg-primary/10 hover:shadow-md">
-                  <div className="flex items-center justify-center h-32 mb-4">
+          <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm p-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
+              {partners.map((partner, index) => (
+                <GSAPReveal key={partner.name} animation="fade" delay={index * 0.1}>
+                  <div className="flex flex-col items-center text-center gap-3">
+                    <div className="flex items-center justify-center h-24 w-32">
+                      <Image
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-20 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                        width={200}
+                        height={128}
+                        sizes="(min-width: 1024px) 18vw, 50vw"
+                      />
+                    </div>
+                    <p className="font-medium text-black dark:text-white text-sm md:text-base">
+                      {partner.name}
+                    </p>
+                  </div>
+                </GSAPReveal>
+              ))}
+
+              <GSAPReveal key={specialPartner.name} animation="fade" delay={partners.length * 0.1}>
+                <div className="flex flex-col items-center text-center gap-3">
+                  <div className="flex items-center justify-center h-24 w-32">
                     <Image
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="max-h-32 w-auto object-contain transition-all duration-300 hover:scale-105"
-                      width={200}
-                      height={128}
+                      src={specialPartner.logo}
+                      alt={specialPartner.name}
+                      className="h-16 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                      width={160}
+                      height={160}
                       sizes="(min-width: 1024px) 18vw, 50vw"
                     />
                   </div>
                   <p className="font-medium text-black dark:text-white text-sm md:text-base">
-                    {partner.name}
+                    {specialPartner.name}
                   </p>
                 </div>
               </GSAPReveal>
-            ))}
-
-            <GSAPReveal key={specialPartner.name} animation="fade" delay={partners.length * 0.1}>
-              <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-primary/5 dark:hover:bg-primary/10 hover:shadow-md">
-                <div className="flex items-center justify-center h-32 mb-4">
-                  <Image
-                    src={specialPartner.logo}
-                    alt={specialPartner.name}
-                    className="h-24 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={160}
-                    height={160}
-                    sizes="(min-width: 1024px) 18vw, 50vw"
-                  />
-                </div>
-                <p className="font-medium text-black dark:text-white text-sm md:text-base">
-                  {specialPartner.name}
-                </p>
-              </div>
-            </GSAPReveal>
+            </div>
           </div>
         </div>
       </section>

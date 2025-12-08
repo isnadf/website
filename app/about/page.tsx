@@ -332,33 +332,29 @@ export default function AboutPage() {
       </section> */}
 
       {/* Partners */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-950 text-black dark:text-white">
+      <section className="py-20 bg-white dark:bg-black">
         <div className="container px-4 md:px-6">
-          <div className="mx-auto max-w-5xl">
-            <div className="mb-12 text-center">
-              <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-                <HandshakeIcon className={`${isRTL ? 'ml-1' : 'mr-1'} h-4 w-4`} />
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <div className="space-y-2">
+              <div className={`inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34] ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <HandshakeIcon className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                 {t("about.partners.badge") as string}
               </div>
-              <h2 className={`mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-black dark:text-white ${isRTL ? 'tracking-wide' : ''}`} style={isRTL ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
+              <h2 className={`text-3xl font-bold sm:text-5xl text-black dark:text-white pt-4 ${isRTL ? 'tracking-wide' : ''}`} style={isRTL ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
                 {t("about.partners.title") as string}
               </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
-                {t("about.partners.subtitle") as string}
-              </p>
             </div>
+          </div>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-5">
+          <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm p-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
               {partners.map((partner) => (
-                <div
-                  key={partner.name}
-                  className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-[#1e7e34]/5 dark:hover:bg-[#1e7e34]/10 hover:shadow-md"
-                >
-                  <div className="flex items-center justify-center h-32 mb-4">
+                <div key={partner.name} className="flex flex-col items-center text-center gap-3">
+                  <div className="flex items-center justify-center h-24 w-32">
                     <Image
                       src={partner.logo}
                       alt={partner.name}
-                      className="max-h-32 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                      className="max-h-20 w-auto object-contain transition-transform duration-300 hover:scale-105"
                       width={200}
                       height={128}
                       sizes="(min-width: 1024px) 18vw, 50vw"
@@ -370,12 +366,12 @@ export default function AboutPage() {
                 </div>
               ))}
 
-              <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-[#1e7e34]/5 dark:hover:bg-[#1e7e34]/10 hover:shadow-md">
-                <div className="flex items-center justify-center h-32 mb-4">
+              <div className="flex flex-col items-center text-center gap-3">
+                <div className="flex items-center justify-center h-24 w-32">
                   <Image
                     src={specialPartner.logo}
                     alt={specialPartner.name}
-                    className="h-24 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                    className="h-16 w-auto object-contain transition-transform duration-300 hover:scale-105"
                     width={160}
                     height={160}
                     sizes="(min-width: 1024px) 18vw, 50vw"

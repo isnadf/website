@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/components/language-provider"
+import Image from "next/image"
 
 interface NewsCardProps {
   title: string
@@ -23,28 +24,39 @@ export default function NewsCard({ title, excerpt, image, href, date }: NewsCard
 
   return (
     <motion.div
+      style={{ direction: isRTL ? 'rtl' : 'ltr' }}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.2 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ direction: isRTL ? 'rtl' : 'ltr' }}
+      className="w-full h-full"
     >
-      <Card className="w-full max-w-[1000px] h-[550px] overflow-hidden transition-all hover:shadow-lg border-2 border-[#1e7e34]/20 shadow-md dark:bg-gray-900 dark:border-[#1e7e34]/30 flex flex-col">
-        <Link href={href}>
-          <div className="h-[220px] overflow-hidden">
-            <motion.img
+      <Link href={href} className="block h-full">
+        <Card className="w-full h-full overflow-hidden transition-all duration-300 hover:shadow-2xl border border-gray-200 dark:border-gray-800 shadow-md bg-white dark:bg-gray-900 flex flex-col group rounded-lg cursor-pointer">
+          {/* Image Section */}
+          <div className="relative h-[240px] overflow-hidden">
+            <Image
               src={image || "/placeholder.svg"}
               alt={title}
-              className="h-full w-full object-cover"
-              animate={{ scale: isHovered ? 1.05 : 1 }}
-              transition={{ duration: 0.4 }}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-        </Link>
-        <CardHeader className="p-6">
-          <Link href={href}>
+
+          {/* Content Section */}
+          <CardHeader className="p-5 pb-3 flex-grow">
+            {date && (
+              <p 
+                className="text-xs text-[#1e7e34] dark:text-[#1e7e34] mb-2 font-medium"
+                style={{ textAlign: isRTL ? 'right' : 'left' }}
+              >
+                {date}
+              </p>
+            )}
             <h3 
-              className="text-2xl font-bold leading-tight line-clamp-2 break-words whitespace-normal hyphens-auto text-black dark:text-white hover:text-[#1e7e34] transition-colors" 
+              className="text-lg font-bold leading-tight line-clamp-2 mb-2 text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors duration-300" 
               style={{ 
                 wordWrap: 'break-word', 
                 overflowWrap: 'break-word',
@@ -53,37 +65,30 @@ export default function NewsCard({ title, excerpt, image, href, date }: NewsCard
             >
               {title}
             </h3>
-          </Link>
-          {date && (
             <p 
-              className="text-sm text-[#1e7e34] dark:text-[#1e7e34] mt-1"
-              style={{ textAlign: isRTL ? 'right' : 'left' }}
+              className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-3" 
+              style={{ 
+                wordWrap: 'break-word', 
+                overflowWrap: 'break-word',
+                textAlign: isRTL ? 'right' : 'left'
+              }}
             >
-              {date}
+              {excerpt}
             </p>
-          )}
-        </CardHeader>
-        <CardContent className="p-6 pt-0 pb-2 flex-grow">
-          <p 
-            className="text-base text-muted-foreground leading-relaxed line-clamp-2 whitespace-normal hyphens-auto" 
-            style={{ 
-              wordWrap: 'break-word', 
-              overflowWrap: 'break-word',
-              textAlign: isRTL ? 'right' : 'left'
-            }}
-          >
-            {excerpt}
-          </p>
-        </CardContent>
-        <CardFooter className="p-6 pt-4 pb-6 mt-auto">
-          <Link href={href} className="w-full">
-            <Button className="w-full h-12 bg-white text-[#1e7e34] border-2 border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group dark:bg-gray-900 text-base font-medium">
+          </CardHeader>
+
+          {/* Footer with Button */}
+          <CardFooter className="p-5 pt-0">
+            <Button 
+              variant="outline" 
+              className="w-full h-10 border-[#1e7e34] text-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-all duration-300 group/btn text-sm"
+            >
               <span>{t("news.readMore")}</span>
-              <ArrowRight className={`ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180' : ''}`} />
+              <ArrowRight className={`ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1 ${isRTL ? 'rotate-180' : ''}`} />
             </Button>
-          </Link>
-        </CardFooter>
-      </Card>
+          </CardFooter>
+        </Card>
+      </Link>
     </motion.div>
   )
 }
