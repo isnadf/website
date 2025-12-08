@@ -72,6 +72,11 @@ export default function ProgramDonationPage({
 
   const presetAmounts = ["500", "1000", "2500", "3500", "5000"]
 
+  const paymentBrands = [
+    { name: "Visa", logo: "/visa.svg" },
+    { name: "Mastercard", logo: "/mastercard.svg" },
+  ]
+
   // Validation functions
   const isValidEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -380,8 +385,8 @@ export default function ProgramDonationPage({
                       setCustomAmount("")
                       setSelectedSuggestedAmount(null)
                     }}
-                  >
-                    ${preset}
+                    >
+                    ₺{preset}
                   </Button>
                 ))}
               </div>
@@ -392,7 +397,7 @@ export default function ProgramDonationPage({
                   {language === "ar" ? "مبلغ مخصص" : "Custom Amount"}
                 </Label>
                 <div className="flex items-center border-2 border-gray-300 rounded-xl bg-white h-16 px-4 focus-within:border-[#34a853] transition-colors">
-                  <span className="text-xl font-bold text-gray-800">$</span>
+                  <span className="text-xl font-bold text-gray-800">₺</span>
                   <input
                     type="number"
                     min="1"
@@ -544,6 +549,20 @@ export default function ProgramDonationPage({
                     )}
                   </Button>
 
+                  <div className="mt-6 flex items-center justify-center gap-2">
+                    {paymentBrands.map((brand) => (
+                      <Image
+                        key={brand.name}
+                        src={brand.logo}
+                        alt={brand.name}
+                        width={brand.name === "Mastercard" ? 100 : 80}
+                        height={brand.name === "Mastercard" ? 35 : 28}
+                        className={brand.name === "Mastercard" ? "h-9 w-auto" : "h-7 w-auto"}
+                        priority={false}
+                      />
+                    ))}
+                  </div>
+
                   {error && (
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
@@ -675,7 +694,7 @@ export default function ProgramDonationPage({
                   >
                     <div className="flex items-start justify-between mb-2">
                       <div className="text-xl font-bold text-gray-900">
-                        ${suggested.amount}
+                        ₺{suggested.amount}
                       </div>
                     </div>
                     <div className="text-sm font-semibold text-gray-900 mb-1">
@@ -762,7 +781,7 @@ export default function ProgramDonationPage({
             {/* Modal Content */}
             <div className="p-6">
               {/* Title */}
-              <h2 className={`text-2xl font-bold mb-3 ${isRTL ? "text-right" : "text-left"}`}>
+              <h2 className={`text-2xl font-bold mb-3 ${isRTL ? "text-right pr-12" : "text-left"}`}>
                 {t("donate.shareModal.title") as string}
               </h2>
 
