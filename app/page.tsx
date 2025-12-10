@@ -21,6 +21,13 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null)
   const [isAnyCardHovered, setIsAnyCardHovered] = useState(false)
   const isRTL = language === 'ar'
+  const heroImages = [
+    { src: "/hero-cover.jpg", alt: "Isnad hero cover" },
+    { src: "/main.png", alt: "Campus view" },
+    { src: "/cover3.png", alt: "Students collaboration" },
+    { src: "/hero.png", alt: "Community support" },
+  ]
+  const [activeHeroIndex, setActiveHeroIndex] = useState(0)
 
   // Create cards data array for the ScrollingCards component
   const cardsData = [
@@ -136,10 +143,10 @@ export default function Home() {
 
     // Hero section parallax and fade effects
     if (heroRef.current) {
-      const heroImages = heroRef.current.querySelectorAll(".hero-image")
+      const heroImagesEls = heroRef.current.querySelectorAll(".hero-image")
       const heroContent = heroRef.current.querySelector(".hero-content")
 
-      gsap.to(heroImages, {
+      gsap.to(heroImagesEls, {
         y: 100,
         ease: "none",
         scrollTrigger: {
@@ -168,23 +175,36 @@ export default function Home() {
     }
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveHeroIndex((prev) => (prev + 1) % heroImages.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [heroImages.length])
+
   return (
     <div dir={isRTL ? 'rtl' : 'ltr'} className={isRTL ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative h-screen w-full overflow-hidden"
+        className="relative mt-16 md:mt-20 h-[calc(100vh-96px)] min-h-[520px] w-full overflow-hidden"
       >
-        <div className="absolute inset-0 z-0 hero-video">
-          {/* <HeroVideo className="h-full w-full object-contain" /> */}
-          <Image 
-            src="/hero-cover.jpg"
-            className="w-full h-full object-contain"
-            alt="hero cover"
-            fill
-            priority
-            sizes="100vw"
-          />
+        <div className="absolute inset-0 z-0">
+          {heroImages.map((image, index) => (
+            <div
+              key={image.src}
+              className={`hero-image absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === activeHeroIndex ? "opacity-100" : "opacity-0"}`}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                priority={index === 0}
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
         </div>
       </section>
 
