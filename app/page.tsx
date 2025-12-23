@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ArrowRight, GraduationCap, Users, BookOpen, Award, Calendar, MessageSquare, Stethoscope, Heart, Trophy, Handshake, Scroll } from "lucide-react"
+import { ArrowRight, GraduationCap, Users, BookOpen, Award, Calendar, MessageSquare, Stethoscope, Heart, Trophy, Handshake, Scroll, Play, CheckCircle2, Wallet, BriefcaseMedical, Ambulance } from "lucide-react"
+import { motion, AnimatePresence } from "motion/react"
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react"
 import ImageAccordion from "@/components/ImageAccordion"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
@@ -15,6 +17,7 @@ import StatsCounter from "@/components/stats-counter"
 import ScrollingCards from "@/components/scrolling-cards"
 import Image from "next/image"
 import NewsCard from "@/components/news-card"
+import { LinkPreview } from "@/components/ui/link-preview"
 
 export default function Home() {
   const { t, language } = useLanguage()
@@ -22,12 +25,32 @@ export default function Home() {
   const [isAnyCardHovered, setIsAnyCardHovered] = useState(false)
   const isRTL = language === 'ar'
   const heroImages = [
-    { src: "/hero-cover.jpg", alt: "Isnad hero cover" },
-    { src: "/main.png", alt: "Campus view" },
-    { src: "/cover3.png", alt: "Students collaboration" },
-    { src: "/hero.png", alt: "Community support" },
+    { src: "/three/PHOTO-2025-04-20-18-04-17.jpg", alt: "Activity three group" },
+    { src: "/three/PHOTO-2025-04-20-18-04-17 2.jpg", alt: "Activity three gathering" },
+    { src: "/three/PHOTO-2025-04-20-18-04-18.jpg", alt: "Activity three moment" },
+    { src: "/three/PHOTO-2025-04-20-18-04-18 2.jpg", alt: "Activity three session" },
   ]
   const [activeHeroIndex, setActiveHeroIndex] = useState(0)
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
+  
+  const missionVisionImages = [
+    { src: "/three/PHOTO-2025-04-20-18-04-17.jpg", alt: "Activity three group", rotation: -2 },
+    { src: "/three/PHOTO-2025-04-20-18-04-17 2.jpg", alt: "Activity three gathering", rotation: 6 },
+    { src: "/three/PHOTO-2025-04-20-18-04-18.jpg", alt: "Activity three moment", rotation: -4 },
+    { src: "/three/PHOTO-2025-04-20-18-04-18 2.jpg", alt: "Activity three session", rotation: 4 },
+  ]
+
+  const handleNextImage = () => {
+    setActiveImageIndex((prev) => (prev + 1) % missionVisionImages.length)
+  }
+
+  const handlePrevImage = () => {
+    setActiveImageIndex((prev) => (prev - 1 + missionVisionImages.length) % missionVisionImages.length)
+  }
+
+  const isImageActive = (index: number) => {
+    return index === activeImageIndex
+  }
 
   // Create cards data array for the ScrollingCards component
   const cardsData = [
@@ -176,6 +199,14 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    // Preload all hero images
+    heroImages.forEach((image) => {
+      const img = new window.Image()
+      img.src = image.src
+    })
+  }, [])
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setActiveHeroIndex((prev) => (prev + 1) % heroImages.length)
     }, 3000)
@@ -187,24 +218,91 @@ export default function Home() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative mt-16 md:mt-20 h-[calc(100vh-96px)] min-h-[520px] w-full overflow-hidden"
+        className="relative mt-16 md:mt-20 h-[calc(100vh-96px)] min-h-[620px] w-full overflow-hidden"
       >
         <div className="absolute inset-0 z-0">
           {heroImages.map((image, index) => (
             <div
               key={image.src}
               className={`hero-image absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === activeHeroIndex ? "opacity-100" : "opacity-0"}`}
+              style={{ 
+                zIndex: index === activeHeroIndex ? 2 : index + 1,
+                pointerEvents: index === activeHeroIndex ? "auto" : "none"
+              }}
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
-                priority={index === 0}
+                priority={index <= 1}
                 sizes="100vw"
                 className="object-cover"
               />
             </div>
           ))}
+          <div className="absolute inset-0 bg-black/25 z-[100] pointer-events-none" />
+        </div>
+
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center space-y-5 -translate-y-24 md:-translate-y-28">
+          <button
+            aria-label={t("hero.heading") as string}
+            className="h-16 w-16 rounded-2xl bg-white/90 text-primary shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+          >
+            <Play className="h-7 w-7 text-primary" />
+          </button>
+          <div className="space-y-3">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              {t("hero.heading") as string}
+            </h1>
+            <p className="text-white/90 text-base md:text-xl font-semibold">
+              {t("hero.subheading") as string}
+            </p>
+          </div>
+        </div>
+
+        <div className="absolute bottom-28 left-0 right-0 z-10">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 bg-black/40 backdrop-blur-md rounded-2xl py-4 px-3 text-center text-white shadow-lg -translate-y-6 md:-translate-y-8">
+              <div className="space-y-1">
+                <div className="text-2xl sm:text-3xl font-bold">{t("hero.stats.students.value") as string}</div>
+                <div className="text-sm sm:text-base text-white/80">{t("hero.stats.students.label") as string}</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-2xl sm:text-3xl font-bold">{t("hero.stats.sponsorships.value") as string}</div>
+                <div className="text-sm sm:text-base text-white/80">{t("hero.stats.sponsorships.label") as string}</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-2xl sm:text-3xl font-bold">{t("hero.stats.campaigns.value") as string}</div>
+                <div className="text-sm sm:text-base text-white/80">{t("hero.stats.campaigns.label") as string}</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-2xl sm:text-3xl font-bold">{t("hero.stats.cases.value") as string}</div>
+                <div className="text-sm sm:text-base text-white/80">{t("hero.stats.cases.label") as string}</div>
+              </div>
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              <Link href="/donate-form">
+                <Button
+                  size="lg"
+                  className="bg-[#34a853] hover:bg-[#2d9249] text-white px-5 sm:px-7 py-3 rounded-full text-base sm:text-lg shadow-lg"
+                >
+                  {t("hero.cta.donate") ?? "Donate Now"}
+                </Button>
+              </Link>
+              <Link href="/donate-form">
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="bg-[#34a853] text-white hover:bg-[#2d9249] px-5 sm:px-7 py-3 rounded-full text-base sm:text-lg shadow-lg"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <span>{t("hero.cta.quickDonate") ?? "Quick Donate"}</span>
+                    <span dir="ltr">{isRTL ? "←" : "→"}</span>
+                  </span>
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -293,374 +391,212 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mission & Vision Highlight */}
-      <section className="py-20 bg-white dark:bg-black">
+      {/* Impact Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
         <div className="container px-4 md:px-6">
-          {/* Image Accordion on Top */}
-          <div className="mb-16 w-full max-w-5xl mx-auto overflow-hidden">
-            <ImageAccordion />
-          </div>
-
-          {/* Mission & Vision Side by Side */}
-          <div className="grid gap-12 md:grid-cols-2 items-start max-w-6xl mx-auto">
-            <div className="flex flex-col items-center text-center space-y-4 max-w-xl mx-auto">
-              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">
-                {t("about.mission.title") as string}
-              </h3>
-              <span className="h-1 w-12 rounded-full bg-amber-500" />
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {t("about.mission.text") as string}
-              </p>
+          <div className="grid gap-10 lg:grid-cols-2 items-center">
+            <div className={`order-2 lg:order-1 ${isRTL ? "lg:pl-10" : "lg:pr-10"}`}>
+              <div className="relative overflow-hidden rounded-3xl shadow-xl aspect-[4/3] max-w-2xl mx-auto">
+                <Image
+                  src="/EmpoweringGazaStudents.png"
+                  alt={t("impact.title") as string}
+                  width={640}
+                  height={480}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
             </div>
 
-            <div className="flex flex-col items-center text-center space-y-4 max-w-xl mx-auto">
-              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">
+            <div className="order-1 lg:order-2">
+              <div className={`space-y-4 ${isRTL ? "text-right" : "text-left"}`}>
+                <div className="text-[#1e7e34] font-semibold text-sm md:text-base">
+                  {t("impact.badge")}
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight">
+                  {t("impact.title")}
+                </h2>
+                <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
+                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                  {t("impact.description")}
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-4">
+                {[1, 2, 3, 4].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <span className="mt-1 text-[#1e7e34]">
+                      <CheckCircle2 className="h-5 w-5" />
+                    </span>
+                    <div className={isRTL ? "text-right" : "text-left"}>
+                      <h3 className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white">
+                        {t(`impact.items.${item}.title` as const)}
+                      </h3>
+                      <p className="text-muted-foreground text-sm md:text-base">
+                        {t(`impact.items.${item}.desc` as const)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision with Video */}
+      <section className="py-24 md:py-32 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-12 lg:gap-16 md:grid-cols-3 items-stretch max-w-[95rem] mx-auto">
+            {/* Vision - Left */}
+            <div className={`flex flex-col items-center text-center space-y-3 min-h-[400px] justify-center ${isRTL ? 'md:order-3' : 'md:order-1'}`}>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white text-balance">
                 {t("about.vision.title") as string}
               </h3>
-              <span className="h-1 w-12 rounded-full bg-amber-500" />
-              <p className="text-muted-foreground text-lg leading-relaxed">
+              <span className="h-1.5 w-16 rounded-full bg-amber-500" />
+              <p className="text-muted-foreground text-sm md:text-base lg:text-lg leading-snug w-full max-w-2xl text-balance">
                 {t("about.vision.text") as string}
               </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Our Programs Section */}
-      <ParallaxSection
-        backgroundImage="/s3.png?height=1080&width=1920" 
-        className="py-24 md:py-32 text-white relative overflow-hidden"
-      >
-        {/* Remove gradient overlay and floating elements */}
-        
-        <div className="container px-4 md:px-6 relative z-10">
-          <div className="flex flex-col items-center justify-center space-y-6 text-center mb-16">
-            <GSAPReveal animation="slide-up">
-              <div className="space-y-3">
-                <div className={`inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <GraduationCap className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  <span className="font-medium">{t("programs.badge")}</span>
-                </div>
-                <GSAPTextReveal className="text-4xl font-bold sm:text-6xl text-white h-20">
-                  {t("programs.title")}
-                </GSAPTextReveal>
-                <p className="max-w-[900px] text-white/90 md:text-xl/relaxed lg:text-xl/relaxed xl:text-2xl/relaxed font-light">
-                  {t("programs.subtitle")}
-                </p>
+            {/* Image Stack - Center */}
+            <div className="md:order-2 flex flex-col items-center justify-center">
+              <div className="relative h-80 w-full max-w-md mx-auto">
+                <AnimatePresence>
+                  {missionVisionImages.map((image, index) => (
+                    <motion.div
+                      key={image.src}
+                      initial={{
+                        opacity: 0,
+                        scale: 0.9,
+                        z: -100,
+                        rotate: image.rotation,
+                      }}
+                      animate={{
+                        opacity: isImageActive(index) ? 1 : 0.7,
+                        scale: isImageActive(index) ? 1 : 0.95,
+                        z: isImageActive(index) ? 0 : -100,
+                        rotate: isImageActive(index) ? 0 : image.rotation,
+                        zIndex: isImageActive(index)
+                          ? 40
+                          : missionVisionImages.length + 2 - index,
+                        y: isImageActive(index) ? [0, -80, 0] : 0,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        scale: 0.9,
+                        z: 100,
+                        rotate: image.rotation,
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute inset-0 origin-bottom"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={500}
+                        height={500}
+                        className="h-full w-full rounded-3xl object-cover object-center"
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
               </div>
-            </GSAPReveal>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-            {/* Pulse of Life Program */}
-            <GSAPReveal animation="slide-right" className="group">
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl border border-white/20">
-                <div className="p-8 md:p-10">
-                  <div className="space-y-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <div className="p-3 rounded-full bg-red-500/20">
-                          <Stethoscope className="h-6 w-6 text-red-200" />
-                        </div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">{t("programs.pulse.title")}</h3>
-                      </div>
-                      <div className="flex items-center gap-2 text-red-200">
-                        <span className="font-medium">{t("programs.pulse.category")}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-white/80">
-                        <Users className="h-5 w-5" />
-                        <span>{t("programs.pulse.scholarships")}</span>
-                      </div>
-                    </div>
-
-                    <blockquote className="relative pl-4 border-l-2 border-red-300/50 italic text-white/90 text-lg">
-                      &quot;{t("programs.pulse.description")}&quot;
-                    </blockquote>
-
-                    <div className="grid grid-cols-2 gap-4 pt-4">
-                      <div className="space-y-2">
-                        <h4 className="text-white/90 font-medium">{t("programs.pulse.focus")}</h4>
-                        <ul className="space-y-2 text-white/80">
-                          <li className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-300/50" />
-                            {t("programs.pulse.medical")}
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-300/50" />
-                            {t("programs.pulse.innovation")}
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="space-y-2">
-                        <h4 className="text-white/90 font-medium">{t("programs.pulse.features")}</h4>
-                        <ul className="space-y-2 text-white/80">
-                          <li className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-300/50" />
-                            {t("programs.pulse.full")}
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-300/50" />
-                            {t("programs.pulse.years")}
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </GSAPReveal>
-
-            {/* Palestinian Talented Program */}
-            <GSAPReveal animation="slide-left" className="group">
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl border border-white/20">
-                <div className="p-8 md:p-10">
-                  <div className="space-y-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <div className="p-3 rounded-full bg-yellow-500/20">
-                          <Award className="h-6 w-6 text-yellow-200" />
-                        </div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">{t("programs.talented.title")}</h3>
-                      </div>
-                      <div className="flex items-center gap-2 text-yellow-200">
-                        <span className="font-medium">{t("programs.talented.category")}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-white/80">
-                        <Users className="h-5 w-5" />
-                        <span>{t("programs.talented.scholarships")}</span>
-                      </div>
-                    </div>
-
-                    <blockquote className="relative pl-4 border-l-2 border-yellow-300/50 italic text-white/90 text-lg">
-                      &quot;{t("programs.talented.description")}&quot;
-                    </blockquote>
-
-                    <div className="grid grid-cols-2 gap-4 pt-4">
-                      <div className="space-y-2">
-                        <h4 className="text-white/90 font-medium">{t("programs.talented.focus")}</h4>
-                        <ul className="space-y-2 text-white/80">
-                          <li className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-yellow-300/50" />
-                            {t("programs.talented.excellence")}
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-yellow-300/50" />
-                            {t("programs.talented.leadership")}
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="space-y-2">
-                        <h4 className="text-white/90 font-medium">{t("programs.talented.features")}</h4>
-                        <ul className="space-y-2 text-white/80">
-                          <li className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-yellow-300/50" />
-                            {t("programs.talented.fields")}
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-yellow-300/50" />
-                            {t("programs.talented.support")}
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </GSAPReveal>
-          </div>
-
-          <GSAPReveal animation="fade" delay={0.4}>
-            <div className="flex justify-center pt-12">
-              <Link href="/programs">
-                <Button
-                  className={`bg-white/20 hover:bg-white/30 text-white border-white/30 group px-8 py-6 text-lg rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-105 ${isRTL ? 'flex-row-reverse' : ''}`}
+              <div className="flex gap-4 mt-6" dir="ltr">
+                <button
+                  onClick={handlePrevImage}
+                  className="group/button flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
                 >
-                  {t("programs.explore")}
-                  <ArrowRight className={`h-5 w-5 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
-                </Button>
-              </Link>
+                  <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
+                </button>
+                <button
+                  onClick={handleNextImage}
+                  className="group/button flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
+                >
+                  <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
+                </button>
+              </div>
             </div>
-          </GSAPReveal>
-        </div>
-      </ParallaxSection>
 
-      {/* Stats Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-[hsl(0,76%,40%)] via-black to-[hsl(120,61%,34%)] text-white">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={5} label={t("stats.scholarships") as string} />
-            </GSAPReveal>
-            <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={2000} label={t("stats.beneficiaries") as string} />
-            </GSAPReveal>
-            <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={3} label={t("stats.pillars") as string} />
-            </GSAPReveal>
-            <GSAPReveal animation="fade" delay={0.1}>
-              <StatsCounter number={5} label={t("stats.partners") as string} />
-            </GSAPReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Student Journey Section (replacing Program Impact) */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16">
-            <GSAPReveal animation="slide-up">
-              <div className="space-y-2">
-                <div className={`inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <Users className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  {t("journey.badge")}
-                </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20">{t("journey.title")}</GSAPTextReveal>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t("journey.subtitle")}
-                </p>
-              </div>
-            </GSAPReveal>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <GSAPReveal animation="slide-up" delay={0.1}>
-              <div className="group relative rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <Scroll className="h-6 w-6" />
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">{t("journey.application.title")}</h3>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  {t("journey.application.description")}
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.application.form")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.application.documents")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.application.screening")}
-                  </li>
-                </ul>
-              </div>
-            </GSAPReveal>
-
-            <GSAPReveal animation="slide-up" delay={0.2}>
-              <div className="group relative rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <Award className="h-6 w-6" />
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">{t("journey.selection.title")}</h3>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  {t("journey.selection.description")}
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.selection.review")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.selection.interview")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.selection.final")}
-                  </li>
-                </ul>
-              </div>
-            </GSAPReveal>
-
-            <GSAPReveal animation="slide-up" delay={0.3}>
-              <div className="group relative rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <BookOpen className="h-6 w-6" />
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">{t("journey.support.title")}</h3>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  {t("journey.support.description")}
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.support.financial")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.support.mentoring")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.support.career")}
-                  </li>
-                </ul>
-              </div>
-            </GSAPReveal>
-
-            <GSAPReveal animation="slide-up" delay={0.4}>
-              <div className="group relative rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <Trophy className="h-6 w-6" />
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">{t("journey.success.title")}</h3>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  {t("journey.success.description")}
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.success.graduation")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.success.alumni")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {t("journey.success.opportunities")}
-                  </li>
-                </ul>
-              </div>
-            </GSAPReveal>
-          </div>
-
-          <GSAPReveal animation="fade" delay={0.6}>
-            <div className="mt-12 text-center">
-              <Link href="/programs">
-                <Button className={`group bg-primary hover:bg-primary/90 text-white ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  {t("journey.start")}
-                  <ArrowRight className={`h-4 w-4 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
-                </Button>
-              </Link>
-            </div>
-          </GSAPReveal>
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-r from-primary/90 to-primary dark:from-primary/80 dark:to-primary/90">
-        <div className="container relative px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center text-white">
-            <GSAPReveal animation="slide-up">
-              <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl leading-loose [&:lang(ar)]:leading-[1.5] [&:lang(ar)]:tracking-wide">
-                {t("cta.title")}
-              </h2>
-              <p className="mb-8 text-lg text-white/90">
-                {t("cta.description")}
+            {/* Mission - Right */}
+            <div className={`flex flex-col items-center text-center space-y-3 min-h-[400px] justify-center ${isRTL ? 'md:order-1' : 'md:order-3'}`}>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white text-balance">
+                {t("about.mission.title") as string}
+              </h3>
+              <span className="h-1.5 w-16 rounded-full bg-amber-500" />
+              <p className="text-muted-foreground text-sm md:text-base lg:text-lg leading-snug w-full max-w-2xl text-balance">
+                {t("about.mission.text") as string}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/donate">
-                  <Button size="lg" className={`bg-white text-primary hover:bg-white/90 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                    {t("cta.button")}
-                    <Heart className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  </Button>
-                </Link>
-              </div>
-            </GSAPReveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Programs Section - new design */}
+      <section className="py-20 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center text-center space-y-3 mb-10">
+            <div className={`inline-flex items-center rounded-full bg-[#e6f4ea] text-[#1e7e34] px-4 py-2 text-sm font-semibold ${isRTL ? "flex-row-reverse" : ""}`}>
+              {t("programs.home.badge") as string}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+              {t("programs.home.title") as string}
+            </h2>
+            <span className="h-1 w-12 rounded-full bg-amber-400" />
+          </div>
+
+          <div className={`grid gap-6 md:grid-cols-3 ${isRTL ? "text-right" : "text-left"}`}>
+            {[
+              {
+                title: t("programs.home.card1.title") as string,
+                desc: t("programs.home.card1.desc") as string,
+                icon: <Stethoscope className="h-10 w-10" />,
+                color: "bg-[#2f5d8a]",
+                href: "/programs/pulse-of-life",
+              },
+              {
+                title: t("programs.home.card2.title") as string,
+                desc: t("programs.home.card2.desc") as string,
+                icon: <BriefcaseMedical className="h-10 w-10" />,
+                color: "bg-[#1f9f63]",
+                href: "/programs/palestinian-talented",
+              },
+              {
+                title: t("programs.home.card3.title") as string,
+                desc: t("programs.home.card3.desc") as string,
+                icon: <Ambulance className="h-10 w-10" />,
+                color: "bg-[#2f5d8a]",
+                href: "/programs/justice-for-palestine",
+              },
+            ].map((card) => (
+              <LinkPreview
+                key={card.title}
+                url={card.href}
+                className="block w-full no-underline"
+              >
+                <div
+                  className={`rounded-2xl ${card.color} text-white shadow-xl p-8 flex flex-col items-center text-center space-y-4`}
+                >
+                  {card.icon}
+                  <h3 className="text-2xl font-semibold">{card.title}</h3>
+                  <p className="text-white/90 text-sm md:text-base leading-relaxed">{card.desc}</p>
+                </div>
+              </LinkPreview>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-10">
+            <Link href="/programs">
+              <Button
+                className={`bg-[#1f9f63] hover:bg-[#188352] text-white px-8 py-6 rounded-xl text-lg shadow-lg transition-transform duration-200 hover:-translate-y-0.5 ${isRTL ? "flex-row-reverse" : ""}`}
+              >
+                {t("programs.home.button") as string}
+                <ArrowRight className={`h-5 w-5 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`} />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

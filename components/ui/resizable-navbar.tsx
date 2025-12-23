@@ -100,7 +100,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-6xl flex-row items-center justify-between self-start rounded-full bg-transparent px-3 sm:px-4 py-2 lg:flex dark:bg-transparent",
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 sm:px-5 py-2.5 lg:flex dark:bg-transparent",
         visible && "bg-white/80 dark:bg-neutral-950/80",
         className,
       )}
@@ -257,10 +257,7 @@ export const NavbarButton = ({
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
+} & (React.ComponentPropsWithoutRef<"a"> | React.ComponentPropsWithoutRef<"button">)) => {
   const baseStyles =
     "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
@@ -273,13 +270,12 @@ export const NavbarButton = ({
       "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
   };
 
-  return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
-    >
-      {children}
-    </Tag>
-  );
+  const combinedProps = {
+    ...(href ? { href } : {}),
+    ...props,
+    className: cn(baseStyles, variantStyles[variant], className),
+  };
+
+  const Component = Tag as React.ComponentType<{ children?: React.ReactNode; [key: string]: unknown }>;
+  return <Component {...(combinedProps as Record<string, unknown>)}>{children}</Component>;
 };

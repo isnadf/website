@@ -101,7 +101,7 @@ export default function Header() {
   const DonateButton = ({ className }: { className?: string }) => (
     <NavbarButton
       href="/donate"
-      className={`bg-[#34a853] text-white shadow-md hover:bg-[#2d9249] text-xs sm:text-sm leading-tight px-3 py-2 h-10 whitespace-nowrap ${className ?? ""}`}
+      className={`bg-[#34a853] text-white shadow-md hover:bg-[#2d9249] text-sm sm:text-base leading-tight px-4 sm:px-5 py-2.5 h-11 whitespace-nowrap ${className ?? ""}`}
       variant="dark"
     >
       {t("nav.donate")}
@@ -110,19 +110,35 @@ export default function Header() {
 
   const handleCloseMobile = () => setIsMobileMenuOpen(false)
 
+  const LogoBlock = () => (
+    <Link href="/" className="flex items-center gap-3 shrink-0">
+      <div className="flex items-center justify-center h-12 mt-2">
+        <Image
+          src="/logo.png"
+          alt="ifpps logo"
+          width={48}
+          height={48}
+          className="h-12 w-12 object-contain"
+          priority
+        />
+      </div>
+      <span className="flex items-center h-12 text-base sm:text-lg font-semibold text-black whitespace-nowrap leading-none">
+        IFPSS
+      </span>
+    </Link>
+  )
+
   return (
     <>
       <motion.div className="progress-bar" style={{ scaleX: 0 }} initial={{ scaleX: 0 }} />
-      <Navbar className="fixed inset-x-0 top-0 z-50 px-2 sm:px-3 pt-3 pb-2" dir={isRTL ? "rtl" : "ltr"}>
+      <div dir={isRTL ? "rtl" : "ltr"}>
+        <Navbar className="fixed inset-x-0 top-0 z-50 px-2 sm:px-3 pt-3 pb-2">
         {isDesktop && (
-          <NavBody className="rounded-2xl px-3 sm:px-4 py-3 flex items-center gap-3 lg:gap-5 flex-nowrap">
-            <Link href="/" className="flex items-center gap-2 shrink-0">
-              <Image src="/logo.png" alt="ifpps logo" width={52} height={52} className="h-11 w-11" priority />
-              <span className="text-base sm:text-lg font-semibold text-black whitespace-nowrap">IFPSS</span>
-            </Link>
+          <NavBody className="rounded-2xl px-4 sm:px-5 py-3.5 flex items-center gap-4 lg:gap-6 flex-nowrap">
+            <LogoBlock />
 
             <nav
-              className={`hidden lg:flex flex-1 items-center justify-center gap-3 lg:gap-4 whitespace-nowrap ${
+              className={`hidden lg:flex flex-1 items-center justify-center gap-4 lg:gap-5 whitespace-nowrap ${
                 isRTL ? "flex-row-reverse" : ""
               }`}
             >
@@ -131,24 +147,24 @@ export default function Header() {
                   <NavigationMenu key={item.href}>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className="text-[13px] lg:text-[14px] font-medium bg-transparent hover:bg-transparent text-black hover:text-[#34a853] px-3 py-2 whitespace-nowrap leading-tight">
+                        <NavigationMenuTrigger className="text-[15px] lg:text-[16px] font-medium bg-transparent hover:bg-transparent text-black hover:text-[#34a853] px-4 py-2.5 whitespace-nowrap leading-tight">
                           {item.name}
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                          <ul className="grid w-[400px] gap-3 p-4 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                          <ul className="grid w-[450px] gap-3.5 p-5 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                             {item.items?.map((dropdownItem) => (
                               <li key={dropdownItem.href} className="row-span-3">
                                 {dropdownItem.items ? (
-                                  <div className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none">
-                                    <div className="text-[15px] font-medium leading-none mb-2 text-black">
+                                  <div className="block select-none space-y-1 rounded-md p-3.5 leading-none no-underline outline-none">
+                                    <div className="text-[16px] font-medium leading-none mb-2.5 text-black">
                                       {dropdownItem.name}
                                     </div>
-                                    <div className="mt-2 space-y-1">
+                                    <div className="mt-2.5 space-y-1">
                                       {dropdownItem.items.map((subItem) => (
                                         <Link
                                           key={subItem.href}
                                           href={subItem.href}
-                                          className="block text-[14px] text-black hover:text-[#34a853] pl-2 py-1.5 rounded-md whitespace-nowrap"
+                                          className="block text-[15px] text-black hover:text-[#34a853] pl-2.5 py-2 rounded-md whitespace-nowrap"
                                         >
                                           {subItem.name}
                                         </Link>
@@ -158,9 +174,9 @@ export default function Header() {
                                 ) : (
                                   <Link
                                     href={dropdownItem.href}
-                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
+                                    className="block select-none space-y-1 rounded-md p-3.5 leading-none no-underline outline-none transition-colors"
                                   >
-                                    <div className="text-[14px] lg:text-[15px] font-medium leading-none text-black hover:text-[#34a853]">
+                                    <div className="text-[15px] lg:text-[16px] font-medium leading-none text-black hover:text-[#34a853]">
                                       {dropdownItem.name}
                                     </div>
                                   </Link>
@@ -176,7 +192,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-[13px] lg:text-[14px] font-medium transition-colors text-black hover:text-[#34a853] px-3 py-2 whitespace-nowrap leading-tight"
+                    className="text-[15px] lg:text-[16px] font-medium transition-colors text-black hover:text-[#34a853] px-4 py-2.5 whitespace-nowrap leading-tight"
                   >
                     {item.name}
                   </Link>
@@ -184,7 +200,7 @@ export default function Header() {
               )}
             </nav>
 
-            <div className="flex items-center gap-2 lg:gap-3 shrink-0">
+            <div className="flex items-center gap-3 lg:gap-4 shrink-0">
               <Button
                 variant="ghost"
                 size="icon"
@@ -210,10 +226,7 @@ export default function Header() {
         {!isDesktop && (
           <MobileNav className="rounded-2xl px-2">
             <MobileNavHeader className="gap-3">
-              <Link href="/" className="flex items-center gap-2">
-                <Image src="/logo.png" alt="ifpps logo" width={48} height={48} className="h-12 w-12" priority />
-                <span className="text-base font-semibold text-black">IFPSS</span>
-              </Link>
+              <LogoBlock />
               <div className="flex items-center gap-3">
                 <Button
                   variant="ghost"
@@ -283,6 +296,7 @@ export default function Header() {
           </MobileNav>
         )}
       </Navbar>
+      </div>
     </>
   )
 }

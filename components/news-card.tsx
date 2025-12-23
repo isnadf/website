@@ -77,8 +77,8 @@ export default function NewsCard({ title, excerpt, image, href, date }: NewsCard
           {/* Footer with Button */}
           <CardFooter className="p-5 pt-0">
             <Button 
-              variant="outline" 
-              className="w-full h-10 border-[#1e7e34] text-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-all duration-300 group/btn text-sm"
+              variant="ghost" 
+              className="w-full h-10 border-0 text-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-all duration-300 group/btn text-sm"
             >
               <span>{t("news.readMore")}</span>
               <ArrowRight className={`ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1 ${isRTL ? 'rotate-180' : ''}`} />
