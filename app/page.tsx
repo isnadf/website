@@ -18,6 +18,8 @@ import ScrollingCards from "@/components/scrolling-cards"
 import Image from "next/image"
 import NewsCard from "@/components/news-card"
 import { LinkPreview } from "@/components/ui/link-preview"
+import HomeTestimonials from "@/components/home-testimonials"
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger, useModal } from "@/components/ui/animated-modal"
 
 export default function Home() {
   const { t, language } = useLanguage()
@@ -51,6 +53,45 @@ export default function Home() {
   const isImageActive = (index: number) => {
     return index === activeImageIndex
   }
+
+  // Campaigns data
+  const campaigns = [
+    {
+      slug: "sponsor-medical-student",
+      title: t("campaigns.medical.title") as string,
+      tagline: t("campaigns.medical.tagline") as string,
+      description: t("campaigns.medical.description") as string,
+      image: "/campaign/2.png",
+      paid: t("campaigns.medical.paid") as string,
+      left: t("campaigns.medical.left") as string,
+      goal: parseInt(t("campaigns.medical.goal") as string),
+    },
+    {
+      slug: "support-quran-memorizer",
+      title: t("campaigns.quran.title") as string,
+      tagline: t("campaigns.quran.tagline") as string,
+      description: t("campaigns.quran.description") as string,
+      image: "/campaign/3.png",
+      paid: t("campaigns.quran.paid") as string,
+      left: t("campaigns.quran.left") as string,
+      goal: parseInt(t("campaigns.quran.goal") as string),
+    },
+    {
+      slug: "empower-gazan-female-student",
+      title: t("campaigns.empower.title") as string,
+      tagline: t("campaigns.empower.tagline") as string,
+      description: t("campaigns.empower.description") as string,
+      image: "/campaign/4.png",
+      paid: t("campaigns.empower.paid") as string,
+      left: t("campaigns.empower.left") as string,
+      goal: parseInt(t("campaigns.empower.goal") as string),
+    },
+  ].map(campaign => {
+    // Calculate progress based on paid amount and goal
+    const paidAmount = parseInt(campaign.paid.replace(/,/g, ''))
+    const progress = Math.min(Math.round((paidAmount / campaign.goal) * 100), 100)
+    return { ...campaign, progress }
+  })
 
   // Create cards data array for the ScrollingCards component
   const cardsData = [
@@ -95,6 +136,18 @@ export default function Home() {
       category: "Network"
     }
   ]
+
+  const ModalCancelButton = ({ label }: { label: string }) => {
+    const { setOpen } = useModal()
+    return (
+      <button
+        onClick={() => setOpen(false)}
+        className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28"
+      >
+        {label}
+      </button>
+    )
+  }
 
 
   // Add partners data
@@ -204,6 +257,18 @@ export default function Home() {
       const img = new window.Image()
       img.src = image.src
     })
+    
+    // Preload program preview images for link previews
+    const programPreviewImages = [
+      "/work/2.jpeg", // pulse-of-life preview
+      "/work/4.jpeg", // palestinian-talented preview
+      "/work/1.jpeg", // justice-for-palestine preview (using work/1 as placeholder)
+    ]
+    
+    programPreviewImages.forEach((src) => {
+      const img = new window.Image()
+      img.src = src
+    })
   }, [])
 
   useEffect(() => {
@@ -306,144 +371,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest News Section */}
-      <section className="py-12 md:py-16 bg-white dark:bg-black">
-        <div className="container px-4 md:px-6 mb-8">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <GSAPReveal animation="slide-up">
-              <div className="space-y-2">
-                <div className={`inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <BookOpen className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  {t("work.badget")}
-                </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20">{t("work.title")}</GSAPTextReveal>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t("work.subtitle")}
-                </p>
-              </div>
-            </GSAPReveal>
-          </div>
-        </div>
-
-        {/* Full-width scrolling section for foundation work */}
-        <ScrollingCards
-          cards={cardsData.map(card => ({
-            title: card.title as string,
-            excerpt: card.excerpt as string,
-            image: card.image,
-            href: card.href,
-            date: card.date,
-            category: card.category,
-            isClickable: true
-          }))}
-          isAnyCardHovered={isAnyCardHovered}
-          onHoverChange={setIsAnyCardHovered}
-          direction={isRTL ? 'rtl' : 'ltr'}
-        />
-      </section>
-
-      {/* News Section */}
-      <section className="py-12 md:py-16 dark:bg-gray-900">
-        <div className="container px-4 md:px-6 mb-8">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <GSAPReveal animation="slide-up">
-              <div className="space-y-2">
-                <div className={`inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <Calendar className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  {t("news.badge")}
-                </div>
-                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">{t("news.title")}</GSAPTextReveal>
-              </div>
-            </GSAPReveal>
-          </div>
-        </div>
-
-        {/* News Cards - 3 Cards in Center */}
-        <div className="container px-4 md:px-6">
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl w-full">
-              {newsCards.slice(0, 3).map((news, index) => (
-                <GSAPReveal key={news.href} animation="fade" delay={index * 0.1}>
-                  <NewsCard
-                    title={news.title}
-                    excerpt={news.excerpt}
-                    image={news.image}
-                    href={news.href}
-                    date={news.date}
-                  />
-                </GSAPReveal>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="container px-4 md:px-6 mt-8">
-          <GSAPReveal animation="fade" delay={0.4}>
-            <div className="flex justify-center">
-              <Link href="/news">
-                <Button variant="outline" className={`group ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  {t("news.viewAll")}
-                  <ArrowRight className={`h-4 w-4 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
-                </Button>
-              </Link>
-            </div>
-          </GSAPReveal>
-        </div>
-      </section>
-
-      {/* Impact Section */}
-      <section className="py-16 md:py-24 bg-white dark:bg-black">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-10 lg:grid-cols-2 items-center">
-            <div className={`order-2 lg:order-1 ${isRTL ? "lg:pl-10" : "lg:pr-10"}`}>
-              <div className="relative overflow-hidden rounded-3xl shadow-xl aspect-[4/3] max-w-2xl mx-auto">
-                <Image
-                  src="/EmpoweringGazaStudents.png"
-                  alt={t("impact.title") as string}
-                  width={640}
-                  height={480}
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              </div>
-            </div>
-
-            <div className="order-1 lg:order-2">
-              <div className={`space-y-4 ${isRTL ? "text-right" : "text-left"}`}>
-                <div className="text-[#1e7e34] font-semibold text-sm md:text-base">
-                  {t("impact.badge")}
-                </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight">
-                  {t("impact.title")}
-                </h2>
-                <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
-                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                  {t("impact.description")}
-                </p>
-              </div>
-
-              <div className="mt-6 space-y-4">
-                {[1, 2, 3, 4].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
-                    <span className="mt-1 text-[#1e7e34]">
-                      <CheckCircle2 className="h-5 w-5" />
-                    </span>
-                    <div className={isRTL ? "text-right" : "text-left"}>
-                      <h3 className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white">
-                        {t(`impact.items.${item}.title` as const)}
-                      </h3>
-                      <p className="text-muted-foreground text-sm md:text-base">
-                        {t(`impact.items.${item}.desc` as const)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Mission & Vision with Video */}
       <section className="py-24 md:py-32 bg-white dark:bg-black">
         <div className="container px-4 md:px-6">
@@ -453,7 +380,7 @@ export default function Home() {
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white text-balance">
                 {t("about.vision.title") as string}
               </h3>
-              <span className="h-1.5 w-16 rounded-full bg-amber-500" />
+              <span className="h-1 w-14 rounded-full bg-amber-400" />
               <p className="text-muted-foreground text-sm md:text-base lg:text-lg leading-snug w-full max-w-2xl text-balance">
                 {t("about.vision.text") as string}
               </p>
@@ -526,12 +453,245 @@ export default function Home() {
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white text-balance">
                 {t("about.mission.title") as string}
               </h3>
-              <span className="h-1.5 w-16 rounded-full bg-amber-500" />
+              <span className="h-1 w-14 rounded-full bg-amber-400" />
               <p className="text-muted-foreground text-sm md:text-base lg:text-lg leading-snug w-full max-w-2xl text-balance">
                 {t("about.mission.text") as string}
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Impact Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-10 lg:grid-cols-2 items-center">
+            <div className={`order-2 lg:order-1 ${isRTL ? "lg:pl-10" : "lg:pr-10"}`}>
+              <div className="relative overflow-hidden rounded-3xl shadow-xl aspect-[4/3] max-w-2xl mx-auto">
+                <Image
+                  src="/EmpoweringGazaStudents.png"
+                  alt={t("impact.title") as string}
+                  width={640}
+                  height={480}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className={`space-y-4 ${isRTL ? "text-right" : "text-left"}`}>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight whitespace-nowrap">
+                  {t("impact.title")}
+                </h2>
+                <div className="flex justify-center">
+                  <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
+                </div>
+                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                  {t("impact.description")}
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-4">
+                {[1, 2, 3, 4].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <span className="mt-1 text-[#1e7e34]">
+                      <CheckCircle2 className="h-5 w-5" />
+                    </span>
+                    <div className={isRTL ? "text-right" : "text-left"}>
+                      <h3 className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white">
+                        {t(`impact.items.${item}.title`) as string}
+                      </h3>
+                      <p className="text-muted-foreground text-sm md:text-base">
+                        {t(`impact.items.${item}.desc`) as string}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Foundation Areas Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-10 lg:gap-16 lg:grid-cols-2 items-center">
+            <div className={`order-1 lg:order-2 relative z-0 ${isRTL ? "lg:pl-16" : "lg:pr-16"}`}>
+              <div className="relative overflow-hidden rounded-3xl shadow-xl aspect-[4/3] max-w-2xl mx-auto">
+                <Image
+                  src="/work/1.jpeg"
+                  alt={t("work.title") as string}
+                  width={640}
+                  height={480}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+            </div>
+
+            <div className={`order-2 lg:order-1 relative z-10 ${isRTL ? "lg:pr-16" : "lg:pl-16"}`}>
+              <div className={`space-y-4 ${isRTL ? "text-right" : "text-left"}`}>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight whitespace-nowrap">
+                  {t("work.title")}
+                </h2>
+                <div className="flex justify-center">
+                  <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
+                </div>
+                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                  {t("work.subtitle")}
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-4">
+                {[
+                  { title: "card1.title", desc: "Card1.desc", href: "/programs" },
+                  { title: "Card2.title", desc: "Card2.desc", href: "/activities/2" },
+                  { title: "Card3.title", desc: "Card3.desc", href: "/success-stories" },
+                  { title: "Card4.title", desc: "Card4.desc", href: "/activities/6" },
+                ].map((item, index) => (
+                  <Link key={index} href={item.href} className="block">
+                    <div className="flex items-start gap-3 hover:opacity-80 transition-opacity cursor-pointer">
+                      <span className="mt-1 text-[#1e7e34]">
+                        <CheckCircle2 className="h-5 w-5" />
+                      </span>
+                      <div className={isRTL ? "text-right" : "text-left"}>
+                        <h3 className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white">
+                          {t(item.title) as string}
+                        </h3>
+                        <p className="text-muted-foreground text-sm md:text-base">
+                          {t(item.desc) as string}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Important Campaigns Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          {/* Header with Title */}
+          <div className="mb-8">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white text-center">
+              {t("campaigns.title") as string}
+            </h2>
+            <div className="flex justify-center mt-2">
+              <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
+            </div>
+          </div>
+
+          {/* Campaign Cards - Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {campaigns.map((campaign, index) => (
+              <Link
+                key={index}
+                href={`/campaigns/${campaign.slug}`}
+                className="block"
+              >
+                <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full">
+                  {/* Campaign Image */}
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={campaign.image}
+                      alt={campaign.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+
+                  {/* Campaign Content */}
+                  <div className="p-6 space-y-4">
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white line-clamp-2 min-h-[3.5rem]">
+                      {campaign.title}
+                    </h3>
+
+                    {/* Tagline */}
+                    <p className="text-slate-600 dark:text-gray-300 text-sm line-clamp-2 min-h-[2.5rem]">
+                      {campaign.tagline}
+                    </p>
+
+                    {/* Funding Details */}
+                    <div className="flex items-center justify-between text-sm pt-2">
+                      <div>
+                        <span className="text-slate-500 dark:text-gray-400 block text-xs mb-1">{t("campaigns.paid") as string}</span>
+                        <span className="text-slate-900 dark:text-white font-semibold text-base">$ {campaign.paid}</span>
+                      </div>
+                      <div className={isRTL ? "text-left" : "text-right"}>
+                        <span className="text-slate-500 dark:text-gray-400 block text-xs mb-1">{t("campaigns.left") as string}</span>
+                        <span className="text-slate-900 dark:text-white font-semibold text-base">$ {campaign.left}</span>
+                      </div>
+                    </div>
+
+                        {/* Progress Bar */}
+                        <div className="pt-2">
+                          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-green-600 transition-all duration-500"
+                              style={{ width: `${campaign.progress}%` }}
+                            />
+                          </div>
+                        </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest News Section */}
+      <section className="py-12 md:py-16 dark:bg-gray-900">
+        <div className="container px-4 md:px-6 mb-8">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <GSAPReveal animation="slide-up">
+              <div className="space-y-2">
+                <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">{t("news.title")}</GSAPTextReveal>
+                <div className="flex justify-center pt-2">
+                  <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
+                </div>
+              </div>
+            </GSAPReveal>
+          </div>
+        </div>
+
+        {/* News Cards - 3 Cards in Center */}
+        <div className="container px-4 md:px-6">
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl w-full">
+              {newsCards.slice(0, 3).map((news, index) => (
+                <GSAPReveal key={news.href} animation="fade" delay={index * 0.1}>
+                  <NewsCard
+                    title={news.title}
+                    excerpt={news.excerpt}
+                    image={news.image}
+                    href={news.href}
+                    date={news.date}
+                  />
+                </GSAPReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="container px-4 md:px-6 mt-8">
+          <GSAPReveal animation="fade" delay={0.4}>
+            <div className="flex justify-center">
+              <Link href="/news">
+                <Button variant="outline" className={`group ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  {t("news.viewAll")}
+                  <ArrowRight className={`h-4 w-4 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
+                </Button>
+              </Link>
+            </div>
+          </GSAPReveal>
         </div>
       </section>
 
@@ -545,7 +705,9 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
               {t("programs.home.title") as string}
             </h2>
-            <span className="h-1 w-12 rounded-full bg-amber-400" />
+            <div className="flex justify-center">
+              <span className="h-1 w-14 rounded-full bg-amber-400" />
+            </div>
           </div>
 
           <div className={`grid gap-6 md:grid-cols-3 ${isRTL ? "text-right" : "text-left"}`}>
@@ -556,6 +718,7 @@ export default function Home() {
                 icon: <Stethoscope className="h-10 w-10" />,
                 color: "bg-[#2f5d8a]",
                 href: "/programs/pulse-of-life",
+                previewImage: "/preview/pulse.png",
               },
               {
                 title: t("programs.home.card2.title") as string,
@@ -563,6 +726,7 @@ export default function Home() {
                 icon: <BriefcaseMedical className="h-10 w-10" />,
                 color: "bg-[#1f9f63]",
                 href: "/programs/palestinian-talented",
+                previewImage: "/preview/talented.png",
               },
               {
                 title: t("programs.home.card3.title") as string,
@@ -570,12 +734,15 @@ export default function Home() {
                 icon: <Ambulance className="h-10 w-10" />,
                 color: "bg-[#2f5d8a]",
                 href: "/programs/justice-for-palestine",
+                previewImage: "/preview/justice.png",
               },
             ].map((card) => (
               <LinkPreview
                 key={card.title}
                 url={card.href}
                 className="block w-full no-underline"
+                isStatic={true}
+                imageSrc={card.previewImage}
               >
                 <div
                   className={`rounded-2xl ${card.color} text-white shadow-xl p-8 flex flex-col items-center text-center space-y-4`}
@@ -589,17 +756,95 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center mt-10">
-            <Link href="/programs">
-              <Button
-                className={`bg-[#1f9f63] hover:bg-[#188352] text-white px-8 py-6 rounded-xl text-lg shadow-lg transition-transform duration-200 hover:-translate-y-0.5 ${isRTL ? "flex-row-reverse" : ""}`}
-              >
-                {t("programs.home.button") as string}
-                <ArrowRight className={`h-5 w-5 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`} />
-              </Button>
-            </Link>
+            <Modal>
+              <ModalTrigger className="bg-[#1f9f63] hover:bg-[#188352] text-white flex justify-center group/modal-btn relative overflow-hidden">
+                <span className="block group-hover/modal-btn:translate-x-[120%] text-center transition duration-500">
+                  {t("programs.home.button") as string}
+                </span>
+                <div className="-translate-x-[120%] group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+                  <ArrowRight className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`} />
+                </div>
+              </ModalTrigger>
+              <ModalBody>
+                <ModalContent className={isRTL ? "text-right" : "text-left"}>
+                  <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
+                    {t("programs.home.title")}{" "}
+                    <span className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
+                      {t("programs.title")}
+                    </span>
+                  </h4>
+                  <div className="flex justify-center items-center">
+                    {[
+                      {
+                        href: "/programs/pulse-of-life",
+                        image: "/preview/pulse.png",
+                        label: t("programs.pulse.title"),
+                      },
+                      {
+                        href: "/programs/palestinian-talented",
+                        image: "/preview/talented.png",
+                        label: t("programs.talented.title"),
+                      },
+                      {
+                        href: "/programs/sustainability",
+                        image: "/preview/sustainability.png",
+                        label: t("programs.sustainability.title"),
+                      },
+                      {
+                        href: "/programs/justice-for-palestine",
+                        image: "/preview/justice.png",
+                        label: t("programs.justice.title"),
+                      },
+                      {
+                        href: "/programs/ibn-khaldun",
+                        image: "/preview/ibnkhaldun.png",
+                        label: t("programs.ibn-khaldun.title"),
+                      },
+                    ].map((item, idx) => (
+                      <Link key={`program-preview-${idx}`} href={item.href}>
+                        <motion.div
+                          style={{ rotate: Math.random() * 20 - 10 }}
+                          whileHover={{ scale: 1.1, rotate: 0, zIndex: 100 }}
+                          whileTap={{ scale: 1.1, rotate: 0, zIndex: 100 }}
+                          className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 shrink-0 overflow-hidden"
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.label as string}
+                            width="500"
+                            height="500"
+                            className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover shrink-0"
+                          />
+                        </motion.div>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="py-10 grid grid-cols-2 gap-x-6 gap-y-6 items-start justify-start max-w-sm mx-auto">
+                    {[
+                      t("programs.pulse.title"),
+                      t("programs.talented.title"),
+                      t("programs.sustainability.title"),
+                      t("programs.justice.title"),
+                      t("programs.ibn-khaldun.title"),
+                    ].map((item, index) => (
+                      <div key={`program-pill-${index}`} className="flex items-start justify-start gap-3">
+                        <CheckCircle2 className="text-neutral-700 dark:text-neutral-300 h-4 w-4 mt-0.5 shrink-0" />
+                        <span className="text-neutral-700 dark:text-neutral-300 text-sm leading-5">{item as string}</span>
+                      </div>
+                    ))}
+                  </div>
+                </ModalContent>
+                <ModalFooter className={isRTL ? "justify-start" : "justify-end"}>
+                  <ModalCancelButton label={isRTL ? "إلغاء" : "Cancel"} />
+                </ModalFooter>
+              </ModalBody>
+            </Modal>
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <HomeTestimonials />
 
       {/* Partners Section */}
       <section className="py-20 bg-white dark:bg-black">
@@ -607,13 +852,12 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <GSAPReveal animation="slide-up">
               <div className="space-y-2">
-                <div className={`inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <Handshake className={`h-4 w-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  {t("partners.badge")}
-                </div>
                 <GSAPTextReveal className="text-3xl font-bold sm:text-5xl h-20 pt-4">
                   {t("about.partners.title")}
                 </GSAPTextReveal>
+                <div className="flex justify-center pt-2">
+                  <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
+                </div>
               </div>
             </GSAPReveal>
           </div>
@@ -686,6 +930,9 @@ export default function Home() {
                   {t("contact.badge")}
                 </div>
                 <GSAPTextReveal className="text-3xl font-bold sm:text-5xl text-white h-20 text-center mx-auto max-w-3xl">{t("contact.title")}</GSAPTextReveal>
+                <div className="flex justify-center pt-2">
+                  <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
+                </div>
                 <p className="max-w-[900px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto text-center">
                   {t("contact.subtitle")}
                 </p>
@@ -708,4 +955,3 @@ export default function Home() {
     </div>
   )
 }
-

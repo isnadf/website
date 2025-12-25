@@ -9,6 +9,7 @@ import PageTransition from "@/components/page-transition"
 import LoadingBar from "@/components/loading-bar"
 import TranslationSafeWrapper from "@/components/translation-safe-wrapper"
 import TranslationDebug from "@/components/translation-debug"
+import SmoothScroll from "@/components/smooth-scroll"
 import "./globals.css"
 import { Analytics } from "@vercel/analytics/next"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -64,6 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <body className={`${inter.variable} ${poppins.variable} ${notoKufiArabic.variable} ${playfair.variable} ${sora.variable} font-sora`}>
+        <SmoothScroll />
         <TranslationSafeWrapper>
             <LanguageProvider>
               <LoadingBar />
@@ -83,7 +85,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-
-import './globals.css'

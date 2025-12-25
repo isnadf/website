@@ -9,6 +9,7 @@ import {
   useMotionValue,
   useSpring,
 } from "motion/react";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 
@@ -38,16 +39,23 @@ export const LinkPreview = ({
 }: LinkPreviewProps) => {
   let src;
   if (!isStatic) {
+    // Convert relative URLs to absolute URLs
+    const absoluteUrl = url.startsWith('http') 
+      ? url 
+      : typeof window !== 'undefined' 
+        ? `${window.location.origin}${url.startsWith('/') ? url : `/${url}`}`
+        : url; // Fallback for SSR
+    
     const params = encode({
-      url,
+      url: absoluteUrl,
       screenshot: true,
       meta: false,
       embed: "screenshot.url",
       colorScheme: "dark",
       "viewport.isMobile": true,
       "viewport.deviceScaleFactor": 1,
-      "viewport.width": width * 3,
-      "viewport.height": height * 3,
+      "viewport.width": width,
+      "viewport.height": height,
     });
     src = `https://api.microlink.io/?${params}`;
   } else {
@@ -57,10 +65,21 @@ export const LinkPreview = ({
   const [isOpen, setOpen] = React.useState(false);
 
   const [isMounted, setIsMounted] = React.useState(false);
+  const [imageLoaded, setImageLoaded] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
-  }, []);
+    
+    // Preload the image if static
+    if (isStatic && imageSrc) {
+      const img = new window.Image();
+      img.onload = () => setImageLoaded(true);
+      img.onerror = () => setImageLoaded(false);
+      img.src = imageSrc;
+    } else {
+      setImageLoaded(true);
+    }
+  }, [isStatic, imageSrc]);
 
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
@@ -76,13 +95,16 @@ export const LinkPreview = ({
 
   return (
     <>
-      {isMounted ? (
-        <div className="hidden">
-          <img
-            src={src}
+      {isMounted && isStatic && imageSrc ? (
+        <div className="sr-only">
+          <Image
+            src={imageSrc}
             width={width}
             height={height}
-            alt="hidden image"
+            alt=""
+            priority
+            className="opacity-0 pointer-events-none"
+            aria-hidden="true"
           />
         </div>
       ) : null}
@@ -133,13 +155,25 @@ export const LinkPreview = ({
                   className="block p-1 bg-white border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
                   style={{ fontSize: 0 }}
                 >
-                  <img
-                    src={isStatic ? imageSrc : src}
-                    width={width}
-                    height={height}
-                    className="rounded-lg"
-                    alt="preview image"
-                  />
+                  {isStatic && imageSrc ? (
+                    <Image
+                      src={imageSrc}
+                      width={width}
+                      height={height}
+                      alt="preview image"
+                      className="rounded-lg"
+                      style={{ width: `${width}px`, height: `${height}px` }}
+                      sizes={`${width}px`}
+                    />
+                  ) : (
+                    <img
+                      src={src}
+                      width={width}
+                      height={height}
+                      className="rounded-lg"
+                      alt="preview image"
+                    />
+                  )}
                 </a>
               </motion.div>
             )}
