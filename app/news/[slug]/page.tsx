@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Calendar, User, Tag, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
+import { Calendar, User, Tag, ArrowLeft, Share2, Facebook, Twitter, Linkedin, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -13,6 +13,7 @@ import GSAPReveal from "@/components/gsap-reveal"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
 import HeroVideo from "@/components/hero-video"
+import { motion, AnimatePresence } from "motion/react"
 
 // Define the type for article data
 type ArticleData = {
@@ -29,6 +30,7 @@ type ArticleData = {
   image?: string
   heroImage?: string
   heroVideo?: string
+  galleryImages?: string[]
   content: {
     en: string[]
     ar: string[]
@@ -134,6 +136,72 @@ const newsArticles: Record<string, ArticleData> = {
       ]
     }
   },
+  "isnad-visits-wafa-foundation-indonesia": {
+    title: {
+      en: "Isnad Foundation Visits Wafa Foundation in Jakarta, Indonesia",
+      ar: "مؤسسة إسناد تزور مؤسسة وفاء في جاكرتا بإندونيسيا"
+    },
+    date: "December 10, 2025",
+    author: "Isnad Foundation",
+    category: {
+      en: "Partnerships & Cooperation",
+      ar: "الشراكات والتعاون"
+    },
+    image: "/LastNews/new3.jpeg",
+    heroImage: "/LastNews/new3.jpeg",
+    content: {
+      en: [
+        "Jakarta, Indonesia",
+        "As part of its visit to the Republic of Indonesia, the Isnad Foundation paid a visit to the Wafa Foundation in Jakarta on December 10, 2025. The meeting focused on the role of humanitarian work in supporting Palestinian students and discussed avenues for cooperation in financing education and covering students' educational needs both inside and outside Palestine.",
+        "The Wafa Foundation is an Indonesian organization operating in the humanitarian and development fields, implementing social and educational programs aimed at supporting the most vulnerable groups.",
+        "During the meeting, both organizations explored potential collaboration opportunities to enhance educational support for Palestinian students, recognizing the critical importance of education in empowering communities and building sustainable futures.",
+        "The Isnad Foundation continues to strengthen its network of partnerships with international organizations committed to supporting Palestinian students and ensuring access to quality education despite challenging circumstances."
+      ],
+      ar: [
+        "جاكرتا، إندونيسيا",
+        "ضمن جولة زيارات مؤسسة إسناد إلى دولة إندونيسيا، تشرفنا بزيارة مؤسسة Wafa Foundation في مدينة جاكرتا وذلك بتاريخ 10 / 12 / 2025، حيث تركز اللقاء على دور العمل الإنساني في دعم الطلبة الفلسطينيين، وبحث سبل التعاون في تمويل التعليم وتغطية احتياجات الطلبة الدراسية داخل فلسطين وخارجها.",
+        "ومؤسسة Wafa Foundation هي مؤسسة إندونيسية تعمل في المجال الإنساني والتنموي، وتنفذ برامج اجتماعية وتعليمية تستهدف الفئات الأكثر احتياجًا.",
+        "وخلال اللقاء، استكشفت المؤسستان فرص التعاون المحتملة لتعزيز الدعم التعليمي للطلبة الفلسطينيين، مع إدراك الأهمية الحيوية للتعليم في تمكين المجتمعات وبناء مستقبل مستدام.",
+        "وتواصل مؤسسة إسناد تعزيز شبكة شراكاتها مع المنظمات الدولية الملتزمة بدعم الطلبة الفلسطينيين وضمان حصولهم على تعليم عالي الجودة رغم الظروف الصعبة."
+      ]
+    }
+  },
+  "isnad-visits-university-of-indonesia": {
+    title: {
+      en: "Isnad Foundation Visits University of Indonesia in Jakarta",
+      ar: "مؤسسة إسناد تزور جامعة إندونيسيا في جاكرتا"
+    },
+    date: "December 9, 2025",
+    author: "Isnad Foundation",
+    category: {
+      en: "Partnerships & Cooperation",
+      ar: "الشراكات والتعاون"
+    },
+    image: "/09-12-2025/1.png",
+    heroImage: "/09-12-2025/1.png",
+    galleryImages: [
+      "/09-12-2025/1.png",
+      "/09-12-2025/2.png",
+      "/09-12-2025/3.png",
+      "/09-12-2025/4.png"
+    ],
+    content: {
+      en: [
+        "Jakarta, Indonesia",
+        "As part of its official visit to the Republic of Indonesia, the İsnad foundation for Palestinian student support paid a visit to the University of Indonesia (UI) on December 9, 2025, where an expanded academic meeting was held to discuss prospects for cooperation in the field of higher education. The meeting focused on ways to support Palestinian students academically, as well as exploring the possibility of hosting Palestinian students at the university through future academic programs.",
+        "The University of Indonesia (UI) is one of the country's oldest public universities and one of the leading academic institutions in Southeast Asia, distinguished by its strong academic reputation, diverse educational and research programs, and extensive experience in international cooperation and academic partnerships.",
+        "This visit comes as part of the Isnad Foundation's ongoing efforts to expand its international academic network and to open new educational opportunities for Palestinian students.",
+        "The Isnad Foundation is an organization dedicated to supporting Palestinian university students, aiming to empower them to continue their higher education through student support programs and strategic partnerships with universities and educational institutions worldwide, thereby enhancing their academic opportunities and ensuring the continuity of their educational journey."
+      ],
+      ar: [
+        "جاكرتا، إندونيسيا",
+        "ضمن جولة زياراتها الرسمية إلى جمهورية إندونيسيا، تشرفت مؤسسة إسناد لدعم الطالب الفلسطيني بزيارة جامعة إندونيسيا (University of Indonesia – UI) بتاريخ 09 كانون الأول/ديسمبر 2025، حيث جرى عقد لقاء أكاديمي موسّع ناقش آفاق التعاون المشترك في مجال التعليم العالي، وسبل دعم الطلبة الفلسطينيين أكاديميًا، إضافة إلى بحث إمكانية استقبال الطلبة الفلسطينيين للدراسة في الجامعة ضمن برامج تعليمية مستقبلية.",
+        "وتُعد جامعة إندونيسيا (UI) من أعرق الجامعات الحكومية في البلاد، ومن أبرز المؤسسات الأكاديمية في جنوب شرق آسيا، لما تتمتع به من مكانة علمية مرموقة، وتنوع في البرامج الأكاديمية والبحثية، فضلاً عن خبرتها الواسعة في التعاون الدولي والشراكات التعليمية.",
+        "وتأتي هذه الزيارة في إطار جهود مؤسسة إسناد لدعم الطالب الفلسطيني الرامية إلى توسيع شبكة علاقاتها الأكاديمية الدولية، وفتح آفاق تعليمية جديدة أمام الطلبة الفلسطينيين.",
+        "ومؤسسة إسناد هي مؤسسة تُعنى بدعم طلبة الجامعات الفلسطينيين، وتسعى إلى تمكينهم من مواصلة تعليمهم العالي من خلال برامج الدعم، وبناء الشراكات مع الجامعات والمؤسسات التعليمية حول العالم، بما يعزز فرصهم الأكاديمية ويضمن استدامة مسيرتهم التعليمية."
+      ]
+    }
+  },
   "pulse-of-life-disbursement": {
     title: {
       en: "Disbursements of the first phase of the Pulse of Life program have begin in Türkiye.",
@@ -235,6 +303,8 @@ export default function NewsArticlePage() {
   const slug = params.slug as string
   const { language, t } = useLanguage()
   const isRTL = language === "ar"
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
   // Get article data or use default if not found
   const article = newsArticles[slug as keyof typeof newsArticles] || {
@@ -345,6 +415,40 @@ export default function NewsArticlePage() {
     return () => ctx.revert()
   }, [])
 
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (!lightboxOpen || !article.galleryImages) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setLightboxOpen(false)
+      } else if (e.key === 'ArrowLeft' && !isRTL) {
+        e.preventDefault()
+        setSelectedImageIndex((prev) => 
+          prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+        )
+      } else if (e.key === 'ArrowRight' && !isRTL) {
+        e.preventDefault()
+        setSelectedImageIndex((prev) => 
+          prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+        )
+      } else if (e.key === 'ArrowRight' && isRTL) {
+        e.preventDefault()
+        setSelectedImageIndex((prev) => 
+          prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+        )
+      } else if (e.key === 'ArrowLeft' && isRTL) {
+        e.preventDefault()
+        setSelectedImageIndex((prev) => 
+          prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+        )
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxOpen, article.galleryImages, isRTL])
+
   return (
     <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
@@ -423,6 +527,132 @@ export default function NewsArticlePage() {
                   ))}
                 </div>
               </GSAPReveal>
+
+              {/* Gallery Section */}
+              {article.galleryImages && article.galleryImages.length > 0 && (
+                <GSAPReveal animation="fade" delay={0.2}>
+                  <div className="mt-12">
+                    <h3 className={`text-2xl font-bold mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      {language === 'ar' ? 'معرض الصور' : 'Photo Gallery'}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {article.galleryImages.map((imageSrc, index) => (
+                        <div 
+                          key={index} 
+                          className="relative aspect-video overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 cursor-pointer group"
+                          onClick={() => {
+                            setSelectedImageIndex(index)
+                            setLightboxOpen(true)
+                          }}
+                        >
+                          <Image
+                            src={imageSrc}
+                            alt={`${article.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${index + 1}`}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </GSAPReveal>
+              )}
+
+              {/* Lightbox Modal */}
+              <AnimatePresence>
+                {lightboxOpen && article.galleryImages && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+                    onClick={() => setLightboxOpen(false)}
+                  >
+                    {/* Close Button */}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-4 right-4 z-20 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-sm"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setLightboxOpen(false)
+                      }}
+                      aria-label="Close"
+                    >
+                      <X className="h-6 w-6" />
+                    </Button>
+
+                    {/* Image Container - only stops propagation on the image itself */}
+                    <div className="relative max-w-7xl max-h-[90vh] p-4 flex items-center justify-center">
+                      {/* Image - stops propagation so clicking image doesn't close */}
+                      <motion.div
+                        key={selectedImageIndex}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.2 }}
+                        className="relative max-w-full max-h-[90vh]"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Image
+                          src={article.galleryImages[selectedImageIndex]}
+                          alt={`${article.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${selectedImageIndex + 1}`}
+                          width={1200}
+                          height={800}
+                          className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                          priority
+                        />
+
+                        {/* Navigation Buttons - positioned on left and right of image */}
+                        {article.galleryImages.length > 1 && (
+                          <>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? 'right-0 translate-x-full mr-2' : 'left-0 -translate-x-full ml-2'} z-20 bg-white/10 hover:bg-white/30 text-white rounded-full h-14 w-14 backdrop-blur-sm border border-white/20`}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setSelectedImageIndex((prev) => 
+                                  prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+                                )
+                              }}
+                              aria-label="Previous image"
+                            >
+                              <ChevronLeft className={`h-7 w-7 ${isRTL ? 'rotate-180' : ''}`} />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? 'left-0 -translate-x-full ml-2' : 'right-0 translate-x-full mr-2'} z-20 bg-white/10 hover:bg-white/30 text-white rounded-full h-14 w-14 backdrop-blur-sm border border-white/20`}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setSelectedImageIndex((prev) => 
+                                  prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+                                )
+                              }}
+                              aria-label="Next image"
+                            >
+                              <ChevronRight className={`h-7 w-7 ${isRTL ? 'rotate-180' : ''}`} />
+                            </Button>
+                          </>
+                        )}
+
+                        {/* Image Counter */}
+                        {article.galleryImages.length > 1 && (
+                          <div 
+                            className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm z-20 backdrop-blur-sm"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {selectedImageIndex + 1} / {article.galleryImages.length}
+                          </div>
+                        )}
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Share Section */}
               <div className="mt-8 flex items-center gap-4">
