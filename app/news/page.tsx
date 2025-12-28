@@ -23,7 +23,7 @@ const newsData = [
       en: "As part of its visit to the Republic of Indonesia, the Isnad Foundation paid a visit to the Wafa Foundation in Jakarta on December 10, 2025. The meeting focused on the role of humanitarian work in supporting Palestinian students and discussed avenues for cooperation in financing education and covering students' educational needs both inside and outside Palestine.",
       ar: "ضمن جولة زيارات مؤسسة إسناد إلى دولة إندونيسيا، تشرفنا بزيارة مؤسسة Wafa Foundation في مدينة جاكرتا وذلك بتاريخ 10 / 12 / 2025، حيث تركز اللقاء على دور العمل الإنساني في دعم الطلبة الفلسطينيين، وبحث سبل التعاون في تمويل التعليم وتغطية احتياجات الطلبة الدراسية داخل فلسطين وخارجها."
     },
-    image: "/LastNews/new3.jpeg",
+    image: "/10-12-2025/1.png",
     href: "/news/isnad-visits-wafa-foundation-indonesia",
     category: {
       en: "Partnerships & Cooperation",

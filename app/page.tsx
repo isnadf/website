@@ -302,54 +302,52 @@ export default function Home() {
                 priority={index <= 1}
                 sizes="100vw"
                 className="object-cover"
+                style={{ filter: "grayscale(20%) brightness(0.7) contrast(1.1)" }}
               />
             </div>
           ))}
-          <div className="absolute inset-0 bg-black/25 z-[100] pointer-events-none" />
+          {/* Muted overlay with greenish-blue tint */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 z-[100] pointer-events-none" 
+               style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.3), rgba(0,0,0,0.5)), rgba(0,50,50,0.1)" }} />
         </div>
 
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center space-y-5 -translate-y-24 md:-translate-y-28">
-          <button
-            aria-label={t("hero.heading") as string}
-            className="h-16 w-16 rounded-2xl bg-white/90 text-primary shadow-lg flex items-center justify-center hover:bg-white transition-colors"
-          >
-            <Play className="h-7 w-7 text-primary" />
-          </button>
-          <div className="space-y-3">
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-              {t("hero.heading") as string}
-            </h1>
-            <p className="text-white/90 text-base md:text-xl font-semibold">
-              {t("hero.subheading") as string}
-            </p>
-          </div>
-        </div>
-
-        <div className="absolute bottom-28 left-0 right-0 z-10">
-          <div className="mx-auto max-w-6xl px-4">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 bg-black/40 backdrop-blur-md rounded-2xl py-4 px-3 text-center text-white shadow-lg -translate-y-6 md:-translate-y-8">
-              <div className="space-y-1">
-                <div className="text-2xl sm:text-3xl font-bold">{t("hero.stats.students.value") as string}</div>
-                <div className="text-sm sm:text-base text-white/80">{t("hero.stats.students.label") as string}</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-2xl sm:text-3xl font-bold">{t("hero.stats.sponsorships.value") as string}</div>
-                <div className="text-sm sm:text-base text-white/80">{t("hero.stats.sponsorships.label") as string}</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-2xl sm:text-3xl font-bold">{t("hero.stats.campaigns.value") as string}</div>
-                <div className="text-sm sm:text-base text-white/80">{t("hero.stats.campaigns.label") as string}</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-2xl sm:text-3xl font-bold">{t("hero.stats.cases.value") as string}</div>
-                <div className="text-sm sm:text-base text-white/80">{t("hero.stats.cases.label") as string}</div>
+        {/* All Content Stacked Vertically - Right Side (RTL) / Left Side (LTR) */}
+        <div className={`absolute inset-0 z-10 flex flex-col justify-center items-start ${isRTL ? "pr-4 md:pr-8 lg:pr-12" : "pl-4 md:pl-8 lg:pl-12"}`}>
+          <div className={`max-w-4xl space-y-6 md:space-y-8 flex flex-col w-full items-start ${isRTL ? "text-right" : "text-left"}`}>
+            
+            {/* Green Banner */}
+            <div className="w-full flex justify-start">
+              <div className={`bg-white/10 backdrop-blur-md rounded-xl px-4 py-2 md:px-5 md:py-3 shadow-lg ${isRTL ? "text-right" : "text-left"}`}>
+                <p className={`text-white text-xs md:text-sm font-medium leading-relaxed ${isRTL ? "text-right font-arabic" : "text-left"}`}>
+                  {t("hero.banner") as string}
+                </p>
               </div>
             </div>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+
+            {/* Main Content */}
+            <div className={`w-full space-y-4 md:space-y-6 ${isRTL ? "text-right" : "text-left"}`}>
+              {/* Main Heading */}
+              <h1 className={`text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight w-full whitespace-nowrap ${isRTL ? "font-arabic text-right" : "text-left"}`}>
+                {t("hero.heading") as string}
+              </h1>
+              
+              {/* Subheading */}
+              <p className={`text-white/95 text-lg md:text-xl lg:text-2xl font-semibold leading-relaxed w-full ${isRTL ? "font-arabic text-right" : "text-left"}`}>
+                {t("hero.subheading") as string}
+              </p>
+              
+              {/* Description */}
+              <p className={`text-white/90 text-sm md:text-base lg:text-lg leading-relaxed w-full ${isRTL ? "font-arabic text-right" : "text-left"}`}>
+                {t("hero.description") as string}
+              </p>
+            </div>
+
+            {/* Buttons */}
+            <div className={`w-full flex flex-col sm:flex-row gap-3 sm:gap-4 ${isRTL ? "items-end sm:justify-end sm:flex-row-reverse" : "items-start sm:justify-start"}`}>
               <Link href="/donate-form">
                 <Button
                   size="lg"
-                  className="bg-[#34a853] hover:bg-[#2d9249] text-white px-5 sm:px-7 py-3 rounded-full text-base sm:text-lg shadow-lg"
+                  className={`bg-[#34a853] hover:bg-[#2d9249] text-white px-5 sm:px-7 py-3 rounded-full text-base sm:text-lg shadow-lg ${isRTL ? "font-arabic" : ""}`}
                 >
                   {t("hero.cta.donate") ?? "Donate Now"}
                 </Button>
@@ -358,7 +356,7 @@ export default function Home() {
                 <Button
                   size="lg"
                   variant="secondary"
-                  className="bg-[#34a853] text-white hover:bg-[#2d9249] px-5 sm:px-7 py-3 rounded-full text-base sm:text-lg shadow-lg"
+                  className={`bg-[#34a853] text-white hover:bg-[#2d9249] px-5 sm:px-7 py-3 rounded-full text-base sm:text-lg shadow-lg ${isRTL ? "font-arabic" : ""}`}
                 >
                   <span className="inline-flex items-center gap-2">
                     <span>{t("hero.cta.quickDonate") ?? "Quick Donate"}</span>
@@ -481,13 +479,13 @@ export default function Home() {
 
             <div className="order-1 lg:order-2">
               <div className={`space-y-4 ${isRTL ? "text-right" : "text-left"}`}>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight whitespace-nowrap">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white leading-tight whitespace-nowrap">
                   {t("impact.title")}
                 </h2>
                 <div className="flex justify-center">
                   <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
                 </div>
-                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                   {t("impact.description")}
                 </p>
               </div>
@@ -499,10 +497,10 @@ export default function Home() {
                       <CheckCircle2 className="h-5 w-5" />
                     </span>
                     <div className={isRTL ? "text-right" : "text-left"}>
-                      <h3 className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white">
+                      <h3 className="text-base md:text-lg font-semibold text-slate-900 dark:text-white">
                         {t(`impact.items.${item}.title`) as string}
                       </h3>
-                      <p className="text-muted-foreground text-sm md:text-base">
+                      <p className="text-muted-foreground text-xs md:text-sm">
                         {t(`impact.items.${item}.desc`) as string}
                       </p>
                     </div>
@@ -533,13 +531,13 @@ export default function Home() {
 
             <div className={`order-2 lg:order-1 relative z-10 ${isRTL ? "lg:pr-16" : "lg:pl-16"}`}>
               <div className={`space-y-4 ${isRTL ? "text-right" : "text-left"}`}>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight whitespace-nowrap">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white leading-tight whitespace-nowrap">
                   {t("work.title")}
                 </h2>
                 <div className="flex justify-center">
                   <span className="inline-block h-1 w-14 rounded-full bg-amber-400" />
                 </div>
-                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                   {t("work.subtitle")}
                 </p>
               </div>
@@ -557,10 +555,10 @@ export default function Home() {
                         <CheckCircle2 className="h-5 w-5" />
                       </span>
                       <div className={isRTL ? "text-right" : "text-left"}>
-                        <h3 className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white">
+                        <h3 className="text-base md:text-lg font-semibold text-slate-900 dark:text-white">
                           {t(item.title) as string}
                         </h3>
-                        <p className="text-muted-foreground text-sm md:text-base">
+                        <p className="text-muted-foreground text-xs md:text-sm">
                           {t(item.desc) as string}
                         </p>
                       </div>
@@ -574,7 +572,7 @@ export default function Home() {
       </section>
 
       {/* Important Campaigns Section */}
-      <section className="py-16 md:py-24 bg-white dark:bg-black">
+      <section data-campaigns-section className="py-16 md:py-24 bg-white dark:bg-black">
         <div className="container px-4 md:px-6">
           {/* Header with Title */}
           <div className="mb-8">

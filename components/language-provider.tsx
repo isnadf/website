@@ -44,6 +44,8 @@ const translations = {
     "hero.cta.quickDonate": "Quick Donate",
     "hero.heading": "Isnad Foundation for Palestinian Student Support",
     "hero.subheading": "Inspire your humanity",
+    "hero.banner": "Be part of the change, and contribute with us in giving hope and supporting the people of Gaza.",
+    "hero.description": "Isnad Foundation is a charitable organization to support the people of Palestine - non-profit, working to provide assistance and support to our people in the besieged northern Gaza Strip.",
     "hero.stats.students.value": "2,122",
     "hero.stats.students.label": "Students",
     "hero.stats.sponsorships.value": "4,827",
@@ -686,6 +688,7 @@ const translations = {
 
     // Campaigns section translations
     "campaigns.title": "Important Campaigns",
+    "campaigns.browse": "Browse Campaigns",
     "campaigns.more": "More",
     "campaigns.paid": "Paid",
     "campaigns.left": "Left",
@@ -985,6 +988,8 @@ const translations = {
     "hero.cta.quickDonate": "اقسام التبرع",
     "hero.heading": "مؤسسة إسناد لدعم الطالب الفلسطيني",
     "hero.subheading": "ألهم إنسانيّتك",
+    "hero.banner": "كن جزءا من التغيير، وساهم معنا في منح الأمل ودعم أهل غزة.",
+    "hero.description": "مؤسسة إسناد هي مؤسسة خيرية لدعم أهالي فلسطين - غير هادفة للربح تعمل على توفير المساعدة والدعم لأهلنا في شمال القطاع المحاصر.",
     "hero.stats.students.value": "2,122",
     "hero.stats.students.label": "الطلاب",
     "hero.stats.sponsorships.value": "4,827",
@@ -1617,6 +1622,7 @@ const translations = {
 
     // Campaigns section translations Arabic
     "campaigns.title": "أهم الحملات",
+    "campaigns.browse": "تصفح الحملات",
     "campaigns.more": "المزيد",
     "campaigns.paid": "مدفوع",
     "campaigns.left": "متبقي",

@@ -147,8 +147,14 @@ const newsArticles: Record<string, ArticleData> = {
       en: "Partnerships & Cooperation",
       ar: "الشراكات والتعاون"
     },
-    image: "/LastNews/new3.jpeg",
-    heroImage: "/LastNews/new3.jpeg",
+    image: "/10-12-2025/1.png",
+    heroImage: "/10-12-2025/1.png",
+    galleryImages: [
+      "/10-12-2025/1.png",
+      "/10-12-2025/2.png",
+      "/10-12-2025/3.png",
+      "/10-12-2025/4.png"
+    ],
     content: {
       en: [
         "Jakarta, Indonesia",
