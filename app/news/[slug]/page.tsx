@@ -147,8 +147,8 @@ const newsArticles: Record<string, ArticleData> = {
       en: "Partnerships & Cooperation",
       ar: "الشراكات والتعاون"
     },
-    image: "/10-12-2025/1.png",
-    heroImage: "/10-12-2025/1.png",
+    image: "/10-12-2025/4.png",
+    heroImage: "/10-12-2025/4.png",
     galleryImages: [
       "/10-12-2025/1.png",
       "/10-12-2025/2.png",

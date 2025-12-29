@@ -240,10 +240,10 @@ export default function CampaignPage() {
 
   return (
     <>
-      <div className="bg-white dark:bg-black min-h-screen">
+      <div className="bg-white dark:bg-black min-h-screen overflow-x-hidden">
         <div className="container px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-16">
           <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-6 min-w-0">
               <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden">
                 <Image
                   src={campaign.image}
@@ -273,11 +273,11 @@ export default function CampaignPage() {
                 </div>
 
                 <div className="space-y-4 mb-6">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className={`text-gray-600 dark:text-gray-400 ${isRTL ? "ml-auto" : ""}`}>
+                  <div className="flex flex-col gap-2 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <span className={`text-gray-600 dark:text-gray-400 break-words ${isRTL ? "sm:ml-auto" : ""}`}>
                       {t("campaigns.paid")}: ${paid.toLocaleString()}
                     </span>
-                    <span className={`text-gray-600 dark:text-gray-400 ${isRTL ? "" : "ml-auto"}`}>
+                    <span className={`text-gray-600 dark:text-gray-400 break-words ${isRTL ? "" : "sm:ml-auto"}`}>
                       {t("campaigns.left")}: ${left.toLocaleString()}
                     </span>
                   </div>
@@ -297,7 +297,7 @@ export default function CampaignPage() {
                     <Label className={`text-sm font-semibold mb-3 block ${isRTL ? "text-right" : "text-left"}`}>
                       {t("campaigns.donation.chooseAmount") as string}
                     </Label>
-                    <div className="grid grid-cols-5 gap-2 mb-3">
+                    <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-3">
                       {presetAmounts.map((preset) => (
                         <Button
                           key={preset}
@@ -343,7 +343,7 @@ export default function CampaignPage() {
                               e.preventDefault();
                             }
                           }}
-                          className={`flex-1 text-lg font-bold text-gray-900 dark:text-white bg-transparent border-none outline-none placeholder-gray-400 dark:placeholder-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${isRTL ? "mr-2 text-right" : "ml-2 text-left"}`}
+                          className={`flex-1 min-w-0 text-lg font-bold text-gray-900 dark:text-white bg-transparent border-none outline-none placeholder-gray-400 dark:placeholder-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${isRTL ? "mr-2 text-right" : "ml-2 text-left"}`}
                         />
                       </div>
                     </div>
@@ -418,7 +418,7 @@ export default function CampaignPage() {
                   ))}
                 </div>
 
-                <div className={`prose prose-lg max-w-none ${isRTL ? "text-right font-arabic" : "text-left"}`}>
+                <div className={`prose prose-lg max-w-none break-words ${isRTL ? "text-right font-arabic" : "text-left"}`}>
                   {activeTab === "overview" && (
                     <div className={`space-y-6 ${isRTL ? "text-right" : "text-left"}`}>
                       <p
@@ -500,32 +500,32 @@ export default function CampaignPage() {
                   {activeTab === "donations" && (
                     <div className="space-y-4">
                       {[...Array(10)].map((_, i) => (
-                        <div
-                          key={i}
-                          className={`flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg ${
-                            isRTL ? "flex-row-reverse" : ""
-                          }`}
-                        >
-                          <div className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-                            <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700" />
-                            <div className={isRTL ? "text-right" : "text-left"}>
-                              <p className={`font-medium text-slate-900 dark:text-white ${isRTL ? "font-arabic" : ""}`}>Donor {i + 1}</p>
-                              <p className={`text-sm text-gray-500 dark:text-gray-400 ${isRTL ? "font-arabic" : ""}`}>#{1700000 + i}</p>
-                            </div>
-                          </div>
-                          <div className={`text-lg font-semibold text-slate-900 dark:text-white ${isRTL ? "text-right" : "text-left"}`}>
-                            ${[15, 20, 50, 30, 10, 5, 100, 25, 75, 200][i]}
-                          </div>
+                    <div
+                      key={i}
+                      className={`flex flex-col gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg sm:flex-row sm:items-center sm:justify-between ${
+                        isRTL ? "sm:flex-row-reverse" : ""
+                      }`}
+                    >
+                      <div className={`flex items-center gap-3 min-w-0 ${isRTL ? "flex-row-reverse" : ""}`}>
+                        <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700" />
+                        <div className={`min-w-0 ${isRTL ? "text-right" : "text-left"}`}>
+                          <p className={`font-medium text-slate-900 dark:text-white ${isRTL ? "font-arabic" : ""}`}>Donor {i + 1}</p>
+                          <p className={`text-sm text-gray-500 dark:text-gray-400 ${isRTL ? "font-arabic" : ""}`}>#{1700000 + i}</p>
                         </div>
-                      ))}
+                      </div>
+                      <div className={`text-lg font-semibold text-slate-900 dark:text-white ${isRTL ? "text-right" : "text-left"}`}>
+                        ${[15, 20, 50, 30, 10, 5, 100, 25, 75, 200][i]}
+                      </div>
                     </div>
+                  ))}
+                </div>
                   )}
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-1">
-              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sticky top-8">
+            <div className="lg:col-span-1 min-w-0">
+              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 lg:sticky lg:top-8 min-w-0">
                 <h3
                   className={`text-lg font-bold text-slate-900 dark:text-white mb-4 ${
                     isRTL ? "text-right font-arabic" : "text-left"
@@ -539,7 +539,7 @@ export default function CampaignPage() {
                     .filter(([s]) => s !== slug)
                     .slice(0, 2)
                     .map(([s, c]) => (
-                      <Link key={s} href={`/campaigns/${s}`} className={`block group ${isRTL ? "flex flex-row-reverse gap-3" : "flex gap-3"}`}>
+                      <Link key={s} href={`/campaigns/${s}`} className={`block group min-w-0 ${isRTL ? "flex flex-row-reverse gap-3" : "flex gap-3"}`}>
                         <div className={`relative w-24 flex-shrink-0 h-24 rounded-lg overflow-hidden`}>
                           <Image
                             src={c.image}
@@ -549,7 +549,7 @@ export default function CampaignPage() {
                             sizes="96px"
                           />
                         </div>
-                        <div className={`flex-1 ${isRTL ? "text-right" : "text-left"}`}>
+                        <div className={`flex-1 min-w-0 ${isRTL ? "text-right" : "text-left"}`}>
                           <h4
                             className={`font-semibold text-slate-900 dark:text-white mb-1 line-clamp-2 group-hover:text-[#1e7e34] transition-colors ${
                               isRTL ? "font-arabic" : ""
@@ -600,7 +600,7 @@ export default function CampaignPage() {
                 {t("donate.shareModal.description") as string} ${estimatedShareRaise.toLocaleString()}.
               </p>
 
-              <div className={`flex gap-3 mb-6 ${isRTL ? "flex-row-reverse" : ""}`}>
+              <div className={`flex flex-col gap-3 mb-6 sm:flex-row ${isRTL ? "sm:flex-row-reverse" : ""}`}>
                 <button
                   onClick={() => handleSocialShare("whatsapp")}
                   className="flex-1 bg-[#25D366] hover:bg-[#20BA5A] text-white p-4 rounded-xl flex items-center justify-center transition-colors"
@@ -624,12 +624,12 @@ export default function CampaignPage() {
               </div>
 
               <div className="mb-6">
-                <div className={`flex gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
+                <div className={`flex flex-col gap-2 sm:flex-row ${isRTL ? "sm:flex-row-reverse" : ""}`}>
                   <input
                     type="text"
                     value={shareUrl}
                     readOnly
-                    className={`flex-1 px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${isRTL ? "text-right font-arabic" : "text-left"}`}
+                    className={`flex-1 min-w-0 px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${isRTL ? "text-right font-arabic" : "text-left"}`}
                   />
                   <button
                     onClick={handleCopyLink}

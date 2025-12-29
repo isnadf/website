@@ -317,8 +317,8 @@ export default function Home() {
             
             {/* Green Banner */}
             <div className="w-full flex justify-start">
-              <div className={`bg-white/10 backdrop-blur-md rounded-xl px-4 py-2 md:px-5 md:py-3 shadow-lg ${isRTL ? "text-right" : "text-left"}`}>
-                <p className={`text-white text-xs md:text-sm font-medium leading-relaxed ${isRTL ? "text-right font-arabic" : "text-left"}`}>
+              <div className={`bg-white/10 backdrop-blur-md rounded-xl px-4 py-2 md:px-5 md:py-3 shadow-lg max-w-xl ${isRTL ? "text-right" : "text-left"}`}>
+                <p className={`text-white text-xs md:text-sm font-medium leading-relaxed text-pretty ${isRTL ? "text-right font-arabic" : "text-left"}`}>
                   {t("hero.banner") as string}
                 </p>
               </div>
@@ -327,23 +327,23 @@ export default function Home() {
             {/* Main Content */}
             <div className={`w-full space-y-4 md:space-y-6 ${isRTL ? "text-right" : "text-left"}`}>
               {/* Main Heading */}
-              <h1 className={`text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight w-full whitespace-nowrap ${isRTL ? "font-arabic text-right" : "text-left"}`}>
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight w-full max-w-3xl text-balance break-words ${isRTL ? "font-arabic text-right" : "text-left"}`}>
                 {t("hero.heading") as string}
               </h1>
               
               {/* Subheading */}
-              <p className={`text-white/95 text-lg md:text-xl lg:text-2xl font-semibold leading-relaxed w-full ${isRTL ? "font-arabic text-right" : "text-left"}`}>
+              <p className={`text-white/95 text-lg md:text-xl lg:text-2xl font-semibold leading-relaxed w-full max-w-2xl text-pretty ${isRTL ? "font-arabic text-right" : "text-left"}`}>
                 {t("hero.subheading") as string}
               </p>
               
               {/* Description */}
-              <p className={`text-white/90 text-sm md:text-base lg:text-lg leading-relaxed w-full ${isRTL ? "font-arabic text-right" : "text-left"}`}>
+              <p className={`text-white/90 text-sm md:text-base lg:text-lg leading-relaxed w-full max-w-2xl text-pretty ${isRTL ? "font-arabic text-right" : "text-left"}`}>
                 {t("hero.description") as string}
               </p>
             </div>
 
             {/* Buttons */}
-            <div className={`w-full flex flex-col sm:flex-row gap-3 sm:gap-4 ${isRTL ? "items-end sm:justify-end sm:flex-row-reverse" : "items-start sm:justify-start"}`}>
+            <div className={`w-full flex flex-col sm:flex-row gap-3 sm:gap-4 ${isRTL ? "items-start sm:items-center sm:justify-end sm:flex-row-reverse" : "items-start sm:justify-start"}`}>
               <Link href="/donate-form">
                 <Button
                   size="lg"
@@ -909,7 +909,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/contactUS/cover.jpeg"
+            src="/contactUS/new-contactus.jpeg"
             alt="Contact Us Background"
             className="h-full w-full object-cover"
             width={1920}
