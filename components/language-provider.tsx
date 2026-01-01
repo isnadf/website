@@ -322,7 +322,7 @@ const translations = {
     "ibn-khaldun.apply.now": "Apply Now",
 
     // Sustainability Scholarship translations
-    "sustainability.title": "Sustainability Scholarship Program",
+    "sustainability.title": "Sustainability Scholarship",
     "sustainability.subtitle": "Towards Global Sovereignty and Self-Driven Development.",
     "sustainability.scholarships": "Scholarships",
     "sustainability.years": "Years",
@@ -1909,4 +1909,3 @@ export function useLanguage() {
   }
   return context
 }
-

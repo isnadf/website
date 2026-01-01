@@ -13,6 +13,25 @@ import Image from "next/image"
 // Mock news data with bilingual support
 const newsData = [
   {
+    id: 8,
+    title: {
+      en: "Pulse of Life Scholarship Supports Medical Students in Gaza in Partnership with Biman Foundation",
+      ar: "منحة نبض الحياة تدعم طلبة الطب في غزة بالشراكة مع مؤسسة بيمان"
+    },
+    date: "June 15, 2025",
+    excerpt: {
+      en: "As part of the “Pulse of Life” Scholarship, Isnad foundation for Palestinian student support continues its efforts to empower Palestinian students, in cooperation with Biman Foundation, by providing scholarships for medical students in the Gaza Strip, aimed at supporting their academic journey and enhancing their ability to continue their education despite the challenges. Together, we plant hope and build a future our students deserve.",
+      ar: "في إطار منحة “نبض الحياة” تواصل مؤسسة إسناد لدعم الطالب الفلسطيني جهودها في تمكين الطلبة الفلسطينيين، وذلك بالتعاون مع مؤسسة بيمان، من خلال تقديم منح دراسية لطلاب الطب في قطاع غزة تهدف إلى دعم مسيرتهم التعليمية وتعزيز فرصهم في مواصلة التعليم رغم التحديات. معًا نزرع الأمل، ونصنع مستقبلًا يستحقه طلابنا."
+    },
+    image: "/LastNews/1.png",
+    href: "/news/pulse-of-life-biman-scholarships",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    featured: true,
+  },
+  {
     id: 6,
     title: {
       en: "Isnad Foundation Visits Wafa Foundation in Jakarta, Indonesia",

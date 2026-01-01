@@ -273,6 +273,45 @@ const newsArticles: Record<string, ArticleData> = {
         "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
       ]
     }
+  },
+  "pulse-of-life-biman-scholarships": {
+    title: {
+      en: "Pulse of Life Scholarship Supports Medical Students in Gaza in Partnership with Biman Foundation",
+      ar: "منحة نبض الحياة تدعم طلبة الطب في غزة بالشراكة مع مؤسسة بيمان"
+    },
+    date: "June 15, 2025",
+    author: "Isnad Foundation",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    image: "/LastNews/1.png",
+    heroImage: "/LastNews/1.png",
+    galleryImages: [
+      "/1-1-2026/1.jpeg",
+      "/1-1-2026/2.jpeg",
+      "/1-1-2026/3.jpeg",
+      "/1-1-2026/4.jpeg",
+      "/1-1-2026/6.jpeg",
+      "/1-1-2026/7.jpeg",
+      "/1-1-2026/8.jpeg"
+    ],
+    content: {
+      en: [
+        "As part of the “Pulse of Life” Scholarship, Isnad Foundation for Supporting Palestinian Students continues its humanitarian and educational efforts to empower Palestinian youth, in cooperation with Biman Foundation, through the provision of scholarships dedicated to medical students in the Gaza Strip.",
+        "This initiative aims to support students’ academic journeys and enhance their ability to continue their education despite the severe humanitarian, economic, and academic challenges imposed by the current conditions.",
+        "The scholarship targets outstanding medical students who face financial hardships, ensuring continuity in their studies and helping safeguard the future of the healthcare sector in Gaza. By investing in medical education, the program contributes to building a resilient generation capable of serving their community in times of crisis and recovery.",
+        "Isnad Foundation for Supporting Palestinian Students is a non-profit organization dedicated to supporting Palestinian university students through scholarships and educational programs. The foundation works to expand access to higher education and empower talented students to achieve academic excellence.",
+        "Together, we plant hope and build a future our students truly deserve."
+      ],
+      ar: [
+        "في إطار منحة «نبض الحياة»، تواصل مؤسسة إسناد لدعم الطالب الفلسطيني جهودها الحثيثة في تمكين الطلبة الفلسطينيين ودعم مسيرتهم التعليمية، وذلك بالتعاون مع مؤسسة بيمان، من خلال تقديم منح دراسية مخصصة لطلبة الطب في قطاع غزة.",
+        "وتهدف هذه المنح إلى مساندة الطلبة أكاديميًا، وتخفيف الأعباء المالية عنهم، وتعزيز قدرتهم على الاستمرار في التعليم الجامعي رغم الظروف الإنسانية والاقتصادية الصعبة التي يعيشها القطاع.",
+        "وتأتي هذه المبادرة انطلاقًا من إيمان المؤسستين بأهمية الاستثمار في التعليم، لا سيما في القطاع الطبي، باعتباره ركيزة أساسية في بناء المجتمعات وتعزيز صمودها، حيث تسعى المنحة إلى توفير بيئة تعليمية أكثر استقرارًا للطلبة، وتمكينهم من استكمال دراستهم وتحقيق طموحاتهم العلمية والمهنية.",
+        "وتُعد مؤسسة إسناد لدعم الطالب الفلسطيني مؤسسة إنسانية تعليمية تُعنى بدعم طلبة الجامعات الفلسطينيين داخل فلسطين وخارجها، من خلال برامج منح دراسية ومشاريع تمكين أكاديمي وتنموي تهدف إلى بناء جيل متعلم وقادر على قيادة المستقبل.",
+        "معًا نزرع الأمل، ونصنع مستقبلًا يستحقه طلابنا."
+      ]
+    }
   }
 }
 
