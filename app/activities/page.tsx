@@ -41,7 +41,7 @@ const getLocalizedText = (obj: LocalizedText, lang: Language): string => {
 const initializeState = () => {
   const DEFAULT_LOCATION: Location = { en: "All", ar: "الكل" }
 
-  const yearOptions = ["All", "2023", "2022", "2021"]
+  const yearOptions = ["All", "2026", "2023", "2022", "2021"]
 
   const locationOptions: Location[] = [
     DEFAULT_LOCATION,

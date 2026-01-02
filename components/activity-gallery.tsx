@@ -20,6 +20,8 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
   // Map activity ID to folder name
   const getFolderName = (id: number) => {
     switch (id) {
+      case 0:
+        return "1-1-2026"
       case 1:
         return "one"
       case 2:
@@ -47,7 +49,18 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
         const folderName = getFolderName(activity.id)
         let imageList: string[] = []
 
-        if (folderName === "one") {
+        if (folderName === "1-1-2026") {
+          imageList = [
+            "/1-1-2026/1.jpeg",
+            "/1-1-2026/2.jpeg",
+            "/1-1-2026/3.jpeg",
+            "/1-1-2026/4.jpeg",
+            "/1-1-2026/5.jpeg",
+            "/1-1-2026/6.jpeg",
+            "/1-1-2026/7.jpeg",
+            "/1-1-2026/8.jpeg"
+          ]
+        } else if (folderName === "one") {
           imageList = [
             "/one/PHOTO-2025-04-20-18-03-45.jpg",
             "/one/PHOTO-2025-04-20-18-03-46 2.jpg",

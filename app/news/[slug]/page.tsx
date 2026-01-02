@@ -13,6 +13,7 @@ import GSAPReveal from "@/components/gsap-reveal"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
 import HeroVideo from "@/components/hero-video"
+import CustomVideoPlayer from "@/components/custom-video-player"
 import { motion, AnimatePresence } from "motion/react"
 
 // Define the type for article data
@@ -279,19 +280,20 @@ const newsArticles: Record<string, ArticleData> = {
       en: "Pulse of Life Scholarship Supports Medical Students in Gaza in Partnership with Biman Foundation",
       ar: "منحة نبض الحياة تدعم طلبة الطب في غزة بالشراكة مع مؤسسة بيمان"
     },
-    date: "June 15, 2025",
+    date: "January 1, 2026",
     author: "Isnad Foundation",
     category: {
       en: "Scholarships",
       ar: "المنح الدراسية"
     },
-    image: "/LastNews/1.png",
-    heroImage: "/LastNews/1.png",
+    image: "/1-1-2026/6.jpeg",
+    heroImage: "/1-1-2026/6.jpeg",
     galleryImages: [
       "/1-1-2026/1.jpeg",
       "/1-1-2026/2.jpeg",
       "/1-1-2026/3.jpeg",
       "/1-1-2026/4.jpeg",
+      "/1-1-2026/5.jpeg",
       "/1-1-2026/6.jpeg",
       "/1-1-2026/7.jpeg",
       "/1-1-2026/8.jpeg"
@@ -341,6 +343,11 @@ const pulseOfLifeGazaVideos = [
   "/newsVid[1]/vid1.mp4",
   "/newsVid[1]/vid2.mp4",
   "/newsVid[1]/vid3.mp4"
+] as const
+
+const pulseOfLifeBimanVideos = [
+  "https://stream.mux.com/aC2xAum88lYEw6IBCgCDkz7ZsVqzIp9ndZiCLy35giY.m3u8",
+  "https://stream.mux.com/8dmD5ecDvBkfU33tT45WHQDfVkk48potgvqFyGROzMQ.m3u8"
 ] as const
 
 export default function NewsArticlePage() {
@@ -573,33 +580,99 @@ export default function NewsArticlePage() {
                 </div>
               </GSAPReveal>
 
-              {/* Gallery Section */}
-              {article.galleryImages && article.galleryImages.length > 0 && (
+              {/* Gallery Section with Images and Videos */}
+              {((article.galleryImages && article.galleryImages.length > 0) || 
+                (slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships" || slug === "pulse-of-life-biman-scholarships")) && (
                 <GSAPReveal animation="fade" delay={0.2}>
                   <div className="mt-12">
                     <h3 className={`text-2xl font-bold mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
-                      {language === 'ar' ? 'معرض الصور' : 'Photo Gallery'}
+                      {language === 'ar' ? 'معرض الصور والفيديوهات' : 'Photo & Video Gallery'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {article.galleryImages.map((imageSrc, index) => (
+                      {/* Gallery Images */}
+                      {article.galleryImages && article.galleryImages.map((imageSrc, index) => (
                         <div 
-                          key={index} 
-                          className="relative aspect-video overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 cursor-pointer group"
+                          key={`img-${index}`} 
+                          className="relative w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 cursor-pointer group bg-gray-50 dark:bg-gray-900"
                           onClick={() => {
                             setSelectedImageIndex(index)
                             setLightboxOpen(true)
                           }}
                         >
-                          <Image
-                            src={imageSrc}
-                            alt={`${article.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${index + 1}`}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                          <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '400px' }}>
+                            <Image
+                              src={imageSrc}
+                              alt={`${article.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${index + 1}`}
+                              width={800}
+                              height={1200}
+                              className="w-full h-auto max-h-[900px] object-contain group-hover:scale-105 transition-transform duration-300"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                          </div>
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
                         </div>
                       ))}
+                      
+                      {/* Videos */}
+                      {(slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships" || slug === "pulse-of-life-biman-scholarships") && (
+                        (() => {
+                          const isPulseDisbursement = slug === "pulse-of-life-disbursement"
+                          const isPulseGaza = slug === "pulse-of-life-gaza-medical-scholarships"
+                          const isPulseBiman = slug === "pulse-of-life-biman-scholarships"
+                          const videos = isPulseDisbursement
+                            ? pulseOfLifeDisbursementVideos
+                            : isPulseGaza
+                              ? pulseOfLifeGazaVideos
+                              : isPulseBiman
+                                ? pulseOfLifeBimanVideos
+                                : []
+
+                          if (!videos.length) {
+                            return null
+                          }
+
+                          return videos.map((videoSrc, index) => {
+                            const isMuxVideo = videoSrc.includes('.m3u8') || videoSrc.includes('mux.com')
+                            return (
+                              <div
+                                key={`video-${index}`}
+                                className="group relative w-full overflow-hidden rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg bg-gray-50 dark:bg-gray-900"
+                              >
+                                <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '400px' }}>
+                                  {isMuxVideo ? (
+                                    <div className="w-full" style={{ maxHeight: '900px' }}>
+                                      <CustomVideoPlayer
+                                        src={videoSrc}
+                                        autoPlay={true}
+                                        muted={true}
+                                        loop={true}
+                                        playsInline={true}
+                                        preload="auto"
+                                        lazy={true}
+                                        className="w-full h-auto max-h-[900px]"
+                                        videoClassName="w-full h-auto max-h-[900px] object-contain"
+                                      />
+                                    </div>
+                                  ) : (
+                                    <video
+                                      className="w-full h-auto max-h-[900px] object-contain"
+                                      controls
+                                      autoPlay
+                                      muted
+                                      loop
+                                      playsInline
+                                      preload="auto"
+                                    >
+                                      <source src={videoSrc} type="video/mp4" />
+                                      {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                                    </video>
+                                  )}
+                                </div>
+                              </div>
+                            )
+                          })
+                        })()
+                      )}
                     </div>
                   </div>
                 </GSAPReveal>
@@ -834,59 +907,6 @@ export default function NewsArticlePage() {
           </div>
         </div>
       </section>
-
-      {/* Videos Section - Full Width */}
-      {(slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships") && (
-        (() => {
-          const isPulseDisbursement = slug === "pulse-of-life-disbursement"
-          const isPulseGaza = slug === "pulse-of-life-gaza-medical-scholarships"
-          const videos = isPulseDisbursement
-            ? pulseOfLifeDisbursementVideos
-            : isPulseGaza
-              ? pulseOfLifeGazaVideos
-              : []
-
-          if (!videos.length) {
-            return null
-          }
-
-          return (
-            <section className="pt-8 pb-16 md:pt-12 md:pb-24 bg-white dark:bg-gray-950">
-              <div className="container px-4 md:px-6">
-                <div className="mx-auto max-w-5xl">
-                  <GSAPReveal animation="fade" delay={0.2}>
-                    <div className="text-center mb-12">
-                      <h3
-                        className="text-2xl font-bold mb-6"
-                        style={{ textAlign: isRTL ? 'right' : 'left' }}
-                      >
-                        {language === 'ar' ? 'أحدث الفيديوهات' : 'Latest Videos'}
-                      </h3>
-                    </div>
-                    <div className={`grid gap-6 ${isPulseDisbursement ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
-                      {videos.map((videoSrc) => (
-                        <div
-                          key={videoSrc}
-                          className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg"
-                        >
-                          <video
-                            className={`w-full transition-opacity duration-700 ${isPulseGaza ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
-                            controls
-                            preload="metadata"
-                          >
-                            <source src={videoSrc} type="video/mp4" />
-                            {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
-                          </video>
-                        </div>
-                      ))}
-                    </div>
-                  </GSAPReveal>
-                </div>
-              </div>
-            </section>
-          )
-        })()
-      )}
 
       {/* More News Section */}
       <section className="py-16 md:py-24 bg-muted/30">

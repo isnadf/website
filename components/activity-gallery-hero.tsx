@@ -76,6 +76,8 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
 
   // Get preview images for the current activity
   const getPreviewImages = (activityId: number) => {
+    const activityImage = activities.find(a => a.id === activityId)?.image
+
     switch (activityId) {
       case 1:
         return ["/one/PHOTO-2025-04-20-18-03-45.jpg"]
@@ -90,9 +92,9 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
       case 6:
         return ["/six/PHOTO-2025-04-26-22-24-14 2.jpg"]
       case 7:
-        return [activities.find(a => a.id === 7)?.image || "/placeholder.svg"]
+        return [activityImage || "/placeholder.svg"]
       default:
-        return ["/placeholder.svg"]
+        return [activityImage || "/placeholder.svg"]
     }
   }
 

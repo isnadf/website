@@ -31,6 +31,36 @@ export interface Activity {
 
 export const activitiesData: Activity[] = [
   {
+    id: 0,
+    title: {
+      en: "Pulse of Life Scholarship Supports Medical Students in Gaza in Partnership with Biman Foundation",
+      ar: "منحة نبض الحياة تدعم طلبة الطب في غزة بالشراكة مع مؤسسة بيمان"
+    },
+    date: {
+      en: "January 1, 2026",
+      ar: "1 يناير 2026"
+    },
+    location: {
+      en: "Gaza Strip, Palestine",
+      ar: "قطاع غزة، فلسطين"
+    },
+    description: {
+      en: "As part of the \"Pulse of Life\" Scholarship, Isnad Foundation for Supporting Palestinian Students continues its humanitarian and educational efforts to empower Palestinian youth, in cooperation with Biman Foundation, through the provision of scholarships dedicated to medical students in the Gaza Strip.",
+      ar: "في إطار منحة «نبض الحياة»، تواصل مؤسسة إسناد لدعم الطالب الفلسطيني جهودها الحثيثة في تمكين الطلبة الفلسطينيين ودعم مسيرتهم التعليمية، وذلك بالتعاون مع مؤسسة بيمان، من خلال تقديم منح دراسية مخصصة لطلبة الطب في قطاع غزة."
+    },
+    full_description: {
+      en: "As part of the \"Pulse of Life\" Scholarship, Isnad Foundation for Supporting Palestinian Students continues its humanitarian and educational efforts to empower Palestinian youth, in cooperation with Biman Foundation, through the provision of scholarships dedicated to medical students in the Gaza Strip.\n\nThis initiative aims to support students' academic journeys and enhance their ability to continue their education despite the severe humanitarian, economic, and academic challenges imposed by the current conditions.\n\nThe scholarship targets outstanding medical students who face financial hardships, ensuring continuity in their studies and helping safeguard the future of the healthcare sector in Gaza. By investing in medical education, the program contributes to building a resilient generation capable of serving their community in times of crisis and recovery.\n\nIsnad Foundation for Supporting Palestinian Students is a non-profit organization dedicated to supporting Palestinian university students through scholarships and educational programs. The foundation works to expand access to higher education and empower talented students to achieve academic excellence.\n\nTogether, we plant hope and build a future our students truly deserve.",
+      ar: "في إطار منحة «نبض الحياة»، تواصل مؤسسة إسناد لدعم الطالب الفلسطيني جهودها الحثيثة في تمكين الطلبة الفلسطينيين ودعم مسيرتهم التعليمية، وذلك بالتعاون مع مؤسسة بيمان، من خلال تقديم منح دراسية مخصصة لطلبة الطب في قطاع غزة.\n\nوتهدف هذه المنح إلى مساندة الطلبة أكاديميًا، وتخفيف الأعباء المالية عنهم، وتعزيز قدرتهم على الاستمرار في التعليم الجامعي رغم الظروف الإنسانية والاقتصادية الصعبة التي يعيشها القطاع.\n\nوتأتي هذه المبادرة انطلاقًا من إيمان المؤسستين بأهمية الاستثمار في التعليم، لا سيما في القطاع الطبي، باعتباره ركيزة أساسية في بناء المجتمعات وتعزيز صمودها، حيث تسعى المنحة إلى توفير بيئة تعليمية أكثر استقرارًا للطلبة، وتمكينهم من استكمال دراستهم وتحقيق طموحاتهم العلمية والمهنية.\n\nوتُعد مؤسسة إسناد لدعم الطالب الفلسطيني مؤسسة إنسانية تعليمية تُعنى بدعم طلبة الجامعات الفلسطينيين داخل فلسطين وخارجها، من خلال برامج منح دراسية ومشاريع تمكين أكاديمي وتنموي تهدف إلى بناء جيل متعلم وقادر على قيادة المستقبل.\n\nمعًا نزرع الأمل، ونصنع مستقبلًا يستحقه طلابنا."
+    },
+    image: "/1-1-2026/6.jpeg",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    featured: true,
+    year: 2026,
+  },
+  {
     id: 1,
     title: {
       en: "Isnad Foundation Organizes Networking Meeting with Palestinian Students in Turkey and Offers Scholarships",
