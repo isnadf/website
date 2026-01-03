@@ -1,5 +1,6 @@
 "use client"
 import HexagonTwo from "@/components/HexagonTwo"
+import HeroVideo from "@/components/hero-video"
 import { useLanguage } from "@/components/language-provider"
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { Target, Rocket } from "lucide-react"
@@ -8,6 +9,7 @@ import Image from "next/image"
 export default function AboutPage() {
   const { t, language } = useLanguage()
   const isRTL = language === 'ar'
+  const aboutVideoSrc = "https://stream.mux.com/dywIalx91MDuYFVRNktI5ovHcCDrkxD02ILD00r4028K6Y.m3u8"
 
   return (
     <main className="flex min-h-screen flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -148,6 +150,32 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Who We Work For Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-6xl text-center">
+            <h2 className={`text-3xl font-bold tracking-tight sm:text-4xl text-gray-900 dark:text-white ${isRTL ? "font-arabic" : ""}`}>
+              {t("about.whoWeServe.title") as string}
+            </h2>
+            <p className={`mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 ${isRTL ? "font-arabic" : ""}`}>
+              {t("about.whoWeServe.subtitle") as string}
+            </p>
+            <div className="mt-8">
+              <div className="mx-auto w-full max-w-xs sm:max-w-sm overflow-hidden rounded-2xl bg-transparent">
+                <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '520px' }}>
+                  <HeroVideo
+                    className="w-full h-auto max-h-[900px]"
+                    src={aboutVideoSrc}
+                    poster="/1-1-2026/6.jpeg"
+                    objectFit="contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Our Values Section */}
       <section className="py-16 md:py-24 bg-white dark:bg-black">
         <div className="container px-4 md:px-6">
@@ -271,4 +299,3 @@ export default function AboutPage() {
     </main>
   )
 }
-

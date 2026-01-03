@@ -352,7 +352,7 @@ export default function Home() {
                   {t("hero.cta.donate") ?? "Donate Now"}
                 </Button>
               </Link>
-              <Link href="/donate-form">
+              <Link href="#campaigns">
                 <Button
                   size="lg"
                   variant="secondary"
@@ -572,7 +572,7 @@ export default function Home() {
       </section>
 
       {/* Important Campaigns Section */}
-      <section data-campaigns-section className="py-16 md:py-24 bg-white dark:bg-black">
+      <section id="campaigns" data-campaigns-section className="py-16 md:py-24 bg-white dark:bg-black">
         <div className="container px-4 md:px-6">
           {/* Header with Title */}
           <div className="mb-8">

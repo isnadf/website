@@ -97,6 +97,8 @@ const translations = {
 
     "about.hero.title": "Who Are We?",
     "about.hero.description": "The Palestinian Support Fund is an independent, non-profit development entity that aims to support higher education in Palestine by investing in the potential of young academics. The Fund focuses on providing programs and initiatives that contribute to bridging the gap between educational outcomes and community needs by providing scholarships and facilitating access to nationally prioritized majors. It also works to create a knowledge network that brings together Palestinian talents within the country and abroad, within a comprehensive development vision.",
+    "about.whoWeServe.title": "This Is Who We Serve",
+    "about.whoWeServe.subtitle": "Meet the students and communities we stand beside, and the stories that give our mission its meaning.",
     "about.mission.tag": "Our Mission",
     "about.mission.title": "Our Mission",
     "about.mission.text": "To enhance the academic competencies of young Palestinian professionals in various disciplines needed by Palestinian society, enabling them to play a pivotal and effective role in building a sustainable, prosperous, and strong future for palestine.",
@@ -1020,6 +1022,8 @@ const translations = {
     "programs.home.button": "عرض برامجنا",
     "about.hero.title": "من نحن؟",
     "about.hero.description": "مؤسسة إسنَاد لدعم الطالب الفلسطيني هي كيان تنموي مستقل وغير ربحي، يهدف إلى دعم مسيرة التعليم العالي في فلسطين عبر الاستثمار في الطاقات الشبابية الأكاديمية. تركز المؤسسة على تقديم برامج ومبادرات تساهم في سد الفجوة بين مخرجات التعليم واحتياجات المجتمع، من خلال توفير منح دراسية، وتيسير الوصول إلى التخصصات ذات الأولوية الوطنية. كما تعمل على خلق شبكة معرفية تجمع بين الكفاءات الفلسطينية داخل الوطن وفي الشتات، ضمن رؤية تنموية شاملة",
+    "about.whoWeServe.title": "هذا لمن نعمل",
+    "about.whoWeServe.subtitle": "وجوه الطلاب والمجتمعات التي نقف إلى جانبها، والقصص التي تمنح رسالتنا معناها.",
     "about.mission.tag": "رسالتنا",
     "about.mission.title": "رسالتنا",
     "about.mission.text":"الارتقاء بالكفاءات الأكاديمية الفلسطينية الشابة في شتى التخصصات التي يحتاجها المجتمع الفلسطيني، وتمكينها من أداء دور محوري وفعّال في بناء مستقبل مستدام، مزدهر، وقوي للدولة الفلسطينية.",
