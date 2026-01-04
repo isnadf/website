@@ -43,9 +43,9 @@ const translations = {
     "hero.cta.donate": "Contribute with Us",
     "hero.cta.quickDonate": "Quick Donate",
     "hero.heading": "Isnad Foundation for Palestinian Student Support",
-    "hero.subheading": "Inspire your humanity",
+    "hero.subheading": "Inspire Your Humanity",
     "hero.banner": "Be part of the change, and contribute with us in giving hope and supporting the people of Gaza.",
-    "hero.description": "Isnad Foundation is a charitable organization to support the people of Palestine - non-profit, working to provide assistance and support to our people in the besieged northern Gaza Strip.",
+    "hero.description": "Isnad Foundation is an independent, non-profit development organization that works to support higher education in Palestine by investing in the academic potential of young people and providing scholarships within a comprehensive developmental vision that restores hope and builds the future.",
     "hero.stats.students.value": "2,122",
     "hero.stats.students.label": "Students",
     "hero.stats.sponsorships.value": "4,827",
@@ -101,10 +101,10 @@ const translations = {
     "about.whoWeServe.subtitle": "Meet the students and communities we stand beside, and the stories that give our mission its meaning.",
     "about.mission.tag": "Our Mission",
     "about.mission.title": "Our Mission",
-    "about.mission.text": "To enhance the academic competencies of young Palestinian professionals in various disciplines needed by Palestinian society, enabling them to play a pivotal and effective role in building a sustainable, prosperous, and strong future for palestine.",
+    "about.mission.text": "To provide high-quality scholarships, support scientific research, link education to socioeconomic development needs, and build a strong network of Palestinian professionals capable of serving their communities and advancing national progress.",
     "about.vision.tag": "Our Vision",
     "about.vision.title": "Our Vision",
-    "about.vision.text": "The Isnad Foundation for Palestinian Student Support believes in the importance of enhancing the role of youth in community activities through educational and awareness programs that aim to consolidate the concepts of interaction, social harmony, and national belonging.",
+    "about.vision.text": "To establish a sustainable institutional framework that empowers Palestinian students both locally and in the diaspora, encouraging them to take on leadership roles for Palestine's development.",
     "about.foundation.tag": "Foundation Identity",
     "about.foundation.title": "Our Story",
     "about.foundation.text1": "Established in 2015 in Istanbul, Turkey, the Isnad Foundation was founded by a group of educators and professionals who recognized the challenges faced by Palestinian students seeking higher education opportunities.",
@@ -991,7 +991,7 @@ const translations = {
     "hero.heading": "مؤسسة إسناد لدعم الطالب الفلسطيني",
     "hero.subheading": "ألهم إنسانيّتك",
     "hero.banner": "كن جزءا من التغيير، وساهم معنا في منح الأمل ودعم أهل غزة.",
-    "hero.description": "مؤسسة إسناد هي مؤسسة خيرية لدعم أهالي فلسطين - غير هادفة للربح تعمل على توفير المساعدة والدعم لأهلنا في شمال القطاع المحاصر.",
+    "hero.description": "مؤسسة إسناد هي مؤسسة تنموية مستقلة وغير ربحية، تعمل على دعم مسيرة التعليم العالي في فلسطين، من خلال الاستثمار في الطاقات الشبابية الأكاديمية، وتوفير المنح الدراسية ضمن رؤية تنموية شاملة تُعيد الأمل وتصنع المستقبل.",
     "hero.stats.students.value": "2,122",
     "hero.stats.students.label": "الطلاب",
     "hero.stats.sponsorships.value": "4,827",
@@ -1026,10 +1026,10 @@ const translations = {
     "about.whoWeServe.subtitle": "وجوه الطلاب والمجتمعات التي نقف إلى جانبها، والقصص التي تمنح رسالتنا معناها.",
     "about.mission.tag": "رسالتنا",
     "about.mission.title": "رسالتنا",
-    "about.mission.text":"الارتقاء بالكفاءات الأكاديمية الفلسطينية الشابة في شتى التخصصات التي يحتاجها المجتمع الفلسطيني، وتمكينها من أداء دور محوري وفعّال في بناء مستقبل مستدام، مزدهر، وقوي للدولة الفلسطينية.",
+    "about.mission.text":"تقديم منح دراسية، ودعم البحث العلمي، وربط التعليم بمتطلبات التنمية الاقتصادية والاجتماعية، وبناء شبكة كفاءات فلسطينية لخدمة الوطن وتطوير مؤسساته",
     "about.vision.tag": "رؤيتنا",
     "about.vision.title": "رؤيتنا",
-    "about.vision.text": "تؤمن مؤسسة إسنَاد لدعم الطالب الفلسطيني بأهمية تعزيز دور الشباب في النشاط المجتمعي، عبر برامج تعليمية وتوعوية تهدف إلى ترسيخ مفاهيم التفاعل، والانسجام الاجتماعي، والانتماء الوطني.",
+    "about.vision.text": "بناء كيان مرجعي ومستدام لتمكين وتأهيل الطلبة الفلسطينيين في الداخل والشتات، وتحفيزهم لأداء أدوار قيادية في مجالاتهم بما يخدم نهضة فلسطين.",
     "about.foundation.tag": "هوية المؤسسة",
     "about.foundation.title": "قصتنا",
     "about.foundation.text1": "تأسست مؤسسة إسنَاد لدعم الطالب الفلسطيني في عام 2015 في إسطنبول، تركيا، على يد مجموعة من المربين والمهنيين الذين أدركوا التحديات التي يواجهها الطلاب الفلسطينيون الساعون للحصول على فرص التعليم العالي.",
@@ -1881,15 +1881,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language") as Language
-    if (savedLanguage && ["en", "ar"].includes(savedLanguage)) {
-      setLanguageState(savedLanguage)
-      document.documentElement.lang = savedLanguage
-      document.documentElement.dir = savedLanguage === "ar" ? "rtl" : "ltr"
-    } else {
-      // Set default to Arabic if no saved language
-      document.documentElement.lang = "ar"
-      document.documentElement.dir = "rtl"
-    }
+    const initialLanguage: Language =
+      savedLanguage && ["en", "ar"].includes(savedLanguage) ? savedLanguage : "en"
+
+    setLanguageState(initialLanguage)
+    document.documentElement.lang = initialLanguage
+    document.documentElement.dir = initialLanguage === "ar" ? "rtl" : "ltr"
   }, [])
 
   const setLanguage = (lang: Language) => {

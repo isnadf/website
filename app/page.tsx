@@ -155,7 +155,8 @@ export default function Home() {
     { name: "Milli Gençlik Vakfı", logo: "/partners/p1.png", type: "Academic Partner" },
     { name: "YediHilal", logo: "/partners/p2.png", type: "Academic Partner" },
     { name: "Hüdayi Vakfı", logo: "/partners/p3.jpeg", type: "Academic Partner" },
-    { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: "International Organization" }
+    { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: "International Organization" },
+    { name: "Umut Eğitim Vakfı", logo: "/partners/p7.svg", type: "International Organization" }
   ]
 
   const specialPartner = { name: "Cinta Gaza Malaysia", logo: "/partners/p6.svg", type: "International Organization" }
@@ -861,7 +862,7 @@ export default function Home() {
           </div>
 
           <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm p-8">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
+            <div className="flex flex-nowrap items-center justify-center gap-8 overflow-x-auto scrollbar-hide">
               {partners.map((partner, index) => (
                 <GSAPReveal key={partner.name} animation="fade" delay={index * 0.1}>
                   <div className="flex flex-col items-center text-center gap-3">
