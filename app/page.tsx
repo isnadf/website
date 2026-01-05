@@ -328,7 +328,7 @@ export default function Home() {
             {/* Main Content */}
             <div className={`w-full space-y-4 md:space-y-6 ${isRTL ? "text-right" : "text-left"}`}>
               {/* Main Heading */}
-              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight w-full max-w-3xl text-balance break-words ${isRTL ? "font-arabic text-right" : "text-left"}`}>
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight w-full max-w-3xl text-balance break-words lg:text-4xl xl:text-5xl lg:whitespace-nowrap lg:max-w-none ${isRTL ? "font-arabic text-right" : "text-left"}`}>
                 {t("hero.heading") as string}
               </h1>
               

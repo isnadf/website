@@ -287,7 +287,7 @@ const newsArticles: Record<string, ArticleData> = {
       ar: "المنح الدراسية"
     },
     image: "/1-1-2026/6.jpeg",
-    heroImage: "/1-1-2026/6.jpeg",
+    heroImage: "/1-1-2026/hero-1.png",
     galleryImages: [
       "/1-1-2026/1.jpeg",
       "/1-1-2026/2.jpeg",
