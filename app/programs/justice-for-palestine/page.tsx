@@ -99,13 +99,13 @@ export default function JusticeForPalestinePage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-red-200 dark:border-red-800">
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/justice-for-palestine/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       English (EN)
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/justice-for-palestine/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       العربية (AR)
                     </a>
@@ -126,13 +126,13 @@ export default function JusticeForPalestinePage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-brochure-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/justice-for-palestine/Brochure-en.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       English (EN)
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/justice-for-palestine/Brochure-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       العربية (AR)
                     </a>

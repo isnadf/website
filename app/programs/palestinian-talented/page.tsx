@@ -85,10 +85,10 @@ export default function PalestinianTalentedScholarshipPage() {
           </p>
           <div className="flex justify-center mt-6 gap-4 flex-wrap">
             <div className="flex gap-3">
-              <a href="/ProgramsFiles/Talented Excellence Scholarship Program-EN.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+              <a href="/2026-pdfs/palestinian-talented/program-en.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
                 <BookOpen size={20} className="-ml-1" /> {t("talented.download.en")}
               </a>
-              <a href="/ProgramsFiles/Talented Excellence Scholarship Program-AR.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+              <a href="/2026-pdfs/palestinian-talented/program-ar.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
                 <BookOpen size={20} className="-ml-1" /> {t("talented.download.ar")}
               </a>
             </div>
@@ -368,10 +368,10 @@ export default function PalestinianTalentedScholarshipPage() {
             <UserPlus size={26} className="-ml-1" /> Apply Now
           </a>
           <div className="flex gap-3">
-            <a href="/ProgramsFiles/Talented Excellence Scholarship Program-EN.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+            <a href="/2026-pdfs/palestinian-talented/program-en.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
               <BookOpen size={20} className="-ml-1" /> Download Program (EN)
             </a>
-            <a href="/ProgramsFiles/Talented Excellence Scholarship Program-AR.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+            <a href="/2026-pdfs/palestinian-talented/program-ar.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
               <BookOpen size={20} className="-ml-1" /> تحميل البرنامج (AR)
             </a>
           </div>

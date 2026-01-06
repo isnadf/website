@@ -77,10 +77,10 @@ export default function PulseOfLifePage() {
           </p>
           <div className={`flex justify-center mt-6 gap-4 flex-wrap ${getRTLFlex()}`}>
             <div className={`flex gap-3 ${getRTLFlex()}`}>
-              <a href="/ProgramsFiles/Pulse of Life Scholarship-EN.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
+              <a href="/2026-pdfs/pulse-of-life/program-en.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
                 <BookOpen size={20} className={getRTLIcon()} /> {t("pulse.download.en")}
               </a>
-              <a href="/ProgramsFiles/Pulse of Life Scholarship-AR.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
+              <a href="/2026-pdfs/pulse-of-life/program-ar.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
                 <BookOpen size={20} className={getRTLIcon()} /> {t("pulse.download.ar")}
               </a>
             </div>

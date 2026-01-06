@@ -14,6 +14,7 @@ export default function ActivityPage() {
   const { language } = useLanguage()
   const activityId = parseInt(params.id as string)
   const activity = activitiesData.find((a: Activity) => a.id === activityId)
+  const heroFitClass = activity?.image === "/1-1-2026/hero-1.png" ? "object-contain bg-white" : "object-cover"
 
   if (!activity) {
     return (
@@ -37,7 +38,7 @@ export default function ActivityPage() {
           <Image
             src={activity.image || "/placeholder.svg"}
             alt={activity.title[language]}
-            className="h-full w-full object-cover"
+            className={`h-full w-full ${heroFitClass}`}
             width={1920}
             height={1080}
           />

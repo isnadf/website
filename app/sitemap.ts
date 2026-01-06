@@ -42,10 +42,26 @@ const donateRoutes = [
 
 // PDF files in ProgramsFiles
 const pdfRoutes = [
-  '/ProgramsFiles/Pulse of Life Scholarship-EN.pdf',
-  '/ProgramsFiles/Pulse of Life Scholarship-AR.pdf',
-  '/ProgramsFiles/Talented Excellence Scholarship Program-EN.pdf',
-  '/ProgramsFiles/Talented Excellence Scholarship Program-AR.pdf',
+  '/2026-pdfs/pulse-of-life/program-en.pdf',
+  '/2026-pdfs/pulse-of-life/program-ar.pdf',
+  '/2026-pdfs/pulse-of-life/Brochure-en.pdf',
+  '/2026-pdfs/pulse-of-life/Brochures-ar.pdf',
+  '/2026-pdfs/palestinian-talented/program-en.pdf',
+  '/2026-pdfs/palestinian-talented/program-ar.pdf',
+  '/2026-pdfs/palestinian-talented/Brochure-en.pdf',
+  '/2026-pdfs/palestinian-talented/Brochure-ar.pdf',
+  '/2026-pdfs/sustainability/program-en.pdf',
+  '/2026-pdfs/sustainability/program-ar.pdf',
+  '/2026-pdfs/sustainability/Brochure-en.pdf',
+  '/2026-pdfs/sustainability/Brochure-ar.pdf',
+  '/2026-pdfs/justice-for-palestine/program-en.pdf',
+  '/2026-pdfs/justice-for-palestine/program-ar.pdf',
+  '/2026-pdfs/justice-for-palestine/Brochure-en.pdf',
+  '/2026-pdfs/justice-for-palestine/Brochure-ar.pdf',
+  '/2026-pdfs/ibn-khaldun/program-en.pdf',
+  '/2026-pdfs/ibn-khaldun/program-ar.pdf',
+  '/2026-pdfs/ibn-khaldun/Brochure-en.pdf',
+  '/2026-pdfs/ibn-khaldun/Brochure-ar.pdf',
 ]
 
 // Success story routes
@@ -154,4 +170,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes
 }
-

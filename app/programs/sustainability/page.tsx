@@ -125,13 +125,13 @@ export default function SustainabilityScholarshipPage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-white/20">
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/Sustainability Scholarship-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/sustainability/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       English (EN)
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/Sustainability Scholarship-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/sustainability/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       العربية (AR)
                     </a>

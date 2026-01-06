@@ -99,6 +99,10 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
   }
 
   const previewImages = getPreviewImages(currentActivity.id)
+  const heroFitClass =
+    (previewImages[0] || currentActivity.image) === "/1-1-2026/hero-1.png"
+      ? "object-contain bg-white"
+      : "object-cover"
 
   return (
     <div className="pt-32 pb-16 px-4 md:px-6 bg-white dark:bg-gray-950">
@@ -115,7 +119,7 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
             alt={currentActivity.title[language]}
             fill
             sizes="100vw"
-            className="object-cover"
+            className={heroFitClass}
             priority
             quality={90}
           />

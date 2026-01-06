@@ -16,6 +16,7 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
   const [images, setImages] = useState<string[]>([])
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [loading, setLoading] = useState(true)
+  const shouldContainImage = (src: string) => src === "/1-1-2026/hero-1.png"
 
   // Map activity ID to folder name
   const getFolderName = (id: number) => {
@@ -236,7 +237,7 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
                   alt={`${activity.title[language]} image ${selectedImageIndex + 1}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                  className="object-cover"
+                  className={shouldContainImage(images[selectedImageIndex]) ? "object-contain bg-white" : "object-cover"}
                   priority={selectedImageIndex === 0}
                   quality={85}
                   loading={selectedImageIndex === 0 ? "eager" : "lazy"}
@@ -305,7 +306,7 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
                   alt={`Thumbnail ${index + 1}`}
                   fill
                   sizes="(max-width: 768px) 25vw, (max-width: 1200px) 20vw, 10vw"
-                  className="object-cover"
+                  className={shouldContainImage(image) ? "object-contain bg-white" : "object-cover"}
                   quality={60}
                   loading="lazy"
                 />

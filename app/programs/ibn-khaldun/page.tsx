@@ -94,13 +94,13 @@ export default function IbnKhaldunScholarshipPage() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="border border-gray-200">
                 <DropdownMenuItem asChild>
-                  <a href="/ProgramsFiles/ibn-khaldun-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                  <a href="/2026-pdfs/ibn-khaldun/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
                     <Download className="h-4 w-4" />
                     English (EN)
                   </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <a href="/ProgramsFiles/ibn-khaldun-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
+                  <a href="/2026-pdfs/ibn-khaldun/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
                     <Download className="h-4 w-4" />
                     العربية (AR)
                   </a>
