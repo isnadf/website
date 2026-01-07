@@ -4,6 +4,8 @@ import {
   GraduationCap,
   Award,
   BookOpen,
+  ChevronDown,
+  Download,
   Globe,
   UserPlus,
   Stethoscope,
@@ -19,6 +21,8 @@ import {
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import StatsCounter from "@/components/stats-counter"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useLanguage } from "@/components/language-provider"
 import Link from "next/link"
 
@@ -75,14 +79,61 @@ export default function PulseOfLifePage() {
           <p className={`text-gray-800 dark:text-gray-100 text-base md:text-lg text-center ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.1em', letterSpacing: '0.05em' } : {}}>
             <span className="font-semibold text-red-800"></span>{t("pulse.about.description")}
           </p>
-          <div className={`flex justify-center mt-6 gap-4 flex-wrap ${getRTLFlex()}`}>
-            <div className={`flex gap-3 ${getRTLFlex()}`}>
-              <a href="/2026-pdfs/pulse-of-life/program-en.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
-                <BookOpen size={20} className={getRTLIcon()} /> {t("pulse.download.en")}
-              </a>
-              <a href="/2026-pdfs/pulse-of-life/program-ar.pdf" download className={`inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl ${getRTLFlex()} ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.5em', letterSpacing: '0.05em' } : {}}>
-                <BookOpen size={20} className={getRTLIcon()} /> {t("pulse.download.ar")}
-              </a>
+          <div className={`flex justify-center mt-6 gap-4 flex-wrap ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-red-700 text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 font-semibold bg-transparent group"
+                  >
+                    <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {language === 'ar' ? 'تحميل البرنامج' : 'Download Program'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-red-200 dark:border-red-800">
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/pulse-of-life/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      English (EN)
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/pulse-of-life/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      العربية (AR)
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-blue-700 text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-semibold bg-transparent group"
+                  >
+                    <BookOpen className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {language === 'ar' ? 'تحميل البروشور' : 'Download Brochure'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/pulse-of-life/Brochure-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      English (EN)
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/pulse-of-life/Brochures-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      العربية (AR)
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>

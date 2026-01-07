@@ -110,34 +110,64 @@ export default function SustainabilityScholarshipPage() {
 
           {/* CTA Buttons */}
           <GSAPReveal animation="slide-up" delay={0.5}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              {/* Program Downloads Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+            <div className={`flex justify-center mt-6 gap-4 flex-wrap ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
+              <div className="flex flex-col sm:flex-row gap-4 items-center">
+                {/* Program Downloads Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
                   <Button
                     size="lg"
-                    className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm bg-transparent group"
+                    className="border-white/40 text-white hover:bg-white/15 font-semibold bg-white/10 backdrop-blur-sm group"
                   >
                     <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
                     {language === 'ar' ? 'تحميل البرنامج' : 'Download Program'}
                     <ChevronDown className="ml-2 h-4 w-4" />
                   </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-white/20">
-                  <DropdownMenuItem asChild>
-                    <a href="/2026-pdfs/sustainability/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
-                      <Download className="h-4 w-4" />
-                      English (EN)
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <a href="/2026-pdfs/sustainability/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
-                      <Download className="h-4 w-4" />
-                      العربية (AR)
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-red-200 dark:border-red-800">
+                    <DropdownMenuItem asChild>
+                      <a href="/2026-pdfs/sustainability/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                        <Download className="h-4 w-4" />
+                        English (EN)
+                      </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a href="/2026-pdfs/sustainability/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                        <Download className="h-4 w-4" />
+                        العربية (AR)
+                      </a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {/* Brochure Downloads Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-white/40 text-white hover:bg-white/15 font-semibold bg-white/10 backdrop-blur-sm group"
+                  >
+                    <BookOpen className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {language === 'ar' ? 'تحميل البروشور' : 'Download Brochure'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
+                    <DropdownMenuItem asChild>
+                      <a href="/2026-pdfs/sustainability/Brochure-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                        <Download className="h-4 w-4" />
+                        English (EN)
+                      </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a href="/2026-pdfs/sustainability/Brochure-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                        <Download className="h-4 w-4" />
+                        العربية (AR)
+                      </a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
           </GSAPReveal>
         </div>
