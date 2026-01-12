@@ -169,6 +169,7 @@ const newsData = [
 export default function NewsPage() {
   const { t, language } = useLanguage()
   const isRTL = language === "ar"
+  const heroImageSrc = isRTL ? "/LastNews/new-lastnews-ar.png" : "/LastNews/new-lastnews.jpg"
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
   const [activeTab, setActiveTab] = useState("all")
@@ -203,7 +204,7 @@ export default function NewsPage() {
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/LastNews/1.png"
+            src={heroImageSrc}
             alt={t("news.hero.alt") as string}
             className="h-full w-full object-contain object-center"
             width={1920}

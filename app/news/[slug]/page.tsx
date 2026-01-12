@@ -347,7 +347,9 @@ const pulseOfLifeGazaVideos = [
 
 const pulseOfLifeBimanVideos = [
   "https://stream.mux.com/aC2xAum88lYEw6IBCgCDkz7ZsVqzIp9ndZiCLy35giY.m3u8",
-  "https://stream.mux.com/8dmD5ecDvBkfU33tT45WHQDfVkk48potgvqFyGROzMQ.m3u8"
+  "https://stream.mux.com/BSB3Z2M9oHwly1EbRoDxSpwtIrvby02Rye6i7nNzQ00xo.m3u8",
+  "https://stream.mux.com/pNhsgCrFfmxrS8CSrgMp9vEVfaIDyGvzFTmFpMIuNRE.m3u8",
+  "https://stream.mux.com/101bfbcujifpgTG3k1fggHMKgF7XIoLoT01vqiHYNgz8E.m3u8"
 ] as const
 
 export default function NewsArticlePage() {

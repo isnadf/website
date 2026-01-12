@@ -9,7 +9,7 @@ import Image from "next/image"
 export default function AboutPage() {
   const { t, language } = useLanguage()
   const isRTL = language === 'ar'
-  const aboutVideoSrc = "https://stream.mux.com/dywIalx91MDuYFVRNktI5ovHcCDrkxD02ILD00r4028K6Y.m3u8"
+  const aboutVideoSrc = "https://stream.mux.com/JnfPexPh1Idwcmxdwb02ZxWpf7YUR2fbaq22ffn4WHS8.m3u8"
 
   return (
     <main className="flex min-h-screen flex-col" dir={isRTL ? 'rtl' : 'ltr'}>

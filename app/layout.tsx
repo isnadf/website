@@ -1,6 +1,7 @@
 import type React from "react"
 import { Inter, Poppins, Noto_Kufi_Arabic, Playfair_Display, Sora } from "next/font/google"
 import type { Metadata } from "next"
+import { cookies } from "next/headers"
 import { Toaster } from "@/components/ui/toaster"
 import { LanguageProvider } from "@/components/language-provider"
 import Header from "@/components/header"
@@ -57,17 +58,21 @@ export const metadata: Metadata = {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = await cookies()
+  const cookieLang = cookieStore.get("language")?.value
+  const initialLanguage = cookieLang === "ar" ? "ar" : "en"
+
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
+    <html lang={initialLanguage} dir={initialLanguage === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
       <body className={`${inter.variable} ${poppins.variable} ${notoKufiArabic.variable} ${playfair.variable} ${sora.variable} font-sora`}>
         <SmoothScroll />
         <TranslationSafeWrapper>
-            <LanguageProvider>
+            <LanguageProvider initialLanguage={initialLanguage}>
               <LoadingBar />
               <div className="flex min-h-screen flex-col">
                 <Header />

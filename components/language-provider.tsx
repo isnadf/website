@@ -1876,24 +1876,39 @@ const cleanTranslations = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en")
+export function LanguageProvider({
+  children,
+  initialLanguage,
+}: {
+  children: ReactNode
+  initialLanguage?: Language
+}) {
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (initialLanguage) return initialLanguage
+    if (typeof window !== "undefined") {
+      const savedLanguage = localStorage.getItem("language") as Language
+      if (savedLanguage && ["en", "ar"].includes(savedLanguage)) return savedLanguage
+      const browserLanguage = navigator?.language?.startsWith("ar") ? "ar" : "en"
+      return browserLanguage as Language
+    }
+    return "en"
+  })
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language
-    const initialLanguage: Language =
-      savedLanguage && ["en", "ar"].includes(savedLanguage) ? savedLanguage : "en"
+    document.documentElement.lang = language
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr"
 
-    setLanguageState(initialLanguage)
-    document.documentElement.lang = initialLanguage
-    document.documentElement.dir = initialLanguage === "ar" ? "rtl" : "ltr"
-  }, [])
+    try {
+      localStorage.setItem("language", language)
+    } catch {
+      // ignore if storage is unavailable
+    }
+
+    document.cookie = `language=${language}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`
+  }, [language])
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
-    localStorage.setItem("language", lang)
-    document.documentElement.lang = lang
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"
   }
 
   const t = (key: string): string | string[] => {
