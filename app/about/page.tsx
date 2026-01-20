@@ -1,427 +1,297 @@
 "use client"
-
-import Link from "next/link"
-import { Users, ArrowRight, GraduationCap, Globe, Award, Lightbulb, Handshake as HandshakeIcon, Target, Compass, Rocket } from "lucide-react"
+import HexagonTwo from "@/components/HexagonTwo"
+import HeroVideo from "@/components/hero-video"
 import { useLanguage } from "@/components/language-provider"
-import { Button } from "@/components/ui/button"
-import Image from 'next/image'
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
+import { Target, Rocket } from "lucide-react"
+import Image from "next/image"
 
 export default function AboutPage() {
   const { t, language } = useLanguage()
   const isRTL = language === 'ar'
-
-  const partners = [
-    { name: "Milli Gençlik Vakfı", logo: "/partners/p1.png" },
-    { name: "YediHilal", logo: "/partners/p2.png" },
-    { name: "Hüdayi Vakfı", logo: "/partners/p3.jpeg" },
-    { name: "Khidhumaiy", logo: "/partners/p4.jpg" }
-  ]
-
-  const specialPartner = { name: "Cinta Gaza Malaysia", logo: "/partners/p6.svg" }
+  const aboutVideoSrc = "https://stream.mux.com/JnfPexPh1Idwcmxdwb02ZxWpf7YUR2fbaq22ffn4WHS8.m3u8"
 
   return (
-    <main className="flex min-h-screen flex-col" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-      {/* Hero Section */}
-      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/aboutCover/1.png"
-            alt="Hero Cover"
-            className="h-full w-full object-contain object-center"
-            width={1920}
-            height={1080}
-          />
-        </div>
-        {/* Page Indicator */}
-        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-10">
-          <div className="bg-white/10 backdrop-blur-md rounded-lg px-3 py-2 sm:px-4 sm:py-2 border border-white/20">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-[#1e7e34]"></div>
-              <span className={`text-white text-xs sm:text-sm font-medium ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.page.indicator") as string}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
+    <main className="flex min-h-screen flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
         <div className="container px-4 md:px-6">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-              <Compass className={`${language === 'ar' ? 'ml-1' : 'mr-1'} h-4 w-4`} />
-              {t("about.purpose.badge") as string}
-            </div>
-            <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">
-              {t("about.purpose.title") as string}
-            </h2>
-            <p className={`mx-auto mt-4 max-w-[700px] text-muted-foreground ${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-              {t("about.purpose.subtitle") as string}
-            </p>
-          </div>
-
-          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
-            {/* Mission Card */}
-            <div className="relative overflow-hidden rounded-xl border border-[#1e7e34]/20 bg-white p-8 shadow-lg dark:bg-gray-900">
-              <div className="absolute top-0 right-0 h-24 w-24 translate-x-8 -translate-y-8 transform rounded-full bg-[#1e7e34]/10"></div>
-
-              <div className="relative">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#1e7e34]/10">
-                  <Target className="h-8 w-8 text-[#1e7e34]" />
-                </div>
-
-                <h3 className="text-2xl font-bold">{t("about.mission.title") as string}</h3>
-
-                <div className="mt-4 space-y-4">
-                  <p className="text-muted-foreground">{t("about.mission.text") as string}</p>
-
-                  {/* <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
-                        <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
-                      </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point1") as string}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
-                        <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
-                      </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point2") as string}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
-                        <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
-                      </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.mission.point3") as string}</span>
-                    </li>
-                  </ul> */}
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-start">
+              {/* Left: Video Component */}
+              <div className={`${isRTL ? 'lg:order-2' : 'lg:order-1'} w-full flex justify-center lg:justify-start`}>
+                <div className="w-full max-w-xl lg:max-w-2xl">
+                  <HexagonTwo />
                 </div>
               </div>
-            </div>
 
-            {/* Vision Card */}
-            <div className="relative overflow-hidden rounded-xl border border-[#1e7e34]/20 bg-white p-8 shadow-lg dark:bg-gray-900">
-              <div className="absolute top-0 right-0 h-24 w-24 translate-x-8 -translate-y-8 transform rounded-full bg-[#1e7e34]/10"></div>
-
-              <div className="relative">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#1e7e34]/10">
-                  <Rocket className="h-8 w-8 text-[#1e7e34]" />
-                </div>
-
-                <h3 className="text-2xl font-bold">{t("about.vision.title") as string}</h3>
-
-                <div className="mt-4 space-y-4">
-                  <p className="text-muted-foreground">{t("about.vision.text") as string}</p>
-
-                  {/* <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
-                        <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
-                      </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point1") as string}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
-                        <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
-                      </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point2") as string}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mr-2 mt-1 h-5 w-5 rounded-full bg-[#1e7e34]/10 flex items-center justify-center">
-                        <div className="h-2 w-2 rounded-full bg-[#1e7e34]"></div>
-                      </div>
-                      <span className={`${language === 'ar' ? 'tracking-wide' : ''}`} style={language === 'ar' ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>{t("about.vision.point3") as string}</span>
-                    </li>
-                  </ul> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
-             <div className="container px-4 md:px-6">
-               <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                 <div className="space-y-2">
-                   <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-                     <Users className={`${language === 'ar' ? 'ml-1' : 'mr-1'} h-4 w-4`} />
-                     {t("about.widgt") as string}
-                   </div>
-                   <h2 className="text-3xl font-bold sm:text-5xl">
-                     {t("about.title") as string}
-                   </h2>
-                   <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                     {t("about.subtitle") as string}
-                   </p>
-                 </div>
-
-                 <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-                   <div className="flex flex-col justify-center space-y-4 h-full order-2 lg:order-1">
-                     <ul className="grid gap-6 flex-1">
-                       <li>
-                         <div className="flex gap-4 items-start">
-                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
-                             <GraduationCap className="h-6 w-6 text-[#1e7e34]" />
-                           </div>
-                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
-                             <h3 className="text-xl font-bold">{t("about.identity") as string}</h3>
-                             <p className="text-muted-foreground">{t("about.identity.desc") as string}</p>
-                           </div>
-                         </div>
-                       </li>
-                       <li>
-                         <div className="flex gap-4 items-start">
-                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
-                             <Target className="h-6 w-6 text-[#1e7e34]" />
-                           </div>
-                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
-                             <h3 className="text-xl font-bold">{t("about.identity2") as string}</h3>
-                             <p className="text-muted-foreground">{t("about.identity2.desc") as string}</p>
-                           </div>
-                         </div>
-                       </li>
-                       <li>
-                         <div className="flex gap-4 items-start">
-                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
-                             <Globe className="h-6 w-6 text-[#1e7e34]" />
-                           </div>
-                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
-                             <h3 className="text-xl font-bold">{t("about.identity3") as string}</h3>
-                             <p className="text-muted-foreground">{t("about.identity3.desc") as string}</p>
-                           </div>
-                         </div>
-                       </li>
-                       <li>
-                         <div className="flex gap-4 items-start">
-                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
-                             <Award className="h-6 w-6 text-[#1e7e34]" />
-                           </div>
-                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
-                             <h3 className="text-xl font-bold">{t("about.identity4") as string}</h3>
-                             <p className="text-muted-foreground">{t("about.identity4.desc") as string}</p>
-                           </div>
-                         </div>
-                       </li>
-                     </ul>
-                   </div>
-
-                   <div className="flex flex-col justify-center space-y-4 h-full order-1 lg:order-2">
-                     <ul className="grid gap-6 flex-1">
-                       <li>
-                         <div className="flex gap-4 items-start">
-                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
-                             <Lightbulb className="h-6 w-6 text-[#1e7e34]" />
-                           </div>
-                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
-                             <h3 className="text-xl font-bold">{t("about.identity5") as string}</h3>
-                             <p className="text-muted-foreground">{t("about.identity5.desc") as string}</p>
-                           </div>
-                         </div>
-                       </li>
-                       <li>
-                         <div className="flex gap-4 items-start">
-                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
-                             <HandshakeIcon className="h-6 w-6 text-[#1e7e34]" />
-                           </div>
-                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
-                             <h3 className="text-xl font-bold">{t("about.identity6") as string}</h3>
-                             <p className="text-muted-foreground">{t("about.identity6.desc") as string}</p>
-                           </div>
-                         </div>
-                       </li>
-                       <li>
-                         <div className="flex gap-4 items-start">
-                           <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-[#1e7e34]/10 flex items-center justify-center ${language === 'ar' ? 'order-2' : 'order-1'}`}>
-                             <Users className="h-6 w-6 text-[#1e7e34]" />
-                           </div>
-                           <div className={language === 'ar' ? 'order-1' : 'order-2'}>
-                             <h3 className="text-xl font-bold">{t("about.identity7") as string}</h3>
-                             <p className="text-muted-foreground">{t("about.identity7.desc") as string}</p>
-                           </div>
-                         </div>
-                       </li>
-                     </ul>
-                   </div>
-                 </div>
-                 <div className="flex justify-center w-full mt-8">
-              {/* <Link href="/about">
-                <Button
-                  className="group bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90"
+              {/* Right: Our Story Content */}
+              <div className={`${isRTL ? 'lg:order-1' : 'lg:order-2'} w-full flex justify-center lg:justify-start`}>
+                <div 
+                  className="w-full max-w-xl lg:max-w-2xl"
+                  style={{
+                    aspectRatio: '1213/667'
+                  }}
                 >
-                  {t("about.cta")}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link> */}
-            </div>
-          </div>
-        </div>
-      </section>
+                  <div className="h-full flex flex-col justify-start space-y-2.5 md:space-y-3">
+                    {/* Tag */}
+                    <div>
+                      <span className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-green-600 dark:text-blue-400">
+                        {t("about.foundation.tag") as string}
+                      </span>
+                    </div>
 
-      {/* Administrative Structure */}
-      {/* <section className="py-16 md:py-24 bg-[#f8faf8] dark:bg-gray-950">
-        <div className="container px-4 md:px-6">
-          <div className="mx-auto max-w-5xl">
-            <div className="mb-12 text-center">
-              <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-                <Users className="mr-1 h-4 w-4" />
-                {t("about.team.tag")}
-              </div>
-              <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl">
-                {t("about.team.title")}
-              </h2>
-            </div>
+                    {/* Title */}
+                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                      {t("about.foundation.title") as string}
+                    </h1>
 
-            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-              <div className="text-center">
-                <div className="mx-auto mb-4 h-32 w-32 overflow-hidden rounded-full">
-                  <img
-                    src="/s5.jpg?height=128&width=128"
-                    alt={t("about.team.member1.name")}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold">{t("about.team.member1.name")}</h3>
-                <p className="text-[#1e7e34]">{t("about.team.member1.title")}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {t("about.team.member1.description")}
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto mb-4 h-32 w-32 overflow-hidden rounded-full">
-                  <img
-                    src="/s5.jpg?height=128&width=128"
-                    alt={t("about.team.member2.name")}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold">{t("about.team.member2.name")}</h3>
-                <p className="text-[#1e7e34]">{t("about.team.member2.title")}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {t("about.team.member2.description")}
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto mb-4 h-32 w-32 overflow-hidden rounded-full">
-                  <img
-                    src="/s5.jpg?height=128&width=128"
-                    alt={t("about.team.member3.name")}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold">{t("about.team.member3.name")}</h3>
-                <p className="text-[#1e7e34]">{t("about.team.member3.title")}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {t("about.team.member3.description")}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-12 text-center">
-              <Link href="/about/team">
-                <Button
-                  className="bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90"
-                >
-                  {t("about.team.viewAll")}
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Partners */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-950 text-black dark:text-white">
-        <div className="container px-4 md:px-6">
-          <div className="mx-auto max-w-5xl">
-            <div className="mb-12 text-center">
-              <div className="inline-flex items-center rounded-lg bg-[#1e7e34]/10 px-3 py-1 text-sm text-[#1e7e34]">
-                <HandshakeIcon className={`${isRTL ? 'ml-1' : 'mr-1'} h-4 w-4`} />
-                {t("about.partners.badge") as string}
-              </div>
-              <h2 className={`mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-black dark:text-white ${isRTL ? 'tracking-wide' : ''}`} style={isRTL ? { wordSpacing: '0.2em', letterSpacing: '0.02em' } : {}}>
-                {t("about.partners.title") as string}
-              </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground">
-                {t("about.partners.subtitle") as string}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-5">
-              {partners.map((partner) => (
-                <div
-                  key={partner.name}
-                  className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-[#1e7e34]/5 dark:hover:bg-[#1e7e34]/10 hover:shadow-md"
-                >
-                  <div className="flex items-center justify-center h-32 mb-4">
-                    <Image
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="max-h-32 w-auto object-contain transition-transform duration-300 hover:scale-105"
-                      width={200}
-                      height={128}
-                      sizes="(min-width: 1024px) 18vw, 50vw"
-                    />
+                    {/* Content Paragraphs */}
+                    <div className="space-y-2 text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed">
+                      <p>
+                        <strong>{t("about.foundation.text1") as string}</strong>
+                      </p>
+                      <p>
+                        {t("about.foundation.text2") as string}
+                      </p>
+                      <p>
+                        {t("about.foundation.text3") as string}
+                      </p>
+                    </div>
                   </div>
-                  <p className="font-medium text-black dark:text-white text-sm md:text-base">
-                    {partner.name}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center mb-12">
+              <h2 className="mt-2 text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 dark:text-white">
+                {t("about.purpose.title") as string}
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              {/* Mission Card */}
+              <CardContainer className="w-full" containerClassName="py-0">
+                <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-8 border">
+                  <CardItem
+                    translateZ="50"
+                    className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-600/10"
+                  >
+                    <Target className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  </CardItem>
+                  <CardItem
+                    translateZ="70"
+                    className="text-2xl font-bold text-gray-900 dark:text-white mb-4"
+                  >
+                    {t("about.mission.title") as string}
+                  </CardItem>
+
+                  <CardItem
+                    translateZ="80"
+                    className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4"
+                  >
+                    {t("about.mission.text") as string}
+                  </CardItem>
+
+                  <CardItem translateZ="100" className="w-full mt-4">
+                    <Image
+                      src="/aboutus-new-desgin/our-mission.webp"
+                      alt="Mission"
+                      height={1000}
+                      width={1000}
+                      className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                    />
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
+
+              {/* Vision Card */}
+              <CardContainer className="w-full" containerClassName="py-0">
+                <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-8 border">
+                  <CardItem
+                    translateZ="50"
+                    className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-600/10"
+                  >
+                    <Rocket className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  </CardItem>
+                  <CardItem
+                    translateZ="70"
+                    className="text-2xl font-bold text-gray-900 dark:text-white mb-4"
+                  >
+                    {t("about.vision.title") as string}
+                  </CardItem>
+
+                  <CardItem
+                    translateZ="80"
+                    className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4"
+                  >
+                    {t("about.vision.text") as string}
+                  </CardItem>
+
+                  <CardItem translateZ="100" className="w-full mt-4">
+                    <Image
+                      src="/aboutus-new-desgin/our-vision.webp"
+                      alt="Vision"
+                      height={1000}
+                      width={1000}
+                      className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                    />
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Work For Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-6xl text-center">
+            <h2 className={`text-3xl font-bold tracking-tight sm:text-4xl text-gray-900 dark:text-white ${isRTL ? "font-arabic" : ""}`}>
+              {t("about.whoWeServe.title") as string}
+            </h2>
+            <p className={`mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 ${isRTL ? "font-arabic" : ""}`}>
+              {t("about.whoWeServe.subtitle") as string}
+            </p>
+            <div className="mt-8">
+              <div className="mx-auto w-full max-w-xs sm:max-w-sm overflow-hidden rounded-2xl bg-transparent">
+                <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '520px' }}>
+                  <HeroVideo
+                    className="w-full h-auto max-h-[900px]"
+                    src={aboutVideoSrc}
+                    poster="/1-1-2026/6.jpeg"
+                    objectFit="contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Values Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center mb-16">
+              <div className={`text-lg md:text-xl lg:text-2xl font-semibold uppercase tracking-wider text-green-600 mb-3 ${isRTL ? 'font-arabic' : ''}`}>
+                {t("about.values.badge") as string}
+              </div>
+              <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white ${isRTL ? 'font-arabic' : ''}`}>
+                {t("about.title") as string}
+              </h2>
+            </div>
+
+            {/* First Row: 3 columns */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+              {/* Value 1 */}
+              <div className={`${isRTL ? 'md:order-3 text-right' : 'md:order-1 text-left'}`}>
+                <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'font-arabic' : ''}`}>
+                  {t("about.identity") as string}
+                </h3>
+                <p className={`text-gray-600 dark:text-gray-400 leading-relaxed text-base ${isRTL ? 'font-arabic' : ''}`}>
+                  {t("about.identity.desc") as string}
+                </p>
+              </div>
+
+              {/* Value 2 */}
+              <div className={`${isRTL ? 'md:order-2 text-right' : 'md:order-2 text-left'}`}>
+                <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'font-arabic' : ''}`}>
+                  {t("about.identity2") as string}
+                </h3>
+                <p className={`text-gray-600 dark:text-gray-400 leading-relaxed text-base ${isRTL ? 'font-arabic' : ''}`}>
+                  {t("about.identity2.desc") as string}
+                </p>
+              </div>
+
+              {/* Value 3 */}
+              <div className={`${isRTL ? 'md:order-1 text-right' : 'md:order-3 text-left'}`}>
+                <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'font-arabic' : ''}`}>
+                  {t("about.identity3") as string}
+                </h3>
+                <p className={`text-gray-600 dark:text-gray-400 leading-relaxed text-base ${isRTL ? 'font-arabic' : ''}`}>
+                  {t("about.identity3.desc") as string}
+                </p>
+              </div>
+            </div>
+
+            {/* Second Row: 2 columns centered */}
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl">
+                {/* Value 4 */}
+                <div className={`${isRTL ? 'md:order-2 text-right' : 'md:order-1 text-left'}`}>
+                  <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'font-arabic' : ''}`}>
+                    {t("about.identity4") as string}
+                  </h3>
+                  <p className={`text-gray-600 dark:text-gray-400 leading-relaxed text-base ${isRTL ? 'font-arabic' : ''}`}>
+                    {t("about.identity4.desc") as string}
                   </p>
                 </div>
-              ))}
 
-              <div className="flex flex-col items-center justify-between text-center h-full p-4 rounded-lg transition-all duration-300 hover:bg-[#1e7e34]/5 dark:hover:bg-[#1e7e34]/10 hover:shadow-md">
-                <div className="flex items-center justify-center h-32 mb-4">
-                  <Image
-                    src={specialPartner.logo}
-                    alt={specialPartner.name}
-                    className="h-24 w-auto object-contain transition-transform duration-300 hover:scale-105"
-                    width={160}
-                    height={160}
-                    sizes="(min-width: 1024px) 18vw, 50vw"
-                  />
+                {/* Value 5 */}
+                <div className={`${isRTL ? 'md:order-1 text-right' : 'md:order-2 text-left'}`}>
+                  <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'font-arabic' : ''}`}>
+                    {t("about.identity5") as string}
+                  </h3>
+                  <p className={`text-gray-600 dark:text-gray-400 leading-relaxed text-base ${isRTL ? 'font-arabic' : ''}`}>
+                    {t("about.identity5.desc") as string}
+                  </p>
                 </div>
-                <p className="font-medium text-black dark:text-white text-sm md:text-base">
-                  {specialPartner.name}
-                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 md:py-24 bg-white relative">
-        <div className="absolute inset-0 bg-[#f8faf8]/70"></div>
-        <div className="container px-4 md:px-6 relative z-10">
-          <div className="mx-auto max-w-3xl rounded-xl bg-white p-10 text-center shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1e7e34]/30 via-[#1e7e34]/80 to-[#1e7e34]/30"></div>
-            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-[#1e7e34]/5 rounded-full"></div>
-            <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[#1e7e34]/5 rounded-full"></div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 dark:text-white relative z-10">
-              {t("about.cta.title") as string}
-            </h2>
-            <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 relative z-10">
-              {t("about.cta.subtitle") as string}
-            </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center relative z-10">
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-[#1e7e34] text-white hover:bg-[#1e7e34]/90 dark:bg-[#1e7e34] dark:text-white dark:hover:bg-[#1e7e34]/90"
-                >
-                  {t("about.cta.contact") as string}
-                  <ArrowRight className={`${language === 'ar' ? 'mr-2 rotate-180' : 'ml-2'} h-4 w-4 transition-transform group-hover:translate-x-1`} />
-                </Button>
-              </Link>
-              <Link href="/donate">
-                <Button
-                  size="lg"
-                  className="bg-white text-[#1e7e34] border-2 border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white dark:bg-gray-900 dark:text-[#1e7e34] dark:border-[#1e7e34] dark:hover:bg-[#1e7e34] dark:hover:text-white"
-                >
-                  {t("about.cta.support") as string}
-                </Button>
-              </Link>
+      {/* Separator */}
+      <div className="border-t border-gray-400 dark:border-gray-600"></div>
+
+      {/* Registration Footer Section */}
+      <section className="py-16 md:py-24 bg-white dark:bg-black">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
+              <div className="flex-1 relative min-h-[120px] md:min-h-[140px]">
+                {/* Opening Quote - Top Left for English, Top Right for Arabic */}
+                <div className={`absolute ${isRTL ? 'top-0 right-0' : 'top-0 left-0'} ${isRTL ? 'scale-x-[-1]' : ''} z-0`}>
+                  <svg 
+                    width="40" 
+                    height="40" 
+                    viewBox="0 0 48 48" 
+                    className="text-green-600 dark:text-green-400 md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
+                    fill="currentColor"
+                  >
+                    <path d="m37,37c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.88-.52h-2c-.27,0-.54.11-.73.31-5.14,5.41-11.27,14.26-11.27,25.69,0,6.07,4.93,10.99,11,11h0Zm-26,0c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.87-.52h-2c-.27,0-.54.11-.73.31C6.13,5.72,0,14.57,0,26c0,6.07,4.93,10.99,11,11h0Zm0,0" />
+                  </svg>
+                </div>
+                
+                {/* Text with padding for quotes - centered */}
+                <div className={`relative z-10 flex items-center justify-center min-h-full ${isRTL ? 'pr-12 pl-4 md:pr-16 md:pl-6' : 'pl-12 pr-4 md:pl-16 md:pr-6'} py-8 md:py-12`}>
+                  <p className={`text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-relaxed text-center ${isRTL ? 'text-right' : 'text-left'}`}>
+                    {t("about.foundation.text3") as string}
+                  </p>
+                </div>
+                
+                {/* Closing Quote - Bottom Right for English, Bottom Left for Arabic */}
+                <div className={`absolute ${isRTL ? 'bottom-0 left-0 scale-x-[-1]' : 'bottom-0 right-0'} z-0`}>
+                  <svg 
+                    width="40" 
+                    height="40" 
+                    viewBox="0 0 48 48" 
+                    className="text-green-600 dark:text-green-400 scale-x-[-1] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
+                    fill="currentColor"
+                  >
+                    <path d="m37,37c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.88-.52h-2c-.27,0-.54.11-.73.31-5.14,5.41-11.27,14.26-11.27,25.69,0,6.07,4.93,10.99,11,11h0Zm-26,0c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.87-.52h-2c-.27,0-.54.11-.73.31C6.13,5.72,0,14.57,0,26c0,6.07,4.93,10.99,11,11h0Zm0,0" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -429,4 +299,3 @@ export default function AboutPage() {
     </main>
   )
 }
-

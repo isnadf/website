@@ -23,6 +23,8 @@ import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function JusticeForPalestinePage() {
   const { t, language } = useLanguage()
@@ -59,6 +61,12 @@ export default function JusticeForPalestinePage() {
           <StatsCounter number={2} label={t("justice.fields") as string} />
           <StatsCounter number={5} label={t("justice.years") as string} />
         </div>
+        {/* Hero Donate Button */}
+        <div className="mt-6 mb-4">
+          <Link href="/donate/justice-for-palestine" className={`inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-[#34a853] to-[#2d9249] text-white font-bold rounded-full shadow-2xl hover:from-[#2d9249] hover:to-[#34a853] transition-all duration-300 text-xl hover:scale-110 hover:shadow-3xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
+            <Heart size={24} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("donate.donate")}
+          </Link>
+        </div>
         <div className="max-w-4xl mx-auto mt-8 px-4">
           <div className="flex flex-col items-center mb-4">
             <span className="inline-flex items-center gap-2 text-2xl font-bold text-red-700 mb-2">
@@ -76,9 +84,6 @@ export default function JusticeForPalestinePage() {
             )}
           </div>
           <div className={`flex justify-center mt-6 gap-4 flex-wrap ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-600 to-black text-white font-bold rounded-full shadow-xl hover:from-black hover:to-red-600 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
-              <Scale size={22} className={`${isRTL ? 'order-2' : '-ml-1'} animate-pulse`} /> {t("justice.apply")}
-            </a>
             <div className="flex flex-col sm:flex-row gap-4 items-center">
               {/* Program Downloads Dropdown */}
               <DropdownMenu>
@@ -94,13 +99,13 @@ export default function JusticeForPalestinePage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-red-200 dark:border-red-800">
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/justice-for-palestine/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       English (EN)
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/justice-for-palestine/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       العربية (AR)
                     </a>
@@ -121,13 +126,13 @@ export default function JusticeForPalestinePage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-brochure-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/justice-for-palestine/Brochure-en.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       English (EN)
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/JusticeForPalestine-brochure.pdf" download className="flex items-center gap-2 cursor-pointer">
+                    <a href="/2026-pdfs/justice-for-palestine/Brochure-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" />
                       العربية (AR)
                     </a>

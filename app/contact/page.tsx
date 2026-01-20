@@ -69,7 +69,7 @@ export default function ContactPage() {
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/contactUS/cover.jpeg"
+            src="/contactUS/new-contactus.jpeg"
             alt={t("contact.title") as string}
             className="h-full w-full object-cover"
             width={1920}

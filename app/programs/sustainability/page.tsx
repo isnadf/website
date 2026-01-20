@@ -12,13 +12,11 @@ import {
   BookOpen,
   Mail,
   Phone,
-  UserPlus,
   TreePine,
   Recycle,
   DollarSign,
   Users,
   Download,
-  ExternalLink,
   ChevronDown
 } from "lucide-react"
 import GSAPReveal from "@/components/gsap-reveal"
@@ -28,6 +26,8 @@ import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function SustainabilityScholarshipPage() {
   const { t, language } = useLanguage()
@@ -79,7 +79,7 @@ export default function SustainabilityScholarshipPage() {
 
           {/* Stats */}
           <GSAPReveal animation="slide-up" delay={0.3}>
-            <div className="flex flex-wrap justify-center gap-8 mb-12">
+            <div className="flex flex-wrap justify-center gap-8 mb-8">
               <div className="text-center">
                 <StatsCounter number={200} label={t("sustainability.scholarships") as string} />
               </div>
@@ -92,47 +92,82 @@ export default function SustainabilityScholarshipPage() {
             </div>
           </GSAPReveal>
 
-          {/* CTA Buttons */}
-          <GSAPReveal animation="slide-up" delay={0.5}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* Hero Donate Button */}
+          <GSAPReveal animation="slide-up" delay={0.4}>
+            <div className="mb-8">
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
+                className="bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold px-10 py-5 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 text-xl hover:scale-110"
               >
-                <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer">
-                  <UserPlus className="mr-2 h-5 w-5" />
-                  {t("sustainability.apply")}
-                </a>
+                <Link href="/donate/sustainability">
+                  <Heart className="mr-2 h-6 w-6" />
+                  {t("donate.donate")}
+                </Link>
               </Button>
+            </div>
+          </GSAPReveal>
 
-              {/* Program Downloads Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+          {/* CTA Buttons */}
+          <GSAPReveal animation="slide-up" delay={0.5}>
+            <div className={`flex justify-center mt-6 gap-4 flex-wrap ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
+              <div className="flex flex-col sm:flex-row gap-4 items-center">
+                {/* Program Downloads Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
                   <Button
                     size="lg"
-                    className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm bg-transparent group"
+                    className="border-white/40 text-white hover:bg-white/15 font-semibold bg-white/10 backdrop-blur-sm group"
                   >
                     <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
                     {language === 'ar' ? 'تحميل البرنامج' : 'Download Program'}
                     <ChevronDown className="ml-2 h-4 w-4" />
                   </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-white/20">
-                  <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/Sustainability Scholarship-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
-                      <Download className="h-4 w-4" />
-                      English (EN)
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <a href="/ProgramsFiles/Sustainability Scholarship-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
-                      <Download className="h-4 w-4" />
-                      العربية (AR)
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-red-200 dark:border-red-800">
+                    <DropdownMenuItem asChild>
+                      <a href="/2026-pdfs/sustainability/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                        <Download className="h-4 w-4" />
+                        English (EN)
+                      </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a href="/2026-pdfs/sustainability/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                        <Download className="h-4 w-4" />
+                        العربية (AR)
+                      </a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {/* Brochure Downloads Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-white/40 text-white hover:bg-white/15 font-semibold bg-white/10 backdrop-blur-sm group"
+                  >
+                    <BookOpen className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {language === 'ar' ? 'تحميل البروشور' : 'Download Brochure'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
+                    <DropdownMenuItem asChild>
+                      <a href="/2026-pdfs/sustainability/Brochure-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                        <Download className="h-4 w-4" />
+                        English (EN)
+                      </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a href="/2026-pdfs/sustainability/Brochure-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                        <Download className="h-4 w-4" />
+                        العربية (AR)
+                      </a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
           </GSAPReveal>
         </div>
@@ -525,83 +560,6 @@ export default function SustainabilityScholarshipPage() {
                   </div>
                   +90 539 430 07 26
                 </a>
-              </div>
-            </div>
-          </GSAPReveal>
-
-          {/* Action Buttons */}
-          <GSAPReveal animation="slide-up" delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              {/* Apply Button */}
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-green-900 hover:bg-green-50 font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg group"
-              >
-                <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener noreferrer">
-                  <UserPlus className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                  {t("sustainability.apply")}
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-
-              {/* Download Section */}
-              <div className="flex flex-col sm:flex-row gap-4 items-center">
-                {/* Program Downloads Dropdown */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      size="lg"
-                      className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-semibold bg-transparent group"
-                    >
-                      <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                      {language === 'ar' ? 'تحميل البرنامج' : 'Download Program'}
-                      <ChevronDown className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-white/20">
-                    <DropdownMenuItem asChild>
-                      <a href="/ProgramsFiles/Sustainability Scholarship-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
-                        <Download className="h-4 w-4" />
-                        English (EN)
-                      </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <a href="/ProgramsFiles/Sustainability Scholarship-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
-                        <Download className="h-4 w-4" />
-                        العربية (AR)
-                      </a>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-
-                {/* Brochure Downloads Dropdown */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      size="lg"
-                      className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-semibold bg-transparent group"
-                    >
-                      <BookOpen className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                      {language === 'ar' ? 'تحميل البرشور' : 'Download Brochure'}
-                      <ChevronDown className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-white/20">
-                    <DropdownMenuItem asChild>
-                      <a href="/ProgramsFiles/Sustainability Scholarship-BR-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
-                        <Download className="h-4 w-4" />
-                        English (EN)
-                      </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <a href="/ProgramsFiles/Sustainability Scholarship-BR-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
-                        <Download className="h-4 w-4" />
-                        العربية (AR)
-                      </a>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
               </div>
             </div>
           </GSAPReveal>

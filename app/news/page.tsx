@@ -13,6 +13,63 @@ import Image from "next/image"
 // Mock news data with bilingual support
 const newsData = [
   {
+    id: 8,
+    title: {
+      en: "Pulse of Life Scholarship Supports Medical Students in Gaza in Partnership with Biman Foundation",
+      ar: "منحة نبض الحياة تدعم طلبة الطب في غزة بالشراكة مع مؤسسة بيمان"
+    },
+    date: "January 1, 2026",
+    excerpt: {
+      en: "As part of the “Pulse of Life” Scholarship, Isnad foundation for Palestinian student support continues its efforts to empower Palestinian students, in cooperation with Biman Foundation, by providing scholarships for medical students in the Gaza Strip, aimed at supporting their academic journey and enhancing their ability to continue their education despite the challenges. Together, we plant hope and build a future our students deserve.",
+      ar: "في إطار منحة “نبض الحياة” تواصل مؤسسة إسناد لدعم الطالب الفلسطيني جهودها في تمكين الطلبة الفلسطينيين، وذلك بالتعاون مع مؤسسة بيمان، من خلال تقديم منح دراسية لطلاب الطب في قطاع غزة تهدف إلى دعم مسيرتهم التعليمية وتعزيز فرصهم في مواصلة التعليم رغم التحديات. معًا نزرع الأمل، ونصنع مستقبلًا يستحقه طلابنا."
+    },
+    image: "/1-1-2026/6.jpeg",
+    href: "/news/pulse-of-life-biman-scholarships",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    featured: true,
+  },
+  {
+    id: 6,
+    title: {
+      en: "Isnad Foundation Visits Wafa Foundation in Jakarta, Indonesia",
+      ar: "مؤسسة إسناد تزور مؤسسة وفاء في جاكرتا بإندونيسيا"
+    },
+    date: "December 10, 2025",
+    excerpt: {
+      en: "As part of its visit to the Republic of Indonesia, the Isnad Foundation paid a visit to the Wafa Foundation in Jakarta on December 10, 2025. The meeting focused on the role of humanitarian work in supporting Palestinian students and discussed avenues for cooperation in financing education and covering students' educational needs both inside and outside Palestine.",
+      ar: "ضمن جولة زيارات مؤسسة إسناد إلى دولة إندونيسيا، تشرفنا بزيارة مؤسسة Wafa Foundation في مدينة جاكرتا وذلك بتاريخ 10 / 12 / 2025، حيث تركز اللقاء على دور العمل الإنساني في دعم الطلبة الفلسطينيين، وبحث سبل التعاون في تمويل التعليم وتغطية احتياجات الطلبة الدراسية داخل فلسطين وخارجها."
+    },
+    image: "/10-12-2025/4.png",
+    href: "/news/isnad-visits-wafa-foundation-indonesia",
+    category: {
+      en: "Partnerships & Cooperation",
+      ar: "الشراكات والتعاون"
+    },
+    featured: true,
+  },
+  {
+    id: 7,
+    title: {
+      en: "Isnad Foundation Visits University of Indonesia in Jakarta",
+      ar: "مؤسسة إسناد تزور جامعة إندونيسيا في جاكرتا"
+    },
+    date: "December 9, 2025",
+    excerpt: {
+      en: "As part of its official visit to the Republic of Indonesia, the İsnad foundation for Palestinian student support paid a visit to the University of Indonesia (UI) on December 9, 2025, where an expanded academic meeting was held to discuss prospects for cooperation in the field of higher education and ways to support Palestinian students academically.",
+      ar: "ضمن جولة زياراتها الرسمية إلى جمهورية إندونيسيا، تشرفت مؤسسة إسناد لدعم الطالب الفلسطيني بزيارة جامعة إندونيسيا (University of Indonesia – UI) بتاريخ 09 كانون الأول/ديسمبر 2025، حيث جرى عقد لقاء أكاديمي موسّع ناقش آفاق التعاون المشترك في مجال التعليم العالي، وسبل دعم الطلبة الفلسطينيين أكاديميًا."
+    },
+    image: "/09-12-2025/1.png",
+    href: "/news/isnad-visits-university-of-indonesia",
+    category: {
+      en: "Partnerships & Cooperation",
+      ar: "الشراكات والتعاون"
+    },
+    featured: true,
+  },
+  {
     id: 1,
     title: {
       en: "Isnad Begins Monthly Scholarship Disbursements for Medical Students in Gaza Under 'Pulse of Life' Program",
@@ -112,6 +169,7 @@ const newsData = [
 export default function NewsPage() {
   const { t, language } = useLanguage()
   const isRTL = language === "ar"
+  const heroImageSrc = isRTL ? "/LastNews/new-lastnews-ar.png" : "/LastNews/new-lastnews.jpg"
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
   const [activeTab, setActiveTab] = useState("all")
@@ -146,7 +204,7 @@ export default function NewsPage() {
       <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/LastNews/1.png"
+            src={heroImageSrc}
             alt={t("news.hero.alt") as string}
             className="h-full w-full object-contain object-center"
             width={1920}

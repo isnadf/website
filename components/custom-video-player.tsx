@@ -245,7 +245,7 @@ export default function CustomVideoPlayer({
         hlsRef.current = null
       }
     }
-  }, [videoSrc, isInView, autoPlay, isLoading])
+  }, [videoSrc, isInView, autoPlay, isLoading, loop])
 
   useEffect(() => {
     const video = videoRef.current
@@ -366,7 +366,7 @@ export default function CustomVideoPlayer({
   return (
     <div 
       ref={containerRef}
-      className={`relative group ${className}`}
+      className={`relative group w-full h-full ${className}`}
     >
       <video
         ref={videoRef}
@@ -380,13 +380,10 @@ export default function CustomVideoPlayer({
         className={`w-full h-full ${videoClassName || 'object-cover'}`}
       />
       
-      {/* Loading indicator */}
+      {/* Loading shimmer */}
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <div className="text-white text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
-            <p className="text-sm">Loading video...</p>
-          </div>
+        <div className="absolute inset-0 overflow-hidden bg-gray-200">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-300/70 to-transparent animate-shimmer" />
         </div>
       )}
       

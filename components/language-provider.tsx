@@ -41,11 +41,44 @@ const translations = {
     "hero.cta.apply": "Apply for Scholarship",
     "hero.cta.explore": "Explore Programs",
     "hero.cta.donate": "Contribute with Us",
-
+    "hero.cta.quickDonate": "Quick Donate",
+    "hero.heading": "Isnad Foundation for Palestinian Student Support",
+    "hero.subheading": "Inspire Your Humanity",
+    "hero.banner": "Empowering Student to Build a Future Worthy of Palestine",
+    "hero.description": "Isnad Foundation is an independent, non-profit development organization that works to support higher education in Palestine by investing in the academic potential of young people and providing scholarships within a comprehensive developmental vision that restores hope and builds the future.",
+    "hero.stats.students.value": "2,122",
+    "hero.stats.students.label": "Students",
+    "hero.stats.sponsorships.value": "4,827",
+    "hero.stats.sponsorships.label": "Sponsorships",
+    "hero.stats.campaigns.value": "549",
+    "hero.stats.campaigns.label": "Campaigns",
+    "hero.stats.cases.value": "22,659",
+    "hero.stats.cases.label": "Cases",
+    "impact.badge": "Our Impact",
+    "impact.title": "Making a Real Difference in Gaza",
+    "impact.description": "At Isnad, we are committed to creating a tangible impact by empowering Palestinian students across diverse fields and supporting their journey in Gaza and beyond.",
+    "impact.items.1.title": "Immediate Financial Aid",
+    "impact.items.1.desc": "Providing essential financial support to students facing hardship so they can continue their education.",
+    "impact.items.2.title": "Educational Resources",
+    "impact.items.2.desc": "Supplying students with the equipment and tools they need to study effectively.",
+    "impact.items.3.title": "Emergency Aid",
+    "impact.items.3.desc": "Offering emergency aid to students and their families during crises.",
+    "impact.items.4.title": "Professional Training",
+    "impact.items.4.desc": "Funding trainers and bedside teaching to enhance practical education for students.",
+    "programs.home.badge": "Our Programs",
+    "programs.home.title": "Comprehensive Programs for Sustainable Healthcare",
+    "programs.home.card1.title": "Pulse of Life Scholarships",
+    "programs.home.card1.desc": "Full medical scholarships with living support for students in critical specialties.",
+    "programs.home.card2.title": "Palestinian Talented Program",
+    "programs.home.card2.desc": "Merit-based awards and mentorship for outstanding Palestinian undergraduates.",
+    "programs.home.card3.title": "Justice for Palestine Scholars",
+    "programs.home.card3.desc": "Support for law and international relations students to advocate globally.",
+    "programs.home.button": "View Our Programs",
 
     "about.widgt": "Values",
     "about.title":"Our Values",
     "about.subtitle":"IFPSS",
+    "about.values.badge": "HELP IS OUR GOAL",
     "about.identity": "National Belonging",
     "about.identity.desc": "We operate from a deep commitment to the Palestinian cause, striving to instill a strong national identity in everything we do.",
     "about.identity2":"Academic Excellence",
@@ -64,15 +97,17 @@ const translations = {
 
     "about.hero.title": "Who Are We?",
     "about.hero.description": "The Palestinian Support Fund is an independent, non-profit development entity that aims to support higher education in Palestine by investing in the potential of young academics. The Fund focuses on providing programs and initiatives that contribute to bridging the gap between educational outcomes and community needs by providing scholarships and facilitating access to nationally prioritized majors. It also works to create a knowledge network that brings together Palestinian talents within the country and abroad, within a comprehensive development vision.",
+    "about.whoWeServe.title": "This Is Who We Serve",
+    "about.whoWeServe.subtitle": "Meet the students and communities we stand beside, and the stories that give our mission its meaning.",
     "about.mission.tag": "Our Mission",
-    "about.mission.title": "Empowering Through Education",
-    "about.mission.text": "To enhance the academic competencies of young Palestinian professionals in various disciplines needed by Palestinian society, enabling them to play a pivotal and effective role in building a sustainable, prosperous, and strong future for palestine.",
+    "about.mission.title": "Our Mission",
+    "about.mission.text": "To provide high-quality scholarships, support scientific research, link education to socioeconomic development needs, and build a strong network of Palestinian professionals capable of serving their communities and advancing national progress.",
     "about.vision.tag": "Our Vision",
-    "about.vision.title": "Building Future Leaders",
-    "about.vision.text": "The Isnad Foundation for Palestinian Student Support believes in the importance of enhancing the role of youth in community activities through educational and awareness programs that aim to consolidate the concepts of interaction, social harmony, and national belonging.",
+    "about.vision.title": "Our Vision",
+    "about.vision.text": "To establish a sustainable institutional framework that empowers Palestinian students both locally and in the diaspora, encouraging them to take on leadership roles for Palestine's development.",
     "about.foundation.tag": "Foundation Identity",
     "about.foundation.title": "Our Story",
-    "about.foundation.text1": "Established in 2015 in Istanbul, Turkey, the Isnad Foundation was founded by a group of educators and professionals who recognized the challenges faced by Palestinian students seeking higher education opportunities.",
+    "about.foundation.text1": "Established in 2024 in Istanbul, Turkey, the Isnad Foundation was founded by a group of educators and professionals who recognized the challenges faced by Palestinian students seeking higher education opportunities.",
     "about.foundation.text2": "What began as a small initiative providing scholarships to a handful of students has grown into a comprehensive support organization that has helped hundreds of Palestinian students access quality education across the globe.",
     "about.foundation.text3": "Our foundation is registered as a non-profit educational organization in Turkey, operating with full transparency and accountability to our donors and partners.",
     "about.team.tag": "Administrative Structure",
@@ -102,7 +137,7 @@ const translations = {
     "Card5.title": "Building a network of Palestinian competencies",
     "Card5.desc": "Connecting Palestinian professionals abroad and fostering communication between academics, researchers, and relevant institutions.",
 
-    "footer.rights": "© 2025 IFPSS. All rights reserved. | Developed by Ahmed Mohammed",
+    "footer.rights": "© 2025 IFPSS. All rights reserved.",
     "footer.programs": "Programs",
     "footer.about": "About",
     "footer.contact": "Contact",
@@ -177,6 +212,63 @@ const translations = {
     "donate.faq.recurring": "Can I make a recurring contribution?",
     "donate.faq.recurring.answer": "Yes, we offer monthly, quarterly, and annual recurring contribution options. You can set up and manage your recurring contributions through our secure payment system.",
     "donate.faq.track": "How can I track the impact of my contribution?",
+
+    // Program-specific donation pages
+    "donate.share": "Share",
+    "donate.donate": "Donate",
+    "donate.supporters": "supporters",
+    "donate.daysLeft": "days left",
+    "donate.impact": "Impact",
+    "donate.verified": "Verified for authenticity",
+    "donate.donors.title": "Donors",
+    "donate.donors.shareText": "Your share could raise over",
+    "donate.donors.recentSupporters": "Recent supporters",
+    "donate.donors.anonymous": "An Anonymous kind soul",
+    "donate.donors.ago": "ago",
+    "donate.shareModal.title": "Invite to good",
+    "donate.shareModal.description": "Giving is better together! Your share could raise over",
+    "donate.shareModal.quote": "Whoever guides someone to goodness will have a reward like the one who did it.",
+    "donate.shareModal.prophet": "Prophet Muhammad",
+    "404.message": "Page Not Found",
+    "404.home": "Go Home",
+
+    // Pulse of Life donation page
+    "donate.pulse.title": "Pulse of Life Scholarship Program",
+    "donate.pulse.goal": "500000",
+    "donate.pulse.raised": "160610",
+    "donate.pulse.description": "Join us in rebuilding Gaza's healthcare system by supporting medical and health sciences students. Your contribution helps provide full scholarships for 1,000 students over 5 years, creating a new generation of healthcare professionals.",
+    "donate.pulse.suggested.1.title": "Support Medical Student",
+    "donate.pulse.suggested.1.desc": "Help fund a medical student's education for one semester",
+    "donate.pulse.suggested.2.title": "Fund Clinical Training",
+    "donate.pulse.suggested.2.desc": "Support clinical training and practical experience",
+    "donate.pulse.suggested.3.title": "Full Year Scholarship",
+    "donate.pulse.suggested.3.desc": "Provide a complete year of medical education",
+    "donate.pulse.suggested.4.title": "Build Healthcare Future",
+    "donate.pulse.suggested.4.desc": "Create lasting impact for future healthcare professionals",
+
+    // Palestinian Talented donation page
+    "donate.talented.title": "Palestinian Talented Excellence Scholarship",
+    "donate.talented.goal": "500000",
+    "donate.talented.raised": "120000",
+    "donate.talented.description": "Support exceptional Palestinian students across various academic fields. This program identifies and nurtures talented youth, providing comprehensive scholarships and mentorship to develop future leaders.",
+
+    // Sustainability donation page
+    "donate.sustainability.title": "Sustainability Scholarship Program",
+    "donate.sustainability.goal": "400000",
+    "donate.sustainability.raised": "95000",
+    "donate.sustainability.description": "Invest in Palestine's green future by supporting students in energy engineering and agriculture. This program prepares 200 students to lead sustainable development initiatives.",
+
+    // Justice for Palestine donation page
+    "donate.justice.title": "Justice for Palestine Scholarship",
+    "donate.justice.goal": "450000",
+    "donate.justice.raised": "110000",
+    "donate.justice.description": "Empower Palestinian voices in international advocacy by supporting students in political science and international relations. Help train 200 future diplomats and advocates.",
+
+    // Ibn Khaldun donation page
+    "donate.ibn-khaldun.title": "Ibn Khaldun Scholarship Program",
+    "donate.ibn-khaldun.goal": "400000",
+    "donate.ibn-khaldun.raised": "88000",
+    "donate.ibn-khaldun.description": "Support research and understanding of Palestinian society through scholarships in sociology and psychology. This program enables 200 students to contribute to social development and community well-being.",
     "donate.faq.track.answer": "We provide regular updates through our newsletter and annual impact reports. You can also follow our success stories and student testimonials on our website and social media channels.",
     "donate.form.type": "Select Donation Type",
     "donate.form.general": "General Donation",
@@ -232,7 +324,7 @@ const translations = {
     "ibn-khaldun.apply.now": "Apply Now",
 
     // Sustainability Scholarship translations
-    "sustainability.title": "Sustainability Scholarship Program",
+    "sustainability.title": "Sustainability Scholarship",
     "sustainability.subtitle": "Towards Global Sovereignty and Self-Driven Development.",
     "sustainability.scholarships": "Scholarships",
     "sustainability.years": "Years",
@@ -448,6 +540,30 @@ const translations = {
     "about.partners.badge": "Collaborations",
     "about.partners.title": "Our Partners",
     "about.partners.subtitle": "We collaborate with universities, educational institutions, and organizations worldwide to expand opportunities for Palestinian students.",
+
+    // Image Accordion Gallery translations
+    "gallery.image1.title": "Our Programs in Action",
+    "gallery.image1.description": "Showcasing the impactful work and programs we support for Palestinian students.",
+    "gallery.image2.title": "Educational Excellence",
+    "gallery.image2.description": "Students engaged in learning and development activities supported by our foundation.",
+    "gallery.image3.title": "Community Building",
+    "gallery.image3.description": "Building strong communities through education and empowerment initiatives.",
+    "gallery.image4.title": "Scholarship Programs",
+    "gallery.image4.description": "Supporting talented Palestinian students through comprehensive scholarship programs.",
+    "gallery.image5.title": "Educational Environment",
+    "gallery.image5.description": "Creating conducive learning environments for Palestinian students to thrive.",
+    "gallery.image6.title": "Academic Development",
+    "gallery.image6.description": "Fostering academic growth and professional development among Palestinian youth.",
+    "gallery.image7.title": "Student Activities",
+    "gallery.image7.description": "Documenting student activities and events organized by the foundation.",
+    "gallery.image8.title": "Foundation Events",
+    "gallery.image8.description": "Capturing moments from our various events and gatherings.",
+    "gallery.image9.title": "Empowering Youth",
+    "gallery.image9.description": "Empowering Palestinian youth through education and opportunity.",
+    "gallery.image10.title": "Foundation Operations",
+    "gallery.image10.description": "Our dedicated team working to support Palestinian students worldwide.",
+    "gallery.image11.title": "Latest News & Updates",
+    "gallery.image11.description": "Stay updated with our latest news and achievements in supporting Palestinian students.",
     "about.cta.title": "Join Us",
     "about.cta.subtitle": "Whether you're a student looking for support, a potential partner, or someone who wants to contribute to our cause, we'd love to hear from you.",
     "about.cta.contact": "Contact Us",
@@ -572,6 +688,84 @@ const translations = {
     "news.share": "Share this article",
     "news.linkCopied": "Link copied to clipboard",
 
+    // Campaigns section translations
+    "campaigns.title": "Important Campaigns",
+    "campaigns.browse": "Browse Campaigns",
+    "campaigns.more": "More",
+    "campaigns.paid": "Paid",
+    "campaigns.left": "Left",
+    
+    // Campaign 1: Sponsor a Medical Student
+    "campaigns.medical.title": "Sponsor a Medical Student in Gaza",
+    "campaigns.medical.tagline": "Investing in today's medical students… to build the doctors of tomorrow",
+    "campaigns.medical.description": "A humanitarian, professional campaign directed at doctors around the world. Its aim is to sponsor a group of outstanding medical students in the Gaza Strip—students who continue their studies under extremely difficult conditions despite their exceptional academic abilities.",
+    "campaigns.medical.paid": "27,955",
+    "campaigns.medical.left": "22,045",
+    "campaigns.medical.goal": "50000",
+    
+    // Campaign 2: Support a Quran Memorizer
+    "campaigns.quran.title": "Support a Quran Memorizer from Gaza",
+    "campaigns.quran.tagline": "Supporting Quran memorizers enrolled in undergraduate programs at Gaza universities",
+    "campaigns.quran.description": "A humanitarian campaign aimed at supporting Quran memorizers enrolled in undergraduate programs at Gaza universities. These students carry the honor of memorizing the Quran, yet their academic journey is hindered by severe financial hardship.",
+    "campaigns.quran.paid": "48,626",
+    "campaigns.quran.left": "51,374",
+    "campaigns.quran.goal": "100000",
+    
+    // Campaign 3: Empowering the Gazan Female Student
+    "campaigns.empower.title": "Empowering the Gazan Female Student",
+    "campaigns.empower.tagline": "We create opportunities… unleash potential… and build young women leaders capable of driving change",
+    "campaigns.empower.description": "A developmental program that aims to enhance the capabilities of outstanding university female students, empowering them academically, professionally, and in research, and providing them with the tools and opportunities that enable them to take part in leadership pathways within their communities.",
+    "campaigns.empower.paid": "28,359",
+    "campaigns.empower.left": "21,641",
+    "campaigns.empower.goal": "50000",
+    "campaigns.back": "Back",
+    "campaigns.donate": "Donate",
+    "campaigns.share": "Share",
+    "campaigns.goalLabel": "Required amount",
+    "campaigns.tabs.overview": "Overview",
+    "campaigns.tabs.details": "Details",
+    "campaigns.tabs.updates": "Latest Updates",
+    "campaigns.tabs.comments": "Comments",
+    "campaigns.tabs.donations": "Donations",
+    "campaigns.info.number": "Campaign Number",
+    "campaigns.info.department": "Responsible Department",
+    "campaigns.info.date": "Publish Date",
+    "campaigns.info.category": "Category",
+    "campaigns.medical.number": "1",
+    "campaigns.medical.department": "Emergency and Response Program",
+    "campaigns.medical.date": "2025-11-25",
+    "campaigns.medical.category": "Humanitarian Response Campaign",
+    "campaigns.medical.details": "This campaign aims to sponsor outstanding medical students in Gaza who continue their studies under extremely difficult conditions. Your support helps build the doctors of tomorrow.",
+    "campaigns.quran.number": "2",
+    "campaigns.quran.department": "Educational Support Program",
+    "campaigns.quran.date": "2025-11-25",
+    "campaigns.quran.category": "Educational Support Campaign",
+    "campaigns.quran.details": "This campaign supports Quran memorizers enrolled in undergraduate programs at Gaza universities. These students carry the honor of memorizing the Quran, yet their academic journey is hindered by severe financial hardship.",
+    "campaigns.empower.number": "3",
+    "campaigns.empower.department": "Empowerment Program",
+    "campaigns.empower.date": "2025-11-25",
+    "campaigns.empower.category": "Empowerment Campaign",
+    "campaigns.empower.details": "This developmental program aims to enhance the capabilities of outstanding university female students, empowering them academically, professionally, and in research.",
+    "campaigns.viewPDF": "View Full Campaign PDF",
+    "campaigns.noUpdates": "No updates available yet",
+    "campaigns.noComments": "No comments yet",
+    "campaigns.otherCampaigns": "Other Campaigns",
+    "campaigns.donation.modal.title": "Donate to Campaign",
+    "campaigns.donation.chooseAmount": "Choose Amount",
+    "campaigns.donation.customAmount": "Custom Amount",
+    "campaigns.donation.enterAmount": "Enter amount",
+    "campaigns.donation.donorInfo": "Donor Information",
+    "campaigns.donation.emailOrPhone": "Email or Phone Number *",
+    "campaigns.donation.emailOrPhonePlaceholder": "Your email or phone number",
+    "campaigns.donation.paymentMethod": "Payment Method",
+    "campaigns.donation.card": "Credit/Debit Card",
+    "campaigns.donation.bank": "Bank Transfer",
+    "campaigns.donation.donateNow": "Donate Now",
+    "campaigns.donation.close": "Close",
+    "campaigns.donation.valid": "✓ Valid",
+    "campaigns.donation.invalid": "Please enter a valid email or phone number",
+    "campaigns.donation.loading": "Loading...",
+    "campaigns.donation.error": "Please enter a valid amount",
 
   "news.latest.supportTour.title": "Isnad Conducts Support Tours in Six Countries and Provides Educational Grants to Gaza Students",
   "news.latest.supportTour.excerpt": "Since the beginning of the genocide war in the Gaza Strip, the Isnad Foundation for Palestinian Student Support has implemented a series of meetings and events in several countries including Turkey, Egypt, Mauritania, Kyrgyzstan, Malaysia, and the Gaza Strip, as part of its urgent response to the needs of Palestinian students affected by the ongoing war on the Gaza Strip since October 2023.",
@@ -663,6 +857,9 @@ const translations = {
     "testimonials.public_figures": "Public Figures",
     "testimonials.public_figure_testimonials": "Public Figure Testimonials",
     "testimonials.public_figure_description": "We take pride in the heartfelt testimonials from respected figures about our institution. \nTheir support inspires us to continue our mission of serving Palestinian students worldwide.",
+    "testimonials.home.badge": "Testimonials",
+    "testimonials.home.title": "What Our Supporters and Beneficiaries Say",
+    "testimonials.home.imageAlt": "Testimonial image",
     "ibn-khaldun.reents.research": "Research Interest in Palestinian social issues",
     "ibn-khaldun.problems.title": "Problem Indicators",
     "ibn-khaldun.problems.experts": "SHORTAGE OF EXPERTS IN SOCIAL SCIENCES",
@@ -767,6 +964,7 @@ const translations = {
     "about.widgt": "القيم",
     "about.title":"قيمنا",
     "about.subtitle":"IFPSS",
+    "about.values.badge": "المساعدة هدفنا",
     "about.identity": "الانتماء الوطني",
     "about.identity.desc": "نعمل انطلاقًا من التزامنا الراسخ بالقضية الفلسطينية، ونسعى جاهدين لترسيخ الهوية الوطنية في كل ما نقوم به",
     "about.identity2":"التميز الأكاديمي",
@@ -789,17 +987,52 @@ const translations = {
     "hero.cta.apply": "التقدم للمنحة",
     "hero.cta.explore": "استكشاف البرامج",
     "hero.cta.donate": "ساهم معنا",
+    "hero.cta.quickDonate": "اقسام التبرع",
+    "hero.heading": "مؤسسة إسناد لدعم الطالب الفلسطيني",
+    "hero.subheading": "ألهم إنسانيّتك",
+    "hero.banner": "نمكن الطالب لنبني مستقبلا يليق بفلسطين",
+    "hero.description": "مؤسسة إسناد هي مؤسسة تنموية مستقلة وغير ربحية، تعمل على دعم مسيرة التعليم العالي في فلسطين، من خلال الاستثمار في الطاقات الشبابية الأكاديمية، وتوفير المنح الدراسية ضمن رؤية تنموية شاملة تُعيد الأمل وتصنع المستقبل.",
+    "hero.stats.students.value": "2,122",
+    "hero.stats.students.label": "الطلاب",
+    "hero.stats.sponsorships.value": "4,827",
+    "hero.stats.sponsorships.label": "الكفالات",
+    "hero.stats.campaigns.value": "549",
+    "hero.stats.campaigns.label": "الحملات",
+    "hero.stats.cases.value": "22,659",
+    "hero.stats.cases.label": "الحالات",
+    "impact.badge": "أثرنا",
+    "impact.title": "نحدث فرقاً حقيقياً في غزة",
+    "impact.description": "في إسناد، نلتزم بصنع أثر ملموس عبر تمكين الطلبة الفلسطينيين في مجالات متنوعة ودعم مسيرتهم في غزة وخارجها.",
+    "impact.items.1.title": "مساعدة مالية فورية",
+    "impact.items.1.desc": "تقديم الدعم المالي الأساسي للطلاب المتضررين ليستمروا في تعليمهم.",
+    "impact.items.2.title": "موارد تعليمية",
+    "impact.items.2.desc": "توفير المعدات والأدوات اللازمة للطلاب لمواصلة دراستهم بفعالية.",
+    "impact.items.3.title": "مساعدة طارئة",
+    "impact.items.3.desc": "تقديم المساعدة الطارئة للطلاب وعائلاتهم أثناء الأزمات.",
+    "impact.items.4.title": "تدريب مهني",
+    "impact.items.4.desc": "تمويل المدربين والتعليم السريري لتعزيز التدريب العملي للطلاب.",
+    "programs.home.badge": "برامجنا",
+    "programs.home.title": "برامج شاملة من أجل رعاية صحية مستدامة",
+    "programs.home.card1.title": "منح نبض الحياة",
+    "programs.home.card1.desc": "منح طبية كاملة مع دعم معيشي للطلاب في التخصصات الحرجة.",
+    "programs.home.card2.title": "برنامج الموهوبين الفلسطيني",
+    "programs.home.card2.desc": "منح قائمة على التفوق مع إرشاد للطلبة الفلسطينيين المتميزين.",
+    "programs.home.card3.title": "منح العدالة لفلسطين",
+    "programs.home.card3.desc": "دعم طلاب القانون والعلاقات الدولية للدفاع عالمياً عن فلسطين.",
+    "programs.home.button": "عرض برامجنا",
     "about.hero.title": "من نحن؟",
     "about.hero.description": "مؤسسة إسنَاد لدعم الطالب الفلسطيني هي كيان تنموي مستقل وغير ربحي، يهدف إلى دعم مسيرة التعليم العالي في فلسطين عبر الاستثمار في الطاقات الشبابية الأكاديمية. تركز المؤسسة على تقديم برامج ومبادرات تساهم في سد الفجوة بين مخرجات التعليم واحتياجات المجتمع، من خلال توفير منح دراسية، وتيسير الوصول إلى التخصصات ذات الأولوية الوطنية. كما تعمل على خلق شبكة معرفية تجمع بين الكفاءات الفلسطينية داخل الوطن وفي الشتات، ضمن رؤية تنموية شاملة",
+    "about.whoWeServe.title": "هذا لمن نعمل",
+    "about.whoWeServe.subtitle": "وجوه الطلاب والمجتمعات التي نقف إلى جانبها، والقصص التي تمنح رسالتنا معناها.",
     "about.mission.tag": "رسالتنا",
-    "about.mission.title": "التمكين من خلال التعليم",
-    "about.mission.text":"الارتقاء بالكفاءات الأكاديمية الفلسطينية الشابة في شتى التخصصات التي يحتاجها المجتمع الفلسطيني، وتمكينها من أداء دور محوري وفعّال في بناء مستقبل مستدام، مزدهر، وقوي للدولة الفلسطينية.",
+    "about.mission.title": "رسالتنا",
+    "about.mission.text":"تقديم منح دراسية، ودعم البحث العلمي، وربط التعليم بمتطلبات التنمية الاقتصادية والاجتماعية، وبناء شبكة كفاءات فلسطينية لخدمة الوطن وتطوير مؤسساته",
     "about.vision.tag": "رؤيتنا",
-    "about.vision.title": "بناء قادة المستقبل",
-    "about.vision.text": "تؤمن مؤسسة إسنَاد لدعم الطالب الفلسطيني بأهمية تعزيز دور الشباب في النشاط المجتمعي، عبر برامج تعليمية وتوعوية تهدف إلى ترسيخ مفاهيم التفاعل، والانسجام الاجتماعي، والانتماء الوطني.",
+    "about.vision.title": "رؤيتنا",
+    "about.vision.text": "بناء كيان مرجعي ومستدام لتمكين وتأهيل الطلبة الفلسطينيين في الداخل والشتات، وتحفيزهم لأداء أدوار قيادية في مجالاتهم بما يخدم نهضة فلسطين.",
     "about.foundation.tag": "هوية المؤسسة",
     "about.foundation.title": "قصتنا",
-    "about.foundation.text1": "تأسست مؤسسة إسنَاد لدعم الطالب الفلسطيني في عام 2015 في إسطنبول، تركيا، على يد مجموعة من المربين والمهنيين الذين أدركوا التحديات التي يواجهها الطلاب الفلسطينيون الساعون للحصول على فرص التعليم العالي.",
+    "about.foundation.text1": "تأسست مؤسسة إسنَاد لدعم الطالب الفلسطيني في عام 2024 في إسطنبول، تركيا، على يد مجموعة من المربين والمهنيين الذين أدركوا التحديات التي يواجهها الطلاب الفلسطينيون الساعون للحصول على فرص التعليم العالي.",
     "about.foundation.text2": "ما بدأ كمبادرة صغيرة لتقديم المنح الدراسية لعدد قليل من الطلاب نما ليصبح مؤسسة دعم شاملة ساعدت مئات الطلاب الفلسطينيين في الوصول إلى تعليم عالي الجودة في جميع أنحاء العالم.",
     "about.foundation.text3": "مؤسستنا مسجلة كمنظمة تعليمية غير ربحية في تركيا، تعمل بشفافية ومسؤولية كاملة تجاه المانحين والشركاء.",
     "about.team.tag": "الهيكل الإداري",
@@ -828,7 +1061,7 @@ const translations = {
     "Card4.desc":"تنفيذ برامج ثقافية وتعليمية وتوعوية تهدف إلى ترسيخ القيم الوطنية وتفعيل دور الشباب في الحياة العامة.",
     "Card5.title": "بناء شبكة كفاءات فلسطينية",
     "Card5.desc": "ربط المهنيين الفلسطينيين في الخارج وتعزيز التواصل بين الأكاديميين والباحثين والمؤسسات ذات الصلة.",
-    "footer.rights": "© 2025 IFPSS. جميع الحقوق محفوظة. | تطوير أحمد محمد",
+    "footer.rights": "© 2025 IFPSS. جميع الحقوق محفوظة.",
     "footer.programs": "البرامج",
     "footer.about": "عن المؤسسة",
     "footer.contact": "اتصل بنا",
@@ -903,6 +1136,61 @@ const translations = {
     "donate.faq.recurring": "هل يمكنني تقديم مساهمة متكررة؟",
     "donate.faq.recurring.answer": "نعم، نقدم خيارات المساهمة المتكررة الشهرية والربعية والسنوية. يمكنك إعداد وإدارة مساهماتك المتكررة من خلال نظام الدفع الآمن لدينا.",
     "donate.faq.track": "كيف يمكنني تتبع تأثير مساهمتي؟",
+
+    // Program-specific donation pages Arabic
+    "donate.share": "مشاركة",
+    "donate.donate": "تبرع",
+    "donate.supporters": "داعم",
+    "donate.daysLeft": "يوم متبقي",
+    "donate.impact": "التأثير",
+    "donate.verified": "متحقق من صحته",
+    "donate.donors.title": "المتبرعون",
+    "donate.donors.shareText": "مشاركتك يمكن أن تجمع أكثر من",
+    "donate.donors.recentSupporters": "الداعمون الأخيرون",
+    "donate.donors.anonymous": "نفس طيبة مجهولة",
+    "donate.donors.ago": "منذ",
+    "donate.shareModal.title": "ادعُ للخير",
+    "donate.shareModal.description": "العطاء أفضل معاً! مشاركتك يمكن أن تجمع أكثر من",
+    "donate.shareModal.quote": "من دل على خير فله مثل أجر فاعله",
+    "donate.shareModal.prophet": "رسول الله صلى الله عليه وسلم",
+    "404.message": "الصفحة غير موجودة",
+    "404.home": "العودة للرئيسية",
+    "donate.pulse.title": "برنامج منحة نبض الحياة",
+    "donate.pulse.goal": "500000",
+    "donate.pulse.raised": "160610",
+    "donate.pulse.description": "انضم إلينا في إعادة بناء نظام الرعاية الصحية في غزة من خلال دعم طلاب الطب والعلوم الصحية. تساعد مساهمتك في توفير منح دراسية كاملة لـ 1,000 طالب على مدى 5 سنوات، مما يخلق جيلاً جديداً من المهنيين الصحيين.",
+    "donate.pulse.suggested.1.title": "دعم طالب طب",
+    "donate.pulse.suggested.1.desc": "ساعد في تمويل تعليم طالب طب لفصل دراسي واحد",
+    "donate.pulse.suggested.2.title": "تمويل التدريب السريري",
+    "donate.pulse.suggested.2.desc": "ادعم التدريب السريري والخبرة العملية",
+    "donate.pulse.suggested.3.title": "منحة سنة كاملة",
+    "donate.pulse.suggested.3.desc": "وفر سنة كاملة من التعليم الطبي",
+    "donate.pulse.suggested.4.title": "بناء مستقبل الرعاية الصحية",
+    "donate.pulse.suggested.4.desc": "أنشئ تأثيراً دائماً لمهنيي الرعاية الصحية المستقبليين",
+
+    // Palestinian Talented donation page Arabic
+    "donate.talented.title": "منحة الموهوب الفلسطيني للتميز",
+    "donate.talented.goal": "500000",
+    "donate.talented.raised": "120000",
+    "donate.talented.description": "ادعم الطلاب الفلسطينيين المتميزين في مختلف المجالات الأكاديمية. يحدد هذا البرنامج الشباب الموهوبين ويرعاهم، ويوفر منحاً دراسية شاملة وإرشاداً لتطوير قادة المستقبل.",
+
+    // Sustainability donation page Arabic
+    "donate.sustainability.title": "برنامج منحة الاستدامة",
+    "donate.sustainability.goal": "400000",
+    "donate.sustainability.raised": "95000",
+    "donate.sustainability.description": "استثمر في مستقبل فلسطين الأخضر من خلال دعم الطلاب في هندسة الطاقة والزراعة. يعد هذا البرنامج 200 طالب لقيادة مبادرات التنمية المستدامة.",
+
+    // Justice for Palestine donation page Arabic
+    "donate.justice.title": "منحة العدالة لفلسطين",
+    "donate.justice.goal": "450000",
+    "donate.justice.raised": "110000",
+    "donate.justice.description": "مكن الأصوات الفلسطينية في الدعوة الدولية من خلال دعم الطلاب في العلوم السياسية والعلاقات الدولية. ساعد في تدريب 200 دبلوماسي ومحامٍ مستقبلي.",
+
+    // Ibn Khaldun donation page Arabic
+    "donate.ibn-khaldun.title": "برنامج منحة ابن خلدون",
+    "donate.ibn-khaldun.goal": "400000",
+    "donate.ibn-khaldun.raised": "88000",
+    "donate.ibn-khaldun.description": "ادعم البحث وفهم المجتمع الفلسطيني من خلال المنح الدراسية في علم الاجتماع وعلم النفس. يتيح هذا البرنامج لـ 200 طالب المساهمة في التنمية الاجتماعية ورفاهية المجتمع.",
     "donate.faq.track.answer": "نقدم تحديثات منتظمة من خلال النشرة الإخبارية والتقارير السنوية للتأثير. يمكنك أيضًا متابعة قصص النجاح وشهادات الطلاب على موقعنا الإلكتروني وقنوات التواصل الاجتماعي.",
     "donate.form.type": "اختر نوع التبرع",
     "donate.form.general": "تبرع عام",
@@ -1188,6 +1476,30 @@ const translations = {
     "about.partners.badge": "التعاون",
     "about.partners.title": "شركاؤنا",
     "about.partners.subtitle": "نحن نتعاون مع الجامعات والمؤسسات التعليمية والمنظمات حول العالم لتوسيع الفرص للطلاب الفلسطينيين",
+
+    // Image Accordion Gallery translations Arabic
+    "gallery.image1.title": "برامجنا في العمل",
+    "gallery.image1.description": "إبراز العمل والبرامج المؤثرة التي ندعمها للطلاب الفلسطينيين.",
+    "gallery.image2.title": "التميز التعليمي",
+    "gallery.image2.description": "الطلاب المشاركون في أنشطة التعلم والتطوير التي تدعمها مؤسستنا.",
+    "gallery.image3.title": "بناء المجتمع",
+    "gallery.image3.description": "بناء مجتمعات قوية من خلال مبادرات التعليم والتمكين.",
+    "gallery.image4.title": "برامج المنح الدراسية",
+    "gallery.image4.description": "دعم الطلاب الفلسطينيين الموهوبين من خلال برامج المنح الدراسية الشاملة.",
+    "gallery.image5.title": "البيئة التعليمية",
+    "gallery.image5.description": "خلق بيئات تعليمية مواتية للطلاب الفلسطينيين للازدهار.",
+    "gallery.image6.title": "التطوير الأكاديمي",
+    "gallery.image6.description": "تعزيز النمو الأكاديمي والتطوير المهني بين الشباب الفلسطيني.",
+    "gallery.image7.title": "أنشطة الطلاب",
+    "gallery.image7.description": "توثيق أنشطة الطلاب والفعاليات التي تنظمها المؤسسة.",
+    "gallery.image8.title": "فعاليات المؤسسة",
+    "gallery.image8.description": "التقاط لحظات من فعالياتنا واجتماعاتنا المختلفة.",
+    "gallery.image9.title": "تمكين الشباب",
+    "gallery.image9.description": "تمكين الشباب الفلسطيني من خلال التعليم والفرص.",
+    "gallery.image10.title": "عمليات المؤسسة",
+    "gallery.image10.description": "فريقنا المتفاني يعمل لدعم الطلاب الفلسطينيين حول العالم.",
+    "gallery.image11.title": "آخر الأخبار والتحديثات",
+    "gallery.image11.description": "ابق على اطلاع بآخر أخبارنا وإنجازاتنا في دعم الطلاب الفلسطينيين.",
     "about.cta.title": "انضم إلينا",
     "about.cta.subtitle": "سواء كنت طالباً تبحث عن الدعم، أو شريكاً محتملاً، أو شخصاً يريد المساهمة في قضيتنا، نحن نحب أن نسمع منك",
     "about.cta.contact": "اتصل بنا",
@@ -1201,7 +1513,7 @@ const translations = {
     "pulse.stats.years": "سنوات",
     "pulse.stats.pillars": "ركائز الدعم",
     "pulse.about.title": "عن البرنامج",
-    "pulse.about.description": "هي مبادرة وطنية جريئة أطلقتها مؤسسة الإسناد، تهدف إلى تقديم 1,000 منحة دراسية كاملة في الطب والعلوم الصحية للطلاب الفلسطينيين داخل وخارج فلسطين—خاصة في التخصصات النادرة والحرجة. البرنامج مصمم ليعمل على مدى فترة 5 سنوات",
+    "pulse.about.description": "هي مبادرة وطنية جريئة أطلقتها مؤسسة إسناد، تهدف إلى تقديم 1,000 منحة دراسية كاملة في الطب والعلوم الصحية للطلاب الفلسطينيين داخل وخارج فلسطين—خاصة في التخصصات النادرة والحرجة. البرنامج مصمم ليعمل على مدى فترة 5 سنوات",
     "pulse.apply": "قدم لمنحة نبض الحياة",
     "pulse.download.en": "تحميل البرنامج (EN)",
     "pulse.download.ar": "تحميل البرنامج (AR)",
@@ -1312,6 +1624,85 @@ const translations = {
     "news.share": "مشاركة المقال",
     "news.linkCopied": "تم نسخ الرابط إلى الحافظة",
 
+    // Campaigns section translations Arabic
+    "campaigns.title": "أهم الحملات",
+    "campaigns.browse": "تصفح الحملات",
+    "campaigns.more": "المزيد",
+    "campaigns.paid": "مدفوع",
+    "campaigns.left": "متبقي",
+    
+    // Campaign 1: Sponsor a Medical Student Arabic
+    "campaigns.medical.title": "اكفل طبيب من غزة",
+    "campaigns.medical.tagline": "استثمر في طلاب الطب اليوم... لبناء أطباء الغد",
+    "campaigns.medical.description": "حملة إنسانية ومهنية موجهة للأطباء حول العالم. تهدف إلى رعاية مجموعة من طلاب الطب المتميزين في قطاع غزة—طلاب يواصلون دراستهم في ظروف صعبة للغاية رغم قدراتهم الأكاديمية الاستثنائية.",
+    "campaigns.medical.paid": "27,955",
+    "campaigns.medical.left": "22,045",
+    "campaigns.medical.goal": "50000",
+    
+    // Campaign 2: Support a Quran Memorizer Arabic
+    "campaigns.quran.title": "دعم حافظ القرآن من غزة",
+    "campaigns.quran.tagline": "دعم حفاظ القرآن المسجلين في برامج البكالوريوس في جامعات غزة",
+    "campaigns.quran.description": "حملة إنسانية تهدف إلى دعم حفاظ القرآن المسجلين في برامج البكالوريوس في جامعات غزة. هؤلاء الطلاب يحملون شرف حفظ القرآن، لكن رحلتهم الأكاديمية تعوقها صعوبات مالية شديدة.",
+    "campaigns.quran.paid": "48,626",
+    "campaigns.quran.left": "51,374",
+    "campaigns.quran.goal": "100000",
+    
+    // Campaign 3: Empowering the Gazan Female Student Arabic
+    "campaigns.empower.title": "تمكين الفتاة الغزاوية الطالبة",
+    "campaigns.empower.tagline": "نخلق الفرص... نطلق الإمكانات... ونبني قائدات شابات قادرات على قيادة التغيير",
+    "campaigns.empower.description": "برنامج تنموي يهدف إلى تعزيز قدرات الطالبات الجامعيات المتميزات، وتمكينهن أكاديمياً ومهنياً وفي البحث، وتزويدهن بالأدوات والفرص التي تمكنهن من المشاركة في مسارات القيادة داخل مجتمعاتهن.",
+    "campaigns.empower.paid": "28,359",
+    "campaigns.empower.left": "21,641",
+    "campaigns.empower.goal": "50000",
+    "campaigns.back": "العودة",
+    "campaigns.donate": "تبرع",
+    "campaigns.share": "شارك",
+    "campaigns.goalLabel": "المبلغ المطلوب",
+    "campaigns.tabs.overview": "نظرة عامة",
+    "campaigns.tabs.details": "التفاصيل",
+    "campaigns.tabs.updates": "آخر التحديثات",
+    "campaigns.tabs.comments": "تعليقات",
+    "campaigns.tabs.donations": "تبرعات",
+    "campaigns.info.number": "رقم الحملة",
+    "campaigns.info.department": "القسم المسؤول",
+    "campaigns.info.date": "تاريخ النشر",
+    "campaigns.info.category": "التصنيف",
+    "campaigns.medical.number": "1",
+    "campaigns.medical.department": "برنامج الاستجابة والطوارئ",
+    "campaigns.medical.date": "2025-11-25",
+    "campaigns.medical.category": "حملة استجابة انسانية",
+    "campaigns.medical.details": "تهدف هذه الحملة إلى رعاية طلاب الطب المتميزين في غزة الذين يواصلون دراستهم في ظروف صعبة للغاية. دعمك يساعد في بناء أطباء الغد.",
+    "campaigns.quran.number": "2",
+    "campaigns.quran.department": "برنامج الدعم التعليمي",
+    "campaigns.quran.date": "2025-11-25",
+    "campaigns.quran.category": "حملة دعم تعليمي",
+    "campaigns.quran.details": "تهدف هذه الحملة إلى دعم حفاظ القرآن المسجلين في برامج البكالوريوس في جامعات غزة. هؤلاء الطلاب يحملون شرف حفظ القرآن، لكن رحلتهم الأكاديمية تعوقها صعوبات مالية شديدة.",
+    "campaigns.empower.number": "3",
+    "campaigns.empower.department": "برنامج التمكين",
+    "campaigns.empower.date": "2025-11-25",
+    "campaigns.empower.category": "حملة تمكين",
+    "campaigns.empower.details": "يهدف هذا البرنامج التنموي إلى تعزيز قدرات الطالبات الجامعيات المتميزات، وتمكينهن أكاديمياً ومهنياً وفي البحث.",
+    "campaigns.viewPDF": "عرض ملف الحملة الكامل",
+    "campaigns.noUpdates": "لا توجد تحديثات متاحة بعد",
+    "campaigns.noComments": "لا توجد تعليقات بعد",
+    "campaigns.otherCampaigns": "حملات أخرى",
+    "campaigns.donation.modal.title": "تبرع للحملة",
+    "campaigns.donation.chooseAmount": "اختر المبلغ",
+    "campaigns.donation.customAmount": "مبلغ مخصص",
+    "campaigns.donation.enterAmount": "أدخل المبلغ",
+    "campaigns.donation.donorInfo": "معلومات المتبرع",
+    "campaigns.donation.emailOrPhone": "البريد الإلكتروني أو رقم الهاتف *",
+    "campaigns.donation.emailOrPhonePlaceholder": "بريدك الإلكتروني أو رقم هاتفك",
+    "campaigns.donation.paymentMethod": "طريقة الدفع",
+    "campaigns.donation.card": "بطاقة ائتمان/خصم",
+    "campaigns.donation.bank": "تحويل بنكي",
+    "campaigns.donation.donateNow": "تبرع الآن",
+    "campaigns.donation.close": "إغلاق",
+    "campaigns.donation.valid": "✓ صحيح",
+    "campaigns.donation.invalid": "يرجى إدخال بريد إلكتروني صحيح أو رقم هاتف",
+    "campaigns.donation.loading": "جاري التحميل...",
+    "campaigns.donation.error": "يرجى إدخال مبلغ صحيح",
+
     "news.latest.supportTour.title": "مؤسسة إسنَاد لدعم الطالب الفلسطيني تنفذ جولات دعم في ست دول وتقدم منحًا تعليمية لطلاب غزة",
     "news.latest.supportTour.excerpt": "نفذت مؤسسة إسنَاد لدعم الطالب الفلسطيني منذ بدء حرب الإبادة في قطاع غزة  سلسلة من اللقاءات والفعاليات في عدد من الدول شملت تركيا، مصر، موريتانيا، قرغيزستان، ماليزيا، وقطاع غزة، وذلك في إطار استجابتها العاجلة لاحتياجات الطلبة الفلسطينيين المتضررين من الحرب المستمرة على قطاع غزة منذ أكتوبر 2023.",
     "news.latest.supportTour.category": "Education & Humanitarian Support",
@@ -1402,6 +1793,9 @@ const translations = {
     "testimonials.public_figures": "شخصيات عامة",
     "testimonials.public_figure_testimonials": "شهادات الشخصيات العامة",
     "testimonials.public_figure_description": "نفخر بشهادة شخصيات وازنة  عن مؤسستنا\nتعني لنا الكثير، وتُعطينا دافعًا\nلاستكمال السعي نحو خدمة الطلاب الفلسطينين حول العالم",
+    "testimonials.home.badge": "شهادات",
+    "testimonials.home.title": "ماذا يقول داعمونا والمستفيدون",
+    "testimonials.home.imageAlt": "صورة شهادة",
     "ibn-khaldun.financial.title": "منحة ابن خلدون - الدعم المالي",
     "ibn-khaldun.financial.tuition.title": "دعم الرسوم الدراسية",
     "ibn-khaldun.financial.stipend.title": "المنحة الشهرية",
@@ -1482,27 +1876,39 @@ const cleanTranslations = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en")
+export function LanguageProvider({
+  children,
+  initialLanguage,
+}: {
+  children: ReactNode
+  initialLanguage?: Language
+}) {
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (initialLanguage) return initialLanguage
+    if (typeof window !== "undefined") {
+      const savedLanguage = localStorage.getItem("language") as Language
+      if (savedLanguage && ["en", "ar"].includes(savedLanguage)) return savedLanguage
+      const browserLanguage = navigator?.language?.startsWith("ar") ? "ar" : "en"
+      return browserLanguage as Language
+    }
+    return "en"
+  })
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language
-    if (savedLanguage && ["en", "ar"].includes(savedLanguage)) {
-      setLanguageState(savedLanguage)
-      document.documentElement.lang = savedLanguage
-      document.documentElement.dir = savedLanguage === "ar" ? "rtl" : "ltr"
-    } else {
-      // Set default to Arabic if no saved language
-      document.documentElement.lang = "ar"
-      document.documentElement.dir = "rtl"
+    document.documentElement.lang = language
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr"
+
+    try {
+      localStorage.setItem("language", language)
+    } catch {
+      // ignore if storage is unavailable
     }
-  }, [])
+
+    document.cookie = `language=${language}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`
+  }, [language])
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
-    localStorage.setItem("language", lang)
-    document.documentElement.lang = lang
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"
   }
 
   const t = (key: string): string | string[] => {
@@ -1519,4 +1925,3 @@ export function useLanguage() {
   }
   return context
 }
-

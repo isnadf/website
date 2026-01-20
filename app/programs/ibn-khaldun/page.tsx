@@ -9,7 +9,6 @@ import {
   Globe,
   Mail,
   Phone,
-  UserPlus,
   Scroll,
   Library,
   ChevronDown,
@@ -21,6 +20,8 @@ import StatsCounter from "@/components/stats-counter"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function IbnKhaldunScholarshipPage() {
   const { t, language } = useLanguage()
@@ -57,6 +58,18 @@ export default function IbnKhaldunScholarshipPage() {
           <StatsCounter number={2} label={t("ibn-khaldun.fields") as string} />
           <StatsCounter number={5} label={t("ibn-khaldun.years") as string} />
         </div>
+        {/* Hero Donate Button */}
+        <div className={`mt-6 mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <Button
+            asChild
+            size="lg"
+            className="bg-gradient-to-r from-[#34a853] to-[#2d9249] hover:from-[#2d9249] hover:to-[#34a853] text-white font-bold px-10 py-5 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 text-xl hover:scale-110"
+          >
+            <Link href="/donate/ibn-khaldun">
+              <Heart size={24} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("donate.donate")}
+            </Link>
+          </Button>
+        </div>
         <div className="max-w-2xl mx-auto mt-4">
           <h2 className={`text-xl font-bold text-indigo-700 mb-2 flex items-center justify-center gap-2 ${isRTL ? 'font-arabic flex-row-reverse' : ''}`}>
             <Brain className={`text-purple-600 animate-pulse ${isRTL ? 'order-2' : ''}`} size={28} />
@@ -66,44 +79,62 @@ export default function IbnKhaldunScholarshipPage() {
           <p className={`text-gray-800 dark:text-gray-100 text-base md:text-lg text-center ${isRTL ? 'font-arabic' : ''}`}>
             {t("ibn-khaldun.about.desc")}
           </p>
-          <div className={`flex justify-center mt-6 gap-4 items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <Button
-              asChild
-              size="lg"
-              className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
-            >
-              <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer">
-                <GraduationCap size={22} className={`${isRTL ? 'order-2' : '-ml-1'} animate-pulse`} /> {t("ibn-khaldun.apply")}
-              </a>
-            </Button>
+          <div className={`flex justify-center mt-6 gap-4 flex-wrap ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-red-700 text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 font-semibold bg-transparent group"
+                  >
+                    <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {isRTL ? 'تحميل البرنامج' : 'Download Program'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-red-200 dark:border-red-800">
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/ibn-khaldun/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      English (EN)
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/ibn-khaldun/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      العربية (AR)
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-black hover:bg-transparent hover:text-purple-600 border-none font-semibold group"
-                >
-                  <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                  {language === 'ar' ? 'تحميل البرنامج' : 'Download Program'}
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="border border-gray-200">
-                <DropdownMenuItem asChild>
-                  <a href="/ProgramsFiles/ibn-khaldun-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
-                    <Download className="h-4 w-4" />
-                    English (EN)
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <a href="/ProgramsFiles/ibn-khaldun-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
-                    <Download className="h-4 w-4" />
-                    العربية (AR)
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-blue-700 text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-semibold bg-transparent group"
+                  >
+                    <BookOpen className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {isRTL ? 'تحميل البروشور' : 'Download Brochure'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/ibn-khaldun/Brochure-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      English (EN)
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/ibn-khaldun/Brochure-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      العربية (AR)
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
         </div>
       </section>
@@ -356,67 +387,6 @@ export default function IbnKhaldunScholarshipPage() {
           </div>
         </div>
 
-        <div className={`flex justify-center my-8 gap-4 items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-          <Button
-            asChild
-            size="lg"
-            className="bg-gradient-to-r from-purple-600 to-indigo-500 hover:from-indigo-600 hover:to-purple-500 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
-          >
-            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer">
-              <UserPlus size={26} className={`${isRTL ? 'order-2' : '-ml-1'}`} /> {t("ibn-khaldun.apply.now")}
-            </a>
-          </Button>
-
-          <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-black hover:bg-transparent hover:text-purple-600 border-none font-semibold group"
-                >
-                  <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                  {language === 'ar' ? 'تحميل البرنامج' : 'Download Program'}
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="border border-gray-200">
-                <DropdownMenuItem asChild>
-                  <a href="/ProgramsFiles/ibn-khaldun-EN.pdf" download className="flex items-center gap-2 cursor-pointer">
-                    <Download className="h-4 w-4" />
-                    English (EN)
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <a href="/ProgramsFiles/ibn-khaldun-AR.pdf" download className="flex items-center gap-2 cursor-pointer">
-                    <Download className="h-4 w-4" />
-                    العربية (AR)
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            {/* borche */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-black hover:bg-transparent hover:text-purple-600 border-none font-semibold group"
-                >
-                  <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                  {language === 'ar' ? 'تحميل البرشور' : 'Download Brochure'}
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="border border-gray-200">
-                <DropdownMenuItem asChild>
-                  <a href="/ProgramsFiles/ibn-khaldun-brochure.pdf" download className="flex items-center gap-2 cursor-pointer">
-                    <Download className="h-4 w-4" />
-                    English (EN)
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
       </section>
     </main>
   );

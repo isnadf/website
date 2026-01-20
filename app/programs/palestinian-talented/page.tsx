@@ -4,6 +4,8 @@ import {
   GraduationCap,
   Award,
   BookOpen,
+  ChevronDown,
+  Download,
   Lightbulb,
   Globe,
   Users,
@@ -12,7 +14,6 @@ import {
   DollarSign,
   Briefcase,
   Target,
-  UserPlus,
   Phone,
   Mail,
   Star,
@@ -30,7 +31,11 @@ import {
 import GSAPReveal from "@/components/gsap-reveal"
 import GSAPTextReveal from "@/components/gsap-text-reveal"
 import StatsCounter from "@/components/stats-counter"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useLanguage } from "@/components/language-provider"
+import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function PalestinianTalentedScholarshipPage() {
   const { t, language } = useLanguage()
@@ -67,6 +72,12 @@ export default function PalestinianTalentedScholarshipPage() {
           <StatsCounter number={8} label={t("talented.areas") as string} />
           <StatsCounter number={3} label={t("talented.pillars") as string} />
         </div>
+        {/* Hero Donate Button */}
+        <div className="mt-6 mb-4">
+          <Link href="/donate/palestinian-talented" className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-[#34a853] to-[#2d9249] text-white font-bold rounded-full shadow-2xl hover:from-[#2d9249] hover:to-[#34a853] transition-all duration-300 text-xl hover:scale-110 hover:shadow-3xl">
+            <Heart size={24} className="-ml-1" /> {t("donate.donate")}
+          </Link>
+        </div>
         <div className="max-w-3xl mx-auto bg-gradient-to-r from-yellow-50/90 to-blue-50/90 dark:bg-gradient-to-r dark:from-yellow-900/80 dark:to-blue-900/80 rounded-xl shadow-xl p-6 mt-4 border border-yellow-300">
           <h2 className="text-xl font-bold text-blue-700 mb-2 flex items-center justify-center gap-2">
             <Star className="text-yellow-500 animate-pulse" size={28} />
@@ -76,17 +87,61 @@ export default function PalestinianTalentedScholarshipPage() {
           <p className="text-gray-800 dark:text-gray-100 text-base md:text-lg">
             {t("talented.about.desc")}
           </p>
-          <div className="flex justify-center mt-6 gap-4 flex-wrap">
-            <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold rounded-full shadow-xl hover:from-pink-600 hover:to-red-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-2xl">
-              <Award size={22} className="-ml-1 animate-pulse" /> {t("talented.apply")}
-            </a>
-            <div className="flex gap-3">
-              <a href="/ProgramsFiles/Talented Excellence Scholarship Program-EN.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
-                <BookOpen size={20} className="-ml-1" /> {t("talented.download.en")}
-              </a>
-              <a href="/ProgramsFiles/Talented Excellence Scholarship Program-AR.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
-                <BookOpen size={20} className="-ml-1" /> {t("talented.download.ar")}
-              </a>
+          <div className={`flex justify-center mt-6 gap-4 flex-wrap ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-red-700 text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 font-semibold bg-transparent group"
+                  >
+                    <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {isRTL ? 'تحميل البرنامج' : 'Download Program'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-red-200 dark:border-red-800">
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/palestinian-talented/program-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      English (EN)
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/palestinian-talented/program-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      العربية (AR)
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="border-blue-700 text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-semibold bg-transparent group"
+                  >
+                    <BookOpen className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    {isRTL ? 'تحميل البروشور' : 'Download Brochure'}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white/95 backdrop-blur-sm border-blue-200 dark:border-blue-800">
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/palestinian-talented/Brochure-en.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      English (EN)
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/2026-pdfs/palestinian-talented/Brochure-ar.pdf" download className="flex items-center gap-2 cursor-pointer">
+                      <Download className="h-4 w-4" />
+                      العربية (AR)
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
@@ -364,10 +419,10 @@ export default function PalestinianTalentedScholarshipPage() {
             <UserPlus size={26} className="-ml-1" /> Apply Now
           </a>
           <div className="flex gap-3">
-            <a href="/ProgramsFiles/Talented Excellence Scholarship Program-EN.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+            <a href="/2026-pdfs/palestinian-talented/program-en.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
               <BookOpen size={20} className="-ml-1" /> Download Program (EN)
             </a>
-            <a href="/ProgramsFiles/Talented Excellence Scholarship Program-AR.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
+            <a href="/2026-pdfs/palestinian-talented/program-ar.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
               <BookOpen size={20} className="-ml-1" /> تحميل البرنامج (AR)
             </a>
           </div>
@@ -391,19 +446,6 @@ export default function PalestinianTalentedScholarshipPage() {
           </div>
         </div>
 
-        <div className="flex justify-center my-8 gap-4 flex-wrap">
-          <a href="https://forms.gle/Xotxaubs4VyNN2We6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-red-500 text-white font-bold rounded-full shadow-lg hover:from-red-600 hover:to-green-500 transition-colors duration-300 text-xl">
-            <UserPlus size={26} className="-ml-1" /> {t("talented.apply.now")}
-          </a>
-          <div className="flex gap-3">
-            <a href="/ProgramsFiles/Talented Excellence Scholarship Program-EN.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
-              <BookOpen size={20} className="-ml-1" /> {t("talented.download.en")}
-            </a>
-            <a href="/ProgramsFiles/Talented Excellence Scholarship Program-AR.pdf" download className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full shadow-lg hover:from-blue-600 hover:to-blue-500 transition-all duration-300 text-lg hover:scale-105 hover:shadow-xl">
-              <BookOpen size={20} className="-ml-1" /> {t("talented.download.ar")}
-            </a>
-          </div>
-        </div>
       </section>
     </main>
   );

@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Calendar, User, Tag, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from "lucide-react"
+import { Calendar, User, Tag, ArrowLeft, Share2, Facebook, Twitter, Linkedin, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -13,6 +13,8 @@ import GSAPReveal from "@/components/gsap-reveal"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
 import HeroVideo from "@/components/hero-video"
+import CustomVideoPlayer from "@/components/custom-video-player"
+import { motion, AnimatePresence } from "motion/react"
 
 // Define the type for article data
 type ArticleData = {
@@ -29,6 +31,7 @@ type ArticleData = {
   image?: string
   heroImage?: string
   heroVideo?: string
+  galleryImages?: string[]
   content: {
     en: string[]
     ar: string[]
@@ -134,6 +137,78 @@ const newsArticles: Record<string, ArticleData> = {
       ]
     }
   },
+  "isnad-visits-wafa-foundation-indonesia": {
+    title: {
+      en: "Isnad Foundation Visits Wafa Foundation in Jakarta, Indonesia",
+      ar: "مؤسسة إسناد تزور مؤسسة وفاء في جاكرتا بإندونيسيا"
+    },
+    date: "December 10, 2025",
+    author: "Isnad Foundation",
+    category: {
+      en: "Partnerships & Cooperation",
+      ar: "الشراكات والتعاون"
+    },
+    image: "/10-12-2025/4.png",
+    heroImage: "/10-12-2025/4.png",
+    galleryImages: [
+      "/10-12-2025/1.png",
+      "/10-12-2025/2.png",
+      "/10-12-2025/3.png",
+      "/10-12-2025/4.png"
+    ],
+    content: {
+      en: [
+        "Jakarta, Indonesia",
+        "As part of its visit to the Republic of Indonesia, the Isnad Foundation paid a visit to the Wafa Foundation in Jakarta on December 10, 2025. The meeting focused on the role of humanitarian work in supporting Palestinian students and discussed avenues for cooperation in financing education and covering students' educational needs both inside and outside Palestine.",
+        "The Wafa Foundation is an Indonesian organization operating in the humanitarian and development fields, implementing social and educational programs aimed at supporting the most vulnerable groups.",
+        "During the meeting, both organizations explored potential collaboration opportunities to enhance educational support for Palestinian students, recognizing the critical importance of education in empowering communities and building sustainable futures.",
+        "The Isnad Foundation continues to strengthen its network of partnerships with international organizations committed to supporting Palestinian students and ensuring access to quality education despite challenging circumstances."
+      ],
+      ar: [
+        "جاكرتا، إندونيسيا",
+        "ضمن جولة زيارات مؤسسة إسناد إلى دولة إندونيسيا، تشرفنا بزيارة مؤسسة Wafa Foundation في مدينة جاكرتا وذلك بتاريخ 10 / 12 / 2025، حيث تركز اللقاء على دور العمل الإنساني في دعم الطلبة الفلسطينيين، وبحث سبل التعاون في تمويل التعليم وتغطية احتياجات الطلبة الدراسية داخل فلسطين وخارجها.",
+        "ومؤسسة Wafa Foundation هي مؤسسة إندونيسية تعمل في المجال الإنساني والتنموي، وتنفذ برامج اجتماعية وتعليمية تستهدف الفئات الأكثر احتياجًا.",
+        "وخلال اللقاء، استكشفت المؤسستان فرص التعاون المحتملة لتعزيز الدعم التعليمي للطلبة الفلسطينيين، مع إدراك الأهمية الحيوية للتعليم في تمكين المجتمعات وبناء مستقبل مستدام.",
+        "وتواصل مؤسسة إسناد تعزيز شبكة شراكاتها مع المنظمات الدولية الملتزمة بدعم الطلبة الفلسطينيين وضمان حصولهم على تعليم عالي الجودة رغم الظروف الصعبة."
+      ]
+    }
+  },
+  "isnad-visits-university-of-indonesia": {
+    title: {
+      en: "Isnad Foundation Visits University of Indonesia in Jakarta",
+      ar: "مؤسسة إسناد تزور جامعة إندونيسيا في جاكرتا"
+    },
+    date: "December 9, 2025",
+    author: "Isnad Foundation",
+    category: {
+      en: "Partnerships & Cooperation",
+      ar: "الشراكات والتعاون"
+    },
+    image: "/09-12-2025/1.png",
+    heroImage: "/09-12-2025/1.png",
+    galleryImages: [
+      "/09-12-2025/1.png",
+      "/09-12-2025/2.png",
+      "/09-12-2025/3.png",
+      "/09-12-2025/4.png"
+    ],
+    content: {
+      en: [
+        "Jakarta, Indonesia",
+        "As part of its official visit to the Republic of Indonesia, the İsnad foundation for Palestinian student support paid a visit to the University of Indonesia (UI) on December 9, 2025, where an expanded academic meeting was held to discuss prospects for cooperation in the field of higher education. The meeting focused on ways to support Palestinian students academically, as well as exploring the possibility of hosting Palestinian students at the university through future academic programs.",
+        "The University of Indonesia (UI) is one of the country's oldest public universities and one of the leading academic institutions in Southeast Asia, distinguished by its strong academic reputation, diverse educational and research programs, and extensive experience in international cooperation and academic partnerships.",
+        "This visit comes as part of the Isnad Foundation's ongoing efforts to expand its international academic network and to open new educational opportunities for Palestinian students.",
+        "The Isnad Foundation is an organization dedicated to supporting Palestinian university students, aiming to empower them to continue their higher education through student support programs and strategic partnerships with universities and educational institutions worldwide, thereby enhancing their academic opportunities and ensuring the continuity of their educational journey."
+      ],
+      ar: [
+        "جاكرتا، إندونيسيا",
+        "ضمن جولة زياراتها الرسمية إلى جمهورية إندونيسيا، تشرفت مؤسسة إسناد لدعم الطالب الفلسطيني بزيارة جامعة إندونيسيا (University of Indonesia – UI) بتاريخ 09 كانون الأول/ديسمبر 2025، حيث جرى عقد لقاء أكاديمي موسّع ناقش آفاق التعاون المشترك في مجال التعليم العالي، وسبل دعم الطلبة الفلسطينيين أكاديميًا، إضافة إلى بحث إمكانية استقبال الطلبة الفلسطينيين للدراسة في الجامعة ضمن برامج تعليمية مستقبلية.",
+        "وتُعد جامعة إندونيسيا (UI) من أعرق الجامعات الحكومية في البلاد، ومن أبرز المؤسسات الأكاديمية في جنوب شرق آسيا، لما تتمتع به من مكانة علمية مرموقة، وتنوع في البرامج الأكاديمية والبحثية، فضلاً عن خبرتها الواسعة في التعاون الدولي والشراكات التعليمية.",
+        "وتأتي هذه الزيارة في إطار جهود مؤسسة إسناد لدعم الطالب الفلسطيني الرامية إلى توسيع شبكة علاقاتها الأكاديمية الدولية، وفتح آفاق تعليمية جديدة أمام الطلبة الفلسطينيين.",
+        "ومؤسسة إسناد هي مؤسسة تُعنى بدعم طلبة الجامعات الفلسطينيين، وتسعى إلى تمكينهم من مواصلة تعليمهم العالي من خلال برامج الدعم، وبناء الشراكات مع الجامعات والمؤسسات التعليمية حول العالم، بما يعزز فرصهم الأكاديمية ويضمن استدامة مسيرتهم التعليمية."
+      ]
+    }
+  },
   "pulse-of-life-disbursement": {
     title: {
       en: "Disbursements of the first phase of the Pulse of Life program have begin in Türkiye.",
@@ -199,6 +274,46 @@ const newsArticles: Record<string, ArticleData> = {
         "وتُعد مؤسسة إسناد مؤسسة فلسطينية مستقلة غير ربحية، تُكرّس جهودها لدعم التعليم العالي في فلسطين، من خلال تقديم منح دراسية وتنموية مستدامة، ترتكز على رؤية شاملة لبناء الإنسان الفلسطيني وتمكينه من خلال العلم والمعرفة."
       ]
     }
+  },
+  "pulse-of-life-biman-scholarships": {
+    title: {
+      en: "Pulse of Life Scholarship Supports Medical Students in Gaza in Partnership with Biman Foundation",
+      ar: "منحة نبض الحياة تدعم طلبة الطب في غزة بالشراكة مع مؤسسة بيمان"
+    },
+    date: "January 1, 2026",
+    author: "Isnad Foundation",
+    category: {
+      en: "Scholarships",
+      ar: "المنح الدراسية"
+    },
+    image: "/1-1-2026/6.jpeg",
+    heroImage: "/1-1-2026/hero-1.png",
+    galleryImages: [
+      "/1-1-2026/1.jpeg",
+      "/1-1-2026/2.jpeg",
+      "/1-1-2026/3.jpeg",
+      "/1-1-2026/4.jpeg",
+      "/1-1-2026/5.jpeg",
+      "/1-1-2026/6.jpeg",
+      "/1-1-2026/7.jpeg",
+      "/1-1-2026/8.jpeg"
+    ],
+    content: {
+      en: [
+        "As part of the “Pulse of Life” Scholarship, Isnad Foundation for Supporting Palestinian Students continues its humanitarian and educational efforts to empower Palestinian youth, in cooperation with Biman Foundation, through the provision of scholarships dedicated to medical students in the Gaza Strip.",
+        "This initiative aims to support students’ academic journeys and enhance their ability to continue their education despite the severe humanitarian, economic, and academic challenges imposed by the current conditions.",
+        "The scholarship targets outstanding medical students who face financial hardships, ensuring continuity in their studies and helping safeguard the future of the healthcare sector in Gaza. By investing in medical education, the program contributes to building a resilient generation capable of serving their community in times of crisis and recovery.",
+        "Isnad Foundation for Supporting Palestinian Students is a non-profit organization dedicated to supporting Palestinian university students through scholarships and educational programs. The foundation works to expand access to higher education and empower talented students to achieve academic excellence.",
+        "Together, we plant hope and build a future our students truly deserve."
+      ],
+      ar: [
+        "في إطار منحة «نبض الحياة»، تواصل مؤسسة إسناد لدعم الطالب الفلسطيني جهودها الحثيثة في تمكين الطلبة الفلسطينيين ودعم مسيرتهم التعليمية، وذلك بالتعاون مع مؤسسة بيمان، من خلال تقديم منح دراسية مخصصة لطلبة الطب في قطاع غزة.",
+        "وتهدف هذه المنح إلى مساندة الطلبة أكاديميًا، وتخفيف الأعباء المالية عنهم، وتعزيز قدرتهم على الاستمرار في التعليم الجامعي رغم الظروف الإنسانية والاقتصادية الصعبة التي يعيشها القطاع.",
+        "وتأتي هذه المبادرة انطلاقًا من إيمان المؤسستين بأهمية الاستثمار في التعليم، لا سيما في القطاع الطبي، باعتباره ركيزة أساسية في بناء المجتمعات وتعزيز صمودها، حيث تسعى المنحة إلى توفير بيئة تعليمية أكثر استقرارًا للطلبة، وتمكينهم من استكمال دراستهم وتحقيق طموحاتهم العلمية والمهنية.",
+        "وتُعد مؤسسة إسناد لدعم الطالب الفلسطيني مؤسسة إنسانية تعليمية تُعنى بدعم طلبة الجامعات الفلسطينيين داخل فلسطين وخارجها، من خلال برامج منح دراسية ومشاريع تمكين أكاديمي وتنموي تهدف إلى بناء جيل متعلم وقادر على قيادة المستقبل.",
+        "معًا نزرع الأمل، ونصنع مستقبلًا يستحقه طلابنا."
+      ]
+    }
   }
 }
 
@@ -230,11 +345,20 @@ const pulseOfLifeGazaVideos = [
   "/newsVid[1]/vid3.mp4"
 ] as const
 
+const pulseOfLifeBimanVideos = [
+  "https://stream.mux.com/aC2xAum88lYEw6IBCgCDkz7ZsVqzIp9ndZiCLy35giY.m3u8",
+  "https://stream.mux.com/BSB3Z2M9oHwly1EbRoDxSpwtIrvby02Rye6i7nNzQ00xo.m3u8",
+  "https://stream.mux.com/pNhsgCrFfmxrS8CSrgMp9vEVfaIDyGvzFTmFpMIuNRE.m3u8",
+  "https://stream.mux.com/101bfbcujifpgTG3k1fggHMKgF7XIoLoT01vqiHYNgz8E.m3u8"
+] as const
+
 export default function NewsArticlePage() {
   const params = useParams()
   const slug = params.slug as string
   const { language, t } = useLanguage()
   const isRTL = language === "ar"
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
   // Get article data or use default if not found
   const article = newsArticles[slug as keyof typeof newsArticles] || {
@@ -345,6 +469,40 @@ export default function NewsArticlePage() {
     return () => ctx.revert()
   }, [])
 
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (!lightboxOpen || !article.galleryImages) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setLightboxOpen(false)
+      } else if (e.key === 'ArrowLeft' && !isRTL) {
+        e.preventDefault()
+        setSelectedImageIndex((prev) => 
+          prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+        )
+      } else if (e.key === 'ArrowRight' && !isRTL) {
+        e.preventDefault()
+        setSelectedImageIndex((prev) => 
+          prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+        )
+      } else if (e.key === 'ArrowRight' && isRTL) {
+        e.preventDefault()
+        setSelectedImageIndex((prev) => 
+          prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+        )
+      } else if (e.key === 'ArrowLeft' && isRTL) {
+        e.preventDefault()
+        setSelectedImageIndex((prev) => 
+          prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+        )
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxOpen, article.galleryImages, isRTL])
+
   return (
     <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
@@ -423,6 +581,198 @@ export default function NewsArticlePage() {
                   ))}
                 </div>
               </GSAPReveal>
+
+              {/* Gallery Section with Images and Videos */}
+              {((article.galleryImages && article.galleryImages.length > 0) || 
+                (slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships" || slug === "pulse-of-life-biman-scholarships")) && (
+                <GSAPReveal animation="fade" delay={0.2}>
+                  <div className="mt-12">
+                    <h3 className={`text-2xl font-bold mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      {language === 'ar' ? 'معرض الصور والفيديوهات' : 'Photo & Video Gallery'}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Gallery Images */}
+                      {article.galleryImages && article.galleryImages.map((imageSrc, index) => (
+                        <div 
+                          key={`img-${index}`} 
+                          className="relative w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 cursor-pointer group bg-gray-50 dark:bg-gray-900"
+                          onClick={() => {
+                            setSelectedImageIndex(index)
+                            setLightboxOpen(true)
+                          }}
+                        >
+                          <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '400px' }}>
+                            <Image
+                              src={imageSrc}
+                              alt={`${article.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${index + 1}`}
+                              width={800}
+                              height={1200}
+                              className="w-full h-auto max-h-[900px] object-contain group-hover:scale-105 transition-transform duration-300"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                          </div>
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+                        </div>
+                      ))}
+                      
+                      {/* Videos */}
+                      {(slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships" || slug === "pulse-of-life-biman-scholarships") && (
+                        (() => {
+                          const isPulseDisbursement = slug === "pulse-of-life-disbursement"
+                          const isPulseGaza = slug === "pulse-of-life-gaza-medical-scholarships"
+                          const isPulseBiman = slug === "pulse-of-life-biman-scholarships"
+                          const videos = isPulseDisbursement
+                            ? pulseOfLifeDisbursementVideos
+                            : isPulseGaza
+                              ? pulseOfLifeGazaVideos
+                              : isPulseBiman
+                                ? pulseOfLifeBimanVideos
+                                : []
+
+                          if (!videos.length) {
+                            return null
+                          }
+
+                          return videos.map((videoSrc, index) => {
+                            const isMuxVideo = videoSrc.includes('.m3u8') || videoSrc.includes('mux.com')
+                            return (
+                              <div
+                                key={`video-${index}`}
+                                className="group relative w-full overflow-hidden rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg bg-gray-50 dark:bg-gray-900"
+                              >
+                                <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '400px' }}>
+                                  {isMuxVideo ? (
+                                    <div className="w-full" style={{ maxHeight: '900px' }}>
+                                      <CustomVideoPlayer
+                                        src={videoSrc}
+                                        autoPlay={true}
+                                        muted={true}
+                                        loop={true}
+                                        playsInline={true}
+                                        preload="auto"
+                                        lazy={true}
+                                        className="w-full h-auto max-h-[900px]"
+                                        videoClassName="w-full h-auto max-h-[900px] object-contain"
+                                      />
+                                    </div>
+                                  ) : (
+                                    <video
+                                      className="w-full h-auto max-h-[900px] object-contain"
+                                      controls
+                                      autoPlay
+                                      muted
+                                      loop
+                                      playsInline
+                                      preload="auto"
+                                    >
+                                      <source src={videoSrc} type="video/mp4" />
+                                      {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                                    </video>
+                                  )}
+                                </div>
+                              </div>
+                            )
+                          })
+                        })()
+                      )}
+                    </div>
+                  </div>
+                </GSAPReveal>
+              )}
+
+              {/* Lightbox Modal */}
+              <AnimatePresence>
+                {lightboxOpen && article.galleryImages && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+                    onClick={() => setLightboxOpen(false)}
+                  >
+                    {/* Close Button */}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-4 right-4 z-20 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-sm"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setLightboxOpen(false)
+                      }}
+                      aria-label="Close"
+                    >
+                      <X className="h-6 w-6" />
+                    </Button>
+
+                    {/* Image Container - only stops propagation on the image itself */}
+                    <div className="relative max-w-7xl max-h-[90vh] p-4 flex items-center justify-center">
+                      {/* Image - stops propagation so clicking image doesn't close */}
+                      <motion.div
+                        key={selectedImageIndex}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.2 }}
+                        className="relative max-w-full max-h-[90vh]"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Image
+                          src={article.galleryImages[selectedImageIndex]}
+                          alt={`${article.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${selectedImageIndex + 1}`}
+                          width={1200}
+                          height={800}
+                          className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                          priority
+                        />
+
+                        {/* Navigation Buttons - positioned on left and right of image */}
+                        {article.galleryImages.length > 1 && (
+                          <>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? 'right-0 translate-x-full mr-2' : 'left-0 -translate-x-full ml-2'} z-20 bg-white/10 hover:bg-white/30 text-white rounded-full h-14 w-14 backdrop-blur-sm border border-white/20`}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setSelectedImageIndex((prev) => 
+                                  prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+                                )
+                              }}
+                              aria-label="Previous image"
+                            >
+                              <ChevronLeft className={`h-7 w-7 ${isRTL ? 'rotate-180' : ''}`} />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? 'left-0 -translate-x-full ml-2' : 'right-0 translate-x-full mr-2'} z-20 bg-white/10 hover:bg-white/30 text-white rounded-full h-14 w-14 backdrop-blur-sm border border-white/20`}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setSelectedImageIndex((prev) => 
+                                  prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+                                )
+                              }}
+                              aria-label="Next image"
+                            >
+                              <ChevronRight className={`h-7 w-7 ${isRTL ? 'rotate-180' : ''}`} />
+                            </Button>
+                          </>
+                        )}
+
+                        {/* Image Counter */}
+                        {article.galleryImages.length > 1 && (
+                          <div 
+                            className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm z-20 backdrop-blur-sm"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {selectedImageIndex + 1} / {article.galleryImages.length}
+                          </div>
+                        )}
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Share Section */}
               <div className="mt-8 flex items-center gap-4">
@@ -559,59 +909,6 @@ export default function NewsArticlePage() {
           </div>
         </div>
       </section>
-
-      {/* Videos Section - Full Width */}
-      {(slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships") && (
-        (() => {
-          const isPulseDisbursement = slug === "pulse-of-life-disbursement"
-          const isPulseGaza = slug === "pulse-of-life-gaza-medical-scholarships"
-          const videos = isPulseDisbursement
-            ? pulseOfLifeDisbursementVideos
-            : isPulseGaza
-              ? pulseOfLifeGazaVideos
-              : []
-
-          if (!videos.length) {
-            return null
-          }
-
-          return (
-            <section className="pt-8 pb-16 md:pt-12 md:pb-24 bg-white dark:bg-gray-950">
-              <div className="container px-4 md:px-6">
-                <div className="mx-auto max-w-5xl">
-                  <GSAPReveal animation="fade" delay={0.2}>
-                    <div className="text-center mb-12">
-                      <h3
-                        className="text-2xl font-bold mb-6"
-                        style={{ textAlign: isRTL ? 'right' : 'left' }}
-                      >
-                        {language === 'ar' ? 'أحدث الفيديوهات' : 'Latest Videos'}
-                      </h3>
-                    </div>
-                    <div className={`grid gap-6 ${isPulseDisbursement ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
-                      {videos.map((videoSrc) => (
-                        <div
-                          key={videoSrc}
-                          className="group relative rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg"
-                        >
-                          <video
-                            className={`w-full transition-opacity duration-700 ${isPulseGaza ? "h-[500px] object-cover" : "max-h-[400px] object-contain"}`}
-                            controls
-                            preload="metadata"
-                          >
-                            <source src={videoSrc} type="video/mp4" />
-                            {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
-                          </video>
-                        </div>
-                      ))}
-                    </div>
-                  </GSAPReveal>
-                </div>
-              </div>
-            </section>
-          )
-        })()
-      )}
 
       {/* More News Section */}
       <section className="py-16 md:py-24 bg-muted/30">
