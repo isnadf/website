@@ -15,6 +15,7 @@ import Image from "next/image"
 import HeroVideo from "@/components/hero-video"
 import CustomVideoPlayer from "@/components/custom-video-player"
 import { motion, AnimatePresence } from "motion/react"
+import ProgressSpinnerDemo from "@/components/progress/spinner"
 
 // Define the type for article data
 type ArticleData = {
@@ -32,14 +33,14 @@ type ArticleData = {
   heroImage?: string
   heroVideo?: string
   galleryImages?: string[]
+  galleryVideos?: string[]
   content: {
     en: string[]
     ar: string[]
   }
 }
 
-// Mock news articles data with bilingual support
-const newsArticles: Record<string, ArticleData> = {
+const _newsArticles: Record<string, ArticleData> = {
   "isnad-support-tour": {
     title: {
       en: "Isnad Conducts Support Tours in Six Countries and Provides Educational Grants to Gaza Students",
@@ -328,29 +329,6 @@ const categories = [
   { value: "Reports", label: { en: "Reports", ar: "التقارير" } }
 ]
 
-const pulseOfLifeDisbursementVideos = [
-  "/newVid/vid1.mp4",
-  "/newVid/vid2.mp4",
-  "/newVid/vid3.mp4",
-  "/newVid/vid4.mp4",
-  "/newVid/vid5.mp4",
-  "/newVid/vid6.mp4",
-  "/newVid/vid7.mp4"
-] as const
-
-const pulseOfLifeGazaVideos = [
-  "/newVid/VIDEO-2025-NOC-10-2.mp4",
-  "/newsVid[1]/vid1.mp4",
-  "/newsVid[1]/vid2.mp4",
-  "/newsVid[1]/vid3.mp4"
-] as const
-
-const pulseOfLifeBimanVideos = [
-  "https://stream.mux.com/aC2xAum88lYEw6IBCgCDkz7ZsVqzIp9ndZiCLy35giY.m3u8",
-  "https://stream.mux.com/BSB3Z2M9oHwly1EbRoDxSpwtIrvby02Rye6i7nNzQ00xo.m3u8",
-  "https://stream.mux.com/pNhsgCrFfmxrS8CSrgMp9vEVfaIDyGvzFTmFpMIuNRE.m3u8",
-  "https://stream.mux.com/101bfbcujifpgTG3k1fggHMKgF7XIoLoT01vqiHYNgz8E.m3u8"
-] as const
 
 export default function NewsArticlePage() {
   const params = useParams()
@@ -359,12 +337,91 @@ export default function NewsArticlePage() {
   const isRTL = language === "ar"
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [article, setArticle] = useState<ArticleData | null>(null)
+  const [relatedArticles, setRelatedArticles] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  // Get article data or use default if not found
-  const article = newsArticles[slug as keyof typeof newsArticles] || {
+  // Fetch article data from API
+  useEffect(() => {
+    async function fetchArticle() {
+      try {
+        setLoading(true)
+        const [articleResponse, allNewsResponse] = await Promise.all([
+          fetch(`/api/news/${slug}`),
+          fetch('/api/news')
+        ])
+
+        if (!articleResponse.ok) {
+          throw new Error('Article not found')
+        }
+
+        const articleData = await articleResponse.json()
+        const allNews = await allNewsResponse.json()
+
+        const formattedDate = new Date(articleData.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })
+
+        setArticle({
+          ...articleData,
+          date: formattedDate
+        })
+
+        // Get related articles (excluding current article)
+        const related = allNews
+          .filter((news: any) => news.slug !== slug)
+          .slice(0, 3)
+          .map((news: any) => ({
+            id: news.id,
+            title: news.title[language],
+            excerpt: news.excerpt[language],
+            date: new Date(news.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            }),
+            category: news.category[language],
+            href: `/news/${news.slug}`
+          }))
+        setRelatedArticles(related)
+        setError(null)
+      } catch (err) {
+        console.error('Error fetching article:', err)
+        setError('Article not found')
+        setArticle({
+          title: {
+            en: "Article Not Found",
+            ar: "المقال غير موجود"
+          },
+          date: "",
+          author: "",
+          category: {
+            en: "",
+            ar: ""
+          },
+          image: "/placeholder.svg",
+          heroImage: "/placeholder.svg",
+          heroVideo: undefined,
+          content: {
+            en: ["The requested article could not be found."],
+            ar: ["لم يتم العثور على المقال المطلوب."]
+          }
+        })
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchArticle()
+  }, [slug, language])
+
+  // Use default article if loading or error
+  const displayArticle = article || {
     title: {
-      en: "Article Not Found",
-      ar: "المقال غير موجود"
+      en: "",
+      ar: ""
     },
     date: "",
     author: "",
@@ -372,8 +429,8 @@ export default function NewsArticlePage() {
       en: "",
       ar: ""
     },
-    image: "/placeholder.svg?height=600&width=1200",
-    heroImage: "/placeholder.svg?height=600&width=1200",
+    image: "/placeholder.svg",
+    heroImage: "/placeholder.svg",
     heroVideo: undefined,
     content: {
       en: ["The requested article could not be found."],
@@ -381,23 +438,12 @@ export default function NewsArticlePage() {
     }
   }
 
-  // Get related articles (excluding current article)
-  const dynamicRelatedArticles = Object.entries(newsArticles)
-    .filter(([key]) => key !== slug)
-    .map(([key, article]) => ({
-      id: key,
-      title: article.title[language],
-      excerpt: article.content[language][0],
-      date: article.date,
-      category: article.category[language],
-      href: `/news/${key}`
-    }))
-
   // Share handlers
   const handleShare = async (platform: string) => {
+    if (!displayArticle) return
     const url = window.location.href
-    const title = article.title[language]
-    const text = article.content[language][0]
+    const title = displayArticle.title[language]
+    const text = displayArticle.content[language][0] || ""
 
     switch (platform) {
       case 'facebook':
@@ -471,7 +517,7 @@ export default function NewsArticlePage() {
 
   // Keyboard navigation for lightbox
   useEffect(() => {
-    if (!lightboxOpen || !article.galleryImages) return
+    if (!lightboxOpen || !displayArticle.galleryImages) return
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -479,46 +525,46 @@ export default function NewsArticlePage() {
       } else if (e.key === 'ArrowLeft' && !isRTL) {
         e.preventDefault()
         setSelectedImageIndex((prev) => 
-          prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+          prev === 0 ? displayArticle.galleryImages!.length - 1 : prev - 1
         )
       } else if (e.key === 'ArrowRight' && !isRTL) {
         e.preventDefault()
         setSelectedImageIndex((prev) => 
-          prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+          prev === displayArticle.galleryImages!.length - 1 ? 0 : prev + 1
         )
       } else if (e.key === 'ArrowRight' && isRTL) {
         e.preventDefault()
         setSelectedImageIndex((prev) => 
-          prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+          prev === 0 ? displayArticle.galleryImages!.length - 1 : prev - 1
         )
       } else if (e.key === 'ArrowLeft' && isRTL) {
         e.preventDefault()
         setSelectedImageIndex((prev) => 
-          prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+          prev === displayArticle.galleryImages!.length - 1 ? 0 : prev + 1
         )
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [lightboxOpen, article.galleryImages, isRTL])
+  }, [lightboxOpen, displayArticle.galleryImages, isRTL])
 
   return (
     <main className="flex min-h-screen flex-col" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
       {/* Hero Section */}
       <section className="relative h-[calc(80vh)] sm:h-[calc(70vh)] md:h-[calc(80vh)] lg:h-[calc(90vh)] xl:h-[calc(95vh)] w-full overflow-hidden mt-24">
         <div className="absolute inset-0 z-0" ref={videoContainerRef}>
-          {article.heroVideo && videoInView ? (
+          {displayArticle.heroVideo && videoInView ? (
             <HeroVideo
               className="h-full w-full"
-              src={article.heroVideo}
-              poster={article.heroImage || article.image || "/cover3.png"}
+              src={displayArticle.heroVideo}
+              poster={displayArticle.heroImage || displayArticle.image || "/cover3.png"}
               objectFit="contain"
             />
           ) : (
             <Image
-              src={article.heroImage || article.image || "/cover3.png"}
-              alt={article.title[language]}
+              src={displayArticle.heroImage || displayArticle.image || "/cover3.png"}
+              alt={displayArticle.title[language]}
               className="h-full w-full object-contain object-center"
               width={1920}
               height={1080}
@@ -542,7 +588,7 @@ export default function NewsArticlePage() {
                   className="text-3xl font-bold sm:text-4xl md:text-5xl mb-4"
                   style={{ textAlign: isRTL ? 'right' : 'left' }}
                 >
-                  {article.title[language]}
+                  {displayArticle.title[language]}
                 </h1>
                 <div 
                   className="flex flex-wrap items-center gap-4 text-muted-foreground"
@@ -551,48 +597,55 @@ export default function NewsArticlePage() {
                     flexDirection: isRTL ? 'row-reverse' : 'row'
                   }}
                 >
-                  {article.date && (
+                  {displayArticle.date && (
                     <div className="flex items-center" style={{ flexDirection: isRTL ? 'row-reverse' : 'row' }}>
                       <Calendar className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4`} />
-                      <span>{article.date}</span>
+                      <span>{displayArticle.date}</span>
                     </div>
                   )}
-                  {article.author && (
+                  {displayArticle.author && (
                     <div className="flex items-center" style={{ flexDirection: isRTL ? 'row-reverse' : 'row' }}>
                       <User className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4`} />
-                      <span>{article.author}</span>
+                      <span>{displayArticle.author}</span>
                     </div>
                   )}
-                  {article.category && (
+                  {displayArticle.category && (
                     <div className="flex items-center" style={{ flexDirection: isRTL ? 'row-reverse' : 'row' }}>
                       <Tag className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4`} />
-                      <span>{article.category[language]}</span>
+                      <span>{displayArticle.category[language]}</span>
                     </div>
                   )}
                 </div>
               </div>
-              <GSAPReveal animation="fade">
-                <div 
-                  className="prose prose-lg max-w-none dark:prose-invert"
-                  style={{ textAlign: isRTL ? 'right' : 'left' }}
-                >
-                  {article.content[language].map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
+              {loading ? (
+                <div className="text-center py-12">
+                  <ProgressSpinnerDemo />
                 </div>
-              </GSAPReveal>
+              ) : error ? (
+                <div className="text-center py-12">
+                  <p className="text-red-500">{error}</p>
+                </div>
+              ) : (
+                <>
+                  <GSAPReveal animation="fade">
+                    <div 
+                      className="prose prose-lg max-w-none dark:prose-invert"
+                      style={{ textAlign: isRTL ? 'right' : 'left' }}
+                    >
+                      {displayArticle.content[language].map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </GSAPReveal>
 
-              {/* Gallery Section with Images and Videos */}
-              {((article.galleryImages && article.galleryImages.length > 0) || 
-                (slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships" || slug === "pulse-of-life-biman-scholarships")) && (
+                  {((displayArticle.galleryImages && displayArticle.galleryImages.length > 0) || (displayArticle.galleryVideos && displayArticle.galleryVideos.length > 0)) && (
                 <GSAPReveal animation="fade" delay={0.2}>
                   <div className="mt-12">
                     <h3 className={`text-2xl font-bold mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
                       {language === 'ar' ? 'معرض الصور والفيديوهات' : 'Photo & Video Gallery'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Gallery Images */}
-                      {article.galleryImages && article.galleryImages.map((imageSrc, index) => (
+                      {displayArticle.galleryImages && displayArticle.galleryImages.map((imageSrc, index) => (
                         <div 
                           key={`img-${index}`} 
                           className="relative w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 cursor-pointer group bg-gray-50 dark:bg-gray-900"
@@ -604,7 +657,7 @@ export default function NewsArticlePage() {
                           <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '400px' }}>
                             <Image
                               src={imageSrc}
-                              alt={`${article.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${index + 1}`}
+                              alt={`${displayArticle.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${index + 1}`}
                               width={800}
                               height={1200}
                               className="w-full h-auto max-h-[900px] object-contain group-hover:scale-105 transition-transform duration-300"
@@ -615,74 +668,55 @@ export default function NewsArticlePage() {
                         </div>
                       ))}
                       
-                      {/* Videos */}
-                      {(slug === "pulse-of-life-disbursement" || slug === "pulse-of-life-gaza-medical-scholarships" || slug === "pulse-of-life-biman-scholarships") && (
-                        (() => {
-                          const isPulseDisbursement = slug === "pulse-of-life-disbursement"
-                          const isPulseGaza = slug === "pulse-of-life-gaza-medical-scholarships"
-                          const isPulseBiman = slug === "pulse-of-life-biman-scholarships"
-                          const videos = isPulseDisbursement
-                            ? pulseOfLifeDisbursementVideos
-                            : isPulseGaza
-                              ? pulseOfLifeGazaVideos
-                              : isPulseBiman
-                                ? pulseOfLifeBimanVideos
-                                : []
-
-                          if (!videos.length) {
-                            return null
-                          }
-
-                          return videos.map((videoSrc, index) => {
-                            const isMuxVideo = videoSrc.includes('.m3u8') || videoSrc.includes('mux.com')
-                            return (
-                              <div
-                                key={`video-${index}`}
-                                className="group relative w-full overflow-hidden rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg bg-gray-50 dark:bg-gray-900"
-                              >
-                                <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '400px' }}>
-                                  {isMuxVideo ? (
-                                    <div className="w-full" style={{ maxHeight: '900px' }}>
-                                      <CustomVideoPlayer
-                                        src={videoSrc}
-                                        autoPlay={true}
-                                        muted={true}
-                                        loop={true}
-                                        playsInline={true}
-                                        preload="auto"
-                                        lazy={true}
-                                        className="w-full h-auto max-h-[900px]"
-                                        videoClassName="w-full h-auto max-h-[900px] object-contain"
-                                      />
-                                    </div>
-                                  ) : (
-                                    <video
-                                      className="w-full h-auto max-h-[900px] object-contain"
-                                      controls
-                                      autoPlay
-                                      muted
-                                      loop
-                                      playsInline
-                                      preload="auto"
-                                    >
-                                      <source src={videoSrc} type="video/mp4" />
-                                      {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
-                                    </video>
-                                  )}
+                      {displayArticle.galleryVideos && displayArticle.galleryVideos.map((videoSrc, index) => {
+                        const isMuxVideo = videoSrc.includes('.m3u8') || videoSrc.includes('mux.com')
+                        const videoUrl = videoSrc.startsWith('http') ? videoSrc : `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/news-assets/${videoSrc}`
+                        return (
+                          <div
+                            key={`video-${index}`}
+                            className="group relative w-full overflow-hidden rounded-lg border-2 border-[#1e7e34]/20 transition-all hover:shadow-lg bg-gray-50 dark:bg-gray-900"
+                          >
+                            <div className="relative w-full flex items-center justify-center py-4" style={{ minHeight: '400px' }}>
+                              {isMuxVideo ? (
+                                <div className="w-full" style={{ maxHeight: '900px' }}>
+                                  <CustomVideoPlayer
+                                    src={videoUrl}
+                                    autoPlay={true}
+                                    muted={true}
+                                    loop={true}
+                                    playsInline={true}
+                                    preload="auto"
+                                    lazy={true}
+                                    className="w-full h-auto max-h-[900px]"
+                                    videoClassName="w-full h-auto max-h-[900px] object-contain"
+                                  />
                                 </div>
-                              </div>
-                            )
-                          })
-                        })()
-                      )}
+                              ) : (
+                                <video
+                                  className="w-full h-auto max-h-[900px] object-contain"
+                                  controls
+                                  autoPlay
+                                  muted
+                                  loop
+                                  playsInline
+                                  preload="auto"
+                                >
+                                  <source src={videoUrl} type="video/mp4" />
+                                  {language === 'ar' ? 'متصفحك لا يدعم تشغيل الفيديو' : 'Your browser does not support the video tag.'}
+                                </video>
+                              )}
+                            </div>
+                          </div>
+                        )
+                      })}
                     </div>
                   </div>
                 </GSAPReveal>
               )}
 
-              {/* Lightbox Modal */}
-              <AnimatePresence>
-                {lightboxOpen && article.galleryImages && (
+                  {/* Lightbox Modal */}
+                  <AnimatePresence>
+                    {lightboxOpen && displayArticle.galleryImages && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -717,8 +751,8 @@ export default function NewsArticlePage() {
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Image
-                          src={article.galleryImages[selectedImageIndex]}
-                          alt={`${article.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${selectedImageIndex + 1}`}
+                          src={displayArticle.galleryImages[selectedImageIndex]}
+                          alt={`${displayArticle.title[language]} - ${language === 'ar' ? 'صورة' : 'Image'} ${selectedImageIndex + 1}`}
                           width={1200}
                           height={800}
                           className="max-w-full max-h-[90vh] object-contain rounded-lg"
@@ -726,7 +760,7 @@ export default function NewsArticlePage() {
                         />
 
                         {/* Navigation Buttons - positioned on left and right of image */}
-                        {article.galleryImages.length > 1 && (
+                        {displayArticle.galleryImages.length > 1 && (
                           <>
                             <Button
                               variant="ghost"
@@ -735,7 +769,7 @@ export default function NewsArticlePage() {
                               onClick={(e) => {
                                 e.stopPropagation()
                                 setSelectedImageIndex((prev) => 
-                                  prev === 0 ? article.galleryImages!.length - 1 : prev - 1
+                                  prev === 0 ? displayArticle.galleryImages!.length - 1 : prev - 1
                                 )
                               }}
                               aria-label="Previous image"
@@ -749,7 +783,7 @@ export default function NewsArticlePage() {
                               onClick={(e) => {
                                 e.stopPropagation()
                                 setSelectedImageIndex((prev) => 
-                                  prev === article.galleryImages!.length - 1 ? 0 : prev + 1
+                                  prev === displayArticle.galleryImages!.length - 1 ? 0 : prev + 1
                                 )
                               }}
                               aria-label="Next image"
@@ -760,12 +794,12 @@ export default function NewsArticlePage() {
                         )}
 
                         {/* Image Counter */}
-                        {article.galleryImages.length > 1 && (
+                        {displayArticle.galleryImages.length > 1 && (
                           <div 
                             className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm z-20 backdrop-blur-sm"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            {selectedImageIndex + 1} / {article.galleryImages.length}
+                            {selectedImageIndex + 1} / {displayArticle.galleryImages.length}
                           </div>
                         )}
                       </motion.div>
@@ -774,44 +808,46 @@ export default function NewsArticlePage() {
                 )}
               </AnimatePresence>
 
-              {/* Share Section */}
-              <div className="mt-8 flex items-center gap-4">
-                <span className="text-sm font-medium">{t("news.share")}</span>
-                <div className="flex gap-2">
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="h-8 w-8 hover:bg-blue-50 hover:text-blue-600"
-                    onClick={() => handleShare('facebook')}
-                  >
-                    <Facebook className="h-4 w-4" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="h-8 w-8 hover:bg-sky-50 hover:text-sky-600"
-                    onClick={() => handleShare('twitter')}
-                  >
-                    <Twitter className="h-4 w-4" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="h-8 w-8 hover:bg-blue-50 hover:text-blue-700"
-                    onClick={() => handleShare('linkedin')}
-                  >
-                    <Linkedin className="h-4 w-4" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="h-8 w-8 hover:bg-gray-50 hover:text-gray-600"
-                    onClick={() => handleShare('general')}
-                  >
-                    <Share2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
+                  {/* Share Section */}
+                  <div className="mt-8 flex items-center gap-4">
+                    <span className="text-sm font-medium">{t("news.share")}</span>
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="icon" 
+                        className="h-8 w-8 hover:bg-blue-50 hover:text-blue-600"
+                        onClick={() => handleShare('facebook')}
+                      >
+                        <Facebook className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="icon" 
+                        className="h-8 w-8 hover:bg-sky-50 hover:text-sky-600"
+                        onClick={() => handleShare('twitter')}
+                      >
+                        <Twitter className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="icon" 
+                        className="h-8 w-8 hover:bg-blue-50 hover:text-blue-700"
+                        onClick={() => handleShare('linkedin')}
+                      >
+                        <Linkedin className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="icon" 
+                        className="h-8 w-8 hover:bg-gray-50 hover:text-gray-600"
+                        onClick={() => handleShare('general')}
+                      >
+                        <Share2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Sidebar */}
@@ -843,7 +879,7 @@ export default function NewsArticlePage() {
                 </GSAPReveal>
 
                 {/* Related Articles */}
-                {dynamicRelatedArticles && dynamicRelatedArticles.length > 0 && (
+                {relatedArticles && relatedArticles.length > 0 && (
                   <GSAPReveal animation="slide-left" delay={0.1}>
                     <Card>
                       <CardContent className="p-6">
@@ -854,7 +890,7 @@ export default function NewsArticlePage() {
                           {t("news.relatedArticles")}
                         </h3>
                         <div className="space-y-4">
-                          {dynamicRelatedArticles.map((related) => (
+                          {relatedArticles.map((related) => (
                             <Link key={related.id} href={related.href} className="group block">
                               <div className="flex gap-3">
                                 <div>
@@ -925,7 +961,7 @@ export default function NewsArticlePage() {
           </GSAPReveal>
 
           <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {dynamicRelatedArticles.slice(0, 3).map((related, index) => (
+            {relatedArticles.slice(0, 3).map((related, index) => (
               <GSAPReveal key={related.id} animation="slide-up" delay={0.1 * index}>
                 <Link href={related.href} className="group block">
                   <div className="overflow-hidden rounded-lg border bg-card transition-all hover:shadow-md">

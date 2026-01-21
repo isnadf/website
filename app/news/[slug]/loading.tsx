@@ -1,4 +1,9 @@
+import ProgressSpinnerDemo from "@/components/progress/spinner"
+
 export default function Loading() {
-    return null
-  }
-  
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <ProgressSpinnerDemo />
+    </div>
+  )
+}
