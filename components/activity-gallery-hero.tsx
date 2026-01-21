@@ -6,11 +6,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import GSAPReveal from "@/components/gsap-reveal"
 import Image from 'next/image'
-import { Activity } from "@/app/activities/data"
 import { useLanguage } from "@/components/language-provider"
+import { ActivityListItem } from "@/types/activities"
 
 interface ActivityGalleryHeroProps {
-  activities: Activity[]
+  activities: ActivityListItem[]
 }
 
 export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroProps) {
@@ -74,33 +74,8 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [handlePrevActivity, handleNextActivity, toggleAutoPlay])
 
-  // Get preview images for the current activity
-  const getPreviewImages = (activityId: number) => {
-    const activityImage = activities.find(a => a.id === activityId)?.image
-
-    switch (activityId) {
-      case 1:
-        return ["/one/PHOTO-2025-04-20-18-03-45.jpg"]
-      case 2:
-        return ["/two/PHOTO-2025-04-20-18-04-03.jpg"]
-      case 3:
-        return ["/three/PHOTO-2025-04-20-18-04-17 2.jpg"]
-      case 4:
-        return ["/four/PHOTO-2025-04-26-22-18-22 2.jpg"]
-      case 5:
-        return ["/five/DSC07404.jpg"]
-      case 6:
-        return ["/six/PHOTO-2025-04-26-22-24-14 2.jpg"]
-      case 7:
-        return [activityImage || "/placeholder.svg"]
-      default:
-        return [activityImage || "/placeholder.svg"]
-    }
-  }
-
-  const previewImages = getPreviewImages(currentActivity.id)
   const heroFitClass =
-    (previewImages[0] || currentActivity.image) === "/1-1-2026/hero-1.png"
+    currentActivity.image?.includes('hero-1.png')
       ? "object-contain bg-white"
       : "object-cover"
 
@@ -115,7 +90,7 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src={previewImages[0] || currentActivity.image || "/placeholder.svg"}
+            src={currentActivity.image || "/placeholder.svg"}
             alt={currentActivity.title[language]}
             fill
             sizes="100vw"
@@ -132,7 +107,7 @@ export default function ActivityGalleryHero({ activities }: ActivityGalleryHeroP
               animation="slide-up" 
               className={`relative ${isRTL ? 'w-full text-right' : 'max-w-3xl text-left'}`}
             >
-              <Link href={`/activities/${currentActivity.id}`}>
+              <Link href={currentActivity.href}>
                 <div
                   className={`space-y-12 cursor-pointer group ${isRTL ? 'w-full text-right' : 'text-left'}`}
                   role="button"

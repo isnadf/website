@@ -16,8 +16,8 @@ import { ActivityGallery } from "@/components/activity-gallery"
 import ActivityGalleryHero from "@/components/activity-gallery-hero"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
-
-import { activitiesData, type Activity } from "./data"
+import ProgressSpinnerDemo from "@/components/progress/spinner"
+import { ActivityListItem } from "@/types/activities"
 
 // Type definitions
 type Language = 'en' | 'ar'
@@ -67,6 +67,8 @@ export default function ActivitiesPage() {
   const { DEFAULT_LOCATION, yearOptions, locationOptions } = initializeState()
 
   // State initialization
+  const [activities, setActivities] = useState<ActivityListItem[]>([])
+  const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedYear, setSelectedYear] = useState("All")
   const [selectedLocationKey, setSelectedLocationKey] = useState(DEFAULT_LOCATION.en)
@@ -74,8 +76,23 @@ export default function ActivitiesPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 9
 
-  // State for individual activity gallery modals
-  const [galleryActivity] = useState<typeof activitiesData[0] | null>(null)
+  // Fetch activities from API
+  useEffect(() => {
+    async function fetchActivities() {
+      try {
+        setLoading(true)
+        const response = await fetch('/api/activities')
+        if (!response.ok) throw new Error('Failed to fetch activities')
+        const data = await response.json()
+        setActivities(data)
+      } catch (error) {
+        console.error('Error fetching activities:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchActivities()
+  }, [])
 
   // Get the full location object from its key
   const selectedLocation = locationOptions.find(l => l.en === selectedLocationKey) || DEFAULT_LOCATION
@@ -105,15 +122,15 @@ export default function ActivitiesPage() {
   }, [])
 
   // Filter activities based on search query, location, and tab
-  const filteredActivities = activitiesData.filter((activity: Activity) => {
+  const filteredActivities = activities.filter((activity) => {
     const matchesSearch =
-      getLocalizedText(activity.title, lang).toLowerCase().includes(searchQuery.toLowerCase()) ||
-      getLocalizedText(activity.description, lang).toLowerCase().includes(searchQuery.toLowerCase()) ||
-      getLocalizedText(activity.location, lang).toLowerCase().includes(searchQuery.toLowerCase())
+      activity.title[lang].toLowerCase().includes(searchQuery.toLowerCase()) ||
+      activity.description[lang].toLowerCase().includes(searchQuery.toLowerCase()) ||
+      activity.location[lang].toLowerCase().includes(searchQuery.toLowerCase())
 
     const matchesYear = selectedYear === "All" || activity.year.toString() === selectedYear
     const matchesLocation = selectedLocationKey === DEFAULT_LOCATION.en || 
-      getLocalizedText(activity.location, lang) === getLocalizedText(selectedLocation, lang)
+      activity.location[lang] === getLocalizedText(selectedLocation, lang)
 
     const matchesTab = activeTab === "all" || (activeTab === "featured" && activity.featured)
 
@@ -130,10 +147,20 @@ export default function ActivitiesPage() {
   }, [searchQuery, selectedYear, selectedLocationKey, activeTab])
 
 
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <ProgressSpinnerDemo />
+      </div>
+    )
+  }
+
+  const featuredActivities = activities.filter(a => a.featured)
+
   return (
     <main className="flex min-h-screen flex-col bg-[#f8faf8] dark:bg-gray-950">
       {/* Activity Gallery Hero Section */}
-      <ActivityGalleryHero activities={activitiesData} />
+      <ActivityGalleryHero activities={activities} />
 
       {/* Featured Activities */}
       <section className="py-16 md:py-24 bg-white dark:bg-gray-950 relative">
@@ -160,18 +187,24 @@ export default function ActivitiesPage() {
           </GSAPReveal>
 
           <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-1 lg:grid-cols-3">
-            {activitiesData
-              .filter((activity) => activity.featured)
-              .slice(0, 3)
-              .map((activity, index) => (
-                <GSAPReveal key={activity.id} animation="slide-up" delay={0.1 * index}>
-                  <Link href={`/activities/${activity.id}`}>
+            {featuredActivities.length === 0 ? (
+              <div className="col-span-3 text-center py-12">
+                <p className="text-gray-600 dark:text-gray-300 text-lg">
+                  {language === 'en' ? 'No featured activities' : 'لا توجد أنشطة مميزة'}
+                </p>
+              </div>
+            ) : (
+              featuredActivities
+                .slice(0, 3)
+                .map((activity, index) => (
+                  <GSAPReveal key={activity.id} animation="slide-up" delay={0.1 * index}>
+                    <Link href={activity.href}>
                     <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 hover:-translate-y-2 cursor-pointer group bg-white dark:bg-gray-900 rounded-xl">
                       <div className="aspect-video overflow-hidden relative">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
                         <Image
                           src={activity.image || "/placeholder.svg"}
-                          alt={activity.title[language as Language]}
+                          alt={activity.title[lang]}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           width={400}
                           height={300}
@@ -182,20 +215,20 @@ export default function ActivitiesPage() {
                       </div>
                       <CardContent className={`p-6 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                         <h3 className={`mb-4 font-bold ${language === 'ar' ? 'text-lg line-clamp-3 text-right font-arabic' : 'text-xl line-clamp-2 text-left'} text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors`}>
-                          {activity.title[language as Language]}
+                          {activity.title[lang]}
                         </h3>
                         <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end flex-row-reverse' : 'justify-start'}`}>
                           <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             <Calendar className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
-                            <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.date[language as Language]}</span>
+                            <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.date[lang]}</span>
                           </div>
                           <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             <MapPin className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
-                            <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.location[language as Language]}</span>
+                            <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.location[lang]}</span>
                           </div>
                         </div>
                         <p className={`mb-6 line-clamp-2 text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'text-right font-arabic' : 'text-left'}`}>
-                          {activity.description[language as Language]}
+                          {activity.description[lang]}
                         </p>
                         <Button className={`w-full bg-white dark:bg-gray-900 text-[#1e7e34] border border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group-hover:bg-[#1e7e34] group-hover:text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
                           {language === 'en' ? 'Read More' : 'اقرأ المزيد'}
@@ -204,7 +237,8 @@ export default function ActivitiesPage() {
                     </Card>
                   </Link>
                 </GSAPReveal>
-              ))}
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -395,14 +429,14 @@ export default function ActivitiesPage() {
               <div className="space-y-8">
                 {paginatedActivities.map((activity, index) => (
                   <GSAPReveal key={activity.id} animation="fade" delay={0.1 * index}>
-                    <Link href={`/activities/${activity.id}`}>
+                    <Link href={activity.href}>
                       <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0 rounded-xl cursor-pointer group bg-white dark:bg-gray-900">
                         <div className="grid md:grid-cols-3">
                           <div className={`aspect-video md:aspect-square overflow-hidden relative ${language === 'ar' ? 'order-2' : 'order-1'}`}>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
                             <Image
                               src={activity.image || "/placeholder.svg"}
-                              alt={activity.title[language as Language]}
+                              alt={activity.title[lang]}
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                               width={400}
                               height={300}
@@ -413,20 +447,20 @@ export default function ActivitiesPage() {
                               <div className={`text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full ${language === 'ar' ? 'text-right' : ''}`}>{activity.year}</div>
                             </div>
                             <h3 className={`mb-4 font-bold ${language === 'ar' ? 'text-lg line-clamp-3 text-right font-arabic' : 'text-xl line-clamp-2 text-left'} text-gray-900 dark:text-white group-hover:text-[#1e7e34] transition-colors`}>
-                              {activity.title[language as Language]}
+                              {activity.title[lang]}
                             </h3>
                             <div className={`mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 ${language === 'ar' ? 'justify-end flex-row-reverse' : 'justify-start'}`}>
                               <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                                 <Calendar className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
-                                <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.date[language as Language]}</span>
+                                <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.date[lang]}</span>
                               </div>
                               <div className={`flex items-center bg-[#e8f5e9] dark:bg-[#1e7e34]/20 px-4 py-1.5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                                 <MapPin className={`h-4 w-4 text-[#1e7e34] ${language === 'ar' ? 'ml-2' : 'mr-2'}`} />
-                                <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.location[language as Language]}</span>
+                                <span className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{activity.location[lang]}</span>
                               </div>
                             </div>
                             <p className={`mb-5 text-gray-600 dark:text-gray-300 line-clamp-2 ${language === 'ar' ? 'text-right' : ''}`}>
-                              {activity.description[language as Language]}
+                              {activity.description[lang]}
                             </p>
                             <div className={`${language === 'ar' ? 'text-right' : 'text-left'}`}>
                               <Button className="bg-white dark:bg-gray-900 text-[#1e7e34] border border-[#1e7e34] hover:bg-[#1e7e34] hover:text-white transition-colors group-hover:bg-[#1e7e34] group-hover:text-white shadow-sm">
@@ -518,12 +552,6 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
-      {/* Gallery Modal for individual activities */}
-      {galleryActivity && (
-        <div className="container px-4 md:px-6 py-16">
-          <ActivityGallery activity={galleryActivity} />
-        </div>
-      )}
     </main>
   )
 }

@@ -1,20 +1,85 @@
 "use client"
 
 import { useParams } from "next/navigation"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ActivityGallery } from "@/components/activity-gallery"
-import { activitiesData, type Activity } from "@/app/activities/data"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
+import ProgressSpinnerDemo from "@/components/progress/spinner"
+
+interface ActivityDetail {
+  id: string
+  slug: string
+  title: {
+    en: string
+    ar: string
+  }
+  date: {
+    en: string
+    ar: string
+  }
+  location: {
+    en: string
+    ar: string
+  }
+  description: {
+    en: string
+    ar: string
+  }
+  full_description: {
+    en: string
+    ar: string
+  }
+  image: string | null
+  category: {
+    en: string
+    ar: string
+  }
+  featured: boolean
+  year: number
+  gallery_images: string[]
+  gallery_videos: string[]
+}
 
 export default function ActivityPage() {
   const params = useParams()
   const { language } = useLanguage()
-  const activityId = parseInt(params.id as string)
-  const activity = activitiesData.find((a: Activity) => a.id === activityId)
-  const heroFitClass = activity?.image === "/1-1-2026/hero-1.png" ? "object-contain bg-white" : "object-cover"
+  const slug = params.slug as string
+  const [activity, setActivity] = useState<ActivityDetail | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchActivity() {
+      try {
+        setLoading(true)
+        const response = await fetch(`/api/activities/${slug}`)
+        if (!response.ok) {
+          throw new Error('Activity not found')
+        }
+        const data = await response.json()
+        setActivity(data)
+      } catch (error) {
+        console.error('Error fetching activity:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    if (slug) {
+      fetchActivity()
+    }
+  }, [slug])
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <ProgressSpinnerDemo />
+      </div>
+    )
+  }
 
   if (!activity) {
     return (
@@ -30,9 +95,10 @@ export default function ActivityPage() {
     )
   }
 
+  const heroFitClass = activity.image?.includes('hero-1.png') ? "object-contain bg-white" : "object-cover"
+
   return (
     <main className="flex min-h-screen flex-col">
-      {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
         <div className="absolute inset-0">
           <Image
@@ -61,11 +127,9 @@ export default function ActivityPage() {
         </div>
       </section>
 
-      {/* Content Section */}
       <section className="py-16 md:py-24">
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
-            {/* Gallery Section */}
             <div className={`mb-16 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
               <ActivityGallery activity={activity} />
             </div>
@@ -74,4 +138,4 @@ export default function ActivityPage() {
       </section>
     </main>
   )
-} 
+}

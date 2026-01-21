@@ -4,160 +4,37 @@ import { useState, useEffect, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
-import { Activity } from "@/app/activities/data"
 import { useLanguage } from "@/components/language-provider"
 
 interface ActivityGalleryProps {
-  activity: Activity
+  activity: {
+    id: string
+    title: { en: string; ar: string }
+    full_description: { en: string; ar: string }
+    gallery_images: string[]
+    gallery_videos: string[]
+    image: string | null
+  }
 }
 
 export function ActivityGallery({ activity }: ActivityGalleryProps) {
   const { language } = useLanguage()
   const [images, setImages] = useState<string[]>([])
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-  const [loading, setLoading] = useState(true)
-  const shouldContainImage = (src: string) => src === "/1-1-2026/hero-1.png"
-
-  // Map activity ID to folder name
-  const getFolderName = (id: number) => {
-    switch (id) {
-      case 0:
-        return "1-1-2026"
-      case 1:
-        return "one"
-      case 2:
-        return "two"
-      case 3:
-        return "three"
-      case 4:
-        return "four"
-      case 5:
-        return "five"
-      case 6:
-        return "six"
-      case 7:
-        return "seven"
-      default:
-        return ""
-    }
-  }
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Fetch images for the selected activity
-    const fetchImages = async () => {
-      setLoading(true)
-      try {
-        const folderName = getFolderName(activity.id)
-        let imageList: string[] = []
+    const allMedia = [
+      ...(activity.gallery_images || []),
+      ...(activity.gallery_videos || [])
+    ]
+    setImages(allMedia)
+    setSelectedImageIndex(0)
+  }, [activity.gallery_images, activity.gallery_videos])
 
-        if (folderName === "1-1-2026") {
-          imageList = [
-            "/1-1-2026/1.jpeg",
-            "/1-1-2026/2.jpeg",
-            "/1-1-2026/3.jpeg",
-            "/1-1-2026/4.jpeg",
-            "/1-1-2026/5.jpeg",
-            "/1-1-2026/6.jpeg",
-            "/1-1-2026/7.jpeg",
-            "/1-1-2026/8.jpeg"
-          ]
-        } else if (folderName === "one") {
-          imageList = [
-            "/one/PHOTO-2025-04-20-18-03-45.jpg",
-            "/one/PHOTO-2025-04-20-18-03-46 2.jpg",
-            "/one/PHOTO-2025-04-20-18-03-46 3.jpg",
-            "/one/PHOTO-2025-04-20-18-03-46 4.jpg",
-            "/one/PHOTO-2025-04-20-18-03-46.jpg",
-            "/one/PHOTO-2025-04-20-18-03-47 2.jpg",
-            "/one/PHOTO-2025-04-20-18-03-47 3.jpg",
-            "/one/PHOTO-2025-04-20-18-03-47 4.jpg",
-            "/one/PHOTO-2025-04-20-18-03-47 5.jpg",
-            "/one/PHOTO-2025-04-20-18-03-47.jpg",
-            "/one/PHOTO-2025-04-20-18-03-48 2.jpg",
-            "/one/PHOTO-2025-04-20-18-03-48.jpg",
-            "/one/VIDEO-2025-04-20-18-03-48.mp4"
-          ]
-        } else if (folderName === "two") {
-          imageList = [
-            "/two/PHOTO-2025-04-20-18-04-02 2.jpg",
-            "/two/PHOTO-2025-04-20-18-04-02 3.jpg",
-            "/two/PHOTO-2025-04-20-18-04-02 4.jpg",
-            "/two/PHOTO-2025-04-20-18-04-02.jpg",
-            "/two/PHOTO-2025-04-20-18-04-03 2.jpg",
-            "/two/PHOTO-2025-04-20-18-04-03 3.jpg",
-            "/two/PHOTO-2025-04-20-18-04-03 4.jpg",
-            "/two/PHOTO-2025-04-20-18-04-03.jpg",
-            "/two/PHOTO-2025-04-20-18-04-04 2.jpg",
-            "/two/PHOTO-2025-04-20-18-04-04 3.jpg",
-            "/two/PHOTO-2025-04-20-18-04-04 4.jpg",
-            "/two/PHOTO-2025-04-20-18-04-04 5.jpg",
-            "/two/PHOTO-2025-04-20-18-04-04.jpg",
-            "/two/PHOTO-2025-04-20-18-04-05.jpg"
-          ]
-        } else if (folderName === "three") {
-          imageList = [
-            "/three/PHOTO-2025-04-20-18-04-17 2.jpg",
-            "/three/PHOTO-2025-04-20-18-04-17.jpg",
-            "/three/PHOTO-2025-04-20-18-04-18 2.jpg",
-            "/three/PHOTO-2025-04-20-18-04-18 3.jpg",
-            "/three/PHOTO-2025-04-20-18-04-18.jpg",
-          ]
-        } else if (folderName === "four") {
-          imageList = [
-            "/four/PHOTO-2025-04-26-22-18-22 2.jpg",
-            "/four/PHOTO-2025-04-26-22-18-22 3.jpg",
-            "/four/PHOTO-2025-04-26-22-18-22 4.jpg",
-            "/four/PHOTO-2025-04-26-22-18-22 5.jpg",
-            "/four/PHOTO-2025-04-26-22-18-22.jpg",
-            "/four/VIDEO-2025-04-26-22-18-23.mp4"
-          ]
-        } else if (folderName === "five") {
-          imageList = [
-            "/five/DSC07404.jpg",
-            "/five/DSC07413.jpg",
-            "/five/DSC07417.jpg",
-            "/five/DSC07427.jpg",
-            "/five/DSC07431.jpg",
-            "/five/DSC07433.jpg",
-            "/five/DSC07462.jpg",
-            "/five/DSC07469.jpg",
-            "/five/DSC07478.jpg",
-            "/five/DSC07485.jpg",
-            "/five/DSC07489.jpg",
-            "/five/DSC07508.jpg",
-            "/five/DSC07509.jpg",
-            "/five/DSC07513.jpg",
-            "/five/DSC07522.jpg",
-            "/five/DSC07538.jpg",
-            "/five/DSC07542.jpg",
-            "/five/DSC07548.jpg",
-            "/five/VIDEO-2025-04-26-22-20-53.mp4"
-          ]
-        } else if (folderName === "six") {
-          imageList = [
-            "/six/PHOTO-2025-04-26-22-24-14 2.jpg",
-            "/six/PHOTO-2025-04-26-22-24-14.jpg",
-            "/six/PHOTO-2025-04-26-22-24-15.jpg",
-            "/six/VIDEO-2025-04-26-22-24-15.mp4"
-          ]
-        } else if (folderName === "seven") {
-          imageList = [
-            "/seven/1.jpeg",
-            "/seven/2.jpeg",
-          ]
-        }
-
-        setImages(imageList)
-        setSelectedImageIndex(0)
-      } catch (error) {
-        console.error("Error fetching images:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchImages()
-  }, [activity.id])
+  const shouldContainImage = (src: string) => {
+    return src?.includes('hero-1.png') || false
+  }
 
   const handlePrevImage = useCallback(() => {
     setSelectedImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
@@ -212,109 +89,115 @@ export function ActivityGallery({ activity }: ActivityGalleryProps) {
       </div>
 
       {/* Main Image Gallery */}
-      <div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted">
-        {loading ? (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-          </div>
-        ) : (
-          <>
-            {images[selectedImageIndex]?.endsWith('.mp4') ? (
-              <video
-                src={images[selectedImageIndex]}
-                className="h-full w-full object-cover"
-                controls
-                playsInline
-                autoPlay
-                loop
-                muted
-                preload="metadata"
-              />
-            ) : (
-              <div className="relative h-full w-full">
-                <Image
-                  src={images[selectedImageIndex]}
-                  alt={`${activity.title[language]} image ${selectedImageIndex + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                  className={shouldContainImage(images[selectedImageIndex]) ? "object-contain bg-white" : "object-cover"}
-                  priority={selectedImageIndex === 0}
-                  quality={85}
-                  loading={selectedImageIndex === 0 ? "eager" : "lazy"}
-                />
+      {images.length > 0 && images.some(img => img && img.trim() !== '') && (
+        <>
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted">
+            {loading ? (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
               </div>
-            )}
-            <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 hover:bg-white/90 sm:left-4"
-              onClick={handlePrevImage}
-            >
-              <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 hover:bg-white/90 sm:right-4"
-              onClick={handleNextImage}
-            >
-              <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
-            </Button>
-          </>
-        )}
-      </div>
-
-      {/* Thumbnail Grid */}
-      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2 sm:gap-3">
-        {images.map((image, index) => (
-          <button
-            key={index}
-            onClick={() => handleThumbnailClick(index)}
-            className={`relative aspect-square overflow-hidden rounded-lg ${
-              selectedImageIndex === index
-                ? 'ring-2 ring-primary ring-offset-2'
-                : 'hover:opacity-80'
-            }`}
-          >
-            {image.endsWith('.mp4') ? (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                <svg
-                  className="h-6 w-6 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+            ) : (
+              <>
+                {images[selectedImageIndex] && images[selectedImageIndex].trim() !== '' && (images[selectedImageIndex].endsWith('.mp4') || images[selectedImageIndex].includes('.mp4') || images[selectedImageIndex].includes('video')) ? (
+                  <video
+                    src={images[selectedImageIndex]}
+                    className="h-full w-full object-cover"
+                    controls
+                    playsInline
+                    autoPlay
+                    loop
+                    muted
+                    preload="metadata"
+                  />
+                ) : images[selectedImageIndex] && images[selectedImageIndex].trim() !== '' ? (
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={images[selectedImageIndex]}
+                      alt={`${activity.title[language]} image ${selectedImageIndex + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                      className={shouldContainImage(images[selectedImageIndex]) ? "object-contain bg-white" : "object-cover"}
+                      priority={selectedImageIndex === 0}
+                      quality={85}
+                      loading={selectedImageIndex === 0 ? "eager" : "lazy"}
+                    />
+                  </div>
+                ) : null}
+                <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 hover:bg-white/90 sm:left-4"
+                  onClick={handlePrevImage}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-            ) : (
-              <div className="relative h-full w-full">
-                <Image
-                  src={image}
-                  alt={`Thumbnail ${index + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 25vw, (max-width: 1200px) 20vw, 10vw"
-                  className={shouldContainImage(image) ? "object-contain bg-white" : "object-cover"}
-                  quality={60}
-                  loading="lazy"
-                />
-              </div>
+                  <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 hover:bg-white/90 sm:right-4"
+                  onClick={handleNextImage}
+                >
+                  <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
+                </Button>
+              </>
             )}
-          </button>
-        ))}
-      </div>
+          </div>
+
+          {/* Thumbnail Grid */}
+          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2 sm:gap-3">
+            {images.map((image, index) => (
+              image && image.trim() !== '' && (
+                <button
+                  key={index}
+                  onClick={() => handleThumbnailClick(index)}
+                  className={`relative aspect-square overflow-hidden rounded-lg ${
+                    selectedImageIndex === index
+                      ? 'ring-2 ring-primary ring-offset-2'
+                      : 'hover:opacity-80'
+                  }`}
+                >
+                  {image.endsWith('.mp4') || image.includes('.mp4') || image.includes('video') ? (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                      <svg
+                        className="h-6 w-6 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                  ) : (
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={image}
+                        alt={`Thumbnail ${index + 1}`}
+                        fill
+                        sizes="(max-width: 768px) 25vw, (max-width: 1200px) 20vw, 10vw"
+                        className={shouldContainImage(image) ? "object-contain bg-white" : "object-cover"}
+                        quality={60}
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                </button>
+              )
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 } 
