@@ -18,6 +18,19 @@ type CampaignInfo = {
   pdf: string;
 };
 
+type DynamicCampaign = {
+  slug: string;
+  title: { en: string; ar: string };
+  tagline: { en: string; ar: string };
+  description: { en: string; ar: string };
+  image: string;
+  pdf: string | null;
+  paid: number;
+  left: number;
+  goal: number;
+  progress: number;
+};
+
 const campaignData: Record<string, CampaignInfo> = {
   "sponsor-medical-student": {
     key: "medical",
@@ -53,11 +66,42 @@ export default function CampaignPage() {
   const params = useParams();
   const { t, language } = useLanguage();
   const isRTL = language === "ar";
+  const lang = language as "en" | "ar";
 
   const slug = params.slug as string;
-  const campaign = campaignData[slug];
+  const staticCampaign = campaignData[slug];
+  const [dynamicCampaign, setDynamicCampaign] = useState<DynamicCampaign | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!campaign) {
+  useEffect(() => {
+    async function fetchCampaign() {
+      try {
+        const res = await fetch(`/api/home/campaigns/${slug}`);
+        if (res.ok) {
+          const data = await res.json();
+          setDynamicCampaign(data);
+        }
+      } catch {
+        // Fall back to static
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCampaign();
+  }, [slug]);
+
+  const isDynamic = !!dynamicCampaign;
+  const campaign = staticCampaign;
+
+  if (loading) {
+    return (
+      <div className="container px-4 md:px-6 py-16 flex items-center justify-center min-h-[50vh]">
+        <div className="w-10 h-10 border-2 border-[#1e7e34] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (!campaign && !dynamicCampaign) {
     return (
       <div className="container px-4 md:px-6 py-16 text-center">
         <h1 className="text-4xl font-bold mb-4">{t("404.message")}</h1>
@@ -68,12 +112,17 @@ export default function CampaignPage() {
     );
   }
 
-  const { key } = campaign;
+  const { key } = campaign || { key: "medical" };
+  const paid = isDynamic ? dynamicCampaign!.paid : parseCurrency(t(`campaigns.${key}.paid`) as string);
+  const left = isDynamic ? dynamicCampaign!.left : parseCurrency(t(`campaigns.${key}.left`) as string);
+  const goal = isDynamic ? dynamicCampaign!.goal : parseCurrency(t(`campaigns.${key}.goal`) as string);
+  const progress = isDynamic ? dynamicCampaign!.progress : Math.min(Math.round((paid / goal) * 100), 100);
 
-  const paid = parseCurrency(t(`campaigns.${key}.paid`) as string);
-  const left = parseCurrency(t(`campaigns.${key}.left`) as string);
-  const goal = parseCurrency(t(`campaigns.${key}.goal`) as string);
-  const progress = Math.min(Math.round((paid / goal) * 100), 100);
+  const title = isDynamic ? dynamicCampaign!.title[lang] : (t(`campaigns.${key}.title`) as string);
+  const tagline = isDynamic ? dynamicCampaign!.tagline[lang] : (t(`campaigns.${key}.tagline`) as string);
+  const description = isDynamic ? dynamicCampaign!.description[lang] : (t(`campaigns.${key}.description`) as string);
+  const campaignImage = isDynamic ? dynamicCampaign!.image : campaign!.image;
+  const campaignPdf = isDynamic ? dynamicCampaign!.pdf : campaign!.pdf;
 
   const [activeTab, setActiveTab] = useState("overview");
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -110,7 +159,7 @@ export default function CampaignPage() {
   };
 
   const handleSocialShare = (platform: string) => {
-    const text = encodeURIComponent(t(`campaigns.${key}.title`) as string);
+    const text = encodeURIComponent(title);
     const url = encodeURIComponent(shareUrl);
 
     let shareLink = "";
@@ -188,7 +237,7 @@ export default function CampaignPage() {
           paymentMethod,
           customerInfo: customerInfo.trim(),
           campaignSlug: slug,
-          campaignTitle: t(`campaigns.${key}.title`) as string,
+          campaignTitle: title,
         }),
       });
 
@@ -246,8 +295,8 @@ export default function CampaignPage() {
             <div className="lg:col-span-2 space-y-6 min-w-0">
               <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden">
                 <Image
-                  src={campaign.image}
-                  alt={t(`campaigns.${key}.title`) as string}
+                  src={campaignImage}
+                  alt={title}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 66vw"
@@ -262,10 +311,10 @@ export default function CampaignPage() {
                       isRTL ? "font-arabic" : ""
                     }`}
                   >
-                    {t(`campaigns.${key}.title`) as string}
+                    {title}
                   </h1>
                   <p className={`text-lg text-gray-600 dark:text-gray-400 mb-4 ${isRTL ? "font-arabic" : ""}`}>
-                    {t(`campaigns.${key}.tagline`) as string}
+                    {tagline}
                   </p>
                   <p className={`text-base text-gray-700 dark:text-gray-300 ${isRTL ? "font-arabic" : ""}`}>
                     {t("campaigns.goalLabel") as string} ${goal.toLocaleString()} $
@@ -426,7 +475,7 @@ export default function CampaignPage() {
                           isRTL ? "font-arabic text-right" : ""
                         }`}
                       >
-                        {t(`campaigns.${key}.description`) as string}
+                        {description}
                       </p>
 
                       <div className="grid md:grid-cols-2 gap-4 pt-4">
@@ -466,7 +515,7 @@ export default function CampaignPage() {
 
                       <div className="pt-4">
                         <a
-                          href={campaign.pdf}
+                          href={campaignPdf || "#"}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center text-[#1e7e34] hover:underline"

@@ -21,17 +21,67 @@ import { LinkPreview } from "@/components/ui/link-preview"
 import HomeTestimonials from "@/components/home-testimonials"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger, useModal } from "@/components/ui/animated-modal"
 
+type HomeContent = {
+  hero: {
+    banner: { en: string; ar: string }
+    heading: { en: string; ar: string }
+    subheading: { en: string; ar: string }
+    description: { en: string; ar: string }
+  } | null
+  campaigns: Array<{
+    slug: string
+    title: { en: string; ar: string }
+    tagline: { en: string; ar: string }
+    description: { en: string; ar: string }
+    image: string
+    pdf?: string
+    paid: string
+    left: string
+    goal: number
+    progress: number
+  }>
+  partners: Array<{
+    name: string
+    logo: string
+    type: { en: string; ar: string }
+  }>
+  heroImages: Array<{
+    image: string
+    alt: { en: string; ar: string }
+  }>
+}
+
 export default function Home() {
   const { t, language } = useLanguage()
   const heroRef = useRef<HTMLDivElement>(null)
   const [isAnyCardHovered, setIsAnyCardHovered] = useState(false)
+  const [homeContent, setHomeContent] = useState<HomeContent | null>(null)
   const isRTL = language === 'ar'
-  const heroImages = [
+  const lang = language as 'en' | 'ar'
+
+  useEffect(() => {
+    async function fetchHomeContent() {
+      try {
+        const res = await fetch('/api/home')
+        if (res.ok) {
+          const data = await res.json()
+          setHomeContent(data)
+        }
+      } catch (err) {
+        console.error('Failed to fetch homepage content:', err)
+      }
+    }
+    fetchHomeContent()
+  }, [])
+  const HERO_IMAGES_FALLBACK = [
     { src: "/three/PHOTO-2025-04-20-18-04-17.jpg", alt: "Activity three group" },
     { src: "/three/PHOTO-2025-04-20-18-04-17 2.jpg", alt: "Activity three gathering" },
     { src: "/three/PHOTO-2025-04-20-18-04-18.jpg", alt: "Activity three moment" },
     { src: "/three/PHOTO-2025-04-20-18-04-18 2.jpg", alt: "Activity three session" },
   ]
+  const heroImages = homeContent?.heroImages?.length
+    ? homeContent.heroImages.map((img) => ({ src: img.image, alt: img.alt[lang] }))
+    : HERO_IMAGES_FALLBACK
   const [activeHeroIndex, setActiveHeroIndex] = useState(0)
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   
@@ -54,44 +104,24 @@ export default function Home() {
     return index === activeImageIndex
   }
 
-  // Campaigns data
-  const campaigns = [
-    {
-      slug: "sponsor-medical-student",
-      title: t("campaigns.medical.title") as string,
-      tagline: t("campaigns.medical.tagline") as string,
-      description: t("campaigns.medical.description") as string,
-      image: "/campaign/2.png",
-      paid: t("campaigns.medical.paid") as string,
-      left: t("campaigns.medical.left") as string,
-      goal: parseInt(t("campaigns.medical.goal") as string),
-    },
-    {
-      slug: "support-quran-memorizer",
-      title: t("campaigns.quran.title") as string,
-      tagline: t("campaigns.quran.tagline") as string,
-      description: t("campaigns.quran.description") as string,
-      image: "/campaign/3.png",
-      paid: t("campaigns.quran.paid") as string,
-      left: t("campaigns.quran.left") as string,
-      goal: parseInt(t("campaigns.quran.goal") as string),
-    },
-    {
-      slug: "empower-gazan-female-student",
-      title: t("campaigns.empower.title") as string,
-      tagline: t("campaigns.empower.tagline") as string,
-      description: t("campaigns.empower.description") as string,
-      image: "/campaign/4.png",
-      paid: t("campaigns.empower.paid") as string,
-      left: t("campaigns.empower.left") as string,
-      goal: parseInt(t("campaigns.empower.goal") as string),
-    },
-  ].map(campaign => {
-    // Calculate progress based on paid amount and goal
-    const paidAmount = parseInt(campaign.paid.replace(/,/g, ''))
-    const progress = Math.min(Math.round((paidAmount / campaign.goal) * 100), 100)
-    return { ...campaign, progress }
-  })
+  // Campaigns data - from API or fallback (static fallback when API unavailable)
+  const CAMPAIGNS_FALLBACK = [
+    { slug: "sponsor-medical-student", title: { en: "Sponsor a Medical Student in Gaza", ar: "اكفل طبيب من غزة" }, tagline: { en: "Investing in today's medical students… to build the doctors of tomorrow", ar: "استثمر في طلاب الطب اليوم... لبناء أطباء الغد" }, description: { en: "A humanitarian, professional campaign directed at doctors around the world.", ar: "حملة إنسانية ومهنية موجهة للأطباء حول العالم." }, image: "/campaign/2.png", paid: "27,955", left: "22,045", goal: 50000, progress: 56 },
+    { slug: "support-quran-memorizer", title: { en: "Support a Quran Memorizer from Gaza", ar: "دعم حافظ القرآن من غزة" }, tagline: { en: "Supporting Quran memorizers enrolled in undergraduate programs at Gaza universities", ar: "دعم حفاظ القرآن المسجلين في برامج البكالوريوس في جامعات غزة" }, description: { en: "A humanitarian campaign aimed at supporting Quran memorizers.", ar: "حملة إنسانية تهدف إلى دعم حفاظ القرآن." }, image: "/campaign/3.png", paid: "48,626", left: "51,374", goal: 100000, progress: 49 },
+    { slug: "empower-gazan-female-student", title: { en: "Empowering the Gazan Female Student", ar: "تمكين الفتاة الغزاوية الطالبة" }, tagline: { en: "We create opportunities… unleash potential… and build young women leaders", ar: "نخلق الفرص... نطلق الإمكانات... ونبني قائدات شابات" }, description: { en: "A developmental program that aims to enhance the capabilities of outstanding university female students.", ar: "برنامج تنموي يهدف إلى تعزيز قدرات الطالبات الجامعيات المتميزات." }, image: "/campaign/4.png", paid: "28,359", left: "21,641", goal: 50000, progress: 57 },
+  ]
+  const campaignsRaw = homeContent ? homeContent.campaigns : CAMPAIGNS_FALLBACK
+  const campaigns = campaignsRaw.map((c) => ({
+    slug: c.slug,
+    title: c.title[lang],
+    tagline: c.tagline[lang],
+    description: c.description[lang],
+    image: c.image,
+    paid: c.paid,
+    left: c.left,
+    goal: c.goal,
+    progress: c.progress,
+  }))
 
   // Create cards data array for the ScrollingCards component
   const cardsData = [
@@ -150,16 +180,18 @@ export default function Home() {
   }
 
 
-  // Add partners data
-  const partners = [
-    { name: "Milli Gençlik Vakfı", logo: "/partners/p1.png", type: "Academic Partner" },
-    { name: "YediHilal", logo: "/partners/p2.png", type: "Academic Partner" },
-    { name: "Hüdayi Vakfı", logo: "/partners/p3.jpeg", type: "Academic Partner" },
-    { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: "International Organization" },
-    { name: "Umut Eğitim Vakfı", logo: "/partners/p7.svg", type: "International Organization" }
-  ]
-
-  const specialPartner = { name: "Cinta Gaza Malaysia", logo: "/partners/p6.svg", type: "International Organization" }
+  // Partners data - from API or fallback
+  const partnersRaw = homeContent?.partners?.length
+    ? homeContent.partners
+    : [
+        { name: "Milli Gençlik Vakfı", logo: "/partners/p1.png", type: { en: "Academic Partner", ar: "شريك أكاديمي" } },
+        { name: "YediHilal", logo: "/partners/p2.png", type: { en: "Academic Partner", ar: "شريك أكاديمي" } },
+        { name: "Hüdayi Vakfı", logo: "/partners/p3.jpeg", type: { en: "Academic Partner", ar: "شريك أكاديمي" } },
+        { name: "Khidhumaiy", logo: "/partners/p4.jpg", type: { en: "International Organization", ar: "منظمة دولية" } },
+        { name: "Umut Eğitim Vakfı", logo: "/partners/p7.svg", type: { en: "International Organization", ar: "منظمة دولية" } },
+        { name: "Cinta Gaza Malaysia", logo: "/partners/p6.svg", type: { en: "International Organization", ar: "منظمة دولية" } },
+      ]
+  const partners = partnersRaw
 
   const newsCards = [
     {
@@ -320,7 +352,7 @@ export default function Home() {
             <div className="w-full flex justify-start">
               <div className={`bg-white/10 backdrop-blur-md rounded-xl px-4 py-2 md:px-5 md:py-3 shadow-lg max-w-xl ${isRTL ? "text-right" : "text-left"}`}>
                 <p className={`text-white text-xs md:text-sm font-medium leading-relaxed text-pretty ${isRTL ? "text-right font-arabic" : "text-left"}`}>
-                  {t("hero.banner") as string}
+                  {homeContent?.hero?.banner?.[lang] ?? (t("hero.banner") as string)}
                 </p>
               </div>
             </div>
@@ -329,17 +361,17 @@ export default function Home() {
             <div className={`w-full space-y-4 md:space-y-6 ${isRTL ? "text-right" : "text-left"}`}>
               {/* Main Heading */}
               <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight w-full max-w-3xl text-balance break-words lg:text-4xl xl:text-5xl lg:whitespace-nowrap lg:max-w-none ${isRTL ? "font-arabic text-right" : "text-left"}`}>
-                {t("hero.heading") as string}
+                {homeContent?.hero?.heading?.[lang] ?? (t("hero.heading") as string)}
               </h1>
               
               {/* Subheading */}
               <p className={`text-white/95 text-lg md:text-xl lg:text-2xl font-semibold leading-relaxed w-full max-w-2xl text-pretty ${isRTL ? "font-arabic text-right" : "text-left"}`}>
-                {t("hero.subheading") as string}
+                {homeContent?.hero?.subheading?.[lang] ?? (t("hero.subheading") as string)}
               </p>
               
               {/* Description */}
               <p className={`text-white/90 text-sm md:text-base lg:text-lg leading-relaxed w-full max-w-2xl text-pretty ${isRTL ? "font-arabic text-right" : "text-left"}`}>
-                {t("hero.description") as string}
+                {homeContent?.hero?.description?.[lang] ?? (t("hero.description") as string)}
               </p>
             </div>
 
@@ -882,24 +914,6 @@ export default function Home() {
                   </div>
                 </GSAPReveal>
               ))}
-
-              <GSAPReveal key={specialPartner.name} animation="fade" delay={partners.length * 0.1}>
-                <div className="flex flex-col items-center text-center gap-3">
-                  <div className="flex items-center justify-center h-24 w-32">
-                    <Image
-                      src={specialPartner.logo}
-                      alt={specialPartner.name}
-                      className="h-16 w-auto object-contain transition-transform duration-300 hover:scale-105"
-                      width={160}
-                      height={160}
-                      sizes="(min-width: 1024px) 18vw, 50vw"
-                    />
-                  </div>
-                  <p className="font-medium text-black dark:text-white text-sm md:text-base">
-                    {specialPartner.name}
-                  </p>
-                </div>
-              </GSAPReveal>
             </div>
           </div>
         </div>
