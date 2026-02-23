@@ -93,6 +93,32 @@ export default function CampaignPage() {
   const isDynamic = !!dynamicCampaign;
   const campaign = staticCampaign;
 
+  const [activeTab, setActiveTab] = useState("overview");
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
+  const [shareUrl, setShareUrl] = useState("");
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+  
+  // Donation form state
+  const [amount, setAmount] = useState<string>("");
+  const [customAmount, setCustomAmount] = useState<string>("");
+  const [paymentMethod, setPaymentMethod] = useState<string>("card");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string>("");
+  const [customerInfo, setCustomerInfo] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setShareUrl(window.location.href);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, [slug]);
+
   if (loading) {
     return (
       <div className="container px-4 md:px-6 py-16 flex items-center justify-center min-h-[50vh]">
@@ -123,32 +149,6 @@ export default function CampaignPage() {
   const description = isDynamic ? dynamicCampaign!.description[lang] : (t(`campaigns.${key}.description`) as string);
   const campaignImage = isDynamic ? dynamicCampaign!.image : campaign!.image;
   const campaignPdf = isDynamic ? dynamicCampaign!.pdf : campaign!.pdf;
-
-  const [activeTab, setActiveTab] = useState("overview");
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-  const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
-  const [shareUrl, setShareUrl] = useState("");
-  const [copiedField, setCopiedField] = useState<string | null>(null);
-  
-  // Donation form state
-  const [amount, setAmount] = useState<string>("");
-  const [customAmount, setCustomAmount] = useState<string>("");
-  const [paymentMethod, setPaymentMethod] = useState<string>("card");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string>("");
-  const [customerInfo, setCustomerInfo] = useState("");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setShareUrl(window.location.href);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    }
-  }, [slug]);
 
   const estimatedShareRaise = Math.round(goal * 0.1);
 
