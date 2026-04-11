@@ -5,12 +5,13 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Calendar, User, Tag, ArrowLeft, Share2, Facebook, Twitter, Linkedin, X, ChevronLeft, ChevronRight } from "lucide-react"
+import { Calendar, User, Tag, ArrowLeft, Share2, Linkedin, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import GSAPReveal from "@/components/gsap-reveal"
 import { useLanguage } from "@/components/language-provider"
+import { SocialBrandIcon } from "@/components/social-brand-icon"
 import Image from "next/image"
 import HeroVideo from "@/components/hero-video"
 import CustomVideoPlayer from "@/components/custom-video-player"
@@ -449,7 +450,7 @@ export default function NewsArticlePage() {
       case 'facebook':
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank')
         break
-      case 'twitter':
+      case 'x':
         window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank')
         break
       case 'linkedin':
@@ -815,18 +816,20 @@ export default function NewsArticlePage() {
                       <Button 
                         variant="outline" 
                         size="icon" 
-                        className="h-8 w-8 hover:bg-blue-50 hover:text-blue-600"
+                        className="h-8 w-8 border-[#1877F2]/20 hover:bg-[#1877F2]/10"
+                        aria-label="Share on Facebook"
                         onClick={() => handleShare('facebook')}
                       >
-                        <Facebook className="h-4 w-4" />
+                        <SocialBrandIcon platform="facebook" className="h-4 w-4" />
                       </Button>
                       <Button 
                         variant="outline" 
                         size="icon" 
-                        className="h-8 w-8 hover:bg-sky-50 hover:text-sky-600"
-                        onClick={() => handleShare('twitter')}
+                        className="h-8 w-8 border-black/15 hover:bg-black/5 dark:border-white/20 dark:hover:bg-white/10"
+                        aria-label="Share on X"
+                        onClick={() => handleShare('x')}
                       >
-                        <Twitter className="h-4 w-4" />
+                        <SocialBrandIcon platform="x" className="h-4 w-4" />
                       </Button>
                       <Button 
                         variant="outline" 

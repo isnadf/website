@@ -5,8 +5,9 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { CreditCard, Banknote, Heart, Shield, Users, Copy, Check, Share2, CheckCircle, Globe, Gift, Sparkles, Star, Smile, ArrowRight, Leaf, X, Facebook, Twitter } from "lucide-react"
+import { CreditCard, Banknote, Heart, Shield, Users, Copy, Check, Share2, CheckCircle, Globe, Gift, Sparkles, Star, Smile, ArrowRight, Leaf, X } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { SocialBrandIcon } from "@/components/social-brand-icon"
 import Image from "next/image"
 
 interface ProgramDonationPageProps {
@@ -195,7 +196,7 @@ export default function ProgramDonationPage({
       case "facebook":
         socialShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`
         break
-      case "twitter":
+      case "x":
         socialShareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`
         break
     }
@@ -802,14 +803,16 @@ export default function ProgramDonationPage({
                 <button
                   onClick={() => handleSocialShare("facebook")}
                   className="flex-1 bg-[#1877F2] hover:bg-[#166FE5] text-white p-4 rounded-xl flex items-center justify-center transition-colors"
+                  aria-label="Share on Facebook"
                 >
-                  <Facebook className="w-6 h-6" />
+                  <SocialBrandIcon platform="facebook" className="h-6 w-6 text-white" />
                 </button>
                 <button
-                  onClick={() => handleSocialShare("twitter")}
+                  onClick={() => handleSocialShare("x")}
                   className="flex-1 bg-black hover:bg-gray-800 text-white p-4 rounded-xl flex items-center justify-center transition-colors"
+                  aria-label="Share on X"
                 >
-                  <Twitter className="w-6 h-6" />
+                  <SocialBrandIcon platform="x" className="h-6 w-6 text-white" />
                 </button>
               </div>
 
@@ -856,4 +859,3 @@ export default function ProgramDonationPage({
     </div>
   )
 }
-

@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "motion/react";
-import { Check, Copy, Facebook, Heart, MessageSquare, Share2, Twitter, X, CreditCard, Banknote } from "lucide-react";
+import { Check, Copy, Heart, MessageSquare, Share2, X, CreditCard, Banknote } from "lucide-react";
 
 import { useLanguage } from "@/components/language-provider";
+import { SocialBrandIcon } from "@/components/social-brand-icon";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -170,7 +171,7 @@ export default function CampaignPage() {
       case "facebook":
         shareLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
         break;
-      case "twitter":
+      case "x":
         shareLink = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
         break;
       default:
@@ -661,14 +662,16 @@ export default function CampaignPage() {
                 <button
                   onClick={() => handleSocialShare("facebook")}
                   className="flex-1 bg-[#1877F2] hover:bg-[#166FE5] text-white p-4 rounded-xl flex items-center justify-center transition-colors"
+                  aria-label="Share on Facebook"
                 >
-                  <Facebook className="w-6 h-6" />
+                  <SocialBrandIcon platform="facebook" className="h-6 w-6 text-white" />
                 </button>
                 <button
-                  onClick={() => handleSocialShare("twitter")}
+                  onClick={() => handleSocialShare("x")}
                   className="flex-1 bg-black hover:bg-gray-800 text-white p-4 rounded-xl flex items-center justify-center transition-colors"
+                  aria-label="Share on X"
                 >
-                  <Twitter className="w-6 h-6" />
+                  <SocialBrandIcon platform="x" className="h-6 w-6 text-white" />
                 </button>
               </div>
 

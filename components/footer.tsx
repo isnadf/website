@@ -1,7 +1,8 @@
 "use client"
 
-import { GraduationCap, Facebook, Instagram } from "lucide-react"
+import { GraduationCap } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { SocialBrandIcon } from "@/components/social-brand-icon"
 
 export default function Footer() {
   const { t, language } = useLanguage()
@@ -19,35 +20,33 @@ export default function Footer() {
             <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
               {t("footer.description") as string}
             </p>
-            <div className="flex items-center space-x-4 rtl:space-x-reverse rtl:space-x-4 mt-6">
+            <div className="mt-6 flex items-center space-x-4 rtl:space-x-4 rtl:space-x-reverse">
               <a
                 href="https://www.facebook.com/Palestian.studentsFund"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
+                className="inline-flex transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2"
                 aria-label="Facebook"
               >
-                <Facebook className="h-5 w-5" />
+                <SocialBrandIcon platform="facebook" className="h-5 w-5" />
               </a>
               <a
                 href="https://x.com/IsnadFoundation"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
-                aria-label="Twitter"
+                className="inline-flex transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2"
+                aria-label="X"
               >
-                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M20.59 3H17.4l-4.4 5.77L8.07 3H3.41l6.96 9.27L3 21h3.2l5.04-6.62L15.95 21H20.6l-7.13-9.49L20.59 3z"/>
-                </svg>
+                <SocialBrandIcon platform="x" className="h-4.5 w-4.5" />
               </a>
               <a
-                href="https://www.instagram.com/support.fund.ps/?igsh=MXhvdDFjbjBiMTB2YQ%3D%3D"
+                href="https://www.instagram.com/isnadfoundation.ps?igsh=dzI5YnBpam1ubHRl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400"
+                className="inline-flex transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2"
                 aria-label="Instagram"
               >
-                <Instagram className="h-5 w-5" />
+                <SocialBrandIcon platform="instagram" className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -121,4 +120,3 @@ export default function Footer() {
     </footer>
   )
 }
-
