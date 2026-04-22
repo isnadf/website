@@ -16,5 +16,13 @@
         { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "mitigate": {
+        "action": "deny"
+      }
+    }
   ]
 }
