@@ -5,8 +5,7 @@
   "crons": [
     {
       "path": "/api/admin/cleanup-payments",
-      "schedule": "0 0 * * *",
-      "_comment": "This note for the developer who active on it, the cleanup only run once since the vercel plan is hobby, its prefered to be every 12hr but need a pro plan. Good luck!"
+      "schedule": "0 0 * * *"
     }
   ],
   "headers": [
